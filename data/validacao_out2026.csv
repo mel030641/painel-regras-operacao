@@ -1,0 +1,1306 @@
+aba;data;ponto;regra;regra_planilha;valor_planilha;valor_painel;dif_%;status_planilha;status_painel
+Intradiária;2026-10-01;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;38.0;35.0;7.9;Atende;Atende
+Intradiária;2026-10-01;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;38.0;37.0;2.6;Atende;Atende
+Intradiária;2026-10-01;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;6.0;4.0;33.3;Atende;Atende
+Intradiária;2026-10-01;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;154.0;129.0;16.2;Atende;Atende
+Intradiária;2026-10-01;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;118.0;87.0;26.3;Atende;Atende
+Intradiária;2026-10-01;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;150.0;132.0;12.0;Atende;Atende
+Intradiária;2026-10-01;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.63;8.0;4.8;Atende;Atende
+Intradiária;2026-10-02;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;38.0;36.0;5.3;Atende;Atende
+Intradiária;2026-10-02;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;38.0;37.0;2.6;Atende;Atende
+Intradiária;2026-10-02;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;6.0;4.0;33.3;Atende;Atende
+Intradiária;2026-10-02;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;154.0;153.0;0.6;Atende;Atende
+Intradiária;2026-10-02;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;118.0;90.0;23.7;Atende;Atende
+Intradiária;2026-10-02;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;150.0;147.0;2.0;Atende;Atende
+Intradiária;2026-10-02;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.48;8.0;7.0;Atende;Atende
+Intradiária;2026-10-03;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;38.0;36.0;5.3;Atende;Atende
+Intradiária;2026-10-03;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;38.0;37.0;2.6;Atende;Atende
+Intradiária;2026-10-03;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;6.0;4.0;33.3;Atende;Atende
+Intradiária;2026-10-03;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;150.0;118.0;21.3;Atende;Atende
+Intradiária;2026-10-03;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;115.0;110.0;4.3;Atende;Atende
+Intradiária;2026-10-03;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;148.0;160.0;8.1;Atende;Atende
+Intradiária;2026-10-03;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.63;8.0;4.8;Atende;Atende
+Intradiária;2026-10-04;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;37.0;36.0;2.7;Atende;Atende
+Intradiária;2026-10-04;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;38.0;37.0;2.6;Atende;Atende
+Intradiária;2026-10-04;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;6.0;4.0;33.3;Atende;Atende
+Intradiária;2026-10-04;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;144.0;120.0;16.7;Atende;Atende
+Intradiária;2026-10-04;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;110.0;90.0;18.2;Atende;Atende
+Intradiária;2026-10-04;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;150.0;155.0;3.3;Atende;Atende
+Intradiária;2026-10-04;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.64;8.0;4.7;Atende;Atende
+Intradiária;2026-10-05;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;37.0;36.0;2.7;Atende;Atende
+Intradiária;2026-10-05;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;37.0;37.0;0.0;Atende;Atende
+Intradiária;2026-10-05;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;6.0;4.0;33.3;Atende;Atende
+Intradiária;2026-10-05;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;123.0;120.0;2.4;Atende;Atende
+Intradiária;2026-10-05;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;96.0;90.0;6.2;Atende;Atende
+Intradiária;2026-10-05;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;123.0;178.0;44.7;Atende;Atende
+Intradiária;2026-10-05;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.64;8.0;4.7;Atende;Atende
+Intradiária;2026-10-06;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;35.0;35.0;0.0;Atende;Atende
+Intradiária;2026-10-06;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;36.0;32.0;11.1;Atende;Atende
+Intradiária;2026-10-06;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;6.0;4.0;33.3;Atende;Atende
+Intradiária;2026-10-06;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;199.0;131.0;34.2;Atende;Atende
+Intradiária;2026-10-06;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;101.0;138.0;36.6;Atende;Atende
+Intradiária;2026-10-06;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;218.0;163.0;25.2;Atende;Atende
+Intradiária;2026-10-06;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.64;8.0;4.7;Atende;Atende
+Intradiária;2026-10-07;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;35.0;32.0;8.6;Atende;Atende
+Intradiária;2026-10-07;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;36.0;32.0;11.1;Atende;Atende
+Intradiária;2026-10-07;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;6.0;4.0;33.3;Atende;Atende
+Intradiária;2026-10-07;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;199.0;121.0;39.2;Atende;Atende
+Intradiária;2026-10-07;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;101.0;196.0;94.1;Atende;Atende
+Intradiária;2026-10-07;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;218.0;166.0;23.9;Atende;Atende
+Intradiária;2026-10-07;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.65;8.0;4.6;Atende;Atende
+Intradiária;2026-10-08;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;35.0;33.0;5.7;Atende;Atende
+Intradiária;2026-10-08;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;36.0;31.0;13.9;Atende;Atende
+Intradiária;2026-10-08;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;6.0;4.0;33.3;Atende;Atende
+Intradiária;2026-10-08;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;199.0;120.0;39.7;Atende;Atende
+Intradiária;2026-10-08;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;101.0;112.0;10.9;Atende;Atende
+Intradiária;2026-10-08;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;218.0;167.0;23.4;Atende;Atende
+Intradiária;2026-10-08;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.65;8.0;4.6;Atende;Atende
+Intradiária;2026-10-09;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;51.0;49.0;3.9;Atende;Atende
+Intradiária;2026-10-09;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;50.0;49.0;2.0;Atende;Atende
+Intradiária;2026-10-09;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-09;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;224.0;133.0;40.6;Atende;Atende
+Intradiária;2026-10-09;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;155.0;85.0;45.2;Atende;Atende
+Intradiária;2026-10-09;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;196.0;174.0;11.2;Atende;Atende
+Intradiária;2026-10-09;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.66;8.0;4.4;Atende;Atende
+Intradiária;2026-10-10;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;51.0;49.0;3.9;Atende;Atende
+Intradiária;2026-10-10;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;50.0;50.0;0.0;Atende;Atende
+Intradiária;2026-10-10;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-10;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;224.0;136.0;39.3;Atende;Atende
+Intradiária;2026-10-10;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;155.0;106.0;31.6;Atende;Atende
+Intradiária;2026-10-10;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;196.0;170.0;13.3;Atende;Atende
+Intradiária;2026-10-10;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.66;8.0;4.4;Atende;Atende
+Intradiária;2026-10-11;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;50.0;48.0;4.0;Atende;Atende
+Intradiária;2026-10-11;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;50.0;49.0;2.0;Atende;Atende
+Intradiária;2026-10-11;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-11;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;203.0;133.0;34.5;Atende;Atende
+Intradiária;2026-10-11;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;278.0;195.0;29.9;Atende;Atende
+Intradiária;2026-10-11;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;186.0;168.0;9.7;Atende;Atende
+Intradiária;2026-10-11;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.66;8.0;4.4;Atende;Atende
+Intradiária;2026-10-12;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;33.0;31.0;6.1;Atende;Atende
+Intradiária;2026-10-12;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;34.0;32.0;5.9;Atende;Atende
+Intradiária;2026-10-12;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-12;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;185.0;131.0;29.2;Atende;Atende
+Intradiária;2026-10-12;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;200.0;140.0;30.0;Atende;Atende
+Intradiária;2026-10-12;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;205.0;168.0;18.0;Atende;Atende
+Intradiária;2026-10-12;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.68;8.0;4.2;Atende;Atende
+Intradiária;2026-10-13;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;33.0;31.0;6.1;Atende;Atende
+Intradiária;2026-10-13;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;33.0;32.0;3.0;Atende;Atende
+Intradiária;2026-10-13;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-13;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;221.0;131.0;40.7;Atende;Atende
+Intradiária;2026-10-13;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;151.0;110.0;27.2;Atende;Atende
+Intradiária;2026-10-13;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;190.0;161.0;15.3;Atende;Atende
+Intradiária;2026-10-13;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.68;8.0;4.2;Atende;Atende
+Intradiária;2026-10-14;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;31.0;11.0;64.5;Atende;Atende
+Intradiária;2026-10-14;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;33.0;32.0;3.0;Atende;Atende
+Intradiária;2026-10-14;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-14;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;283.0;153.0;45.9;Atende;Atende
+Intradiária;2026-10-14;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;195.0;94.0;51.8;Atende;Atende
+Intradiária;2026-10-14;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;188.0;160.0;14.9;Atende;Atende
+Intradiária;2026-10-14;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.68;8.0;4.2;Atende;Atende
+Intradiária;2026-10-15;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;26.0;0.0;100.0;Atende;Não atende
+Intradiária;2026-10-15;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;34.0;33.0;2.9;Atende;Atende
+Intradiária;2026-10-15;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-15;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;283.0;159.0;43.8;Atende;Atende
+Intradiária;2026-10-15;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;237.0;151.0;36.3;Atende;Atende
+Intradiária;2026-10-15;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;177.0;161.0;9.0;Atende;Atende
+Intradiária;2026-10-15;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.68;8.0;4.2;Atende;Atende
+Intradiária;2026-10-16;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;33.0;31.0;6.1;Atende;Atende
+Intradiária;2026-10-16;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;34.0;33.0;2.9;Atende;Atende
+Intradiária;2026-10-16;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-16;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;222.0;137.0;38.3;Atende;Atende
+Intradiária;2026-10-16;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;200.0;147.0;26.5;Atende;Atende
+Intradiária;2026-10-16;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;165.0;127.0;23.0;Atende;Atende
+Intradiária;2026-10-16;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.68;8.0;4.2;Atende;Atende
+Intradiária;2026-10-17;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;33.0;31.0;6.1;Atende;Atende
+Intradiária;2026-10-17;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;33.0;32.0;3.0;Atende;Atende
+Intradiária;2026-10-17;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-17;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;251.0;251.0;0.0;Atende;Atende
+Intradiária;2026-10-17;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;174.0;116.0;33.3;Atende;Atende
+Intradiária;2026-10-17;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;150.0;148.0;1.3;Atende;Atende
+Intradiária;2026-10-17;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.69;8.0;4.0;Atende;Atende
+Intradiária;2026-10-18;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;33.0;31.0;6.1;Atende;Atende
+Intradiária;2026-10-18;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;33.0;32.0;3.0;Atende;Atende
+Intradiária;2026-10-18;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-18;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;209.0;135.0;35.4;Atende;Atende
+Intradiária;2026-10-18;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;174.0;160.0;8.0;Atende;Atende
+Intradiária;2026-10-18;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;163.0;165.0;1.2;Atende;Atende
+Intradiária;2026-10-18;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.71;8.0;3.8;Atende;Atende
+Intradiária;2026-10-19;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;33.0;31.0;6.1;Atende;Atende
+Intradiária;2026-10-19;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;33.0;32.0;3.0;Atende;Atende
+Intradiária;2026-10-19;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-19;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;212.0;134.0;36.8;Atende;Atende
+Intradiária;2026-10-19;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;150.0;94.0;37.3;Atende;Atende
+Intradiária;2026-10-19;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;158.0;133.0;15.8;Atende;Atende
+Intradiária;2026-10-19;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.71;8.0;3.8;Atende;Atende
+Intradiária;2026-10-20;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;32.0;31.0;3.1;Atende;Atende
+Intradiária;2026-10-20;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;33.0;32.0;3.0;Atende;Atende
+Intradiária;2026-10-20;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-20;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;206.0;133.0;35.4;Atende;Atende
+Intradiária;2026-10-20;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;129.0;91.0;29.5;Atende;Atende
+Intradiária;2026-10-20;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;158.0;127.0;19.6;Atende;Atende
+Intradiária;2026-10-20;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.71;8.0;3.8;Atende;Atende
+Intradiária;2026-10-21;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;33.0;31.0;6.1;Atende;Atende
+Intradiária;2026-10-21;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;33.0;32.0;3.0;Atende;Atende
+Intradiária;2026-10-21;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-21;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;213.0;134.0;37.1;Atende;Atende
+Intradiária;2026-10-21;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;133.0;90.0;32.3;Atende;Atende
+Intradiária;2026-10-21;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;154.0;144.0;6.5;Atende;Atende
+Intradiária;2026-10-21;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.69;8.0;4.0;Atende;Atende
+Intradiária;2026-10-22;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;33.0;33.0;0.0;Atende;Atende
+Intradiária;2026-10-22;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;33.0;32.0;3.0;Atende;Atende
+Intradiária;2026-10-22;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-22;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;210.0;155.0;26.2;Atende;Atende
+Intradiária;2026-10-22;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;135.0;99.0;26.7;Atende;Atende
+Intradiária;2026-10-22;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;139.0;123.0;11.5;Atende;Atende
+Intradiária;2026-10-22;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.72;8.0;3.6;Atende;Atende
+Intradiária;2026-10-23;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;33.0;31.0;6.1;Atende;Atende
+Intradiária;2026-10-23;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;33.0;32.0;3.0;Atende;Atende
+Intradiária;2026-10-23;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-23;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;211.0;157.0;25.6;Atende;Atende
+Intradiária;2026-10-23;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;126.0;89.0;29.4;Atende;Atende
+Intradiária;2026-10-23;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;133.0;125.0;6.0;Atende;Atende
+Intradiária;2026-10-23;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.73;8.0;3.5;Atende;Atende
+Intradiária;2026-10-24;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;33.0;31.0;6.1;Atende;Atende
+Intradiária;2026-10-24;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;33.0;32.0;3.0;Atende;Atende
+Intradiária;2026-10-24;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-24;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;216.0;155.0;28.2;Atende;Atende
+Intradiária;2026-10-24;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;172.0;91.0;47.1;Atende;Atende
+Intradiária;2026-10-24;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;156.0;128.0;17.9;Atende;Atende
+Intradiária;2026-10-24;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.73;8.0;3.5;Atende;Atende
+Intradiária;2026-10-25;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;33.0;33.0;0.0;Atende;Atende
+Intradiária;2026-10-25;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;34.0;33.0;2.9;Atende;Atende
+Intradiária;2026-10-25;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-25;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;216.0;155.0;28.2;Atende;Atende
+Intradiária;2026-10-25;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;172.0;102.0;40.7;Atende;Atende
+Intradiária;2026-10-25;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;156.0;137.0;12.2;Atende;Atende
+Intradiária;2026-10-25;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.73;8.0;3.5;Atende;Atende
+Intradiária;2026-10-26;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;33.0;32.0;3.0;Atende;Atende
+Intradiária;2026-10-26;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;32.0;32.0;0.0;Atende;Atende
+Intradiária;2026-10-26;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-26;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;219.0;151.0;31.1;Atende;Atende
+Intradiária;2026-10-26;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;215.0;193.0;10.2;Atende;Atende
+Intradiária;2026-10-26;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;160.0;163.0;1.9;Atende;Atende
+Intradiária;2026-10-26;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;6.71;8.0;19.2;Atende;Atende
+Intradiária;2026-10-27;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;32.0;31.0;3.1;Atende;Atende
+Intradiária;2026-10-27;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;32.0;31.0;3.1;Atende;Atende
+Intradiária;2026-10-27;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-27;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;222.0;149.0;32.9;Atende;Atende
+Intradiária;2026-10-27;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;171.0;134.0;21.6;Atende;Atende
+Intradiária;2026-10-27;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;160.0;163.0;1.9;Atende;Atende
+Intradiária;2026-10-27;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.75;8.0;3.2;Atende;Atende
+Intradiária;2026-10-28;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;32.0;31.0;3.1;Atende;Atende
+Intradiária;2026-10-28;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;32.0;32.0;0.0;Atende;Atende
+Intradiária;2026-10-28;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-28;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;224.0;157.0;29.9;Atende;Atende
+Intradiária;2026-10-28;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;165.0;136.0;17.6;Atende;Atende
+Intradiária;2026-10-28;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;164.0;163.0;0.6;Atende;Atende
+Intradiária;2026-10-28;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.75;8.0;3.2;Atende;Atende
+Intradiária;2026-10-29;Paraibuna;1382-PBPARA;Qinst >= 10,0 m³/s;32.0;31.0;3.1;Atende;Atende
+Intradiária;2026-10-29;Santa Branca;1382-PBSTAB;Qinst >= 30,0 m³/s;32.0;32.0;0.0;Atende;Atende
+Intradiária;2026-10-29;Jaguari;1382-PBJAGU;Qinst >= 4,0 m³/s;4.0;4.0;0.0;Atende;Atende
+Intradiária;2026-10-29;Funil;1382-PBFUNI;Qinst >= 70,0 m³/s;224.0;157.0;29.9;Atende;Atende
+Intradiária;2026-10-29;Santa Cecília (Jusante);1382-PBSTAC;Qjus >= 71,0 m³/s;153.0;118.0;22.9;Atende;Atende
+Intradiária;2026-10-29;Pereira Passos;1382-RLPPAS;Qjus >= 120,0 m³/s;167.0;163.0;2.4;Atende;Atende
+Intradiária;2026-10-29;UHE Jaguari - Captação Interligação;1931-max;Qinst <= 8,50 m³/s;7.75;8.0;3.2;Atende;Atende
+Diaria_SIN;2026-10-01;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);666.0;666.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-01;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);703.0;703.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-01;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;50.87;51.52;1.3;Atende;Atende
+Diaria_SIN;2026-10-01;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;32.17;31.84;1.0;Atende;Atende
+Diaria_SIN;2026-10-01;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);334.0;334.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-01;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);1221.0;1221.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-01;Cascata São Simão;194-PRSSIM;VU >= 15,0%;32.22;30.63;4.9;Atende;Atende
+Diaria_SIN;2026-10-01;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;675.0;676.0;0.1;Atende;Atende
+Diaria_SIN;2026-10-01;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1329.0;1321.0;0.6;Atende;Atende
+Diaria_SIN;2026-10-01;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1643.0;1657.0;0.9;Atende;Atende
+Diaria_SIN;2026-10-01;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;55.71;57.88;3.9;Atende;Atende
+Diaria_SIN;2026-10-01;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1035.0;1033.0;0.2;Atende;Atende
+Diaria_SIN;2026-10-01;Estreito;70-TOUHET;Qdef >= 744 m³/s;1355.0;1913.0;41.2;Atende;Atende
+Diaria_SIN;2026-10-01;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;4.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-01;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;158.0;127.0;19.6;Atende;Atende
+Diaria_SIN;2026-10-01;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);25.59;25.59;0.0;Atende;Atende
+Diaria_SIN;2026-10-01;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;832.68;832.7;0.0;Atende;Atende
+Diaria_SIN;2026-10-01;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.09;819.1;0.0;Atende;Atende
+Diaria_SIN;2026-10-01;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.3;783.22;0.0;Atende;Atende
+Diaria_SIN;2026-10-01;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.34;744.32;0.0;Atende;Atende
+Diaria_SIN;2026-10-01;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;13.9;18.35;32.0;Atende;Atende
+Diaria_SIN;2026-10-01;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;3.6;10.37;188.1;Atende;Atende
+Diaria_SIN;2026-10-01;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;4.3;8.47;97.0;Atende;Atende
+Diaria_SIN;2026-10-02;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);649.0;649.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-02;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);635.0;669.0;5.4;Atende;Atende
+Diaria_SIN;2026-10-02;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;50.87;51.35;0.9;Atende;Atende
+Diaria_SIN;2026-10-02;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;32.17;31.84;1.0;Atende;Atende
+Diaria_SIN;2026-10-02;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);323.0;323.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-02;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);1257.0;1257.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-02;Cascata São Simão;194-PRSSIM;VU >= 15,0%;32.22;31.07;3.6;Atende;Atende
+Diaria_SIN;2026-10-02;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;675.0;675.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-02;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1329.0;1329.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-02;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1643.0;1643.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-02;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;55.71;56.87;2.1;Atende;Atende
+Diaria_SIN;2026-10-02;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1035.0;1035.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-02;Estreito;70-TOUHET;Qdef >= 744 m³/s;1355.0;1046.0;22.8;Atende;Atende
+Diaria_SIN;2026-10-02;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;4.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-02;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;158.0;118.0;25.3;Atende;Não atende
+Diaria_SIN;2026-10-02;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);25.59;25.59;0.0;Atende;Atende
+Diaria_SIN;2026-10-02;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;832.68;832.74;0.0;Atende;Atende
+Diaria_SIN;2026-10-02;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.09;819.12;0.0;Atende;Atende
+Diaria_SIN;2026-10-02;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.3;783.13;0.0;Atende;Atende
+Diaria_SIN;2026-10-02;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.34;744.36;0.0;Atende;Atende
+Diaria_SIN;2026-10-02;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;13.9;19.14;37.7;Atende;Atende
+Diaria_SIN;2026-10-02;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;3.6;10.58;193.9;Atende;Atende
+Diaria_SIN;2026-10-02;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;4.3;8.86;106.0;Atende;Atende
+Diaria_SIN;2026-10-03;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);500.0;500.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-03;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);501.0;613.0;22.4;Atende;Atende
+Diaria_SIN;2026-10-03;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;50.63;51.11;0.9;Atende;Atende
+Diaria_SIN;2026-10-03;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;32.26;31.94;1.0;Atende;Atende
+Diaria_SIN;2026-10-03;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);199.0;199.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-03;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);1147.0;1147.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-03;Cascata São Simão;194-PRSSIM;VU >= 15,0%;31.8;30.63;3.7;Atende;Atende
+Diaria_SIN;2026-10-03;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;676.0;676.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-03;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1337.0;1337.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-03;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1254.0;1254.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-03;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;55.51;56.67;2.1;Atende;Atende
+Diaria_SIN;2026-10-03;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1038.0;1038.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-03;Estreito;70-TOUHET;Qdef >= 744 m³/s;1267.0;863.0;31.9;Atende;Atende
+Diaria_SIN;2026-10-03;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;2.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-03;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;158.0;128.0;19.0;Atende;Atende
+Diaria_SIN;2026-10-03;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);25.59;25.59;0.0;Atende;Atende
+Diaria_SIN;2026-10-03;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;832.68;832.77;0.0;Atende;Atende
+Diaria_SIN;2026-10-03;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.09;819.15;0.0;Atende;Atende
+Diaria_SIN;2026-10-03;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.3;783.05;0.0;Atende;Atende
+Diaria_SIN;2026-10-03;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.34;744.44;0.0;Atende;Atende
+Diaria_SIN;2026-10-03;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;13.8;19.6;42.0;Atende;Atende
+Diaria_SIN;2026-10-03;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;3.55;10.61;198.9;Atende;Atende
+Diaria_SIN;2026-10-03;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;4.25;9.25;117.6;Atende;Atende
+Diaria_SIN;2026-10-04;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);250.0;250.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-04;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);259.0;524.5;102.5;Atende;Atende
+Diaria_SIN;2026-10-04;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;50.33;50.82;1.0;Atende;Atende
+Diaria_SIN;2026-10-04;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;32.45;31.84;1.9;Atende;Atende
+Diaria_SIN;2026-10-04;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);151.0;151.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-04;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);517.0;517.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-04;Cascata São Simão;194-PRSSIM;VU >= 15,0%;31.8;30.46;4.2;Atende;Atende
+Diaria_SIN;2026-10-04;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;676.0;676.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-04;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1322.0;1322.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-04;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1132.0;1132.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-04;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;55.71;56.87;2.1;Atende;Atende
+Diaria_SIN;2026-10-04;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);671.0;671.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-04;Estreito;70-TOUHET;Qdef >= 744 m³/s;1255.0;864.0;31.2;Atende;Atende
+Diaria_SIN;2026-10-04;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;1.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-04;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;138.0;129.0;6.5;Atende;Atende
+Diaria_SIN;2026-10-04;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);21.7;24.62;13.5;Atende;Atende
+Diaria_SIN;2026-10-04;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;832.84;832.79;0.0;Atende;Atende
+Diaria_SIN;2026-10-04;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.23;819.17;0.0;Atende;Atende
+Diaria_SIN;2026-10-04;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;782.92;782.98;0.0;Atende;Atende
+Diaria_SIN;2026-10-04;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.48;744.41;0.0;Atende;Atende
+Diaria_SIN;2026-10-04;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;13.85;22.13;59.8;Atende;Atende
+Diaria_SIN;2026-10-04;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;3.55;10.19;187.0;Atende;Atende
+Diaria_SIN;2026-10-04;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;4.25;9.46;122.6;Atende;Atende
+Diaria_SIN;2026-10-05;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);505.0;505.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-05;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);549.0;529.4;3.6;Atende;Atende
+Diaria_SIN;2026-10-05;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;50.02;50.53;1.0;Atende;Atende
+Diaria_SIN;2026-10-05;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;31.14;31.18;0.1;Atende;Atende
+Diaria_SIN;2026-10-05;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);283.0;283.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-05;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);1063.0;1063.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-05;Cascata São Simão;194-PRSSIM;VU >= 15,0%;31.55;30.37;3.7;Atende;Atende
+Diaria_SIN;2026-10-05;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;676.0;676.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-05;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1322.0;1322.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-05;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1132.0;1165.0;2.9;Atende;Atende
+Diaria_SIN;2026-10-05;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;55.71;56.87;2.1;Atende;Atende
+Diaria_SIN;2026-10-05;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1039.0;1039.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-05;Estreito;70-TOUHET;Qdef >= 744 m³/s;1094.0;1969.0;80.0;Atende;Atende
+Diaria_SIN;2026-10-05;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;1.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-05;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;176.0;123.0;30.1;Atende;Atende
+Diaria_SIN;2026-10-05;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);21.7;24.03;10.7;Atende;Atende
+Diaria_SIN;2026-10-05;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;832.84;832.84;0.0;Atende;Atende
+Diaria_SIN;2026-10-05;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.23;819.23;0.0;Atende;Atende
+Diaria_SIN;2026-10-05;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;782.92;782.92;0.0;Atende;Atende
+Diaria_SIN;2026-10-05;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.48;744.48;0.0;Atende;Atende
+Diaria_SIN;2026-10-05;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;13.85;21.21;53.1;Atende;Atende
+Diaria_SIN;2026-10-05;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;3.55;10.29;189.9;Atende;Atende
+Diaria_SIN;2026-10-05;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;4.25;11.68;174.8;Atende;Atende
+Diaria_SIN;2026-10-06;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);473.0;473.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-06;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);552.0;533.17;3.4;Atende;Atende
+Diaria_SIN;2026-10-06;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;49.9;50.41;1.0;Atende;Atende
+Diaria_SIN;2026-10-06;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;31.24;30.89;1.1;Atende;Atende
+Diaria_SIN;2026-10-06;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);285.0;285.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-06;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);998.0;998.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-06;Cascata São Simão;194-PRSSIM;VU >= 15,0%;31.38;30.19;3.8;Atende;Atende
+Diaria_SIN;2026-10-06;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;676.0;677.0;0.1;Atende;Atende
+Diaria_SIN;2026-10-06;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1322.0;1298.0;1.8;Atende;Atende
+Diaria_SIN;2026-10-06;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1132.0;1134.0;0.2;Atende;Atende
+Diaria_SIN;2026-10-06;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;55.71;56.67;1.7;Atende;Atende
+Diaria_SIN;2026-10-06;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1039.0;1044.0;0.5;Atende;Atende
+Diaria_SIN;2026-10-06;Estreito;70-TOUHET;Qdef >= 744 m³/s;1094.0;1909.0;74.5;Atende;Atende
+Diaria_SIN;2026-10-06;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;1.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-06;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;271.0;101.0;62.7;Atende;Não atende
+Diaria_SIN;2026-10-06;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);24.83;24.17;2.7;Atende;Atende
+Diaria_SIN;2026-10-06;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;832.98;832.91;0.0;Atende;Atende
+Diaria_SIN;2026-10-06;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.35;819.32;0.0;Atende;Atende
+Diaria_SIN;2026-10-06;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;782.9;782.89;0.0;Atende;Atende
+Diaria_SIN;2026-10-06;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.37;744.46;0.0;Atende;Atende
+Diaria_SIN;2026-10-06;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;13.85;20.74;49.7;Atende;Atende
+Diaria_SIN;2026-10-06;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;3.55;10.83;205.1;Atende;Atende
+Diaria_SIN;2026-10-06;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;4.25;12.59;196.2;Atende;Atende
+Diaria_SIN;2026-10-07;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);460.0;460.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-07;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);572.0;538.71;5.8;Atende;Atende
+Diaria_SIN;2026-10-07;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;49.6;50.12;1.0;Atende;Atende
+Diaria_SIN;2026-10-07;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;30.77;30.42;1.1;Atende;Atende
+Diaria_SIN;2026-10-07;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);287.0;287.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-07;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);1150.0;1150.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-07;Cascata São Simão;194-PRSSIM;VU >= 15,0%;31.29;30.11;3.8;Atende;Atende
+Diaria_SIN;2026-10-07;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;677.0;677.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-07;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1298.0;1298.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-07;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1167.0;1121.0;3.9;Atende;Atende
+Diaria_SIN;2026-10-07;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;55.51;56.67;2.1;Atende;Atende
+Diaria_SIN;2026-10-07;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1039.0;1019.0;1.9;Atende;Atende
+Diaria_SIN;2026-10-07;Estreito;70-TOUHET;Qdef >= 744 m³/s;1094.0;2002.0;83.0;Atende;Atende
+Diaria_SIN;2026-10-07;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;1.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-07;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;271.0;88.0;67.5;Atende;Não atende
+Diaria_SIN;2026-10-07;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);24.83;24.26;2.3;Atende;Atende
+Diaria_SIN;2026-10-07;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;832.98;832.98;0.0;Atende;Atende
+Diaria_SIN;2026-10-07;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.35;819.35;0.0;Atende;Atende
+Diaria_SIN;2026-10-07;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;782.9;782.9;0.0;Atende;Atende
+Diaria_SIN;2026-10-07;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.37;744.37;0.0;Atende;Atende
+Diaria_SIN;2026-10-07;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;13.85;22.98;65.9;Atende;Atende
+Diaria_SIN;2026-10-07;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;3.55;10.71;201.7;Atende;Atende
+Diaria_SIN;2026-10-07;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;4.25;13.49;217.4;Atende;Atende
+Diaria_SIN;2026-10-08;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);441.0;441.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-08;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);569.0;542.5;4.7;Atende;Atende
+Diaria_SIN;2026-10-08;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;50.14;50.64;1.0;Atende;Atende
+Diaria_SIN;2026-10-08;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;30.4;30.04;1.2;Atende;Atende
+Diaria_SIN;2026-10-08;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);292.0;292.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-08;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);1173.0;1173.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-08;Cascata São Simão;194-PRSSIM;VU >= 15,0%;31.29;30.54;2.4;Atende;Atende
+Diaria_SIN;2026-10-08;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;678.0;678.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-08;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1318.0;1318.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-08;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1488.0;1558.0;4.7;Atende;Atende
+Diaria_SIN;2026-10-08;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;54.69;55.65;1.8;Atende;Atende
+Diaria_SIN;2026-10-08;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1039.0;1008.0;3.0;Atende;Atende
+Diaria_SIN;2026-10-08;Estreito;70-TOUHET;Qdef >= 744 m³/s;1094.0;2256.0;106.2;Atende;Atende
+Diaria_SIN;2026-10-08;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;1.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-08;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;271.0;115.0;57.6;Atende;Não atende
+Diaria_SIN;2026-10-08;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);29.0;24.85;14.3;Atende;Atende
+Diaria_SIN;2026-10-08;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;833.08;833.04;0.0;Atende;Atende
+Diaria_SIN;2026-10-08;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.22;819.31;0.0;Atende;Atende
+Diaria_SIN;2026-10-08;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;782.88;782.9;0.0;Atende;Atende
+Diaria_SIN;2026-10-08;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.3;744.27;0.0;Atende;Atende
+Diaria_SIN;2026-10-08;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;13.85;23.71;71.2;Atende;Atende
+Diaria_SIN;2026-10-08;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;3.55;9.75;174.6;Atende;Atende
+Diaria_SIN;2026-10-08;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;4.25;14.23;234.8;Atende;Atende
+Diaria_SIN;2026-10-09;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);561.0;561.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-09;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);713.0;561.44;21.3;Atende;Atende
+Diaria_SIN;2026-10-09;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;50.45;50.94;1.0;Atende;Atende
+Diaria_SIN;2026-10-09;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;30.03;29.67;1.2;Atende;Atende
+Diaria_SIN;2026-10-09;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);212.0;212.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-09;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);914.0;914.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-09;Cascata São Simão;194-PRSSIM;VU >= 15,0%;32.22;31.07;3.6;Atende;Atende
+Diaria_SIN;2026-10-09;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;679.0;679.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-09;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1310.0;1310.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-09;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1635.0;1635.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-09;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;53.45;55.45;3.7;Atende;Atende
+Diaria_SIN;2026-10-09;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1014.0;1014.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-09;Estreito;70-TOUHET;Qdef >= 744 m³/s;1890.0;1890.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-09;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;2.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-09;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;125.0;125.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-09;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);26.5;25.04;5.5;Atende;Atende
+Diaria_SIN;2026-10-09;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;832.68;833.08;0.0;Atende;Atende
+Diaria_SIN;2026-10-09;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.09;819.22;0.0;Atende;Atende
+Diaria_SIN;2026-10-09;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.3;782.88;0.1;Atende;Atende
+Diaria_SIN;2026-10-09;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.34;744.3;0.0;Atende;Atende
+Diaria_SIN;2026-10-09;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;13.8;19.77;43.3;Atende;Atende
+Diaria_SIN;2026-10-09;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;3.5;9.0;157.1;Atende;Atende
+Diaria_SIN;2026-10-09;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;4.2;11.85;182.1;Atende;Atende
+Diaria_SIN;2026-10-10;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);484.0;484.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-10;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);469.0;552.2;17.7;Atende;Atende
+Diaria_SIN;2026-10-10;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;50.45;50.94;1.0;Atende;Atende
+Diaria_SIN;2026-10-10;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;30.49;30.14;1.1;Atende;Atende
+Diaria_SIN;2026-10-10;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);258.0;258.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-10;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);841.0;841.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-10;Cascata São Simão;194-PRSSIM;VU >= 15,0%;32.64;31.51;3.5;Atende;Atende
+Diaria_SIN;2026-10-10;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;680.0;680.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-10;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1196.0;1196.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-10;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1232.0;1232.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-10;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;53.45;55.25;3.4;Atende;Atende
+Diaria_SIN;2026-10-10;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1013.0;1013.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-10;Estreito;70-TOUHET;Qdef >= 744 m³/s;1417.0;1417.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-10;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;4.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-10;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;125.0;128.0;2.4;Atende;Atende
+Diaria_SIN;2026-10-10;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);26.5;25.18;5.0;Atende;Atende
+Diaria_SIN;2026-10-10;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;832.68;833.17;0.1;Atende;Atende
+Diaria_SIN;2026-10-10;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.09;819.11;0.0;Atende;Atende
+Diaria_SIN;2026-10-10;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.3;782.93;0.0;Atende;Atende
+Diaria_SIN;2026-10-10;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.34;744.59;0.0;Atende;Atende
+Diaria_SIN;2026-10-10;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;13.8;27.78;101.3;Atende;Atende
+Diaria_SIN;2026-10-10;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;3.5;11.95;241.4;Atende;Atende
+Diaria_SIN;2026-10-10;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;4.2;16.2;285.7;Atende;Atende
+Diaria_SIN;2026-10-11;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);223.0;223.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-11;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);248.0;524.55;111.5;Atende;Atende
+Diaria_SIN;2026-10-11;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;50.57;51.05;0.9;Atende;Atende
+Diaria_SIN;2026-10-11;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;30.59;30.14;1.5;Atende;Atende
+Diaria_SIN;2026-10-11;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);150.0;150.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-11;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);490.0;490.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-11;Cascata São Simão;194-PRSSIM;VU >= 15,0%;32.48;31.34;3.5;Atende;Atende
+Diaria_SIN;2026-10-11;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;536.0;536.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-11;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1198.0;1198.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-11;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1114.0;1109.0;0.4;Atende;Atende
+Diaria_SIN;2026-10-11;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;53.35;55.05;3.2;Atende;Atende
+Diaria_SIN;2026-10-11;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);668.0;668.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-11;Estreito;70-TOUHET;Qdef >= 744 m³/s;1621.0;1227.0;24.3;Atende;Atende
+Diaria_SIN;2026-10-11;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;4.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-11;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;127.0;127.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-11;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);27.1;25.36;6.4;Atende;Atende
+Diaria_SIN;2026-10-11;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;833.1;833.25;0.0;Atende;Atende
+Diaria_SIN;2026-10-11;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.2;819.1;0.0;Atende;Atende
+Diaria_SIN;2026-10-11;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.25;782.98;0.0;Atende;Atende
+Diaria_SIN;2026-10-11;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.32;744.61;0.0;Atende;Atende
+Diaria_SIN;2026-10-11;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;13.8;32.07;132.4;Atende;Atende
+Diaria_SIN;2026-10-11;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;3.5;13.18;276.6;Atende;Atende
+Diaria_SIN;2026-10-11;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;4.2;18.77;346.9;Atende;Atende
+Diaria_SIN;2026-10-12;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);368.0;368.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-12;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);476.0;520.5;9.3;Atende;Atende
+Diaria_SIN;2026-10-12;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;50.45;50.94;1.0;Atende;Atende
+Diaria_SIN;2026-10-12;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;30.12;29.76;1.2;Atende;Atende
+Diaria_SIN;2026-10-12;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);193.0;193.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-12;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);722.0;722.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-12;Cascata São Simão;194-PRSSIM;VU >= 15,0%;31.72;31.07;2.0;Atende;Atende
+Diaria_SIN;2026-10-12;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;683.0;683.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-12;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1209.0;1209.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-12;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1048.0;1114.0;6.3;Tolerância;Atende
+Diaria_SIN;2026-10-12;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;53.45;54.84;2.6;Atende;Atende
+Diaria_SIN;2026-10-12;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);674.0;674.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-12;Estreito;70-TOUHET;Qdef >= 744 m³/s;1255.0;1255.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-12;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;2.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-12;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;128.0;128.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-12;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);27.12;25.5;6.0;Atende;Atende
+Diaria_SIN;2026-10-12;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;833.49;833.4;0.0;Atende;Atende
+Diaria_SIN;2026-10-12;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.34;819.24;0.0;Atende;Atende
+Diaria_SIN;2026-10-12;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.17;783.12;0.0;Atende;Atende
+Diaria_SIN;2026-10-12;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.31;744.47;0.0;Atende;Atende
+Diaria_SIN;2026-10-12;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;13.8;48.12;248.7;Atende;Atende
+Diaria_SIN;2026-10-12;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;3.5;15.31;337.4;Atende;Atende
+Diaria_SIN;2026-10-12;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;4.2;17.18;309.0;Atende;Atende
+Diaria_SIN;2026-10-13;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);577.0;577.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-13;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);751.0;538.23;28.3;Atende;Atende
+Diaria_SIN;2026-10-13;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;50.08;50.59;1.0;Atende;Atende
+Diaria_SIN;2026-10-13;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;29.85;29.48;1.2;Atende;Atende
+Diaria_SIN;2026-10-13;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);358.0;358.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-13;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);1194.0;1194.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-13;Cascata São Simão;194-PRSSIM;VU >= 15,0%;31.72;30.54;3.7;Atende;Atende
+Diaria_SIN;2026-10-13;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;684.0;684.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-13;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1209.0;1209.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-13;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1464.0;1464.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-13;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;52.44;53.63;2.3;Atende;Atende
+Diaria_SIN;2026-10-13;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1013.0;1013.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-13;Estreito;70-TOUHET;Qdef >= 744 m³/s;1478.0;2326.0;57.4;Atende;Atende
+Diaria_SIN;2026-10-13;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;3.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-13;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;129.0;129.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-13;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);26.0;25.54;1.8;Atende;Atende
+Diaria_SIN;2026-10-13;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;833.57;833.49;0.0;Atende;Atende
+Diaria_SIN;2026-10-13;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.27;819.34;0.0;Atende;Atende
+Diaria_SIN;2026-10-13;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.21;783.17;0.0;Atende;Atende
+Diaria_SIN;2026-10-13;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.29;744.31;0.0;Atende;Atende
+Diaria_SIN;2026-10-13;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;13.8;38.32;177.7;Atende;Atende
+Diaria_SIN;2026-10-13;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;3.5;16.49;371.1;Atende;Atende
+Diaria_SIN;2026-10-13;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;4.2;21.54;412.9;Atende;Atende
+Diaria_SIN;2026-10-14;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);703.0;703.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-14;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);742.0;552.79;25.5;Atende;Atende
+Diaria_SIN;2026-10-14;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;50.0;50.06;0.1;Atende;Atende
+Diaria_SIN;2026-10-14;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;29.8;29.29;1.7;Atende;Atende
+Diaria_SIN;2026-10-14;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);345.0;345.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-14;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);1408.0;1408.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-14;Cascata São Simão;194-PRSSIM;VU >= 15,0%;31.6;30.46;3.6;Atende;Atende
+Diaria_SIN;2026-10-14;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;665.0;665.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-14;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1209.0;1209.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-14;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1628.0;1688.0;3.7;Atende;Atende
+Diaria_SIN;2026-10-14;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;50.83;52.02;2.3;Atende;Atende
+Diaria_SIN;2026-10-14;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1017.0;1017.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-14;Estreito;70-TOUHET;Qdef >= 744 m³/s;1935.0;1938.0;0.2;Atende;Atende
+Diaria_SIN;2026-10-14;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;3.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-14;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;138.0;138.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-14;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);26.8;25.63;4.4;Atende;Atende
+Diaria_SIN;2026-10-14;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;833.61;833.57;0.0;Atende;Atende
+Diaria_SIN;2026-10-14;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.16;819.27;0.0;Atende;Atende
+Diaria_SIN;2026-10-14;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.23;783.21;0.0;Atende;Atende
+Diaria_SIN;2026-10-14;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.31;744.29;0.0;Atende;Atende
+Diaria_SIN;2026-10-14;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;13.8;33.72;144.3;Atende;Atende
+Diaria_SIN;2026-10-14;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;3.5;16.0;357.1;Atende;Atende
+Diaria_SIN;2026-10-14;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;4.2;16.84;301.0;Atende;Atende
+Diaria_SIN;2026-10-15;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);984.0;984.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-15;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);784.0;568.2;27.5;Atende;Atende
+Diaria_SIN;2026-10-15;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;49.8;49.37;0.9;Atende;Atende
+Diaria_SIN;2026-10-15;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;29.8;29.67;0.4;Atende;Atende
+Diaria_SIN;2026-10-15;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);399.0;399.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-15;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);1892.0;1892.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-15;Cascata São Simão;194-PRSSIM;VU >= 15,0%;31.6;30.28;4.2;Atende;Atende
+Diaria_SIN;2026-10-15;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;667.0;667.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-15;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1164.0;1164.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-15;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1678.0;1678.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-15;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;49.0;50.21;2.5;Atende;Atende
+Diaria_SIN;2026-10-15;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1019.0;1019.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-15;Estreito;70-TOUHET;Qdef >= 744 m³/s;1935.0;1580.0;18.3;Atende;Atende
+Diaria_SIN;2026-10-15;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;3.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-15;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;127.0;127.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-15;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);26.8;25.71;4.1;Atende;Atende
+Diaria_SIN;2026-10-15;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;833.6;833.61;0.0;Atende;Atende
+Diaria_SIN;2026-10-15;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.1;819.16;0.0;Atende;Atende
+Diaria_SIN;2026-10-15;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.2;783.23;0.0;Atende;Atende
+Diaria_SIN;2026-10-15;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.3;744.31;0.0;Atende;Atende
+Diaria_SIN;2026-10-15;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;13.8;31.45;127.9;Atende;Atende
+Diaria_SIN;2026-10-15;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;3.5;13.56;287.4;Atende;Atende
+Diaria_SIN;2026-10-15;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;4.2;14.39;242.6;Atende;Atende
+Diaria_SIN;2026-10-16;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);899.0;899.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-16;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);810.0;583.31;28.0;Atende;Atende
+Diaria_SIN;2026-10-16;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;49.5;49.43;0.1;Atende;Atende
+Diaria_SIN;2026-10-16;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;29.7;29.29;1.4;Atende;Atende
+Diaria_SIN;2026-10-16;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);552.0;552.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-16;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);2129.0;2129.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-16;Cascata São Simão;194-PRSSIM;VU >= 15,0%;32.0;31.34;2.1;Atende;Atende
+Diaria_SIN;2026-10-16;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;931.0;931.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-16;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1111.0;1111.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-16;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1725.0;1725.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-16;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;47.59;48.81;2.6;Atende;Atende
+Diaria_SIN;2026-10-16;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1021.0;1021.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-16;Estreito;70-TOUHET;Qdef >= 744 m³/s;1850.0;1996.0;7.9;Atende;Atende
+Diaria_SIN;2026-10-16;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;2.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-16;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;128.0;128.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-16;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);26.5;25.76;2.8;Atende;Atende
+Diaria_SIN;2026-10-16;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;833.7;833.69;0.0;Atende;Atende
+Diaria_SIN;2026-10-16;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.1;819.13;0.0;Atende;Atende
+Diaria_SIN;2026-10-16;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.3;783.26;0.0;Atende;Atende
+Diaria_SIN;2026-10-16;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.3;744.49;0.0;Atende;Atende
+Diaria_SIN;2026-10-16;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;13.8;36.69;165.9;Atende;Atende
+Diaria_SIN;2026-10-16;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;3.5;14.27;307.7;Atende;Atende
+Diaria_SIN;2026-10-16;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;4.2;14.03;234.0;Atende;Atende
+Diaria_SIN;2026-10-17;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);711.0;711.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-17;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);611.0;584.94;4.3;Atende;Atende
+Diaria_SIN;2026-10-17;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;49.29;49.83;1.1;Atende;Atende
+Diaria_SIN;2026-10-17;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;29.57;29.2;1.3;Atende;Atende
+Diaria_SIN;2026-10-17;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);346.0;346.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-17;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);1299.0;1299.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-17;Cascata São Simão;194-PRSSIM;VU >= 15,0%;34.78;32.04;7.9;Atende;Atende
+Diaria_SIN;2026-10-17;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;1270.0;1270.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-17;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1119.0;1119.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-17;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1367.0;1367.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-17;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;47.39;48.61;2.6;Atende;Atende
+Diaria_SIN;2026-10-17;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1024.0;1024.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-17;Estreito;70-TOUHET;Qdef >= 744 m³/s;1750.0;1733.0;1.0;Atende;Atende
+Diaria_SIN;2026-10-17;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;2.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-17;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;129.0;129.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-17;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);26.2;25.79;1.6;Atende;Atende
+Diaria_SIN;2026-10-17;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;833.8;833.75;0.0;Atende;Atende
+Diaria_SIN;2026-10-17;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.1;819.15;0.0;Atende;Atende
+Diaria_SIN;2026-10-17;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.3;783.32;0.0;Atende;Atende
+Diaria_SIN;2026-10-17;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.3;744.7;0.1;Atende;Atende
+Diaria_SIN;2026-10-17;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;13.8;48.7;252.9;Atende;Atende
+Diaria_SIN;2026-10-17;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;3.5;16.21;363.1;Atende;Atende
+Diaria_SIN;2026-10-17;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;4.2;15.25;263.1;Atende;Atende
+Diaria_SIN;2026-10-18;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);763.0;763.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-18;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);663.0;589.28;11.1;Atende;Atende
+Diaria_SIN;2026-10-18;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;49.29;49.83;1.1;Atende;Atende
+Diaria_SIN;2026-10-18;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;29.48;29.1;1.3;Atende;Atende
+Diaria_SIN;2026-10-18;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);487.0;487.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-18;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);1791.0;1791.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-18;Cascata São Simão;194-PRSSIM;VU >= 15,0%;33.57;32.48;3.2;Atende;Atende
+Diaria_SIN;2026-10-18;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;1369.0;1369.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-18;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1099.0;1099.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-18;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1125.0;1125.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-18;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;46.01;47.81;3.9;Atende;Atende
+Diaria_SIN;2026-10-18;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);721.0;721.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-18;Estreito;70-TOUHET;Qdef >= 744 m³/s;1239.0;1239.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-18;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;1.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-18;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;128.0;128.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-18;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);26.0;25.8;0.8;Atende;Atende
+Diaria_SIN;2026-10-18;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;833.85;833.81;0.0;Atende;Atende
+Diaria_SIN;2026-10-18;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.08;819.13;0.0;Atende;Atende
+Diaria_SIN;2026-10-18;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.35;783.37;0.0;Atende;Atende
+Diaria_SIN;2026-10-18;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.35;744.67;0.0;Atende;Atende
+Diaria_SIN;2026-10-18;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;13.8;45.89;232.5;Atende;Atende
+Diaria_SIN;2026-10-18;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;3.5;16.75;378.6;Atende;Atende
+Diaria_SIN;2026-10-18;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;4.2;14.02;233.8;Atende;Atende
+Diaria_SIN;2026-10-19;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);710.0;710.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-19;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);759.0;598.21;21.2;Atende;Atende
+Diaria_SIN;2026-10-19;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;49.11;49.66;1.1;Atende;Atende
+Diaria_SIN;2026-10-19;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;29.76;29.2;1.9;Atende;Atende
+Diaria_SIN;2026-10-19;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);349.0;349.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-19;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);1402.0;1402.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-19;Cascata São Simão;194-PRSSIM;VU >= 15,0%;34.78;33.46;3.8;Atende;Atende
+Diaria_SIN;2026-10-19;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;1366.0;1366.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-19;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1121.0;1121.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-19;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1430.0;1430.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-19;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;45.62;46.81;2.6;Atende;Atende
+Diaria_SIN;2026-10-19;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1012.0;1012.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-19;Estreito;70-TOUHET;Qdef >= 744 m³/s;1378.0;949.0;31.1;Atende;Atende
+Diaria_SIN;2026-10-19;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;1.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-19;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;128.0;128.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-19;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);26.0;25.81;0.7;Atende;Atende
+Diaria_SIN;2026-10-19;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;833.91;833.87;0.0;Atende;Atende
+Diaria_SIN;2026-10-19;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.07;819.11;0.0;Atende;Atende
+Diaria_SIN;2026-10-19;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.42;783.4;0.0;Atende;Atende
+Diaria_SIN;2026-10-19;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.37;744.52;0.0;Atende;Atende
+Diaria_SIN;2026-10-19;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;13.8;38.36;178.0;Atende;Atende
+Diaria_SIN;2026-10-19;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;3.5;15.43;340.9;Atende;Atende
+Diaria_SIN;2026-10-19;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;4.2;12.1;188.1;Atende;Atende
+Diaria_SIN;2026-10-20;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);446.0;446.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-20;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);657.0;601.15;8.5;Atende;Atende
+Diaria_SIN;2026-10-20;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;49.11;50.12;2.1;Atende;Atende
+Diaria_SIN;2026-10-20;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;29.76;29.1;2.2;Atende;Atende
+Diaria_SIN;2026-10-20;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);266.0;266.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-20;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);815.0;815.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-20;Cascata São Simão;194-PRSSIM;VU >= 15,0%;34.78;33.55;3.5;Atende;Atende
+Diaria_SIN;2026-10-20;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;1363.0;1363.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-20;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1128.0;1128.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-20;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1425.0;1409.0;1.1;Atende;Atende
+Diaria_SIN;2026-10-20;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;44.41;45.62;2.7;Atende;Atende
+Diaria_SIN;2026-10-20;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1015.0;1024.0;0.9;Atende;Atende
+Diaria_SIN;2026-10-20;Estreito;70-TOUHET;Qdef >= 744 m³/s;1370.0;998.0;27.2;Atende;Atende
+Diaria_SIN;2026-10-20;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;1.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-20;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;129.0;129.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-20;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);25.59;25.8;0.8;Atende;Atende
+Diaria_SIN;2026-10-20;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;833.94;833.91;0.0;Atende;Atende
+Diaria_SIN;2026-10-20;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.05;819.07;0.0;Atende;Atende
+Diaria_SIN;2026-10-20;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.4;783.42;0.0;Atende;Atende
+Diaria_SIN;2026-10-20;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.31;744.37;0.0;Atende;Atende
+Diaria_SIN;2026-10-20;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;13.8;30.79;123.1;Atende;Atende
+Diaria_SIN;2026-10-20;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;3.5;12.36;253.1;Atende;Atende
+Diaria_SIN;2026-10-20;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;4.2;10.51;150.2;Atende;Atende
+Diaria_SIN;2026-10-21;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);437.0;437.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-21;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);509.0;596.76;17.2;Atende;Atende
+Diaria_SIN;2026-10-21;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;49.9;50.41;1.0;Atende;Atende
+Diaria_SIN;2026-10-21;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;29.29;28.92;1.3;Atende;Atende
+Diaria_SIN;2026-10-21;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);310.0;310.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-21;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);818.0;818.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-21;Cascata São Simão;194-PRSSIM;VU >= 15,0%;34.41;33.28;3.3;Atende;Atende
+Diaria_SIN;2026-10-21;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;1044.0;1044.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-21;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1120.0;1120.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-21;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1377.0;1377.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-21;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;43.42;44.62;2.8;Atende;Atende
+Diaria_SIN;2026-10-21;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1027.0;1027.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-21;Estreito;70-TOUHET;Qdef >= 744 m³/s;1334.0;1334.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-21;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;1.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-21;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;129.0;129.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-21;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);23.57;25.69;9.0;Atende;Atende
+Diaria_SIN;2026-10-21;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;833.98;833.94;0.0;Atende;Atende
+Diaria_SIN;2026-10-21;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.02;819.05;0.0;Atende;Atende
+Diaria_SIN;2026-10-21;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.37;783.4;0.0;Atende;Atende
+Diaria_SIN;2026-10-21;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.39;744.31;0.0;Atende;Atende
+Diaria_SIN;2026-10-21;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;22.53;26.54;17.8;Atende;Atende
+Diaria_SIN;2026-10-21;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;8.43;9.46;12.2;Atende;Atende
+Diaria_SIN;2026-10-21;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;9.17;9.51;3.7;Atende;Atende
+Diaria_SIN;2026-10-22;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);354.0;354.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-22;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);512.0;592.91;15.8;Atende;Atende
+Diaria_SIN;2026-10-22;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;50.21;50.7;1.0;Atende;Atende
+Diaria_SIN;2026-10-22;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;29.11;28.73;1.3;Atende;Atende
+Diaria_SIN;2026-10-22;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);213.0;213.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-22;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);668.0;668.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-22;Cascata São Simão;194-PRSSIM;VU >= 15,0%;34.5;33.37;3.3;Atende;Atende
+Diaria_SIN;2026-10-22;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;450.0;450.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-22;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1115.0;1115.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-22;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1372.0;1372.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-22;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;42.63;43.83;2.8;Atende;Atende
+Diaria_SIN;2026-10-22;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1028.0;1028.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-22;Estreito;70-TOUHET;Qdef >= 744 m³/s;1181.0;1181.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-22;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;1.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-22;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;128.0;128.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-22;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);28.0;25.8;7.9;Atende;Atende
+Diaria_SIN;2026-10-22;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;834.03;833.98;0.0;Atende;Atende
+Diaria_SIN;2026-10-22;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;818.99;819.02;0.0;Atende;Atende
+Diaria_SIN;2026-10-22;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.33;783.37;0.0;Atende;Atende
+Diaria_SIN;2026-10-22;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.42;744.39;0.0;Atende;Atende
+Diaria_SIN;2026-10-22;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;22.53;21.7;3.7;Atende;Atende
+Diaria_SIN;2026-10-22;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;8.43;8.47;0.5;Atende;Atende
+Diaria_SIN;2026-10-22;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;9.17;8.99;2.0;Atende;Atende
+Diaria_SIN;2026-10-23;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);487.0;487.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-23;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);482.0;588.09;22.0;Atende;Atende
+Diaria_SIN;2026-10-23;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;50.08;50.59;1.0;Atende;Atende
+Diaria_SIN;2026-10-23;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;29.11;28.73;1.3;Atende;Atende
+Diaria_SIN;2026-10-23;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);276.0;276.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-23;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);1026.0;1026.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-23;Cascata São Simão;194-PRSSIM;VU >= 15,0%;34.13;33.02;3.3;Atende;Atende
+Diaria_SIN;2026-10-23;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;429.0;429.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-23;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1118.0;1118.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-23;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1330.0;1330.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-23;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;41.65;42.83;2.8;Atende;Atende
+Diaria_SIN;2026-10-23;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1028.0;1028.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-23;Estreito;70-TOUHET;Qdef >= 744 m³/s;1418.0;1418.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-23;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;1.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-23;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;129.0;129.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-23;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);28.0;25.89;7.5;Atende;Atende
+Diaria_SIN;2026-10-23;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;834.03;834.03;0.0;Atende;Atende
+Diaria_SIN;2026-10-23;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;818.99;818.99;0.0;Atende;Atende
+Diaria_SIN;2026-10-23;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.33;783.33;0.0;Atende;Atende
+Diaria_SIN;2026-10-23;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.42;744.42;0.0;Atende;Atende
+Diaria_SIN;2026-10-23;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;22.53;28.74;27.6;Atende;Atende
+Diaria_SIN;2026-10-23;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;8.43;9.73;15.4;Atende;Atende
+Diaria_SIN;2026-10-23;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;9.17;11.72;27.8;Atende;Atende
+Diaria_SIN;2026-10-24;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);485.0;485.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-24;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);601.0;588.62;2.1;Atende;Atende
+Diaria_SIN;2026-10-24;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;50.14;50.64;1.0;Atende;Atende
+Diaria_SIN;2026-10-24;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;29.2;28.82;1.3;Atende;Atende
+Diaria_SIN;2026-10-24;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);279.0;279.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-24;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);1094.0;1094.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-24;Cascata São Simão;194-PRSSIM;VU >= 15,0%;34.41;33.28;3.3;Atende;Atende
+Diaria_SIN;2026-10-24;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;341.0;341.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-24;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1123.0;1123.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-24;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1138.0;1138.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-24;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;42.44;42.44;0.0;Atende;Atende
+Diaria_SIN;2026-10-24;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1026.0;1026.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-24;Estreito;70-TOUHET;Qdef >= 744 m³/s;1338.0;1338.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-24;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;1.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-24;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;128.0;129.0;0.8;Atende;Atende
+Diaria_SIN;2026-10-24;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);22.0;25.73;17.0;Atende;Atende
+Diaria_SIN;2026-10-24;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;834.4;834.07;0.0;Atende;Atende
+Diaria_SIN;2026-10-24;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.4;819.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-24;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.56;783.3;0.0;Atende;Atende
+Diaria_SIN;2026-10-24;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.84;744.48;0.0;Atende;Atende
+Diaria_SIN;2026-10-24;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;22.53;29.32;30.1;Atende;Atende
+Diaria_SIN;2026-10-24;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;8.43;11.25;33.5;Atende;Atende
+Diaria_SIN;2026-10-24;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;9.17;16.42;79.1;Atende;Atende
+Diaria_SIN;2026-10-25;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);707.0;707.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-25;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);497.0;584.96;17.7;Atende;Atende
+Diaria_SIN;2026-10-25;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;49.72;50.24;1.0;Atende;Atende
+Diaria_SIN;2026-10-25;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;29.02;28.64;1.3;Atende;Atende
+Diaria_SIN;2026-10-25;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);471.0;471.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-25;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);1335.0;1335.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-25;Cascata São Simão;194-PRSSIM;VU >= 15,0%;34.41;33.28;3.3;Atende;Atende
+Diaria_SIN;2026-10-25;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;301.0;301.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-25;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1119.0;1119.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-25;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1154.0;1154.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-25;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;42.24;42.24;0.0;Atende;Atende
+Diaria_SIN;2026-10-25;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);743.0;743.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-25;Estreito;70-TOUHET;Qdef >= 744 m³/s;2244.0;2244.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-25;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;2.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-25;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;128.0;128.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-25;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);22.0;25.58;16.3;Atende;Atende
+Diaria_SIN;2026-10-25;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;834.4;834.23;0.0;Atende;Atende
+Diaria_SIN;2026-10-25;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.4;819.13;0.0;Atende;Atende
+Diaria_SIN;2026-10-25;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.56;783.4;0.0;Atende;Atende
+Diaria_SIN;2026-10-25;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.84;744.7;0.0;Atende;Atende
+Diaria_SIN;2026-10-25;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;22.53;73.56;226.5;Atende;Atende
+Diaria_SIN;2026-10-25;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;8.43;17.93;112.7;Atende;Atende
+Diaria_SIN;2026-10-25;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;9.17;55.75;508.0;Atende;Atende
+Diaria_SIN;2026-10-26;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);802.0;802.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-26;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);768.0;592.0;22.9;Atende;Atende
+Diaria_SIN;2026-10-26;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;49.11;49.66;1.1;Atende;Atende
+Diaria_SIN;2026-10-26;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;28.65;28.26;1.4;Atende;Atende
+Diaria_SIN;2026-10-26;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);514.0;514.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-26;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);1504.0;1504.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-26;Cascata São Simão;194-PRSSIM;VU >= 15,0%;33.55;33.55;0.0;Atende;Atende
+Diaria_SIN;2026-10-26;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;319.0;319.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-26;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1111.0;1111.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-26;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1506.0;1506.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-26;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;40.86;40.86;0.0;Atende;Atende
+Diaria_SIN;2026-10-26;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1024.0;1024.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-26;Estreito;70-TOUHET;Qdef >= 744 m³/s;2615.0;2615.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-26;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;3.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-26;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;128.0;128.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-26;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);24.52;25.54;4.2;Atende;Atende
+Diaria_SIN;2026-10-26;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;834.57;834.4;0.0;Atende;Atende
+Diaria_SIN;2026-10-26;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.49;819.4;0.0;Atende;Atende
+Diaria_SIN;2026-10-26;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.66;783.56;0.0;Atende;Atende
+Diaria_SIN;2026-10-26;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.62;744.84;0.0;Atende;Atende
+Diaria_SIN;2026-10-26;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;22.53;99.95;343.6;Atende;Atende
+Diaria_SIN;2026-10-26;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;8.43;25.42;201.5;Atende;Atende
+Diaria_SIN;2026-10-26;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;9.17;74.32;710.5;Atende;Atende
+Diaria_SIN;2026-10-27;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);850.0;850.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-27;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);850.0;601.56;29.2;Atende;Atende
+Diaria_SIN;2026-10-27;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;48.87;49.43;1.1;Atende;Atende
+Diaria_SIN;2026-10-27;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;28.73;28.64;0.3;Atende;Atende
+Diaria_SIN;2026-10-27;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);450.0;450.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-27;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);1389.0;1389.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-27;Cascata São Simão;194-PRSSIM;VU >= 15,0%;33.73;33.73;0.0;Atende;Atende
+Diaria_SIN;2026-10-27;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;242.0;242.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-27;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1128.0;1128.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-27;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1563.0;1563.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-27;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;39.28;39.28;0.0;Atende;Atende
+Diaria_SIN;2026-10-27;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1024.0;1024.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-27;Estreito;70-TOUHET;Qdef >= 744 m³/s;1198.0;1198.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-27;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;2.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-27;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;129.0;129.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-27;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);24.52;25.5;4.0;Atende;Atende
+Diaria_SIN;2026-10-27;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;834.57;834.57;0.0;Atende;Atende
+Diaria_SIN;2026-10-27;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.49;819.49;0.0;Atende;Atende
+Diaria_SIN;2026-10-27;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.66;783.66;0.0;Atende;Atende
+Diaria_SIN;2026-10-27;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.62;744.62;0.0;Atende;Atende
+Diaria_SIN;2026-10-27;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;22.53;92.11;308.8;Atende;Atende
+Diaria_SIN;2026-10-27;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;8.43;26.15;210.2;Atende;Atende
+Diaria_SIN;2026-10-27;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;9.17;47.45;417.4;Atende;Atende
+Diaria_SIN;2026-10-28;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);384.0;384.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-28;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);455.0;596.32;31.1;Atende;Atende
+Diaria_SIN;2026-10-28;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;49.2;50.06;1.7;Atende;Atende
+Diaria_SIN;2026-10-28;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;28.73;28.45;1.0;Atende;Atende
+Diaria_SIN;2026-10-28;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);196.0;196.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-28;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);629.0;629.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-28;Cascata São Simão;194-PRSSIM;VU >= 15,0%;34.0;34.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-28;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;247.0;247.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-28;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1127.0;1127.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-28;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1213.0;1213.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-28;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;38.88;38.88;0.0;Atende;Atende
+Diaria_SIN;2026-10-28;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1024.0;1024.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-28;Estreito;70-TOUHET;Qdef >= 744 m³/s;1372.0;1372.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-28;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;2.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-28;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;129.0;129.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-28;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);24.52;25.47;3.9;Atende;Atende
+Diaria_SIN;2026-10-28;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;834.77;834.7;0.0;Atende;Atende
+Diaria_SIN;2026-10-28;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.45;819.48;0.0;Atende;Atende
+Diaria_SIN;2026-10-28;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.75;783.73;0.0;Atende;Atende
+Diaria_SIN;2026-10-28;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.36;744.42;0.0;Atende;Atende
+Diaria_SIN;2026-10-28;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;65.7;71.29;8.5;Atende;Atende
+Diaria_SIN;2026-10-28;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;20.55;22.25;8.3;Atende;Atende
+Diaria_SIN;2026-10-28;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;26.22;29.7;13.3;Atende;Atende
+Diaria_SIN;2026-10-29;Furnas;193-GRFURN;Qdef <= 1.440 m³/s (Outorga nº 1033/2019);424.0;424.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-29;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);649.0;598.14;7.8;Atende;Atende
+Diaria_SIN;2026-10-29;Cascata Marimbondo;193-GRMARI;VU >= 15,0%;49.0;51.35;4.8;Atende;Atende
+Diaria_SIN;2026-10-29;Cascata Água Vermelha;193-GRAGVL;VU >= 15,0%;28.5;28.26;0.8;Atende;Atende
+Diaria_SIN;2026-10-29;Emborcação;194-PREMBO;Qdef <= 972 m³/s (Outorga);239.0;239.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-29;Itumbiara;194-PRITUM;Qdef <= 2.928 m³/s (Outorga);964.0;964.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-29;Cascata São Simão;194-PRSSIM;VU >= 15,0%;33.64;33.64;0.0;Atende;Atende
+Diaria_SIN;2026-10-29;Três Marias;2081-SFTMAR-min;Qdef >= 150 m³/s;332.0;332.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-29;Sobradinho;2081-SFSOBR-min;Qdef >= 800 m³/s;1103.0;1103.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-29;Xingó;2081-SFXING-min;Qdef >= 1.100 m³/s;1186.0;1186.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-29;Itaparica (Luiz Gonzaga);2081-SFLGON;VU >= 30,0%;37.14;38.3;3.1;Atende;Atende
+Diaria_SIN;2026-10-29;Serra da Mesa;70-TOSMES-min;Qdef >= 300 m³/s (Período Seco);1029.0;1029.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-29;Estreito;70-TOUHET;Qdef >= 744 m³/s;1464.0;1464.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-29;Foz do Chapecó;49-RIUHFC;Se Qafl <= 1.000 no FDS -> Qdef <= 1.000 m³/s;2.0;;;Atende;Não se aplica
+Diaria_SIN;2026-10-29;Santa Cecília Guandu;1382-PBSTAC-guandu;Qtransf >= 119,0 m³/s;129.0;129.0;0.0;Atende;Atende
+Diaria_SIN;2026-10-29;Elevatória Santa Inês;925-santaines;Qbomb <= 33,00 m³/s (Faixa 2 + Transp.);23.07;25.38;10.0;Atende;Atende
+Diaria_SIN;2026-10-29;Jaguari-Jacareí;614-29001;Cota <= 844,00 m;834.89;834.77;0.0;Atende;Atende
+Diaria_SIN;2026-10-29;Cota Cheia Cachoeira;614-29002;Cota <= 821,88 m;819.46;819.45;0.0;Atende;Atende
+Diaria_SIN;2026-10-29;Cota Cheia Atibainha;614-29003;Cota <= 786,72 m;783.79;783.75;0.0;Atende;Atende
+Diaria_SIN;2026-10-29;Cota Cheia Paiva Castro;614-29004;Cota <= 745,61 m;744.62;744.36;0.0;Atende;Atende
+Diaria_SIN;2026-10-29;Valinhos (Vazão Mínima);925-valinhos-dia;Qdia >= 10,00 m³/s;56.55;57.9;2.4;Atende;Atende
+Diaria_SIN;2026-10-29;Atibaia (Vazão Mínima);925-atibaia-dia;Qdia >= 2,00 m³/s;17.14;17.66;3.0;Atende;Atende
+Diaria_SIN;2026-10-29;Buenópolis (Vazão Mínima);925-buenopolis-dia;Qdia >= 2,00 m³/s;20.29;21.11;4.0;Atende;Atende
+Semanal_Paranapanema;2026-10-01;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);294.0;110.0;62.6;Atende;Atende
+Semanal_Paranapanema;2026-10-01;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);566.0;449.17;20.6;Atende;Atende
+Semanal_Paranapanema;2026-10-01;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);2919.0;2930.0;0.4;Atende;Atende
+Semanal_Paranapanema;2026-10-02;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);294.0;136.29;53.6;Atende;Atende
+Semanal_Paranapanema;2026-10-02;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);566.0;465.86;17.7;Atende;Atende
+Semanal_Paranapanema;2026-10-02;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);2919.0;2928.43;0.3;Atende;Atende
+Semanal_Paranapanema;2026-10-03;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);385.0;385.0;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-03;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);616.0;616.0;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-03;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);2903.0;2903.0;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-04;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);249.0;430.0;72.7;Atende;Atende
+Semanal_Paranapanema;2026-10-04;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);524.5;612.0;16.7;Atende;Atende
+Semanal_Paranapanema;2026-10-04;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);2796.0;2634.5;5.8;Atende;Atende
+Semanal_Paranapanema;2026-10-05;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);350.7;471.33;34.4;Atende;Atende
+Semanal_Paranapanema;2026-10-05;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);546.7;605.0;10.7;Atende;Atende
+Semanal_Paranapanema;2026-10-05;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);2828.3;2720.67;3.8;Atende;Atende
+Semanal_Paranapanema;2026-10-06;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);409.8;500.25;22.1;Atende;Atende
+Semanal_Paranapanema;2026-10-06;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);573.8;617.5;7.6;Atende;Atende
+Semanal_Paranapanema;2026-10-06;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);2949.8;2869.0;2.7;Atende;Atende
+Semanal_Paranapanema;2026-10-07;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);446.6;519.0;16.2;Atende;Atende
+Semanal_Paranapanema;2026-10-07;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);592.8;627.8;5.9;Atende;Atende
+Semanal_Paranapanema;2026-10-07;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);3059.2;2994.6;2.1;Atende;Atende
+Semanal_Paranapanema;2026-10-08;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);470.5;536.5;14.0;Atende;Atende
+Semanal_Paranapanema;2026-10-08;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);604.0;639.33;5.8;Atende;Atende
+Semanal_Paranapanema;2026-10-08;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);3124.3;3084.83;1.3;Atende;Atende
+Semanal_Paranapanema;2026-10-09;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);494.6;551.14;11.4;Atende;Atende
+Semanal_Paranapanema;2026-10-09;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);633.1;663.43;4.8;Atende;Atende
+Semanal_Paranapanema;2026-10-09;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);3218.0;3184.14;1.1;Atende;Atende
+Semanal_Paranapanema;2026-10-10;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);650.0;650.0;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-10;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);910.0;910.0;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-10;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);3809.0;3809.0;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-11;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);654.5;654.5;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-11;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);911.5;911.5;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-11;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);3818.5;3818.5;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-12;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);655.0;655.0;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-12;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);913.7;913.67;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-12;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);3752.3;3752.33;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-13;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);658.0;658.0;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-13;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);916.2;916.25;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-13;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);3778.0;3778.0;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-14;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);660.4;667.8;1.1;Atende;Atende
+Semanal_Paranapanema;2026-10-14;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);919.0;917.0;0.2;Atende;Atende
+Semanal_Paranapanema;2026-10-14;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);3794.4;3871.8;2.0;Atende;Atende
+Semanal_Paranapanema;2026-10-15;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);662.0;665.33;0.5;Atende;Atende
+Semanal_Paranapanema;2026-10-15;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);920.8;927.33;0.7;Atende;Atende
+Semanal_Paranapanema;2026-10-15;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);3805.3;4095.67;7.6;Atende;Atende
+Semanal_Paranapanema;2026-10-16;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);662.4;661.71;0.1;Atende;Atende
+Semanal_Paranapanema;2026-10-16;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);921.4;951.57;3.3;Atende;Atende
+Semanal_Paranapanema;2026-10-16;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);3811.7;4349.14;14.1;Atende;Atende
+Semanal_Paranapanema;2026-10-17;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);660.0;634.0;3.9;Atende;Atende
+Semanal_Paranapanema;2026-10-17;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);920.0;1213.0;31.8;Atende;Atende
+Semanal_Paranapanema;2026-10-17;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);3800.0;6143.0;61.7;Atende;Atende
+Semanal_Paranapanema;2026-10-18;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);646.5;633.5;2.0;Atende;Atende
+Semanal_Paranapanema;2026-10-18;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);1066.5;1213.0;13.7;Atende;Atende
+Semanal_Paranapanema;2026-10-18;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);5049.5;6221.0;23.2;Atende;Atende
+Semanal_Paranapanema;2026-10-19;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);647.7;628.67;2.9;Atende;Atende
+Semanal_Paranapanema;2026-10-19;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);1014.3;1209.67;19.3;Atende;Atende
+Semanal_Paranapanema;2026-10-19;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);4599.7;6191.0;34.6;Atende;Atende
+Semanal_Paranapanema;2026-10-20;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);648.2;597.75;7.8;Atende;Atende
+Semanal_Paranapanema;2026-10-20;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);988.2;1153.25;16.7;Atende;Atende
+Semanal_Paranapanema;2026-10-20;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);4374.8;5908.75;35.1;Atende;Atende
+Semanal_Paranapanema;2026-10-21;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);648.6;537.8;17.1;Atende;Atende
+Semanal_Paranapanema;2026-10-21;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);972.6;1033.2;6.2;Atende;Atende
+Semanal_Paranapanema;2026-10-21;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);4239.8;5462.2;28.8;Atende;Atende
+Semanal_Paranapanema;2026-10-22;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);648.8;494.5;23.8;Atende;Atende
+Semanal_Paranapanema;2026-10-22;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);962.2;963.5;0.1;Atende;Atende
+Semanal_Paranapanema;2026-10-22;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);4149.8;5315.67;28.1;Atende;Atende
+Semanal_Paranapanema;2026-10-23;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);649.0;471.14;27.4;Atende;Atende
+Semanal_Paranapanema;2026-10-23;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);954.7;911.29;4.5;Atende;Atende
+Semanal_Paranapanema;2026-10-23;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);4085.6;5070.71;24.1;Atende;Atende
+Semanal_Paranapanema;2026-10-24;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);374.0;374.0;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-24;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);604.0;604.0;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-24;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);2655.0;2655.0;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-25;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);363.5;363.5;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-25;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);606.5;606.5;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-25;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);2676.5;2676.5;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-26;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);397.0;397.0;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-26;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);629.7;629.67;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-26;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);2847.3;2847.33;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-27;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);444.5;444.5;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-27;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);705.2;705.25;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-27;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);3378.0;3378.0;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-28;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);473.4;473.4;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-28;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);786.4;786.4;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-28;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);3868.2;3868.2;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-29;Jurumirim;132-PPJURU;Teto Livre (Faixa Normal);509.8;509.83;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-29;Chavantes;132-PPCHAV;Teto Livre (Faixa Normal);854.8;854.83;0.0;Atende;Atende
+Semanal_Paranapanema;2026-10-29;Capivara;132-PPCAPI;Teto Livre (Faixa Normal);4210.8;4210.83;0.0;Atende;Atende
+Movel_PCJ;2026-10-01;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;13.9;;;Atende;Não se aplica
+Movel_PCJ;2026-10-01;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.6;;;Atende;Não se aplica
+Movel_PCJ;2026-10-01;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.3;;;Atende;Não se aplica
+Movel_PCJ;2026-10-02;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;13.9;;;Atende;Não se aplica
+Movel_PCJ;2026-10-02;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.6;;;Atende;Não se aplica
+Movel_PCJ;2026-10-02;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.3;;;Atende;Não se aplica
+Movel_PCJ;2026-10-03;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;13.87;;;Atende;Não se aplica
+Movel_PCJ;2026-10-03;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.58;;;Atende;Não se aplica
+Movel_PCJ;2026-10-03;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.28;;;Atende;Não se aplica
+Movel_PCJ;2026-10-04;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;13.86;;;Atende;Não se aplica
+Movel_PCJ;2026-10-04;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.58;;;Atende;Não se aplica
+Movel_PCJ;2026-10-04;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.28;;;Atende;Não se aplica
+Movel_PCJ;2026-10-05;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;13.86;;;Atende;Não se aplica
+Movel_PCJ;2026-10-05;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.57;;;Atende;Não se aplica
+Movel_PCJ;2026-10-05;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.27;;;Atende;Não se aplica
+Movel_PCJ;2026-10-06;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;13.86;;;Atende;Não se aplica
+Movel_PCJ;2026-10-06;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.57;;;Atende;Não se aplica
+Movel_PCJ;2026-10-06;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.27;;;Atende;Não se aplica
+Movel_PCJ;2026-10-07;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;13.86;;;Atende;Não se aplica
+Movel_PCJ;2026-10-07;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.56;;;Atende;Não se aplica
+Movel_PCJ;2026-10-07;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.26;;;Atende;Não se aplica
+Movel_PCJ;2026-10-08;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;13.86;;;Atende;Não se aplica
+Movel_PCJ;2026-10-08;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.56;;;Atende;Não se aplica
+Movel_PCJ;2026-10-08;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.26;;;Atende;Não se aplica
+Movel_PCJ;2026-10-09;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;13.85;;;Atende;Não se aplica
+Movel_PCJ;2026-10-09;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.56;;;Atende;Não se aplica
+Movel_PCJ;2026-10-09;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.26;;;Atende;Não se aplica
+Movel_PCJ;2026-10-10;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;13.84;;;Atende;Não se aplica
+Movel_PCJ;2026-10-10;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.55;;;Atende;Não se aplica
+Movel_PCJ;2026-10-10;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.25;;;Atende;Não se aplica
+Movel_PCJ;2026-10-11;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;13.84;;;Atende;Não se aplica
+Movel_PCJ;2026-10-11;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.55;;;Atende;Não se aplica
+Movel_PCJ;2026-10-11;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.25;;;Atende;Não se aplica
+Movel_PCJ;2026-10-12;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;13.84;;;Atende;Não se aplica
+Movel_PCJ;2026-10-12;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.54;;;Atende;Não se aplica
+Movel_PCJ;2026-10-12;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.24;;;Atende;Não se aplica
+Movel_PCJ;2026-10-13;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;13.83;;;Atende;Não se aplica
+Movel_PCJ;2026-10-13;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.54;;;Atende;Não se aplica
+Movel_PCJ;2026-10-13;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.24;;;Atende;Não se aplica
+Movel_PCJ;2026-10-14;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;13.83;;;Atende;Não se aplica
+Movel_PCJ;2026-10-14;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.54;;;Atende;Não se aplica
+Movel_PCJ;2026-10-14;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.24;;;Atende;Não se aplica
+Movel_PCJ;2026-10-15;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;13.83;;;Atende;Não se aplica
+Movel_PCJ;2026-10-15;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.53;;;Atende;Não se aplica
+Movel_PCJ;2026-10-15;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.23;;;Atende;Não se aplica
+Movel_PCJ;2026-10-16;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;13.82;;;Atende;Não se aplica
+Movel_PCJ;2026-10-16;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.53;;;Atende;Não se aplica
+Movel_PCJ;2026-10-16;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.23;;;Atende;Não se aplica
+Movel_PCJ;2026-10-17;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;13.82;;;Atende;Não se aplica
+Movel_PCJ;2026-10-17;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.52;;;Atende;Não se aplica
+Movel_PCJ;2026-10-17;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.22;;;Atende;Não se aplica
+Movel_PCJ;2026-10-18;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;13.82;;;Atende;Não se aplica
+Movel_PCJ;2026-10-18;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.52;;;Atende;Não se aplica
+Movel_PCJ;2026-10-18;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.22;;;Atende;Não se aplica
+Movel_PCJ;2026-10-19;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;13.81;;;Atende;Não se aplica
+Movel_PCJ;2026-10-19;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.51;;;Atende;Não se aplica
+Movel_PCJ;2026-10-19;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.21;;;Atende;Não se aplica
+Movel_PCJ;2026-10-20;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;13.81;;;Atende;Não se aplica
+Movel_PCJ;2026-10-20;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.51;;;Atende;Não se aplica
+Movel_PCJ;2026-10-20;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.21;;;Atende;Não se aplica
+Movel_PCJ;2026-10-21;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;14.39;;;Atende;Não se aplica
+Movel_PCJ;2026-10-21;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;3.84;;;Atende;Não se aplica
+Movel_PCJ;2026-10-21;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.54;;;Atende;Não se aplica
+Movel_PCJ;2026-10-22;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;14.97;;;Atende;Não se aplica
+Movel_PCJ;2026-10-22;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;4.16;;;Atende;Não se aplica
+Movel_PCJ;2026-10-22;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;4.87;;;Atende;Não se aplica
+Movel_PCJ;2026-10-23;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;15.55;;;Atende;Não se aplica
+Movel_PCJ;2026-10-23;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;4.49;;;Atende;Não se aplica
+Movel_PCJ;2026-10-23;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;5.19;;;Atende;Não se aplica
+Movel_PCJ;2026-10-24;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;16.13;;;Atende;Não se aplica
+Movel_PCJ;2026-10-24;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;4.81;;;Atende;Não se aplica
+Movel_PCJ;2026-10-24;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;5.53;;;Atende;Não se aplica
+Movel_PCJ;2026-10-25;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;16.71;;;Atende;Não se aplica
+Movel_PCJ;2026-10-25;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;5.14;;;Atende;Não se aplica
+Movel_PCJ;2026-10-25;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;5.86;;;Atende;Não se aplica
+Movel_PCJ;2026-10-26;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;17.29;;;Atende;Não se aplica
+Movel_PCJ;2026-10-26;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;5.47;;;Atende;Não se aplica
+Movel_PCJ;2026-10-26;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;6.19;;;Atende;Não se aplica
+Movel_PCJ;2026-10-27;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;17.87;;;Atende;Não se aplica
+Movel_PCJ;2026-10-27;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;5.8;;;Atende;Não se aplica
+Movel_PCJ;2026-10-27;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;6.52;;;Atende;Não se aplica
+Movel_PCJ;2026-10-28;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;21.33;;;Atende;Não se aplica
+Movel_PCJ;2026-10-28;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;6.94;;;Atende;Não se aplica
+Movel_PCJ;2026-10-28;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;7.99;;;Atende;Não se aplica
+Movel_PCJ;2026-10-29;Valinhos (3D-007T);925-valinhos-movel;Q15d >= 10,00 m³/s;24.18;;;Atende;Não se aplica
+Movel_PCJ;2026-10-29;Atibaia (3E-063T);925-atibaia-movel;Q15d >= 2,00 m³/s;7.85;;;Atende;Não se aplica
+Movel_PCJ;2026-10-29;Buenópolis (3D-009T);925-buenopolis-movel;Q15d >= 2,00 m³/s;9.06;;;Atende;Não se aplica
+Mensal_Enquadramentos;2026-10-01;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);666.0;666.0;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-01;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);703.0;703.0;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-01;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);334.0;334.0;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-01;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1221.0;1221.0;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-01;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);676.0;676.0;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-01;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1325.0;1321.0;0.3;Atende;Atende
+Mensal_Enquadramentos;2026-10-01;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);1034.0;1033.0;0.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-01;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);25.59;25.59;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-02;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);657.5;649.0;1.3;Atende;Atende
+Mensal_Enquadramentos;2026-10-02;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);669.0;669.0;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-02;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);328.5;323.0;1.7;Atende;Atende
+Mensal_Enquadramentos;2026-10-02;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1239.0;1257.0;1.5;Atende;Atende
+Mensal_Enquadramentos;2026-10-02;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);676.0;675.5;0.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-02;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1325.0;1325.0;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-02;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);1034.0;1034.0;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-02;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);25.59;25.59;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-03;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);605.0;500.0;17.4;Atende;Atende
+Mensal_Enquadramentos;2026-10-03;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);613.0;613.0;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-03;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);285.3;199.0;30.2;Atende;Atende
+Mensal_Enquadramentos;2026-10-03;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1208.3;1147.0;5.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-03;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);676.0;675.67;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-03;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1330.0;1329.0;0.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-03;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);1036.0;1035.33;0.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-03;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);25.59;25.59;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-04;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);516.2;250.0;51.6;Atende;Atende
+Mensal_Enquadramentos;2026-10-04;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);524.5;524.5;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-04;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);251.8;151.0;40.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-04;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1035.5;517.0;50.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-04;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);676.0;675.75;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-04;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1330.0;1327.25;0.2;Atende;Atende
+Mensal_Enquadramentos;2026-10-04;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);944.0;944.25;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-04;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);21.7;24.62;13.5;Atende;Atende
+Mensal_Enquadramentos;2026-10-05;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);514.0;505.0;1.8;Atende;Atende
+Mensal_Enquadramentos;2026-10-05;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);529.4;529.4;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-05;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);258.0;283.0;9.7;Atende;Atende
+Mensal_Enquadramentos;2026-10-05;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1041.0;1063.0;2.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-05;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);676.0;675.8;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-05;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1330.0;1326.2;0.3;Atende;Atende
+Mensal_Enquadramentos;2026-10-05;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);963.0;963.2;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-05;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);21.7;24.03;10.7;Atende;Atende
+Mensal_Enquadramentos;2026-10-06;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);507.2;473.0;6.7;Atende;Atende
+Mensal_Enquadramentos;2026-10-06;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);533.2;533.17;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-06;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);262.5;285.0;8.6;Atende;Atende
+Mensal_Enquadramentos;2026-10-06;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1033.8;998.0;3.5;Atende;Atende
+Mensal_Enquadramentos;2026-10-06;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);676.0;676.0;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-06;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1330.0;1321.5;0.6;Atende;Atende
+Mensal_Enquadramentos;2026-10-06;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);963.0;976.67;1.4;Atende;Atende
+Mensal_Enquadramentos;2026-10-06;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);24.83;24.17;2.7;Atende;Atende
+Mensal_Enquadramentos;2026-10-07;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);500.4;460.0;8.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-07;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);538.7;538.71;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-07;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);266.0;287.0;7.9;Atende;Atende
+Mensal_Enquadramentos;2026-10-07;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1050.4;1150.0;9.5;Atende;Atende
+Mensal_Enquadramentos;2026-10-07;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);676.0;676.14;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-07;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1325.0;1318.14;0.5;Atende;Atende
+Mensal_Enquadramentos;2026-10-07;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);963.0;982.71;2.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-07;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);24.83;24.26;2.3;Atende;Atende
+Mensal_Enquadramentos;2026-10-08;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);493.0;441.0;10.5;Atende;Atende
+Mensal_Enquadramentos;2026-10-08;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);542.5;542.5;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-08;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);269.2;292.0;8.5;Atende;Atende
+Mensal_Enquadramentos;2026-10-08;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1065.8;1173.0;10.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-08;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);676.0;676.38;0.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-08;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1325.0;1318.12;0.5;Atende;Atende
+Mensal_Enquadramentos;2026-10-08;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);963.0;985.88;2.4;Atende;Atende
+Mensal_Enquadramentos;2026-10-08;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);25.35;24.85;2.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-09;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);500.6;561.0;12.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-09;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);561.4;561.44;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-09;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);262.9;212.0;19.4;Atende;Atende
+Mensal_Enquadramentos;2026-10-09;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1048.9;914.0;12.9;Atende;Atende
+Mensal_Enquadramentos;2026-10-09;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);677.0;676.67;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-09;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1320.0;1317.22;0.2;Atende;Atende
+Mensal_Enquadramentos;2026-10-09;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);989.0;989.0;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-09;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);26.1;25.04;4.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-10;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);498.9;484.0;3.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-10;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);552.2;552.2;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-10;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);262.4;258.0;1.7;Atende;Atende
+Mensal_Enquadramentos;2026-10-10;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1028.1;841.0;18.2;Atende;Atende
+Mensal_Enquadramentos;2026-10-10;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);677.0;677.0;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-10;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1310.0;1305.1;0.4;Atende;Atende
+Mensal_Enquadramentos;2026-10-10;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);991.0;991.4;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-10;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);26.1;25.18;3.5;Atende;Atende
+Mensal_Enquadramentos;2026-10-11;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);473.8;223.0;52.9;Atende;Atende
+Mensal_Enquadramentos;2026-10-11;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);524.5;524.55;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-11;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);252.2;150.0;40.5;Atende;Atende
+Mensal_Enquadramentos;2026-10-11;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);979.2;490.0;50.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-11;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);664.0;664.18;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-11;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1300.0;1295.36;0.4;Atende;Atende
+Mensal_Enquadramentos;2026-10-11;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);962.0;962.0;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-11;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);26.1;25.36;2.8;Atende;Atende
+Mensal_Enquadramentos;2026-10-12;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);465.0;368.0;20.9;Atende;Atende
+Mensal_Enquadramentos;2026-10-12;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);520.5;520.5;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-12;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);247.2;193.0;21.9;Atende;Atende
+Mensal_Enquadramentos;2026-10-12;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);957.8;722.0;24.6;Atende;Atende
+Mensal_Enquadramentos;2026-10-12;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);666.0;665.75;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-12;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1300.0;1288.17;0.9;Atende;Atende
+Mensal_Enquadramentos;2026-10-12;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);938.0;938.0;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-12;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);26.1;25.5;2.3;Atende;Atende
+Mensal_Enquadramentos;2026-10-13;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);473.6;577.0;21.8;Atende;Atende
+Mensal_Enquadramentos;2026-10-13;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);538.2;538.23;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-13;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);255.8;358.0;40.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-13;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);975.9;1194.0;22.3;Atende;Atende
+Mensal_Enquadramentos;2026-10-13;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);667.0;667.15;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-13;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1300.0;1282.08;1.4;Atende;Atende
+Mensal_Enquadramentos;2026-10-13;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);944.0;943.77;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-13;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);26.0;25.54;1.8;Atende;Atende
+Mensal_Enquadramentos;2026-10-14;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);490.0;703.0;43.5;Atende;Atende
+Mensal_Enquadramentos;2026-10-14;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);552.8;552.79;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-14;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);262.1;345.0;31.6;Atende;Atende
+Mensal_Enquadramentos;2026-10-14;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1006.8;1408.0;39.8;Atende;Atende
+Mensal_Enquadramentos;2026-10-14;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);667.0;667.0;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-14;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1295.0;1276.86;1.4;Atende;Atende
+Mensal_Enquadramentos;2026-10-14;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);949.0;949.0;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-14;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);26.1;25.63;1.8;Atende;Atende
+Mensal_Enquadramentos;2026-10-15;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);522.9;984.0;88.2;Atende;Atende
+Mensal_Enquadramentos;2026-10-15;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);568.2;568.2;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-15;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);271.3;399.0;47.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-15;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1065.8;1892.0;77.5;Atende;Atende
+Mensal_Enquadramentos;2026-10-15;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);786.0;667.0;15.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-15;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1250.0;1269.33;1.5;Atende;Atende
+Mensal_Enquadramentos;2026-10-15;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);952.0;953.67;0.2;Atende;Atende
+Mensal_Enquadramentos;2026-10-15;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);26.0;25.71;1.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-16;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);546.4;899.0;64.5;Atende;Atende
+Mensal_Enquadramentos;2026-10-16;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);583.3;583.31;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-16;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);288.8;552.0;91.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-16;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1132.2;2129.0;88.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-16;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);786.0;683.5;13.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-16;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1250.0;1259.44;0.8;Atende;Atende
+Mensal_Enquadramentos;2026-10-16;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);952.0;957.88;0.6;Atende;Atende
+Mensal_Enquadramentos;2026-10-16;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);26.0;25.76;0.9;Atende;Atende
+Mensal_Enquadramentos;2026-10-17;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);556.1;711.0;27.9;Atende;Atende
+Mensal_Enquadramentos;2026-10-17;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);584.9;584.94;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-17;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);292.2;346.0;18.4;Atende;Atende
+Mensal_Enquadramentos;2026-10-17;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1142.1;1299.0;13.7;Atende;Atende
+Mensal_Enquadramentos;2026-10-17;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);786.0;718.0;8.7;Atende;Atende
+Mensal_Enquadramentos;2026-10-17;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1250.0;1251.18;0.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-17;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);952.0;961.76;1.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-17;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);26.0;25.79;0.8;Atende;Atende
+Mensal_Enquadramentos;2026-10-18;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);567.6;763.0;34.4;Atende;Atende
+Mensal_Enquadramentos;2026-10-18;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);589.3;589.28;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-18;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);303.0;487.0;60.7;Atende;Atende
+Mensal_Enquadramentos;2026-10-18;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1178.1;1791.0;52.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-18;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);786.0;754.17;4.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-18;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1250.0;1242.72;0.6;Atende;Atende
+Mensal_Enquadramentos;2026-10-18;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);952.0;948.39;0.4;Atende;Atende
+Mensal_Enquadramentos;2026-10-18;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);26.0;25.8;0.8;Atende;Atende
+Mensal_Enquadramentos;2026-10-19;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);575.1;710.0;23.5;Atende;Atende
+Mensal_Enquadramentos;2026-10-19;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);598.2;598.21;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-19;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);305.4;349.0;14.3;Atende;Atende
+Mensal_Enquadramentos;2026-10-19;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1189.9;1402.0;17.8;Atende;Atende
+Mensal_Enquadramentos;2026-10-19;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);786.0;786.37;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-19;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1250.0;1236.32;1.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-19;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);952.0;951.74;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-19;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);26.0;25.81;0.7;Atende;Atende
+Mensal_Enquadramentos;2026-10-20;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);568.6;446.0;21.6;Atende;Atende
+Mensal_Enquadramentos;2026-10-20;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);601.1;601.15;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-20;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);303.4;266.0;12.3;Atende;Atende
+Mensal_Enquadramentos;2026-10-20;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1171.2;815.0;30.4;Atende;Atende
+Mensal_Enquadramentos;2026-10-20;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);786.0;815.2;3.7;Atende;Atende
+Mensal_Enquadramentos;2026-10-20;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1250.0;1230.9;1.5;Atende;Atende
+Mensal_Enquadramentos;2026-10-20;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);952.0;955.35;0.4;Atende;Atende
+Mensal_Enquadramentos;2026-10-20;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);25.59;25.8;0.8;Atende;Atende
+Mensal_Enquadramentos;2026-10-21;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);562.4;437.0;22.3;Atende;Atende
+Mensal_Enquadramentos;2026-10-21;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);596.8;596.76;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-21;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);303.8;310.0;2.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-21;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1154.3;818.0;29.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-21;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);826.0;826.1;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-21;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1250.0;1225.62;2.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-21;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);959.0;958.76;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-21;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);26.21;25.69;2.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-22;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);552.9;354.0;36.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-22;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);592.9;592.91;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-22;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);299.6;213.0;28.9;Atende;Atende
+Mensal_Enquadramentos;2026-10-22;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1132.2;668.0;41.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-22;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);809.0;809.0;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-22;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1250.0;1220.59;2.4;Atende;Atende
+Mensal_Enquadramentos;2026-10-22;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);962.0;961.91;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-22;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);26.21;25.8;1.6;Atende;Atende
+Mensal_Enquadramentos;2026-10-23;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);550.0;487.0;11.5;Atende;Atende
+Mensal_Enquadramentos;2026-10-23;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);588.1;588.09;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-23;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);298.6;276.0;7.6;Atende;Atende
+Mensal_Enquadramentos;2026-10-23;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1127.6;1026.0;9.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-23;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);792.0;792.48;0.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-23;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1250.0;1216.13;2.7;Atende;Atende
+Mensal_Enquadramentos;2026-10-23;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);965.0;964.78;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-23;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);26.21;25.89;1.2;Atende;Atende
+Mensal_Enquadramentos;2026-10-24;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);547.3;485.0;11.4;Atende;Atende
+Mensal_Enquadramentos;2026-10-24;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);588.6;588.62;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-24;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);297.8;279.0;6.3;Atende;Atende
+Mensal_Enquadramentos;2026-10-24;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1126.2;1094.0;2.9;Atende;Atende
+Mensal_Enquadramentos;2026-10-24;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);809.0;773.67;4.4;Atende;Atende
+Mensal_Enquadramentos;2026-10-24;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1120.0;1212.25;8.2;Atende;Atende
+Mensal_Enquadramentos;2026-10-24;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);958.0;967.33;1.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-24;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);25.52;25.73;0.8;Atende;Atende
+Mensal_Enquadramentos;2026-10-25;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);553.7;707.0;27.7;Atende;Atende
+Mensal_Enquadramentos;2026-10-25;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);585.0;584.96;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-25;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);304.7;471.0;54.6;Atende;Atende
+Mensal_Enquadramentos;2026-10-25;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1134.6;1335.0;17.7;Atende;Atende
+Mensal_Enquadramentos;2026-10-25;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);809.0;754.76;6.7;Atende;Atende
+Mensal_Enquadramentos;2026-10-25;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1120.0;1208.52;7.9;Atende;Atende
+Mensal_Enquadramentos;2026-10-25;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);958.0;958.36;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-25;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);25.52;25.58;0.2;Atende;Atende
+Mensal_Enquadramentos;2026-10-26;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);563.3;802.0;42.4;Atende;Atende
+Mensal_Enquadramentos;2026-10-26;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);592.0;592.0;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-26;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);312.8;514.0;64.3;Atende;Atende
+Mensal_Enquadramentos;2026-10-26;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1148.8;1504.0;30.9;Atende;Atende
+Mensal_Enquadramentos;2026-10-26;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);755.0;738.0;2.3;Atende;Atende
+Mensal_Enquadramentos;2026-10-26;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1373.0;1204.77;12.3;Atende;Atende
+Mensal_Enquadramentos;2026-10-26;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);958.0;960.88;0.3;Atende;Atende
+Mensal_Enquadramentos;2026-10-26;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);25.52;25.54;0.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-27;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);573.9;850.0;48.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-27;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);601.6;601.56;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-27;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);317.9;450.0;41.6;Atende;Atende
+Mensal_Enquadramentos;2026-10-27;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1157.7;1389.0;20.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-27;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);720.0;719.63;0.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-27;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1373.0;1201.93;12.5;Atende;Atende
+Mensal_Enquadramentos;2026-10-27;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);963.0;963.22;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-27;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);25.52;25.5;0.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-28;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);567.1;384.0;32.3;Atende;Atende
+Mensal_Enquadramentos;2026-10-28;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);596.3;596.32;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-28;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);313.5;196.0;37.5;Atende;Atende
+Mensal_Enquadramentos;2026-10-28;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1138.8;629.0;44.8;Atende;Atende
+Mensal_Enquadramentos;2026-10-28;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);720.0;702.75;2.4;Atende;Atende
+Mensal_Enquadramentos;2026-10-28;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1373.0;1199.25;12.7;Atende;Atende
+Mensal_Enquadramentos;2026-10-28;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);963.0;965.39;0.2;Atende;Atende
+Mensal_Enquadramentos;2026-10-28;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);26.03;25.47;2.2;Atende;Atende
+Mensal_Enquadramentos;2026-10-29;Furnas;193-GRFURN;Qdef,mês <= 1.440 m³/s (Outorga);562.2;424.0;24.6;Atende;Atende
+Mensal_Enquadramentos;2026-10-29;Peixoto (M. M. Moraes);193-GRMMOR;Teto Livre (Faixa Normal);598.1;598.14;0.0;Atende;Atende
+Mensal_Enquadramentos;2026-10-29;Emborcação;194-PREMBO;Qdef,mês <= 972 m³/s (Outorga);310.9;239.0;23.1;Atende;Atende
+Mensal_Enquadramentos;2026-10-29;Itumbiara;194-PRITUM;Qdef,mês <= 2.928 m³/s (Outorga);1132.8;964.0;14.9;Atende;Atende
+Mensal_Enquadramentos;2026-10-29;Três Marias;2081-SFTMAR-max;Teto Livre (Faixa Normal);720.0;689.97;4.2;Atende;Atende
+Mensal_Enquadramentos;2026-10-29;Sobradinho;2081-SFSOBR-max;Teto Livre Conjunto (Faixa Normal);1373.0;1195.93;12.9;Atende;Atende
+Mensal_Enquadramentos;2026-10-29;Serra da Mesa;70-TOSMES-max;Teto Livre (Faixa Normal);963.0;967.59;0.5;Atende;Atende
+Mensal_Enquadramentos;2026-10-29;Elevatória Santa Inês;925-santaines;Qbomb,mês <= 33,00 m³/s (31,0 Faixa 2 + Transp.);25.94;25.38;2.2;Atende;Atende
+Transposicao_Anual;2026-10-01;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;182.91;186.62;2.0;Atende;Atende
+Transposicao_Anual;2026-10-02;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;183.56;187.32;2.0;Atende;Atende
+Transposicao_Anual;2026-10-03;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;184.22;188.01;2.1;Atende;Atende
+Transposicao_Anual;2026-10-04;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;184.88;188.7;2.1;Atende;Atende
+Transposicao_Anual;2026-10-05;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;185.54;189.39;2.1;Atende;Atende
+Transposicao_Anual;2026-10-06;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;186.2;190.08;2.1;Atende;Atende
+Transposicao_Anual;2026-10-07;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;186.86;190.77;2.1;Atende;Atende
+Transposicao_Anual;2026-10-08;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;187.52;191.46;2.1;Atende;Atende
+Transposicao_Anual;2026-10-09;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;188.18;192.15;2.1;Atende;Atende
+Transposicao_Anual;2026-10-10;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;188.84;192.84;2.1;Atende;Atende
+Transposicao_Anual;2026-10-11;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;189.5;193.54;2.1;Atende;Atende
+Transposicao_Anual;2026-10-12;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;190.16;194.23;2.1;Atende;Atende
+Transposicao_Anual;2026-10-13;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;190.82;194.92;2.1;Atende;Atende
+Transposicao_Anual;2026-10-14;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;191.48;195.61;2.2;Atende;Atende
+Transposicao_Anual;2026-10-15;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;192.14;196.3;2.2;Atende;Atende
+Transposicao_Anual;2026-10-16;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;192.8;196.99;2.2;Atende;Atende
+Transposicao_Anual;2026-10-17;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;193.46;197.68;2.2;Atende;Atende
+Transposicao_Anual;2026-10-18;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;194.13;198.37;2.2;Atende;Atende
+Transposicao_Anual;2026-10-19;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;194.8;199.07;2.2;Atende;Atende
+Transposicao_Anual;2026-10-20;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;195.47;199.76;2.2;Atende;Atende
+Transposicao_Anual;2026-10-21;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;196.13;200.45;2.2;Atende;Atende
+Transposicao_Anual;2026-10-22;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;196.8;201.14;2.2;Atende;Atende
+Transposicao_Anual;2026-10-23;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;197.47;201.83;2.2;Atende;Atende
+Transposicao_Anual;2026-10-24;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;198.14;202.52;2.2;Atende;Atende
+Transposicao_Anual;2026-10-25;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;198.81;203.13;2.2;Atende;Atende
+Transposicao_Anual;2026-10-26;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;199.39;203.56;2.1;Atende;Atende
+Transposicao_Anual;2026-10-27;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;200.06;204.25;2.1;Atende;Atende
+Transposicao_Anual;2026-10-28;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;200.73;204.94;2.1;Atende;Atende
+Transposicao_Anual;2026-10-29;Transposição Jaguari-Atibainha;1931-volume;Vol. Anual <= 268,28 hm³;201.4;205.46;2.0;Atende;Atende

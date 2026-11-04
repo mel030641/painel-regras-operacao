@@ -1,0 +1,535 @@
+<title>Regras de Operação SOE</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: painel operacional em faixas horizontais — síntese (ICG + escalas) → faixas vigentes → regras por sistema → mapa multitemporal → ocorrências */
+:root {
+  --bg: #f5f7f8; --surface: #ffffff; --sunk: #eceff1; --line: #d9dee2; --line-soft: #e6eaed;
+  --fg: #142027; --fg-2: #46565f; --fg-3: #6f7d85;
+  --accent: #0b6e7f; --accent-soft: #d8ecef; --accent-ink: #ffffff;
+  --ok: #0c8a2e; --ok-soft: #dff2e3; --tol: #b97800; --tol-soft: #fbefd2; --nao: #c62f2f; --nao-soft: #f8dede;
+  --na: #8a969d; --na-soft: #e9edef;
+  --chart-line: #0b6e7f; --chart-lim: #c62f2f; --chart-grid: #e3e7ea;
+  --f-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1619; --surface: #162026; --sunk: #1c282f; --line: #2a3a42; --line-soft: #22313a;
+  --fg: #e4ecef; --fg-2: #a9b8bf; --fg-3: #7f9099;
+  --accent: #4fb8c9; --accent-soft: #173a42; --accent-ink: #06181c;
+  --ok: #3cc35f; --ok-soft: #15331d; --tol: #f0b23a; --tol-soft: #3a2d10; --nao: #f06a6a; --nao-soft: #3d1a1a;
+  --na: #7f9099; --na-soft: #1f2b31;
+  --chart-line: #4fb8c9; --chart-lim: #f06a6a; --chart-grid: #24343c; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1619; --surface: #162026; --sunk: #1c282f; --line: #2a3a42; --line-soft: #22313a;
+  --fg: #e4ecef; --fg-2: #a9b8bf; --fg-3: #7f9099;
+  --accent: #4fb8c9; --accent-soft: #173a42; --accent-ink: #06181c;
+  --ok: #3cc35f; --ok-soft: #15331d; --tol: #f0b23a; --tol-soft: #3a2d10; --nao: #f06a6a; --nao-soft: #3d1a1a;
+  --na: #7f9099; --na-soft: #1f2b31;
+  --chart-line: #4fb8c9; --chart-lim: #f06a6a; --chart-grid: #24343c; color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--fg); font: 14px/1.5 var(--f-body); margin: 0 }
+.wrap { max-width: 1320px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)) }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; letter-spacing: .005em }
+h1 { font-size: 1.75rem; font-weight: 700; line-height: 1.15 }
+h2 { font-size: 1.25rem; font-weight: 600 }
+h3 { font-size: 1rem; font-weight: 600 }
+.eyebrow { font: 600 .72rem/1 var(--f-body); text-transform: uppercase; letter-spacing: .09em; color: var(--fg-3) }
+.num, td.n, .mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums }
+a { color: var(--accent) }
+button, select, input { font: inherit; color: inherit }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+
+/* cabeçalho */
+header.top { background: var(--surface); border-bottom: 1px solid var(--line) }
+header.top .wrap { padding-block: 20px 16px; display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: flex-end; justify-content: space-between }
+.brand { display: grid; gap: 6px; min-width: 0 }
+.brand p { margin: 0; color: var(--fg-2); max-width: 70ch }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 24px; color: var(--fg-2); font-size: .82rem }
+.meta b { display: block; font: 500 .95rem var(--f-mono); color: var(--fg) }
+
+/* filtros */
+.filters { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line) }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface) }
+.filters .wrap { padding-block: 10px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center }
+.seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; background: var(--surface) }
+.seg button { border: 0; background: none; padding: 6px 11px; cursor: pointer; color: var(--fg-2); border-right: 1px solid var(--line-soft) }
+.seg button:last-child { border-right: 0 }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); font-weight: 600 }
+.seg button:hover:not([aria-pressed="true"]) { background: var(--sunk) }
+.field { display: inline-flex; align-items: center; gap: 6px; color: var(--fg-2); font-size: .85rem }
+.field select, .field input { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 5px 8px; min-width: 0 }
+.field input[type="search"] { width: 14rem; max-width: 100% }
+.range { display: inline-flex; gap: 6px; align-items: center }
+.range input { width: 9.2rem }
+
+main .wrap { display: grid; gap: 28px; padding-block: 24px 40px }
+section { display: grid; gap: 12px; min-width: 0 }
+.sec-head { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; justify-content: space-between }
+.sec-head p { margin: 0; color: var(--fg-2); font-size: .85rem; max-width: 80ch }
+
+/* síntese */
+.summary { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 16px }
+@media (max-width: 820px) { .summary { grid-template-columns: 1fr } }
+.icg { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: grid; gap: 10px; align-content: start }
+.icg .big { font: 700 3rem/1 var(--f-display); font-variant-numeric: tabular-nums }
+.icg .big small { font-size: 1.4rem; color: var(--fg-2); margin-left: 2px }
+.icg .lbl { color: var(--fg-2); font-size: .85rem }
+.stackbar { display: flex; height: 12px; border-radius: 3px; overflow: hidden; gap: 2px; background: var(--surface) }
+.stackbar span { display: block; min-width: 2px }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .8rem; color: var(--fg-2) }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px }
+
+.tbl-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r) }
+table { border-collapse: collapse; width: 100%; font-size: .86rem }
+th { text-align: left; font: 600 .72rem var(--f-body); text-transform: uppercase; letter-spacing: .06em; color: var(--fg-3); padding: 9px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; background: var(--surface) }
+td { padding: 8px 8px; border-bottom: 1px solid var(--line-soft); vertical-align: top }
+tr:last-child td { border-bottom: 0 }
+td.n, th.n { text-align: right; white-space: nowrap }
+.pct-bar { display: inline-flex; align-items: center; gap: 8px; justify-content: flex-end; width: 100% }
+.pct-bar .track { width: 44px; height: 6px; background: var(--sunk); border-radius: 3px; overflow: hidden }
+.pct-bar .fill { height: 100%; border-radius: 3px }
+
+/* status */
+.pill { display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px 2px 6px; border-radius: 999px; font-size: .76rem; font-weight: 600; white-space: nowrap; border: 1px solid transparent }
+.pill svg { width: 12px; height: 12px; flex: none }
+.st-ok { background: var(--ok-soft); color: var(--ok) }
+.st-tol { background: var(--tol-soft); color: var(--tol) }
+.st-nao { background: var(--nao-soft); color: var(--nao) }
+.st-na { background: var(--na-soft); color: var(--fg-3) }
+.st-sd { background: transparent; color: var(--fg-3); border-color: var(--line); border-style: dashed }
+.st-pp { background: var(--na-soft); color: var(--fg-2); border-color: var(--line) }
+.st-ec { background: transparent; color: var(--fg-2); border-color: var(--line) }
+.st-ec.exc { color: var(--tol); border-color: var(--tol); background: var(--tol-soft) }
+
+/* faixas vigentes */
+.bands { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px }
+.band { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px; display: grid; gap: 8px; min-width: 0 }
+.band .name { display: flex; justify-content: space-between; gap: 8px; align-items: baseline }
+.band .name h3 { font-size: .98rem }
+.band .vu { font: 500 .85rem var(--f-mono); color: var(--fg-2); white-space: nowrap }
+.ladder { display: flex; gap: 2px }
+.ladder span { flex: 1; height: 22px; display: grid; place-items: center; font-size: .66rem; font-weight: 600; color: var(--fg-3); background: var(--sunk); border-radius: 2px; overflow: hidden; white-space: nowrap; padding: 0 2px }
+.ladder span.on { color: var(--accent-ink); background: var(--accent) }
+.ladder span.on.l1 { background: var(--tol); color: #1d1300 }
+.ladder span.on.l2, .ladder span.on.l3, .ladder span.on.l4 { background: var(--nao); color: #fff }
+.band .src { font-size: .74rem; color: var(--fg-3); display: flex; justify-content: space-between; gap: 6px; flex-wrap: wrap }
+
+/* regras */
+.sys-row td { background: var(--sunk); font: 600 .82rem var(--f-display); letter-spacing: .03em; color: var(--fg-2); text-transform: uppercase }
+tr.rule { cursor: pointer }
+tr.rule:hover td { background: color-mix(in srgb, var(--accent-soft) 45%, transparent) }
+tr.rule[aria-expanded="true"] td { background: var(--accent-soft) }
+.rule .ponto { font-weight: 600 }
+.rule .desc { color: var(--fg-2); font-size: .8rem; max-width: 40ch }
+.alerta { color: var(--tol); font-size: .76rem; max-width: 40ch; margin-top: 2px }
+.rule .norma { font-size: .8rem; min-width: 12ch; max-width: 19ch }
+.rule .norma small { display: block; color: var(--fg-3); white-space: normal; max-width: 20ch }
+.muted { color: var(--fg-3) }
+.unid { color: var(--fg-3); font-size: .8em }
+.param { display: block; color: var(--fg-3); font: 400 .72rem/1.3 var(--f-body); white-space: normal; max-width: 22ch; margin-left: auto; margin-top: 2px; text-align: right }
+.axis-lbl { font: 500 11px var(--f-body) }
+.spark { display: block }
+tr.detail td { background: var(--surface); padding: 0 }
+.detail-box { padding: 14px 16px 18px; display: grid; gap: 12px; border-left: 3px solid var(--accent) }
+.detail-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; align-items: start }
+@media (max-width: 900px) { .detail-grid { grid-template-columns: 1fr } }
+.chart-box { position: relative; min-width: 0 }
+.chart-box svg { width: 100%; height: auto; display: block }
+.tip { position: absolute; pointer-events: none; background: var(--fg); color: var(--bg); font-size: .78rem; padding: 6px 8px; border-radius: 4px; white-space: nowrap; transform: translate(-50%, -110%); z-index: 3 }
+.kv { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: .82rem; margin: 0 }
+.kv dt { color: var(--fg-3) }
+.kv dd { margin: 0; min-width: 0; overflow-wrap: anywhere }
+.mini { max-height: 260px; overflow: auto; border: 1px solid var(--line-soft); border-radius: 4px }
+.mini table { font-size: .78rem }
+.mini th { position: sticky; top: 0 }
+
+/* mapa multitemporal */
+.heat td.cell { padding: 3px; text-align: center }
+.heat .c { display: block; min-width: 34px; height: 24px; line-height: 24px; border-radius: 3px; font: 500 .7rem var(--f-mono); color: var(--fg) }
+.heat td.lbl { white-space: nowrap; font-size: .8rem; padding: 4px 10px }
+.heat th { text-align: center }
+
+.empty { padding: 18px; color: var(--fg-3); text-align: center }
+footer { border-top: 1px solid var(--line); background: var(--surface) }
+footer .wrap { padding-block: 20px 28px; display: grid; gap: 10px; color: var(--fg-2); font-size: .82rem }
+footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 110ch }
+#erro { background: var(--nao-soft); color: var(--nao); padding: 12px 16px; border-radius: var(--r) }
+@media (prefers-reduced-motion: no-preference) { tr.rule td, .seg button { transition: background-color .12s } }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <span class="eyebrow">ANA · Superintendência de Operações e Eventos Críticos</span>
+      <h1>Monitoramento das Regras de Operação de Reservatórios</h1>
+      <p>Cumprimento das resoluções e marcos regulatórios dos sistemas hídricos, apurado diariamente com dados do ONS, do SAR/ANA e do SAISP, e com as faixas operativas publicadas nos painéis da SOE.</p>
+    </div>
+    <div class="meta">
+      <div>Dados até<b id="m-dados">—</b></div>
+      <div>Processado em<b id="m-gerado">—</b></div>
+      <div>Regras auditadas<b id="m-regras">—</b></div>
+    </div>
+  </div>
+</header>
+
+<nav class="filters" aria-label="Filtros">
+  <div class="wrap">
+    <div class="seg" id="presets" role="group" aria-label="Período">
+      <button data-p="dia">Último dia</button><button data-p="7">7 dias</button><button data-p="30" aria-pressed="true">30 dias</button><button data-p="mes">Mês atual</button><button data-p="mesant">Mês anterior</button><button data-p="ano">Ano</button><button data-p="anoant">Ano anterior</button><button data-p="tudo">Desde 2024</button>
+    </div>
+    <span class="range"><input type="date" id="f-ini" aria-label="Início"><span class="muted">a</span><input type="date" id="f-fim" aria-label="Fim"></span>
+    <label class="field">Sistema <select id="f-sis"><option value="">Todos</option></select></label>
+    <label class="field">Situação <select id="f-st">
+      <option value="">Todas</option><option value="viol">Com violação ou tolerância no período</option>
+      <option value="Atende">Último: Atende</option><option value="Tolerância">Último: Tolerância</option><option value="Não atende">Último: Não atende</option>
+      <option value="Sem dado">Último: Sem dado</option><option value="Em curso">Último: Em curso</option><option value="Não se aplica">Último: Não se aplica</option><option value="Parâmetro pendente">Último: Parâmetro pendente</option>
+    </select></label>
+    <label class="field"><input type="search" id="f-q" placeholder="Buscar ponto, resolução…" aria-label="Buscar"></label>
+  </div>
+</nav>
+
+<main><div class="wrap">
+  <div id="erro" hidden></div>
+
+  <section aria-labelledby="h-sint">
+    <div class="sec-head"><h2 id="h-sint">Síntese do período</h2><p id="p-periodo"></p></div>
+    <div class="summary">
+      <div class="icg">
+        <span class="eyebrow">Índice de conformidade global</span>
+        <div class="big" id="icg">—</div>
+        <div class="lbl" id="icg-lbl"></div>
+        <div class="stackbar" id="icg-bar" aria-hidden="true"></div>
+        <div class="legend" id="icg-leg"></div>
+      </div>
+      <div class="tbl-wrap"><table id="t-escalas"><thead><tr>
+        <th>Escala temporal</th><th class="n">Regras</th><th class="n">Avaliações</th><th class="n">Atende</th><th class="n">Tolerância</th><th class="n">Não atende</th><th class="n">Conformidade</th></tr></thead><tbody></tbody></table></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-faixas">
+    <div class="sec-head"><h2 id="h-faixas">Faixas operativas vigentes</h2><p>Faixa publicada no boletim diário da ANA (gov.br) ou, na falta dele, no painel Power BI do sistema hídrico. Quando não há publicação para o período, a faixa é calculada pela regra da resolução.</p></div>
+    <div class="bands" id="bands"></div>
+  </section>
+
+  <section aria-labelledby="h-regras">
+    <div class="sec-head"><h2 id="h-regras">Regras por sistema hídrico</h2><p>Clique em uma regra para ver a série, o limite e as avaliações diárias. A folga é a distância ao limite, na unidade da regra.</p></div>
+    <div class="tbl-wrap"><table id="t-regras"><thead><tr>
+      <th>Ponto de controle / regra</th><th>Norma</th><th>Faixa</th><th class="n">Valor apurado</th><th class="n">Limite</th><th class="n">Folga</th><th>Situação</th><th>Série no período</th><th class="n">Conformidade</th>
+    </tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section aria-labelledby="h-heat">
+    <div class="sec-head"><h2 id="h-heat">Mapa multitemporal</h2><p>Conformidade mensal por regra (avaliações conformes ÷ avaliadas). Células com violação trazem o número de dias em “Não atende”.</p></div>
+    <div class="tbl-wrap heat"><table id="t-heat"><thead></thead><tbody></tbody></table></div>
+  </section>
+
+  <section aria-labelledby="h-oc">
+    <div class="sec-head"><h2 id="h-oc">Ocorrências no período</h2><p>Avaliações em “Não atende” ou “Tolerância”, da mais recente para a mais antiga.</p></div>
+    <div class="tbl-wrap"><table id="t-oc"><thead><tr>
+      <th>Data</th><th>Sistema</th><th>Ponto</th><th>Norma</th><th>Regra</th><th>Parâmetro</th><th class="n">Valor</th><th class="n">Limite</th><th class="n">Desvio</th><th>Situação</th></tr></thead><tbody></tbody></table></div>
+  </section>
+</div></main>
+
+<footer><div class="wrap">
+  <h3>Notas metodológicas</h3>
+  <ul>
+    <li>Fontes primárias: ONS Dados Abertos (dados hidrológicos diários e horários por reservatório), SAR/ANA (Sistema Cantareira), SAISP/DAEE (postos do PCJ) boletins diários da Sala de Situação/ANA e painéis Power BI da SOE (faixas operativas).</li>
+    <li>Métrica de três níveis (Atende, Tolerância, Não atende) somente onde a resolução prevê tolerância; dois níveis nos demais casos. “Não se aplica” indica regra fora da condição de aplicação; “Sem dado” indica ausência do dado na fonte.</li>
+    <li>Regras de janela (semana operativa, mês e ano) só recebem Atende, Tolerância ou Não atende no fechamento da janela. Antes disso aparecem como “Em curso”, com destaque quando a média parcial excede o limite, e não entram no índice de conformidade. O volume anual é acumulado desde 1º de janeiro e avaliado no fechamento do ano (31/12).</li>
+    <li>Índice de conformidade global = (Atende + Tolerância) ÷ avaliações com resultado, no período e filtros selecionados.</li>
+    <li id="n-pend"></li>
+  </ul>
+</div></footer>
+
+<script>
+(() => {
+"use strict";
+const ST = {
+  "Atende": { c: "st-ok", v: "--ok", i: '<path d="M2.5 6.2 5 8.6 9.6 3.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>' },
+  "Tolerância": { c: "st-tol", v: "--tol", i: '<path d="M6 2v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="6" cy="9.6" r="1" fill="currentColor"/>' },
+  "Não atende": { c: "st-nao", v: "--nao", i: '<path d="M3 3l6 6M9 3 3 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>' },
+  "Não se aplica": { c: "st-na", v: "--na", i: '<path d="M3 6h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>' },
+  "Sem dado": { c: "st-sd", v: "--na", i: '<circle cx="6" cy="6" r="3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 1.6"/>' },
+  "Em curso": { c: "st-ec", v: "--na", i: '<circle cx="6" cy="6" r="4" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M6 3.6V6l1.6 1.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>' },
+  "Parâmetro pendente": { c: "st-pp", v: "--na", i: '<path d="M4.3 4.4a1.8 1.8 0 1 1 2.4 1.7c-.5.2-.7.6-.7 1.1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="6" cy="9.6" r=".9" fill="currentColor"/>' },
+};
+const AVAL = ["Atende", "Tolerância", "Não atende"];
+const ESCALAS = { horaria: "Intradiária (horária)", diaria: "Diária", semanal: "Semana operativa", mensal: "Mensal", anual: "Anual", periodo: "Período sazonal" };
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const nf = (v, d) => v == null || v === "" ? "—" : (typeof v === "number" ? v.toLocaleString("pt-BR", { minimumFractionDigits: d ?? (Math.abs(v) >= 100 ? 0 : 2), maximumFractionDigits: d ?? (Math.abs(v) >= 100 ? 1 : 2) }) : esc(String(v).replace(/\./g, ",")));
+const df = (iso) => iso ? iso.slice(8, 10) + "/" + iso.slice(5, 7) + "/" + iso.slice(0, 4) : "—";
+const MES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
+const pill = (st, o) => { const s = ST[st] || ST["Sem dado"]; const exc = st === "Em curso" && o && o.exc;
+  const tip = st === "Em curso" && o ? ` title="Janela aberta. Parcial: ${esc(o.parc || "")}${exc ? " (média parcial acima do limite)" : ""}"` : "";
+  const lado = o && o.lado ? (st === "Tolerância" ? " · para baixo" : st === "Atende" && o.lado === "acima" ? " · tol. para cima" : "") : "";
+  return `<span class="pill ${s.c}${exc ? " exc" : ""}"${tip}><svg viewBox="0 0 12 12" aria-hidden="true">${s.i}</svg>${esc(st)}${exc ? " · parcial acima" : ""}${lado}</span>`; };
+const cssv = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+const U = (r) => r.unid === "%" ? "% VU" : (r.unid || "");
+const paramDia = (r, s) => { const p = r.param || ""; if (s && s.ag) { const i = p.indexOf(", "); return (i > 0 ? p.slice(0, i) : p) + ", " + s.ag; } return p; };
+const comU = (v, r) => v == null || v === "" ? "—" : `${nf(v)} <span class="unid">${esc(U(r))}</span>`;
+const isHoraria = (r) => /horári|maior valor horário|intradi/i.test(r.descricao || "") || /^ONSH:/.test(r.fonte || "");
+const escala = (r) => isHoraria(r) ? "horaria" : r.freq;
+const limNum = (lim) => {
+  if (lim == null) return null;
+  if (typeof lim === "number") return [lim];
+  const m = String(lim).match(/-?\d+(?:[.,]\d+)?/g);
+  return m ? m.map((x) => parseFloat(x.replace(",", "."))) : null;
+};
+
+let D = null, ini = null, fim = null, aberto = new Set();
+const state = { preset: "30", sis: "", st: "", q: "" };
+try { const s = JSON.parse(localStorage.getItem("painel-soe-filtros") || "{}"); Object.assign(state, s); } catch (e) {}
+const salvar = () => { try { localStorage.setItem("painel-soe-filtros", JSON.stringify({ preset: state.preset, sis: state.sis })); } catch (e) {} };
+
+function addDias(iso, n) { const d = new Date(iso + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); }
+function aplicarPreset(p) {
+  const ref = D.ultimo_dado_ons || D.periodo[1];
+  let a = ref, b = ref;
+  if (p === "7") a = addDias(ref, -6);
+  else if (p === "30") a = addDias(ref, -29);
+  else if (p === "mes") a = ref.slice(0, 8) + "01";
+  else if (p === "mesant") { const x = addDias(ref.slice(0, 8) + "01", -1); a = x.slice(0, 8) + "01"; b = x; }
+  else if (p === "ano") a = ref.slice(0, 4) + "-01-01";
+  else if (p === "anoant") { const y = +ref.slice(0, 4) - 1; a = y + "-01-01"; b = y + "-12-31"; }
+  else if (p === "tudo") a = D.periodo[0];
+  ini = a < D.periodo[0] ? D.periodo[0] : a; fim = b;
+  $("#f-ini").value = ini; $("#f-fim").value = fim;
+  document.querySelectorAll("#presets button").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.p === p)));
+}
+
+function noPeriodo(r) { return r.serie.filter((s) => s.d >= ini && s.d <= fim); }
+function ultimoValido(serie) { for (let i = serie.length - 1; i >= 0; i--) if (serie[i].st !== "Sem dado") return serie[i]; return serie[serie.length - 1] || null; }
+function contar(serie) { const c = { "Atende": 0, "Tolerância": 0, "Não atende": 0, n: 0 }; for (const s of serie) if (AVAL.includes(s.st)) { c[s.st]++; c.n++; } return c; }
+function conf(c) { return c.n ? (c["Atende"] + c["Tolerância"]) / c.n * 100 : null; }
+function corConf(p) { if (p == null) return "var(--sunk)"; if (p >= 99.95) return cssv("--ok"); if (p >= 90) return cssv("--tol"); return cssv("--nao"); }
+
+function filtradas() {
+  const q = state.q.trim().toLowerCase();
+  return D.regras.filter((r) => {
+    if (state.sis && r.sistema !== state.sis) return false;
+    if (q && !(`${r.ponto} ${r.resolucao} ${r.descricao} ${r.sistema} ${r.id}`.toLowerCase().includes(q))) return false;
+    const per = noPeriodo(r);
+    if (state.st === "viol") { const c = contar(per); if (!c["Não atende"] && !c["Tolerância"]) return false; }
+    else if (state.st) { const u = ultimoValido(per); if (!u || u.st !== state.st) return false; }
+    return true;
+  });
+}
+
+function sparkline(r, per, w = 112, h = 30) {
+  const pts = per.filter((s) => typeof s.v === "number");
+  if (pts.length < 2) return `<span class="muted">${pts.length ? nf(pts[0].v) : "sem série"}</span>`;
+  const lims = per.map((s) => limNum(s.lim)).filter(Boolean).flat();
+  const vals = pts.map((s) => s.v).concat(lims);
+  let lo = Math.min(...vals), hi = Math.max(...vals); if (hi === lo) { hi += 1; lo -= 1; }
+  const pad = (hi - lo) * 0.08; lo -= pad; hi += pad;
+  const n = per.length, x = (i) => 2 + i * (w - 6) / Math.max(1, n - 1), y = (v) => h - 3 - (v - lo) / (hi - lo) * (h - 6);
+  let d = "", pen = false;
+  per.forEach((s, i) => { if (typeof s.v === "number") { d += (pen ? "L" : "M") + x(i).toFixed(1) + " " + y(s.v).toFixed(1); pen = true; } else pen = false; });
+  let lim = "";
+  const lastLim = limNum(per[per.length - 1].lim) || limNum((per.find((s) => s.lim != null) || {}).lim);
+  if (lastLim) lim = lastLim.map((L) => `<line x1="2" x2="${w - 4}" y1="${y(L).toFixed(1)}" y2="${y(L).toFixed(1)}" stroke="var(--chart-lim)" stroke-width="1" stroke-dasharray="3 2"/>`).join("");
+  const bad = per.map((s, i) => typeof s.v !== "number" ? "" : s.st === "Não atende" ? `<circle cx="${x(i).toFixed(1)}" cy="${y(s.v).toFixed(1)}" r="2.4" fill="var(--nao)"/>` : s.exc ? `<circle cx="${x(i).toFixed(1)}" cy="${y(s.v).toFixed(1)}" r="2" fill="none" stroke="var(--tol)" stroke-width="1.2"/>` : "").join("");
+  const li = per.map((s, i) => [s, i]).filter(([s]) => typeof s.v === "number").pop();
+  const end = li ? `<circle cx="${x(li[1]).toFixed(1)}" cy="${y(li[0].v).toFixed(1)}" r="2.6" fill="var(--chart-line)" stroke="var(--surface)" stroke-width="1.5"/>` : "";
+  return `<svg class="spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="Série de ${esc(r.ponto)}">${lim}<path d="${d}" fill="none" stroke="var(--chart-line)" stroke-width="1.6" stroke-linejoin="round"/>${bad}${end}</svg>`;
+}
+
+function grafico(r, per) {
+  const W = 720, H = 252, L = 56, R = 14, T = 30, B = 30;
+  const pts = per.filter((s) => typeof s.v === "number");
+  if (!pts.length) return `<div class="empty">Sem valores numéricos no período.</div>`;
+  const lims = per.map((s) => limNum(s.lim)).filter(Boolean).flat();
+  const vals = pts.map((s) => s.v).concat(lims);
+  let lo = Math.min(...vals), hi = Math.max(...vals); if (hi === lo) { hi += 1; lo -= 1; }
+  const step = niceStep((hi - lo) / 4); lo = Math.floor(lo / step) * step; hi = Math.ceil(hi / step) * step;
+  const n = per.length, x = (i) => L + (n === 1 ? (W - L - R) / 2 : i * (W - L - R) / (n - 1)), y = (v) => T + (hi - v) / (hi - lo) * (H - T - B);
+  let g = "";
+  for (let v = lo; v <= hi + step / 2; v += step) g += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--chart-grid)"/><text x="${L - 6}" y="${y(v) + 4}" text-anchor="end" font-size="11" fill="var(--fg-3)" font-family="var(--f-mono)">${nf(+v.toFixed(6))}</text>`;
+  const every = Math.max(1, Math.ceil(n / 8));
+  per.forEach((s, i) => { if (i % every === 0 || (i === n - 1 && i % every >= every / 2)) g += `<text x="${x(i)}" y="${H - 10}" text-anchor="middle" font-size="11" fill="var(--fg-3)">${s.d.slice(8, 10)}/${s.d.slice(5, 7)}</text>`; });
+  // limite como degraus (pode mudar com a faixa)
+  let limPath = ["", ""];
+  per.forEach((s, i) => { const l = limNum(s.lim); [0, 1].forEach((k) => { if (l && l[k] != null) limPath[k] += (limPath[k] && per[i - 1] && limNum(per[i - 1].lim) ? "L" : "M") + x(i).toFixed(1) + " " + y(l[k]).toFixed(1); }); });
+  const limSvg = limPath.filter(Boolean).map((p) => `<path d="${p}" fill="none" stroke="var(--chart-lim)" stroke-width="1.5" stroke-dasharray="5 3"/>`).join("");
+  let d = "", pen = false, area = "";
+  per.forEach((s, i) => { if (typeof s.v === "number") { d += (pen ? "L" : "M") + x(i).toFixed(1) + " " + y(s.v).toFixed(1); pen = true; } else pen = false; });
+  const marks = per.map((s, i) => typeof s.v !== "number" ? "" : (s.st === "Não atende" || s.st === "Tolerância") ? `<circle cx="${x(i)}" cy="${y(s.v)}" r="4" fill="var(${ST[s.st].v})" stroke="var(--surface)" stroke-width="2"/>` : s.exc ? `<circle cx="${x(i)}" cy="${y(s.v)}" r="3.5" fill="var(--surface)" stroke="var(--tol)" stroke-width="1.6"/>` : "").join("");
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(paramDia(r))} em ${esc(U(r))}, ${esc(r.ponto)}, com limite">
+    <text x="${L}" y="14" class="axis-lbl" fill="var(--fg-2)">${esc(paramDia(r))} (${esc(U(r))})</text>
+    <line x1="${W - R - 150}" x2="${W - R - 132}" y1="10" y2="10" stroke="var(--chart-line)" stroke-width="2"/><text x="${W - R - 128}" y="14" font-size="11" fill="var(--fg-3)">valor</text>
+    <line x1="${W - R - 80}" x2="${W - R - 62}" y1="10" y2="10" stroke="var(--chart-lim)" stroke-width="1.5" stroke-dasharray="5 3"/><text x="${W - R - 58}" y="14" font-size="11" fill="var(--fg-3)">limite</text>
+    ${g}<line x1="${L}" x2="${W - R}" y1="${H - B}" y2="${H - B}" stroke="var(--line)"/>
+    ${limSvg}<path d="${d}" fill="none" stroke="var(--chart-line)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>${marks}
+    <line class="xh" x1="0" x2="0" y1="${T}" y2="${H - B}" stroke="var(--fg-3)" stroke-width="1" visibility="hidden"/>
+    <rect class="hit" x="${L}" y="${T}" width="${W - L - R}" height="${H - T - B}" fill="transparent"/>
+  </svg><div class="tip" hidden></div>`;
+}
+function niceStep(raw) { const p = Math.pow(10, Math.floor(Math.log10(raw || 1))); const f = raw / p; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p; }
+function ligarTooltip(box, r, per) {
+  const svg = box.querySelector("svg"), tip = box.querySelector(".tip"), xh = box.querySelector(".xh"), hit = box.querySelector(".hit");
+  if (!svg || !hit) return;
+  const W = 720, L = 56, R = 14, n = per.length;
+  const mover = (ev) => {
+    const b = svg.getBoundingClientRect(); const px = (ev.clientX - b.left) / b.width * W;
+    const i = Math.max(0, Math.min(n - 1, Math.round((px - L) / ((W - L - R) / Math.max(1, n - 1)))));
+    const s = per[i], xx = L + (n === 1 ? (W - L - R) / 2 : i * (W - L - R) / (n - 1));
+    xh.setAttribute("x1", xx); xh.setAttribute("x2", xx); xh.setAttribute("visibility", "visible");
+    tip.hidden = false; tip.style.left = (xx / W * b.width) + "px"; tip.style.top = "14px";
+    tip.innerHTML = `<b>${df(s.d)}</b> · ${esc(paramDia(r, s))}<br>${s.v == null ? "sem valor" : nf(s.v) + " " + esc(U(r))} · limite ${s.lim == null ? "—" : nf(s.lim) + " " + esc(U(r))} · ${esc(s.st)}${s.st === "Em curso" ? ` (parcial: ${esc(s.parc || "—")}${s.exc ? ", acima do limite" : ""})` : ""}`;
+  };
+  hit.addEventListener("pointermove", mover); hit.addEventListener("pointerdown", mover);
+  hit.addEventListener("pointerleave", () => { tip.hidden = true; xh.setAttribute("visibility", "hidden"); });
+}
+
+function render() {
+  const regras = filtradas();
+  $("#p-periodo").textContent = `${df(ini)} a ${df(fim)} · ${regras.length} de ${D.regras.length} regras`;
+  // síntese
+  const tot = { "Atende": 0, "Tolerância": 0, "Não atende": 0, n: 0 }, porEsc = {};
+  for (const r of regras) {
+    const c = contar(noPeriodo(r)); AVAL.forEach((k) => tot[k] += c[k]); tot.n += c.n;
+    const e = escala(r); porEsc[e] = porEsc[e] || { r: 0, "Atende": 0, "Tolerância": 0, "Não atende": 0, n: 0 };
+    porEsc[e].r++; AVAL.forEach((k) => porEsc[e][k] += c[k]); porEsc[e].n += c.n;
+  }
+  const p = conf(tot);
+  $("#icg").innerHTML = p == null ? "—" : `${nf(p, 1)}<small>%</small>`;
+  $("#icg-lbl").textContent = p == null ? "Nenhuma avaliação no período." : `${tot.n.toLocaleString("pt-BR")} avaliações diárias · ${tot["Não atende"]} em “Não atende”, ${tot["Tolerância"]} em “Tolerância”`;
+  $("#icg-bar").innerHTML = AVAL.map((k) => tot[k] ? `<span style="flex:${tot[k]};background:var(${ST[k].v})" title="${k}: ${tot[k]}"></span>` : "").join("");
+  $("#icg-leg").innerHTML = AVAL.map((k) => `<span><i style="background:var(${ST[k].v})"></i>${k} ${tot[k].toLocaleString("pt-BR")}</span>`).join("");
+  $("#t-escalas tbody").innerHTML = Object.keys(ESCALAS).filter((e) => porEsc[e]).map((e) => {
+    const c = porEsc[e], q = conf(c);
+    return `<tr><td>${ESCALAS[e]}</td><td class="n">${c.r}</td><td class="n">${c.n.toLocaleString("pt-BR")}</td><td class="n">${c["Atende"].toLocaleString("pt-BR")}</td><td class="n">${c["Tolerância"]}</td><td class="n">${c["Não atende"]}</td>
+      <td class="n"><span class="pct-bar"><span class="num">${q == null ? "—" : nf(q, 1) + "%"}</span><span class="track"><span class="fill" style="display:block;width:${q ?? 0}%;background:${corConf(q)}"></span></span></span></td></tr>`;
+  }).join("") || `<tr><td colspan="7" class="empty">Nenhuma regra com os filtros atuais.</td></tr>`;
+
+  // regras
+  const porSis = {};
+  regras.forEach((r) => (porSis[r.sistema] = porSis[r.sistema] || []).push(r));
+  let html = "";
+  for (const [sis, rs] of Object.entries(porSis)) {
+    html += `<tr class="sys-row"><td colspan="9">${esc(sis)}</td></tr>`;
+    for (const r of rs) {
+      const per = noPeriodo(r), u = ultimoValido(per) || {}, c = contar(per), q = conf(c), ab = aberto.has(r.id);
+      const folga = u.folga == null ? "—" : `${comU(u.folga, r)}${u.pct != null && r.unid !== "%" ? ` <span class="muted">(${nf(u.pct, 0)}%)</span>` : ""}`;
+      html += `<tr class="rule" tabindex="0" data-id="${esc(r.id)}" aria-expanded="${ab}">
+        <td><div class="ponto">${esc(r.ponto)}</div><div class="desc">${esc(r.descricao)}</div>${r.alerta ? `<div class="alerta">⚠ ${esc(r.alerta)}</div>` : ""}</td>
+        <td class="norma">${esc(r.resolucao)}<small>${esc(r.artigos || "")}</small></td>
+        <td>${u.faixa ? esc(u.faixa) : '<span class="muted">—</span>'}${u.orig === "Power BI" || u.orig === "Boletim ANA" ? ` <span class="muted" title="Faixa publicada (${esc(u.orig)})">●</span>` : ""}</td>
+        <td class="n">${comU(u.v, r)}<span class="param">${esc(paramDia(r, u))}</span></td>
+        <td class="n">${comU(u.lim, r)}</td><td class="n">${folga}</td>
+        <td>${pill(u.st || "Sem dado", u)}<div class="muted" style="font-size:.72rem;margin-top:2px">${u.d ? df(u.d) : ""}</div></td>
+        <td>${sparkline(r, per)}</td>
+        <td class="n"><span class="pct-bar"><span class="num">${q == null ? "—" : nf(q, 0) + "%"}</span><span class="track"><span class="fill" style="display:block;width:${q ?? 0}%;background:${corConf(q)}"></span></span></span><div class="muted" style="font-size:.72rem">${c.n} aval.${c["Não atende"] ? ` · ${c["Não atende"]} NA` : ""}</div></td></tr>`;
+      if (ab) html += detalhe(r, per, u);
+    }
+  }
+  $("#t-regras tbody").innerHTML = html || `<tr><td colspan="9" class="empty">Nenhuma regra com os filtros atuais.</td></tr>`;
+  document.querySelectorAll("tr.detail").forEach((tr) => { const r = D.regras.find((x) => x.id === tr.dataset.id); ligarTooltip(tr.querySelector(".chart-box"), r, noPeriodo(r)); });
+
+  renderHeat(regras); renderOc(regras);
+}
+
+function detalhe(r, per, u) {
+  const linhas = per.slice().reverse().map((s) => `<tr><td>${df(s.d)}</td><td class="n">${nf(s.v)}</td><td class="n">${nf(s.lim)}</td><td class="n">${nf(s.folga)}</td><td>${pill(s.st, s)}</td><td class="muted">${esc(s.faixa || "")}</td><td class="muted">${esc(s.obs || "")}</td></tr>`).join("");
+  return `<tr class="detail" data-id="${esc(r.id)}"><td colspan="9"><div class="detail-box">
+    <div class="detail-grid">
+      <div class="chart-box">${grafico(r, per)}</div>
+      <dl class="kv">
+        <dt>Regra</dt><dd>${esc(r.descricao)}</dd>
+        ${r.alerta ? `<dt>Verificar</dt><dd class="alerta" style="font-size:inherit">${esc(r.alerta)}</dd>` : ""}
+        <dt>Norma</dt><dd>${esc(r.resolucao)}, ${esc(r.artigos || "")}</dd>
+        <dt>Escala</dt><dd>${ESCALAS[escala(r)] || esc(r.freq)}</dd>
+        <dt>Métrica</dt><dd>${r.niveis === 3 ? (r.tol_pp != null ? `três níveis, tolerância absoluta de ${nf(r.tol_pp, 0)} p.p. de VU (para cima ou para baixo do valor de referência)` : `três níveis, tolerância de ${nf((r.tol || 0) * 100, 0)}%`) : "dois níveis"}</dd>
+        <dt>Fonte</dt><dd class="mono">${esc(r.fonte || "")}</dd>
+        <dt>Parâmetro</dt><dd>${esc(r.param || "")} (${esc(U(r))})</dd>
+        <dt>Faixa</dt><dd>${esc(u.faixa || "—")}${u.orig ? ` (${esc(u.orig)})` : ""}</dd>
+        ${u.obs ? `<dt>Observação</dt><dd>${esc(u.obs)}</dd>` : ""}
+        <dt>Código</dt><dd class="mono">${esc(r.id)}</dd>
+      </dl>
+    </div>
+    <div class="mini"><table><thead><tr><th>Data</th><th class="n">Valor (${esc(U(r))})</th><th class="n">Limite (${esc(U(r))})</th><th class="n">Folga (${esc(U(r))})</th><th>Situação</th><th>Faixa</th><th>Observação</th></tr></thead><tbody>${linhas}</tbody></table></div>
+  </div></td></tr>`;
+}
+
+const curta = (t) => { t = String(t || ""); return t.length > 44 ? t.slice(0, 42).replace(/\s+\S*$/, "") + "…" : t; };
+function renderHeat(regras) {
+  const meses = [...new Set(D.regras.flatMap((r) => Object.keys(r.mensal || {})))].sort();
+  $("#t-heat thead").innerHTML = `<tr><th style="text-align:left">Ponto / regra</th>${meses.map((m) => `<th>${MES[+m.slice(5) - 1]}/${m.slice(2, 4)}</th>`).join("")}</tr>`;
+  const ok = cssv("--ok"), tol = cssv("--tol"), nao = cssv("--nao");
+  $("#t-heat tbody").innerHTML = regras.map((r) => `<tr><td class="lbl"><b>${esc(r.ponto)}</b> <span class="muted">${esc(r.resolucao.replace("Res. ", ""))} · ${esc(curta(r.descricao))}</span></td>${meses.map((m) => {
+    const c = (r.mensal || {})[m];
+    if (!c || !c.n) return `<td class="cell"><span class="c" style="background:var(--sunk)" title="${m}: sem avaliação"></span></td>`;
+    const q = ((c["Atende"] || 0) + (c["Tolerância"] || 0)) / c.n * 100, na = c["Não atende"] || 0;
+    const bg = na === 0 && q >= 99.95 ? `color-mix(in srgb, ${ok} 32%, var(--surface))` : na === 0 ? `color-mix(in srgb, ${tol} 45%, var(--surface))` : `color-mix(in srgb, ${nao} ${Math.round(40 + (90 - Math.min(90, q)) / 90 * 50)}%, var(--surface))`;
+    return `<td class="cell"><span class="c" style="background:${bg}" title="${esc(r.ponto)} · ${m}: ${nf(q, 1)}% (${c.n} aval., ${na} não atende, ${c["Tolerância"] || 0} tolerância)">${na ? na : ""}</span></td>`;
+  }).join("")}</tr>`).join("");
+}
+
+function renderOc(regras) {
+  const oc = [];
+  for (const r of regras) for (const s of noPeriodo(r)) if (s.st === "Não atende" || s.st === "Tolerância") oc.push([r, s]);
+  oc.sort((a, b) => b[1].d.localeCompare(a[1].d));
+  $("#t-oc tbody").innerHTML = oc.slice(0, 400).map(([r, s]) => {
+    const l = limNum(s.lim); let dv = "—";
+    if (typeof s.v === "number" && l && l.length === 1 && l[0]) dv = nf((s.v - l[0]) / l[0] * 100, 1) + "%";
+    return `<tr><td class="num">${df(s.d)}</td><td>${esc(r.sistema)}</td><td><b>${esc(r.ponto)}</b></td><td class="norma">${esc(r.resolucao)}</td><td class="muted">${esc(r.descricao)}</td><td class="muted">${esc(paramDia(r, s))}</td><td class="n">${comU(s.v, r)}</td><td class="n">${comU(s.lim, r)}</td><td class="n">${dv}</td><td>${pill(s.st, s)}</td></tr>`;
+  }).join("") || `<tr><td colspan="10" class="empty">Nenhuma ocorrência no período e filtros selecionados.</td></tr>`;
+}
+
+function renderFaixas() {
+  const NOMES = { PPJURU: "Jurumirim", PPCHAV: "Chavantes", PPCAPI: "Capivara", GRFURN: "Furnas", GRMMOR: "M. Moraes (Peixoto)", PREMBO: "Emborcação", PRITUM: "Itumbiara", SFTMAR: "Três Marias", SFSOBR: "Sobradinho", TOSMES: "Serra da Mesa", CANTAREIRA: "Sistema Cantareira" };
+  const ESC = { PPJURU: ["Normal", "Atenção", "Alerta", "Restrição"], PPCHAV: ["Normal", "Atenção", "Alerta", "Restrição"], PPCAPI: ["Normal", "Atenção", "Alerta", "Restrição"], TOSMES: ["Normal", "Atenção", "Alerta"], CANTAREIRA: ["1", "2", "3", "4", "5"] };
+  $("#bands").innerHTML = (D.faixas || []).map((f) => {
+    const esc_ = ESC[f.rid] || ["Normal", "Atenção", "Restrição"];
+    const isNivel = /^PP/.test(f.rid);
+    const ref = f.vu_ref == null ? "" : isNivel ? `${nf(f.vu_ref, 2)} m` : `VU ${nf(f.vu_ref, 1)}%`;
+    const per = /^\d{4}-\d{2}$/.test(f.periodo) ? `${MES[+f.periodo.slice(5) - 1]}/${f.periodo.slice(0, 4)}` : `semana de ${df(f.periodo)}`;
+    return `<div class="band"><div class="name"><h3>${esc(NOMES[f.rid] || f.rid)}</h3><span class="vu">${ref}</span></div>
+      <div class="ladder" role="img" aria-label="Faixa ${esc(f.faixa || "não definida")}">${esc_.map((n, i) => `<span class="${i === f.idx ? "on l" + i : ""}" title="${esc(n)}">${esc(n)}</span>`).join("")}</div>
+      <div><b>${esc(f.faixa || "Sem faixa")}</b></div>
+      <div class="src"><span>${per}</span><span>${f.url ? `<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.origem)}</a>` : esc(f.origem || "")}</span></div></div>`;
+  }).join("") || `<div class="empty">Faixas não disponíveis.</div>`;
+}
+
+function ligar() {
+  document.querySelectorAll("#presets button").forEach((b) => b.addEventListener("click", () => { state.preset = b.dataset.p; aplicarPreset(state.preset); salvar(); render(); }));
+  const custom = () => { const a = $("#f-ini").value, b = $("#f-fim").value; if (!a || !b) return; ini = a <= b ? a : b; fim = a <= b ? b : a; state.preset = ""; document.querySelectorAll("#presets button").forEach((x) => x.setAttribute("aria-pressed", "false")); render(); };
+  $("#f-ini").addEventListener("change", custom); $("#f-fim").addEventListener("change", custom);
+  $("#f-sis").addEventListener("change", (e) => { state.sis = e.target.value; salvar(); render(); });
+  $("#f-st").addEventListener("change", (e) => { state.st = e.target.value; render(); });
+  $("#f-q").addEventListener("input", (e) => { state.q = e.target.value; render(); });
+  const tb = $("#t-regras tbody");
+  const toggle = (tr) => { const id = tr.dataset.id; aberto.has(id) ? aberto.delete(id) : aberto.add(id); render(); };
+  tb.addEventListener("click", (e) => { const tr = e.target.closest("tr.rule"); if (tr) toggle(tr); });
+  tb.addEventListener("keydown", (e) => { const tr = e.target.closest("tr.rule"); if (tr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); toggle(tr); } });
+}
+
+function iniciar(dados) {
+  D = dados;
+  $("#m-dados").textContent = df(D.ultimo_dado_ons);
+  const g = new Date(D.gerado_em);
+  $("#m-gerado").textContent = isNaN(g) ? D.gerado_em : g.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short", timeZone: "America/Sao_Paulo" });
+  $("#m-regras").textContent = D.regras.length;
+  $("#f-ini").min = $("#f-fim").min = D.periodo[0]; $("#f-ini").max = $("#f-fim").max = D.periodo[1];
+  const sis = [...new Set(D.regras.map((r) => r.sistema))];
+  $("#f-sis").innerHTML += sis.map((s) => `<option>${esc(s)}</option>`).join("");
+  if (state.sis && sis.includes(state.sis)) $("#f-sis").value = state.sis; else state.sis = "";
+  aplicarPreset(state.preset || "30");
+  const pend = Object.entries(D.parametros || {}).filter(([, v]) => v && v.valor == null).map(([, v]) => v.fonte);
+  const erros = D.erros_coleta || [];
+  $("#n-pend").textContent = [pend.length ? `Parâmetros pendentes: ${pend.join("; ")}.` : "", erros.length ? `Falhas de coleta nesta execução: ${erros.join("; ")}.` : "", (D.divergencias_faixa || []).length ? `Faixas publicadas divergentes do cálculo: ${D.divergencias_faixa.map((x) => `${x.chave} (publicada ${x.publicada}, calculada ${x.calculada})`).join("; ")}.` : ""].filter(Boolean).join(" ") || "Sem parâmetros pendentes ou falhas de coleta nesta execução.";
+  renderFaixas(); ligar(); render();
+}
+
+fetch("painel.json", { cache: "no-cache" }).then((r) => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }).then(iniciar).catch((e) => {
+  const el = $("#erro"); el.hidden = false; el.textContent = `Não foi possível carregar os dados do painel (painel.json): ${e.message}. Verifique se a última execução da coleta foi concluída.`;
+});
+})();
+</script>
