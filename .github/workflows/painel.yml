@@ -1,0 +1,64 @@
+# Atualiza diariamente o painel de monitoramento das regras de operação e publica no GitHub Pages.
+name: Atualizar painel
+
+on:
+  schedule:
+    - cron: "30 13 * * *"   # 10h30 (Brasília), após a publicação do dado D-1 pelo ONS
+  workflow_dispatch:
+
+permissions:
+  contents: write    # grava o histórico de faixas (config/faixas.json)
+  pages: write
+  id-token: write
+
+concurrency:
+  group: painel
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cache dos arquivos do ONS
+        uses: actions/cache@v4
+        with:
+          path: data/cache
+          key: ons-${{ github.run_id }}
+          restore-keys: ons-
+
+      - name: Faixas publicadas nos painéis Power BI
+        continue-on-error: true   # sem acesso ao Power BI, o cálculo usa a faixa calculada
+        run: |
+          python src/powerbi_faixas_soe.py data/powerbi
+          python src/faixas_powerbi.py data/powerbi/faixas_operativas_vigentes.csv
+
+      - name: Coleta e cálculo
+        run: python src/calculo.py   # jan/2024 até hoje, com dado horário desde jan/2024
+
+      - name: Montar site
+        run: python src/publicar.py
+
+      - name: Gravar histórico de faixas
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add config/faixas.json
+          git diff --cached --quiet || git commit -m "Atualiza faixas operativas publicadas ($(date +%F))"
+          git push || echo "sem alterações para enviar"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
