@@ -1,0 +1,3 @@
+# Coleta, cálculo e publicação usam somente a biblioteca padrão do Python (>= 3.10).
+# Necessário apenas para validar contra a planilha de auditoria (src/validar.py):
+openpyxl>=3.1

@@ -1,0 +1,6 @@
+data/cache/
+data/painel.json
+data/powerbi/
+_site/
+__pycache__/
+*.pyc
