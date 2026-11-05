@@ -21,6 +21,7 @@ Uso: python powerbi_faixas_soe.py [pasta_saida]
 import base64
 import csv
 import datetime as dt
+import gzip
 import json
 import os
 import re
@@ -49,7 +50,10 @@ def _req(path, chave, corpo=None):
         try:
             rq = urllib.request.Request(HOST_API + path, data=dados, headers=cab)
             with urllib.request.urlopen(rq, timeout=TIMEOUT_S) as r:
-                return json.load(r)
+                bruto = r.read()
+            if bruto[:2] == b"\x1f\x8b":  # alguns painéis respondem em gzip mesmo sem Accept-Encoding
+                bruto = gzip.decompress(bruto)
+            return json.loads(bruto.decode("utf-8"))
         except urllib.error.HTTPError as e:
             ultimo = RuntimeError(f"HTTP {e.code} em {path}: {e.read()[:300]!r}")
             if e.code in (401, 403, 404):
@@ -253,7 +257,7 @@ def main():
     print(f"Faixas extraídas: {len(faixas)} registros. Erros: {len(erros)}.")
     for t, e in erros:
         print(f"  ERRO {t}: {e[:200]}")
-    return 1 if erros else 0
+    return 0 if faixas else 1  # falha só quando nenhuma faixa foi extraída; erro em painel isolado é só registrado
 
 
 if __name__ == "__main__":
