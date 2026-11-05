@@ -1,6 +1,6 @@
 {
  "fonte": "Boletins diários ANA (gov.br) e painéis Power BI SOE/ANA",
- "atualizado_em": "2026-11-05T18:43:45",
+ "atualizado_em": "2026-11-05T20:03:59",
  "faixas": {
   "CANTAREIRA|2024-01": {
    "faixa": "Faixa 1 - Normal",
@@ -997,8 +997,8 @@
    "vu_ref": null,
    "limites": "Vazão máxima turbinada definida na outorga",
    "condicao": null,
-   "boletim": "2026-11-04",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793820821.44.pdf",
+   "boletim": "2026-11-05",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793904536.67.pdf",
    "status": "coleta diária",
    "vigencia": [
     "2026-11-01",
@@ -1405,8 +1405,8 @@
    "vu_ref": null,
    "limites": "Sem restrição de vazão máxima defluente",
    "condicao": null,
-   "boletim": "2026-11-04",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793820821.44.pdf",
+   "boletim": "2026-11-05",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793904536.67.pdf",
    "status": "coleta diária",
    "vigencia": [
     "2026-11-01",
@@ -9412,8 +9412,8 @@
    "vu_ref": null,
    "limites": "Vazão defluente máxima média diária igual à vazão máxima turbinada",
    "condicao": null,
-   "boletim": "2026-11-04",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793820821.44.pdf",
+   "boletim": "2026-11-05",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793904536.67.pdf",
    "status": "coleta diária",
    "vigencia": [
     "2026-11-01",
@@ -9820,8 +9820,8 @@
    "vu_ref": null,
    "limites": "Vazão defluente máxima média diária igual à vazão máxima turbinada",
    "condicao": null,
-   "boletim": "2026-11-04",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793820821.44.pdf",
+   "boletim": "2026-11-05",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793904536.67.pdf",
    "status": "coleta diária",
    "vigencia": [
     "2026-11-01",
