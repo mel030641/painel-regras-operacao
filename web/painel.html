@@ -69,6 +69,36 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .range input { width: 9.2rem }
 
 main .wrap { display: grid; gap: 28px; padding-block: 24px 40px }
+main section[hidden] { display: none }
+
+/* abas */
+.abas-bar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--fh, 0px)); z-index: 4; background: var(--surface); border-bottom: 1px solid var(--line) }
+.abas { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; padding-top: 4px; width: 100% }
+@media (max-width: 760px) { .filters { position: static } .chk .muted { display: none } }
+.abas::-webkit-scrollbar { display: none }
+.abas button { border: 0; background: none; padding: 7px 12px 8px; cursor: pointer; color: var(--fg-2); font: 600 .9rem var(--f-display); letter-spacing: .02em; white-space: nowrap; border-bottom: 3px solid transparent; display: inline-flex; gap: 6px; align-items: center }
+.abas button:hover { color: var(--fg); background: var(--sunk); border-radius: 4px 4px 0 0 }
+.abas button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent) }
+.abas .badge { font: 600 .7rem var(--f-mono); padding: 0 6px; border-radius: 999px; background: var(--sunk); color: var(--fg-2) }
+.abas .badge.nao { background: var(--nao-soft); color: var(--nao) }
+
+/* barra de ações das regras */
+.acoes { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center }
+.chk { display: inline-flex; gap: 6px; align-items: center; border: 1px solid var(--line); border-radius: var(--r); padding: 5px 10px; background: var(--surface); cursor: pointer; font-size: .85rem }
+.chk:has(input:checked) { border-color: var(--tol); background: var(--tol-soft); color: var(--fg) }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 5px 10px; cursor: pointer; font-size: .85rem; color: var(--fg-2) }
+.btn:hover { background: var(--sunk); color: var(--fg) }
+tr.sys-row { cursor: pointer }
+tr.sys-row td { padding: 0 }
+.sys-btn { display: flex; width: 100%; gap: 6px 14px; flex-wrap: wrap; align-items: center; background: none; border: 0; padding: 9px 8px; cursor: pointer; text-align: left; font: inherit; color: inherit; text-transform: inherit; letter-spacing: inherit }
+.sys-btn .seta { display: inline-block; width: 1em; transition: transform .12s; color: var(--fg-3) }
+.sys-btn[aria-expanded="true"] .seta { transform: rotate(90deg) }
+.sys-btn .nome { flex: 1 1 auto }
+.sys-cnt { display: inline-flex; gap: 6px; flex-wrap: wrap; text-transform: none; letter-spacing: 0; font: 500 .74rem var(--f-body) }
+.sys-cnt span { padding: 1px 7px; border-radius: 999px; background: var(--surface); color: var(--fg-2); border: 1px solid var(--line-soft) }
+.sys-cnt .c-nao { background: var(--nao-soft); color: var(--nao); border-color: transparent; font-weight: 600 }
+.sys-cnt .c-tol { background: var(--tol-soft); color: var(--tol); border-color: transparent; font-weight: 600 }
+.sys-cnt .c-ok { background: var(--ok-soft); color: var(--ok); border-color: transparent }
 section { display: grid; gap: 12px; min-width: 0 }
 .sec-head { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; justify-content: space-between }
 .sec-head p { margin: 0; color: var(--fg-2); font-size: .85rem; max-width: 80ch }
@@ -193,11 +223,20 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
     <label class="field"><input type="search" id="f-q" placeholder="Buscar ponto, resolução…" aria-label="Buscar"></label>
   </div>
 </nav>
+<nav class="abas-bar" aria-label="Blocos do painel"><div class="wrap">
+  <div class="abas" role="tablist" aria-label="Blocos do painel">
+      <button role="tab" id="tab-sint" aria-controls="s-sint" data-aba="sint">Síntese</button>
+      <button role="tab" id="tab-regras" aria-controls="s-regras" data-aba="regras">Regras <span class="badge" id="b-regras"></span></button>
+      <button role="tab" id="tab-faixas" aria-controls="s-faixas" data-aba="faixas">Faixas vigentes</button>
+      <button role="tab" id="tab-heat" aria-controls="s-heat" data-aba="heat">Mapa multitemporal</button>
+      <button role="tab" id="tab-oc" aria-controls="s-oc" data-aba="oc">Ocorrências <span class="badge" id="b-oc"></span></button>
+    </div>
+</div></nav>
 
 <main><div class="wrap">
   <div id="erro" hidden></div>
 
-  <section aria-labelledby="h-sint">
+  <section id="s-sint" role="tabpanel" aria-labelledby="h-sint" data-aba="sint">
     <div class="sec-head"><h2 id="h-sint">Síntese do período</h2><p id="p-periodo"></p></div>
     <div class="summary">
       <div class="icg">
@@ -212,24 +251,28 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
     </div>
   </section>
 
-  <section aria-labelledby="h-faixas">
+  <section id="s-faixas" role="tabpanel" aria-labelledby="h-faixas" data-aba="faixas">
     <div class="sec-head"><h2 id="h-faixas">Faixas operativas vigentes</h2><p>Faixa publicada no boletim diário da ANA (gov.br) ou, na falta dele, no painel Power BI do sistema hídrico. Quando não há publicação para o período, a faixa é calculada pela regra da resolução.</p></div>
     <div class="bands" id="bands"></div>
   </section>
 
-  <section aria-labelledby="h-regras">
-    <div class="sec-head"><h2 id="h-regras">Regras por sistema hídrico</h2><p>Clique em uma regra para ver a série, o limite e as avaliações diárias. A folga é a distância ao limite, na unidade da regra.</p></div>
+  <section id="s-regras" role="tabpanel" aria-labelledby="h-regras" data-aba="regras">
+    <div class="sec-head"><h2 id="h-regras">Regras por sistema hídrico</h2><p>Clique no sistema para abrir as regras e em uma regra para ver a série, o limite e as avaliações diárias. A folga é a distância ao limite, na unidade da regra.</p></div>
+    <div class="acoes">
+      <label class="chk"><input type="checkbox" id="f-pend"> Só pendências <span class="muted">(Não atende, Tolerância ou parcial acima do limite)</span></label>
+      <button type="button" class="btn" id="b-abrir">Abrir todos</button><button type="button" class="btn" id="b-fechar">Recolher todos</button>
+    </div>
     <div class="tbl-wrap"><table id="t-regras"><thead><tr>
       <th>Ponto de controle / regra</th><th>Norma</th><th>Faixa</th><th class="n">Valor apurado</th><th class="n">Limite</th><th class="n">Folga</th><th>Situação</th><th>Série no período</th><th class="n">Conformidade</th>
     </tr></thead><tbody></tbody></table></div>
   </section>
 
-  <section aria-labelledby="h-heat">
+  <section id="s-heat" role="tabpanel" aria-labelledby="h-heat" data-aba="heat">
     <div class="sec-head"><h2 id="h-heat">Mapa multitemporal</h2><p>Conformidade mensal por regra (avaliações conformes ÷ avaliadas). Células com violação trazem o número de dias em “Não atende”.</p></div>
     <div class="tbl-wrap heat"><table id="t-heat"><thead></thead><tbody></tbody></table></div>
   </section>
 
-  <section aria-labelledby="h-oc">
+  <section id="s-oc" role="tabpanel" aria-labelledby="h-oc" data-aba="oc">
     <div class="sec-head"><h2 id="h-oc">Ocorrências no período</h2><p>Avaliações em “Não atende” ou “Tolerância”, da mais recente para a mais antiga.</p></div>
     <div class="tbl-wrap"><table id="t-oc"><thead><tr>
       <th>Data</th><th>Sistema</th><th>Ponto</th><th>Norma</th><th>Regra</th><th>Parâmetro</th><th class="n">Valor</th><th class="n">Limite</th><th class="n">Desvio</th><th>Situação</th></tr></thead><tbody></tbody></table></div>
@@ -284,9 +327,11 @@ const limNum = (lim) => {
 };
 
 let D = null, ini = null, fim = null, aberto = new Set();
-const state = { preset: "30", sis: "", st: "", q: "" };
+const state = { preset: "30", sis: "", st: "", q: "", aba: "sint", pend: false };
+const sisAbertos = new Set(), sisFechados = new Set();
+const pendente = (r, per) => { const u = ultimoValido(per) || {}; return u.st === "Não atende" || u.st === "Tolerância" || (u.st === "Em curso" && !!u.exc); };
 try { const s = JSON.parse(localStorage.getItem("painel-soe-filtros") || "{}"); Object.assign(state, s); } catch (e) {}
-const salvar = () => { try { localStorage.setItem("painel-soe-filtros", JSON.stringify({ preset: state.preset, sis: state.sis })); } catch (e) {} };
+const salvar = () => { try { localStorage.setItem("painel-soe-filtros", JSON.stringify({ preset: state.preset, sis: state.sis, aba: state.aba, pend: state.pend })); } catch (e) {} };
 
 function addDias(iso, n) { const d = new Date(iso + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); }
 function aplicarPreset(p) {
@@ -316,6 +361,7 @@ function filtradas() {
     if (state.sis && r.sistema !== state.sis) return false;
     if (q && !(`${r.ponto} ${r.resolucao} ${r.descricao} ${r.sistema} ${r.id}`.toLowerCase().includes(q))) return false;
     const per = noPeriodo(r);
+    if (state.pend && !pendente(r, per)) return false;
     if (state.st === "viol") { const c = contar(per); if (!c["Não atende"] && !c["Tolerância"]) return false; }
     else if (state.st) { const u = ultimoValido(per); if (!u || u.st !== state.st) return false; }
     return true;
@@ -412,9 +458,15 @@ function render() {
   // regras
   const porSis = {};
   regras.forEach((r) => (porSis[r.sistema] = porSis[r.sistema] || []).push(r));
-  let html = "";
+  let html = "", nNao = 0;
+  const abrirTodos = !!state.q.trim() || state.pend || !!state.sis || !!state.st;
   for (const [sis, rs] of Object.entries(porSis)) {
-    html += `<tr class="sys-row"><td colspan="9">${esc(sis)}</td></tr>`;
+    const k = { nao: 0, tol: 0, ok: 0, ec: 0 };
+    for (const r of rs) { const u = ultimoValido(noPeriodo(r)) || {}; if (u.st === "Não atende") k.nao++; else if (u.st === "Tolerância" || (u.st === "Em curso" && u.exc)) k.tol++; else if (u.st === "Atende") k.ok++; else if (u.st === "Em curso") k.ec++; }
+    nNao += k.nao;
+    const ab_s = abrirTodos ? !sisFechados.has(sis) : sisAbertos.has(sis);
+    html += `<tr class="sys-row" data-sis="${esc(sis)}"><td colspan="9"><button type="button" class="sys-btn" aria-expanded="${ab_s}"><span class="seta" aria-hidden="true">▸</span><span class="nome">${esc(sis)}</span><span class="sys-cnt"><span>${rs.length} regra${rs.length > 1 ? "s" : ""}</span>${k.nao ? `<span class="c-nao">${k.nao} não atende</span>` : ""}${k.tol ? `<span class="c-tol">${k.tol} tolerância/parcial acima</span>` : ""}${k.ok ? `<span class="c-ok">${k.ok} atende</span>` : ""}${k.ec ? `<span>${k.ec} em curso</span>` : ""}</span></button></td></tr>`;
+    if (!ab_s) continue;
     for (const r of rs) {
       const per = noPeriodo(r), u = ultimoValido(per) || {}, c = contar(per), q = conf(c), ab = aberto.has(r.id);
       const folga = u.folga == null ? "—" : `${comU(u.folga, r)}${u.pct != null && r.unid !== "%" ? ` <span class="muted">(${nf(u.pct, 0)}%)</span>` : ""}`;
@@ -430,10 +482,24 @@ function render() {
       if (ab) html += detalhe(r, per, u);
     }
   }
-  $("#t-regras tbody").innerHTML = html || `<tr><td colspan="9" class="empty">Nenhuma regra com os filtros atuais.</td></tr>`;
+  $("#t-regras tbody").innerHTML = html || `<tr><td colspan="9" class="empty">${state.pend ? "Nenhuma regra pendente no período e filtros selecionados." : "Nenhuma regra com os filtros atuais."}</td></tr>`;
+  $("#b-regras").textContent = nNao ? `${nNao} NA` : regras.length;
+  $("#b-regras").className = "badge" + (nNao ? " nao" : "");
+  $("#b-regras").title = nNao ? `${nNao} regra(s) com último resultado Não atende` : `${regras.length} regras`;
   document.querySelectorAll("tr.detail").forEach((tr) => { const r = D.regras.find((x) => x.id === tr.dataset.id); ligarTooltip(tr.querySelector(".chart-box"), r, noPeriodo(r)); });
 
   renderHeat(regras); renderOc(regras);
+}
+
+function mostrarAba(a, foco) {
+  if (!document.getElementById("s-" + a)) a = "sint";
+  state.aba = a;
+  document.querySelectorAll(".abas [role=tab]").forEach((b) => { const on = b.dataset.aba === a; b.setAttribute("aria-selected", String(on)); b.tabIndex = on ? 0 : -1; if (on && foco) b.focus(); });
+  document.querySelectorAll("main section[data-aba]").forEach((sec) => { sec.hidden = sec.dataset.aba !== a; });
+  if (location.hash !== "#" + a) history.replaceState(null, "", "#" + a);
+  salvar();
+  const topo = $("main").getBoundingClientRect().top + scrollY - $(".abas-bar").offsetHeight - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--fh")) || 0);
+  if (scrollY > topo) scrollTo({ top: Math.max(0, topo) });
 }
 
 function detalhe(r, per, u) {
@@ -476,6 +542,7 @@ function renderOc(regras) {
   const oc = [];
   for (const r of regras) for (const s of noPeriodo(r)) if (s.st === "Não atende" || s.st === "Tolerância") oc.push([r, s]);
   oc.sort((a, b) => b[1].d.localeCompare(a[1].d));
+  $("#b-oc").textContent = oc.length ? oc.length.toLocaleString("pt-BR") : "";
   $("#t-oc tbody").innerHTML = oc.slice(0, 400).map(([r, s]) => {
     const l = limNum(s.lim); let dv = "—";
     if (typeof s.v === "number" && l && l.length === 1 && l[0]) dv = nf((s.v - l[0]) / l[0] * 100, 1) + "%";
@@ -505,7 +572,20 @@ function ligar() {
   $("#f-sis").addEventListener("change", (e) => { state.sis = e.target.value; salvar(); render(); });
   $("#f-st").addEventListener("change", (e) => { state.st = e.target.value; render(); });
   $("#f-q").addEventListener("input", (e) => { state.q = e.target.value; render(); });
+  const abas = [...document.querySelectorAll(".abas [role=tab]")];
+  abas.forEach((b, i) => {
+    b.addEventListener("click", () => mostrarAba(b.dataset.aba));
+    b.addEventListener("keydown", (e) => { const d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0; if (d) { e.preventDefault(); mostrarAba(abas[(i + d + abas.length) % abas.length].dataset.aba, true); } });
+  });
+  addEventListener("hashchange", () => mostrarAba(location.hash.slice(1)));
+  const medir = () => document.documentElement.style.setProperty("--fh", (getComputedStyle($(".filters")).position === "sticky" ? $(".filters").offsetHeight : 0) + "px");
+  medir(); addEventListener("resize", medir); if ("ResizeObserver" in window) new ResizeObserver(medir).observe($(".filters"));
+  $("#f-pend").checked = !!state.pend;
+  $("#f-pend").addEventListener("change", (e) => { state.pend = e.target.checked; salvar(); render(); });
+  $("#b-abrir").addEventListener("click", () => { sisFechados.clear(); filtradas().forEach((r) => sisAbertos.add(r.sistema)); render(); });
+  $("#b-fechar").addEventListener("click", () => { sisAbertos.clear(); aberto.clear(); filtradas().forEach((r) => sisFechados.add(r.sistema)); render(); });
   const tb = $("#t-regras tbody");
+  tb.addEventListener("click", (e) => { const b = e.target.closest(".sys-btn"); if (!b) return; const s = b.closest("tr").dataset.sis; const abrirTodos = !!state.q.trim() || state.pend || !!state.sis || !!state.st; const set = abrirTodos ? sisFechados : sisAbertos; set.has(s) ? set.delete(s) : set.add(s); render(); });
   const toggle = (tr) => { const id = tr.dataset.id; aberto.has(id) ? aberto.delete(id) : aberto.add(id); render(); };
   tb.addEventListener("click", (e) => { const tr = e.target.closest("tr.rule"); if (tr) toggle(tr); });
   tb.addEventListener("keydown", (e) => { const tr = e.target.closest("tr.rule"); if (tr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); toggle(tr); } });
@@ -525,7 +605,7 @@ function iniciar(dados) {
   const pend = Object.entries(D.parametros || {}).filter(([, v]) => v && v.valor == null).map(([, v]) => v.fonte);
   const erros = D.erros_coleta || [];
   $("#n-pend").textContent = [pend.length ? `Parâmetros pendentes: ${pend.join("; ")}.` : "", erros.length ? `Falhas de coleta nesta execução: ${erros.join("; ")}.` : "", (D.divergencias_faixa || []).length ? `Faixas publicadas divergentes do cálculo: ${D.divergencias_faixa.map((x) => `${x.chave} (publicada ${x.publicada}, calculada ${x.calculada})`).join("; ")}.` : ""].filter(Boolean).join(" ") || "Sem parâmetros pendentes ou falhas de coleta nesta execução.";
-  renderFaixas(); ligar(); render();
+  renderFaixas(); ligar(); render(); mostrarAba(location.hash.slice(1) || state.aba || "sint");
 }
 
 fetch("painel.json", { cache: "no-cache" }).then((r) => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }).then(iniciar).catch((e) => {
