@@ -37,6 +37,8 @@ A lista completa, com dispositivos, limites e fontes, está em `src/regras.py`.
 src/coleta.py              coletores (ONS, SAR, SAISP, API Mananciais Sabesp, Telemetria ANA, arquivos manuais)
 src/regras.py              faixas, parâmetros e as 62 regras
 src/calculo.py             avaliação diária, status e folga -> data/painel.json
+src/boletins_ana.py        coleta diária das faixas nos boletins oficiais da ANA (gov.br)
+src/boletins_parsers.py    leitura do texto dos boletins (pdftotext)
 src/powerbi_faixas_soe.py  extração das faixas dos painéis Power BI
 src/faixas_powerbi.py      converte as faixas extraídas em config/faixas.json (histórico)
 src/faixas_boletins.py     grava em config/faixas.json o histórico de faixas dos boletins diários (2024+)
@@ -76,7 +78,7 @@ python src/validar.py "Planilha de Auditoria Multitemporal.xlsx" data/painel.jso
 
 ## Manutenção
 
-- **Faixas**: o workflow extrai as faixas do Power BI a cada execução e grava o histórico em `config/faixas.json`. Se a extração falhar, a faixa é calculada pela regra da resolução e o painel indica a origem.
+- **Faixas**: a cada execução, o workflow lê as faixas nesta ordem: (1) boletim diário oficial da ANA no gov.br (`src/boletins_ana.py`); (2) painéis Power BI da SOE, só para período sem boletim; (3) faixa calculada pela regra da resolução, quando não há publicação. O histórico fica em `config/faixas.json`, e o painel indica a origem de cada faixa. No Paranapanema e no Grande e Paranaíba, o boletim só é aceito a partir de segunda-feira e do dia 4 do mês, respectivamente, porque os boletins do início do período ainda podem trazer a faixa anterior.
 - **Tetos mensais da Res. 2.081/2017** (faixas Atenção e Restrição): registrar em `config/parametros_mensais.json`, chave `"teto_SFSOBR|aaaa-mm"`.
 - **Santa Inês**: coletada automaticamente da API Mananciais da Sabesp (`https://mananciais.sabesp.com.br/api/v4`, EEAB 36). O valor do dia D é a média de D-1 07h a D 07h. A planilha manual de out/2026 ficou em `data/manual/historico/` só como registro.
 - **Postos PCJ**: continuam no SAISP, com média diária de 00h a 24h (decisão da SOE em 04/11/2026). A API Sabesp também publica esses postos, mas no dia de 07h a 07h, e por isso não é usada para eles.

@@ -36,8 +36,14 @@ jobs:
           key: ons-${{ github.run_id }}
           restore-keys: ons-
 
-      - name: Faixas publicadas nos painéis Power BI
-        continue-on-error: true   # sem acesso ao Power BI, o cálculo usa a faixa calculada
+      - name: Faixas nos boletins diários oficiais da ANA (1ª fonte)
+        continue-on-error: true   # sem boletim, valem o Power BI e, por último, a faixa calculada
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+          python src/boletins_ana.py
+
+      - name: Faixas publicadas nos painéis Power BI (2ª fonte)
+        continue-on-error: true   # não sobrescreve período com boletim; sem Power BI, vale a faixa calculada
         run: |
           python src/powerbi_faixas_soe.py data/powerbi
           python src/faixas_powerbi.py data/powerbi/faixas_operativas_vigentes.csv
