@@ -2,8 +2,7 @@
 name: Atualizar painel
 
 on:
-  schedule:
-    - cron: "30 13 * * *"   # 10h30 (Brasília), após a publicação do dado D-1 pelo ONS
+  # Disparo externo pelo cron-job.org às 11h e 17h (America/Sao_Paulo), via API (workflow_dispatch).
   workflow_dispatch:
 
 permissions:
