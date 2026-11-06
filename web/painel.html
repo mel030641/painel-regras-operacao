@@ -4,7 +4,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: painel operacional em faixas horizontais — síntese (ICG + escalas) → faixas vigentes → regras por sistema → mapa multitemporal → ocorrências */
+/* Layout: abas — síntese (faixas vigentes + ICG + escalas), regras por sistema, mapa multitemporal, ocorrências */
 :root {
   --bg: #f5f7f8; --surface: #ffffff; --sunk: #eceff1; --line: #d9dee2; --line-soft: #e6eaed;
   --fg: #142027; --fg-2: #46565f; --fg-3: #6f7d85;
@@ -69,6 +69,47 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .range input { width: 9.2rem }
 
 main .wrap { display: grid; gap: 28px; padding-block: 24px 40px }
+main section[hidden] { display: none }
+#s-regras .tbl-wrap { max-height: calc(100vh - var(--fh, 0px) - var(--ab, 48px) - 32px); max-height: calc(100dvh - var(--fh, 0px) - var(--ab, 48px) - 32px); overflow: auto; overscroll-behavior: contain }
+#t-regras thead th { position: sticky; top: 0; z-index: 2; box-shadow: inset 0 -1px 0 var(--line) }
+#t-regras tr.sys-row td { position: sticky; top: calc(var(--th, 34px) - 1px); z-index: 1 }
+@media (max-width: 760px) { #s-regras .tbl-wrap { max-height: 72vh; max-height: 72svh } }
+#s-heat .tbl-wrap, #s-oc .tbl-wrap { overflow: auto; overscroll-behavior: contain }
+#t-heat thead th, #t-oc thead th { position: sticky; top: 0; z-index: 2; box-shadow: inset 0 -1px 0 var(--line) }
+#t-heat td.lbl { position: sticky; left: 0; z-index: 1; background: var(--surface); box-shadow: inset -1px 0 0 var(--line-soft); white-space: normal; width: 300px; min-width: 300px; max-width: 300px; line-height: 1.3 }
+#t-heat td.lbl .r { display: block; color: var(--fg-3); font-size: .74rem }
+@media (max-width: 760px) { #t-heat td.lbl { width: 170px; min-width: 170px; max-width: 170px } }
+#t-heat thead th:first-child { left: 0; z-index: 3 }
+@media (max-width: 760px) { #s-heat .tbl-wrap, #s-oc .tbl-wrap { max-height: 72vh; max-height: 72svh } }
+
+/* abas */
+.abas-bar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--fh, 0px)); z-index: 4; background: var(--surface); border-bottom: 1px solid var(--line) }
+.abas { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; padding-top: 4px; width: 100% }
+@media (max-width: 760px) { .filters { position: static } .chk .muted { display: none } }
+.abas::-webkit-scrollbar { display: none }
+.abas button { border: 0; background: none; padding: 7px 12px 8px; cursor: pointer; color: var(--fg-2); font: 600 .9rem var(--f-display); letter-spacing: .02em; white-space: nowrap; border-bottom: 3px solid transparent; display: inline-flex; gap: 6px; align-items: center }
+.abas button:hover { color: var(--fg); background: var(--sunk); border-radius: 4px 4px 0 0 }
+.abas button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent) }
+.abas .badge { font: 600 .7rem var(--f-mono); padding: 0 6px; border-radius: 999px; background: var(--sunk); color: var(--fg-2) }
+.abas .badge.nao { background: var(--nao-soft); color: var(--nao) }
+
+/* barra de ações das regras */
+.acoes { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center }
+.chk { display: inline-flex; gap: 6px; align-items: center; border: 1px solid var(--line); border-radius: var(--r); padding: 5px 10px; background: var(--surface); cursor: pointer; font-size: .85rem }
+.chk:has(input:checked) { border-color: var(--tol); background: var(--tol-soft); color: var(--fg) }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 5px 10px; cursor: pointer; font-size: .85rem; color: var(--fg-2) }
+.btn:hover { background: var(--sunk); color: var(--fg) }
+tr.sys-row { cursor: pointer }
+tr.sys-row td { padding: 0 }
+.sys-btn { display: flex; width: 100%; gap: 6px 14px; flex-wrap: wrap; align-items: center; background: none; border: 0; padding: 9px 8px; cursor: pointer; text-align: left; font: inherit; color: inherit; text-transform: inherit; letter-spacing: inherit }
+.sys-btn .seta { display: inline-block; width: 1em; transition: transform .12s; color: var(--fg-3) }
+.sys-btn[aria-expanded="true"] .seta { transform: rotate(90deg) }
+.sys-btn .nome { flex: 1 1 auto }
+.sys-cnt { display: inline-flex; gap: 6px; flex-wrap: wrap; text-transform: none; letter-spacing: 0; font: 500 .74rem var(--f-body) }
+.sys-cnt span { padding: 1px 7px; border-radius: 999px; background: var(--surface); color: var(--fg-2); border: 1px solid var(--line-soft) }
+.sys-cnt .c-nao { background: var(--nao-soft); color: var(--nao); border-color: transparent; font-weight: 600 }
+.sys-cnt .c-tol { background: var(--tol-soft); color: var(--tol); border-color: transparent; font-weight: 600 }
+.sys-cnt .c-ok { background: var(--ok-soft); color: var(--ok); border-color: transparent }
 section { display: grid; gap: 12px; min-width: 0 }
 .sec-head { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; justify-content: space-between }
 .sec-head p { margin: 0; color: var(--fg-2); font-size: .85rem; max-width: 80ch }
@@ -108,6 +149,16 @@ td.n, th.n { text-align: right; white-space: nowrap }
 .st-ec.exc { color: var(--tol); border-color: var(--tol); background: var(--tol-soft) }
 
 /* faixas vigentes */
+.fx-quadro { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px }
+.fx-head { display: flex; flex-wrap: wrap; gap: 2px 12px; align-items: baseline }
+.fx-head .muted { font-size: .78rem }
+.fx-chips { display: flex; flex-wrap: wrap; gap: 6px }
+.fx { display: inline-flex; align-items: baseline; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: .82rem; border: 1px solid var(--line-soft); background: var(--sunk); color: var(--fg); text-decoration: none; cursor: default }
+.fx b { font-weight: 600 }
+.fx.l0 { background: var(--ok-soft) } .fx.l0 b { color: var(--ok) }
+.fx.l1 { background: var(--tol-soft) } .fx.l1 b { color: var(--tol) }
+.fx.l2, .fx.l3, .fx.l4 { background: var(--nao-soft) } .fx.l2 b, .fx.l3 b, .fx.l4 b { color: var(--nao) }
+.fx .pub { color: var(--fg-3); font-size: .7rem }
 .bands { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px }
 .band { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px; display: grid; gap: 8px; min-width: 0 }
 .band .name { display: flex; justify-content: space-between; gap: 8px; align-items: baseline }
@@ -150,8 +201,14 @@ tr.detail td { background: var(--surface); padding: 0 }
 .mini th { position: sticky; top: 0 }
 
 /* mapa multitemporal */
-.heat td.cell { padding: 3px; text-align: center }
+.heat td.cell { padding: 3px; text-align: center; vertical-align: middle }
 .heat .c { display: block; min-width: 34px; height: 24px; line-height: 24px; border-radius: 3px; font: 500 .7rem var(--f-mono); color: var(--fg) }
+.heat .c.h-na, .heat .c.h-nd { background: var(--sunk) }
+.heat .c.h-pp { background: repeating-linear-gradient(135deg, var(--tol-soft) 0 4px, color-mix(in srgb, var(--tol) 45%, var(--surface)) 4px 6px) }
+.heat .c.h-ec { background: var(--surface); box-shadow: inset 0 0 0 1px var(--fg-3) }
+.heat .c.h-sd { background: transparent; box-shadow: none; outline: 1px dashed var(--fg-3); outline-offset: -2px }
+.heat-leg { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .78rem; color: var(--fg-2); align-items: center }
+.heat-leg .c { display: inline-block; width: 22px; height: 12px; min-width: 0; border-radius: 2px; vertical-align: -2px; margin-right: 5px }
 .heat td.lbl { white-space: nowrap; font-size: .8rem; padding: 4px 10px }
 .heat th { text-align: center }
 
@@ -193,11 +250,23 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
     <label class="field"><input type="search" id="f-q" placeholder="Buscar ponto, resolução…" aria-label="Buscar"></label>
   </div>
 </nav>
+<nav class="abas-bar" aria-label="Blocos do painel"><div class="wrap">
+  <div class="abas" role="tablist" aria-label="Blocos do painel">
+      <button role="tab" id="tab-sint" aria-controls="s-sint" data-aba="sint">Síntese</button>
+      <button role="tab" id="tab-regras" aria-controls="s-regras" data-aba="regras">Regras <span class="badge" id="b-regras"></span></button>
+      <button role="tab" id="tab-heat" aria-controls="s-heat" data-aba="heat">Mapa multitemporal</button>
+      <button role="tab" id="tab-oc" aria-controls="s-oc" data-aba="oc">Ocorrências <span class="badge" id="b-oc"></span></button>
+    </div>
+</div></nav>
 
 <main><div class="wrap">
   <div id="erro" hidden></div>
 
-  <section aria-labelledby="h-sint">
+  <section id="s-sint" role="tabpanel" aria-labelledby="h-sint" data-aba="sint">
+    <div class="fx-quadro" aria-labelledby="h-faixas">
+      <div class="fx-head"><h3 id="h-faixas">Faixas operativas vigentes</h3><span class="muted">Faixa de hoje, publicada no boletim diário da ANA ou no Power BI (● ) ou calculada pela regra; não depende do período nem dos filtros.</span></div>
+      <div class="fx-chips" id="bands"></div>
+    </div>
     <div class="sec-head"><h2 id="h-sint">Síntese do período</h2><p id="p-periodo"></p></div>
     <div class="summary">
       <div class="icg">
@@ -212,24 +281,33 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
     </div>
   </section>
 
-  <section aria-labelledby="h-faixas">
-    <div class="sec-head"><h2 id="h-faixas">Faixas operativas vigentes</h2><p>Faixa publicada no boletim diário da ANA (gov.br) ou, na falta dele, no painel Power BI do sistema hídrico. Quando não há publicação para o período, a faixa é calculada pela regra da resolução.</p></div>
-    <div class="bands" id="bands"></div>
-  </section>
 
-  <section aria-labelledby="h-regras">
-    <div class="sec-head"><h2 id="h-regras">Regras por sistema hídrico</h2><p>Clique em uma regra para ver a série, o limite e as avaliações diárias. A folga é a distância ao limite, na unidade da regra.</p></div>
+  <section id="s-regras" role="tabpanel" aria-labelledby="h-regras" data-aba="regras">
+    <div class="sec-head"><h2 id="h-regras">Regras por sistema hídrico</h2><p>Clique no sistema para abrir as regras e em uma regra para ver a série, o limite e as avaliações diárias. A folga é a distância ao limite, na unidade da regra.</p></div>
+    <div class="acoes">
+      <label class="chk"><input type="checkbox" id="f-pend"> Só pendências <span class="muted">(Não atende, Tolerância ou parcial acima do limite)</span></label>
+      <button type="button" class="btn" id="b-abrir">Abrir todos</button><button type="button" class="btn" id="b-fechar">Recolher todos</button>
+    </div>
     <div class="tbl-wrap"><table id="t-regras"><thead><tr>
       <th>Ponto de controle / regra</th><th>Norma</th><th>Faixa</th><th class="n">Valor apurado</th><th class="n">Limite</th><th class="n">Folga</th><th>Situação</th><th>Série no período</th><th class="n">Conformidade</th>
     </tr></thead><tbody></tbody></table></div>
   </section>
 
-  <section aria-labelledby="h-heat">
-    <div class="sec-head"><h2 id="h-heat">Mapa multitemporal</h2><p>Conformidade mensal por regra (avaliações conformes ÷ avaliadas). Células com violação trazem o número de dias em “Não atende”.</p></div>
+  <section id="s-heat" role="tabpanel" aria-labelledby="h-heat" data-aba="heat">
+    <div class="sec-head"><h2 id="h-heat">Mapa multitemporal</h2><p><span id="heat-desc"></span> Avaliações conformes ÷ avaliadas; células com violação trazem o número de dias em “Não atende”.</p></div>
+    <div class="heat heat-leg" aria-label="Legenda do mapa">
+      <span><span class="c" style="background:color-mix(in srgb, var(--ok) 32%, var(--surface))"></span>100% conforme</span>
+      <span><span class="c" style="background:color-mix(in srgb, var(--tol) 45%, var(--surface))"></span>Com tolerância</span>
+      <span><span class="c" style="background:color-mix(in srgb, var(--nao) 65%, var(--surface))"></span>Com Não atende (nº de dias)</span>
+      <span><span class="c h-na"></span>Não se aplica</span>
+      <span><span class="c h-pp"></span>Parâmetro pendente</span>
+      <span><span class="c h-ec"></span>Em curso</span>
+      <span><span class="c h-sd"></span>Sem dado</span>
+    </div>
     <div class="tbl-wrap heat"><table id="t-heat"><thead></thead><tbody></tbody></table></div>
   </section>
 
-  <section aria-labelledby="h-oc">
+  <section id="s-oc" role="tabpanel" aria-labelledby="h-oc" data-aba="oc">
     <div class="sec-head"><h2 id="h-oc">Ocorrências no período</h2><p>Avaliações em “Não atende” ou “Tolerância”, da mais recente para a mais antiga.</p></div>
     <div class="tbl-wrap"><table id="t-oc"><thead><tr>
       <th>Data</th><th>Sistema</th><th>Ponto</th><th>Norma</th><th>Regra</th><th>Parâmetro</th><th class="n">Valor</th><th class="n">Limite</th><th class="n">Desvio</th><th>Situação</th></tr></thead><tbody></tbody></table></div>
@@ -284,9 +362,11 @@ const limNum = (lim) => {
 };
 
 let D = null, ini = null, fim = null, aberto = new Set();
-const state = { preset: "30", sis: "", st: "", q: "" };
+const state = { preset: "30", sis: "", st: "", q: "", aba: "sint", pend: false };
+const sisAbertos = new Set(), sisFechados = new Set();
+const pendente = (r, per) => { const u = ultimoValido(per) || {}; return u.st === "Não atende" || u.st === "Tolerância" || (u.st === "Em curso" && !!u.exc); };
 try { const s = JSON.parse(localStorage.getItem("painel-soe-filtros") || "{}"); Object.assign(state, s); } catch (e) {}
-const salvar = () => { try { localStorage.setItem("painel-soe-filtros", JSON.stringify({ preset: state.preset, sis: state.sis })); } catch (e) {} };
+const salvar = () => { try { localStorage.setItem("painel-soe-filtros", JSON.stringify({ preset: state.preset, sis: state.sis, aba: state.aba, pend: state.pend })); } catch (e) {} };
 
 function addDias(iso, n) { const d = new Date(iso + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); }
 function aplicarPreset(p) {
@@ -316,6 +396,7 @@ function filtradas() {
     if (state.sis && r.sistema !== state.sis) return false;
     if (q && !(`${r.ponto} ${r.resolucao} ${r.descricao} ${r.sistema} ${r.id}`.toLowerCase().includes(q))) return false;
     const per = noPeriodo(r);
+    if (state.pend && !pendente(r, per)) return false;
     if (state.st === "viol") { const c = contar(per); if (!c["Não atende"] && !c["Tolerância"]) return false; }
     else if (state.st) { const u = ultimoValido(per); if (!u || u.st !== state.st) return false; }
     return true;
@@ -412,9 +493,15 @@ function render() {
   // regras
   const porSis = {};
   regras.forEach((r) => (porSis[r.sistema] = porSis[r.sistema] || []).push(r));
-  let html = "";
+  let html = "", nNao = 0;
+  const abrirTodos = !!state.q.trim() || state.pend || !!state.sis || !!state.st;
   for (const [sis, rs] of Object.entries(porSis)) {
-    html += `<tr class="sys-row"><td colspan="9">${esc(sis)}</td></tr>`;
+    const k = { nao: 0, tol: 0, ok: 0, ec: 0 };
+    for (const r of rs) { const u = ultimoValido(noPeriodo(r)) || {}; if (u.st === "Não atende") k.nao++; else if (u.st === "Tolerância" || (u.st === "Em curso" && u.exc)) k.tol++; else if (u.st === "Atende") k.ok++; else if (u.st === "Em curso") k.ec++; }
+    nNao += k.nao;
+    const ab_s = abrirTodos ? !sisFechados.has(sis) : sisAbertos.has(sis);
+    html += `<tr class="sys-row" data-sis="${esc(sis)}"><td colspan="9"><button type="button" class="sys-btn" aria-expanded="${ab_s}"><span class="seta" aria-hidden="true">▸</span><span class="nome">${esc(sis)}</span><span class="sys-cnt"><span>${rs.length} regra${rs.length > 1 ? "s" : ""}</span>${k.nao ? `<span class="c-nao">${k.nao} não atende</span>` : ""}${k.tol ? `<span class="c-tol">${k.tol} tolerância/parcial acima</span>` : ""}${k.ok ? `<span class="c-ok">${k.ok} atende</span>` : ""}${k.ec ? `<span>${k.ec} em curso</span>` : ""}</span></button></td></tr>`;
+    if (!ab_s) continue;
     for (const r of rs) {
       const per = noPeriodo(r), u = ultimoValido(per) || {}, c = contar(per), q = conf(c), ab = aberto.has(r.id);
       const folga = u.folga == null ? "—" : `${comU(u.folga, r)}${u.pct != null && r.unid !== "%" ? ` <span class="muted">(${nf(u.pct, 0)}%)</span>` : ""}`;
@@ -430,10 +517,28 @@ function render() {
       if (ab) html += detalhe(r, per, u);
     }
   }
-  $("#t-regras tbody").innerHTML = html || `<tr><td colspan="9" class="empty">Nenhuma regra com os filtros atuais.</td></tr>`;
+  $("#t-regras tbody").innerHTML = html || `<tr><td colspan="9" class="empty">${state.pend ? "Nenhuma regra pendente no período e filtros selecionados." : "Nenhuma regra com os filtros atuais."}</td></tr>`;
+  $("#b-regras").textContent = nNao ? `${nNao} NA` : regras.length;
+  $("#b-regras").className = "badge" + (nNao ? " nao" : "");
+  $("#b-regras").title = nNao ? `${nNao} regra(s) com último resultado Não atende` : `${regras.length} regras`;
   document.querySelectorAll("tr.detail").forEach((tr) => { const r = D.regras.find((x) => x.id === tr.dataset.id); ligarTooltip(tr.querySelector(".chart-box"), r, noPeriodo(r)); });
 
   renderHeat(regras); renderOc(regras);
+}
+
+let iniciado = false;
+function mostrarAba(a, foco) {
+  if (a === "faixas") a = "sint";
+  if (!document.getElementById("s-" + a)) a = "sint";
+  state.aba = a;
+  document.querySelectorAll(".abas [role=tab]").forEach((b) => { const on = b.dataset.aba === a; b.setAttribute("aria-selected", String(on)); b.tabIndex = on ? 0 : -1; if (on && foco) b.focus(); });
+  document.querySelectorAll("main section[data-aba]").forEach((sec) => { sec.hidden = sec.dataset.aba !== a; });
+  if (location.hash !== "#" + a) history.replaceState(null, "", "#" + a);
+  salvar();
+  const topo = $("main").getBoundingClientRect().top + scrollY - $(".abas-bar").offsetHeight - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--fh")) || 0);
+  // Regras no computador: alinha a aba sob a barra fixa, para a tabela (com rolagem própria) caber inteira na tela
+  if (scrollY > topo || (["regras", "heat", "oc"].includes(a) && foco !== false && matchMedia("(min-width: 761px)").matches && iniciado)) scrollTo({ top: Math.max(0, topo) });
+  iniciado = true;
 }
 
 function detalhe(r, per, u) {
@@ -459,23 +564,48 @@ function detalhe(r, per, u) {
 }
 
 const curta = (t) => { t = String(t || ""); return t.length > 44 ? t.slice(0, 42).replace(/\s+\S*$/, "") + "…" : t; };
+function colunasHeat() {
+  const dias = (Date.parse(fim) - Date.parse(ini)) / 864e5 + 1;
+  const cols = [];
+  if (dias > 45) { // mensal
+    let m = ini.slice(0, 7);
+    while (m <= fim.slice(0, 7)) { cols.push({ k: m, rot: `${MES[+m.slice(5) - 1]}/${m.slice(2, 4)}`, a: m + "-01", b: m + "-31" }); const d = new Date(m + "-15T12:00:00Z"); d.setUTCMonth(d.getUTCMonth() + 1); m = d.toISOString().slice(0, 7); }
+  } else { // semanal (segunda a domingo), ou diário até 10 dias
+    if (dias <= 10) { for (let d = ini; d <= fim; d = addDias(d, 1)) cols.push({ k: d, rot: df(d).slice(0, 5), a: d, b: d }); }
+    else { const w = new Date(ini + "T12:00:00Z"); let d = addDias(ini, -((w.getUTCDay() + 6) % 7)); for (; d <= fim; d = addDias(d, 7)) cols.push({ k: d, rot: "sem. " + df(d < ini ? ini : d).slice(0, 5), a: d < ini ? ini : d, b: addDias(d, 6) > fim ? fim : addDias(d, 6) }); }
+  }
+  return cols;
+}
+
+const HEAT_VAZIO = { "Não se aplica": "na", "Parâmetro pendente": "pp", "Em curso": "ec", "Sem dado": "sd" };
 function renderHeat(regras) {
-  const meses = [...new Set(D.regras.flatMap((r) => Object.keys(r.mensal || {})))].sort();
-  $("#t-heat thead").innerHTML = `<tr><th style="text-align:left">Ponto / regra</th>${meses.map((m) => `<th>${MES[+m.slice(5) - 1]}/${m.slice(2, 4)}</th>`).join("")}</tr>`;
+  const cols = colunasHeat();
+  const dias = (Date.parse(fim) - Date.parse(ini)) / 864e5 + 1;
+  $("#heat-desc").textContent = dias > 45 ? "Conformidade mensal por regra no período selecionado (meses parciais contam só os dias do período)." : dias > 10 ? "Conformidade semanal por regra no período selecionado (semanas de segunda a domingo)." : "Resultado diário por regra no período selecionado.";
+  $("#t-heat thead").innerHTML = `<tr><th style="text-align:left">Ponto / regra</th>${cols.map((c) => `<th>${c.rot}</th>`).join("")}</tr>`;
   const ok = cssv("--ok"), tol = cssv("--tol"), nao = cssv("--nao");
-  $("#t-heat tbody").innerHTML = regras.map((r) => `<tr><td class="lbl"><b>${esc(r.ponto)}</b> <span class="muted">${esc(r.resolucao.replace("Res. ", ""))} · ${esc(curta(r.descricao))}</span></td>${meses.map((m) => {
-    const c = (r.mensal || {})[m];
-    if (!c || !c.n) return `<td class="cell"><span class="c" style="background:var(--sunk)" title="${m}: sem avaliação"></span></td>`;
-    const q = ((c["Atende"] || 0) + (c["Tolerância"] || 0)) / c.n * 100, na = c["Não atende"] || 0;
-    const bg = na === 0 && q >= 99.95 ? `color-mix(in srgb, ${ok} 32%, var(--surface))` : na === 0 ? `color-mix(in srgb, ${tol} 45%, var(--surface))` : `color-mix(in srgb, ${nao} ${Math.round(40 + (90 - Math.min(90, q)) / 90 * 50)}%, var(--surface))`;
-    return `<td class="cell"><span class="c" style="background:${bg}" title="${esc(r.ponto)} · ${m}: ${nf(q, 1)}% (${c.n} aval., ${na} não atende, ${c["Tolerância"] || 0} tolerância)">${na ? na : ""}</span></td>`;
-  }).join("")}</tr>`).join("");
+  $("#t-heat tbody").innerHTML = regras.map((r) => {
+    const per = noPeriodo(r);
+    return `<tr><td class="lbl" title="${esc(r.ponto)} · ${esc(r.resolucao)} · ${esc(r.descricao)}"><b>${esc(r.ponto)}</b><span class="r">${esc(r.resolucao.replace("Res. ", ""))} · ${esc(r.descricao)}</span></td>${cols.map((col) => {
+      const c = contar(per.filter((s) => s.d >= col.a && s.d <= col.b));
+      if (!c.n) {
+        const k = {}; per.forEach((x) => { if (x.d >= col.a && x.d <= col.b) k[x.st] = (k[x.st] || 0) + 1; });
+        const motivo = k["Parâmetro pendente"] ? "Parâmetro pendente" : k["Sem dado"] && !k["Não se aplica"] && !k["Em curso"] ? "Sem dado" : k["Em curso"] ? "Em curso" : k["Não se aplica"] ? "Não se aplica" : k["Sem dado"] ? "Sem dado" : null;
+        const det = Object.entries(k).map(([st, n]) => `${st} ${n} dia${n > 1 ? "s" : ""}`).join(", ") || "sem registro";
+        return `<td class="cell"><span class="c h-${motivo ? HEAT_VAZIO[motivo] : "nd"}" title="${esc(r.ponto)} · ${col.rot}: sem avaliação (${esc(det)})"></span></td>`;
+      }
+      const q = (c["Atende"] + c["Tolerância"]) / c.n * 100, na = c["Não atende"];
+      const bg = na === 0 && q >= 99.95 ? `color-mix(in srgb, ${ok} 32%, var(--surface))` : na === 0 ? `color-mix(in srgb, ${tol} 45%, var(--surface))` : `color-mix(in srgb, ${nao} ${Math.round(40 + (90 - Math.min(90, q)) / 90 * 50)}%, var(--surface))`;
+      return `<td class="cell"><span class="c" style="background:${bg}" title="${esc(r.ponto)} · ${col.rot}: ${nf(q, 1)}% (${c.n} aval., ${na} não atende, ${c["Tolerância"]} tolerância)">${na ? na : ""}</span></td>`;
+    }).join("")}</tr>`;
+  }).join("") || `<tr><td class="empty">Nenhuma regra com os filtros atuais.</td></tr>`;
 }
 
 function renderOc(regras) {
   const oc = [];
   for (const r of regras) for (const s of noPeriodo(r)) if (s.st === "Não atende" || s.st === "Tolerância") oc.push([r, s]);
   oc.sort((a, b) => b[1].d.localeCompare(a[1].d));
+  $("#b-oc").textContent = oc.length ? oc.length.toLocaleString("pt-BR") : "";
   $("#t-oc tbody").innerHTML = oc.slice(0, 400).map(([r, s]) => {
     const l = limNum(s.lim); let dv = "—";
     if (typeof s.v === "number" && l && l.length === 1 && l[0]) dv = nf((s.v - l[0]) / l[0] * 100, 1) + "%";
@@ -484,18 +614,17 @@ function renderOc(regras) {
 }
 
 function renderFaixas() {
-  const NOMES = { PPJURU: "Jurumirim", PPCHAV: "Chavantes", PPCAPI: "Capivara", GRFURN: "Furnas", GRMMOR: "M. Moraes (Peixoto)", PREMBO: "Emborcação", PRITUM: "Itumbiara", SFTMAR: "Três Marias", SFSOBR: "Sobradinho", TOSMES: "Serra da Mesa", CANTAREIRA: "Sistema Cantareira" };
-  const ESC = { PPJURU: ["Normal", "Atenção", "Alerta", "Restrição"], PPCHAV: ["Normal", "Atenção", "Alerta", "Restrição"], PPCAPI: ["Normal", "Atenção", "Alerta", "Restrição"], TOSMES: ["Normal", "Atenção", "Alerta"], CANTAREIRA: ["1", "2", "3", "4", "5"] };
+  const NOMES = { PPJURU: "Jurumirim", PPCHAV: "Chavantes", PPCAPI: "Capivara", GRFURN: "Furnas", GRMMOR: "M. Moraes (Peixoto)", PREMBO: "Emborcação", PRITUM: "Itumbiara", SFTMAR: "Três Marias", SFSOBR: "Sobradinho", TOSMES: "Serra da Mesa", CANTAREIRA: "Cantareira" };
   $("#bands").innerHTML = (D.faixas || []).map((f) => {
-    const esc_ = ESC[f.rid] || ["Normal", "Atenção", "Restrição"];
     const isNivel = /^PP/.test(f.rid);
-    const ref = f.vu_ref == null ? "" : isNivel ? `${nf(f.vu_ref, 2)} m` : `VU ${nf(f.vu_ref, 1)}%`;
+    const ref = f.vu_ref == null ? "" : isNivel ? `nível de referência ${nf(f.vu_ref, 2)} m` : `VU de referência ${nf(f.vu_ref, 1)}%`;
     const per = /^\d{4}-\d{2}$/.test(f.periodo) ? `${MES[+f.periodo.slice(5) - 1]}/${f.periodo.slice(0, 4)}` : `semana de ${df(f.periodo)}`;
-    return `<div class="band"><div class="name"><h3>${esc(NOMES[f.rid] || f.rid)}</h3><span class="vu">${ref}</span></div>
-      <div class="ladder" role="img" aria-label="Faixa ${esc(f.faixa || "não definida")}">${esc_.map((n, i) => `<span class="${i === f.idx ? "on l" + i : ""}" title="${esc(n)}">${esc(n)}</span>`).join("")}</div>
-      <div><b>${esc(f.faixa || "Sem faixa")}</b></div>
-      <div class="src"><span>${per}</span><span>${f.url ? `<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.origem)}</a>` : esc(f.origem || "")}</span></div></div>`;
-  }).join("") || `<div class="empty">Faixas não disponíveis.</div>`;
+    const pub = f.origem === "Boletim ANA" || f.origem === "Power BI";
+    const tit = [`${NOMES[f.rid] || f.rid}: ${f.faixa || "sem faixa"}`, `vigência ${per}`, ref, `origem: ${f.origem || "—"}`].filter(Boolean).join(" · ");
+    const curto = String(f.faixa || "Sem faixa").replace(/^Faixa (\d) - /, "F$1 ");
+    const tag = f.url ? "a" : "span";
+    return `<${tag} class="fx l${f.idx ?? "x"}"${f.url ? ` href="${esc(f.url)}" target="_blank" rel="noopener" style="cursor:pointer"` : ""} title="${esc(tit)}">${esc(NOMES[f.rid] || f.rid)} <b>${esc(curto)}</b>${pub ? '<span class="pub" aria-label="publicada">●</span>' : ""}</${tag}>`;
+  }).join("") || `<span class="muted">Faixas não disponíveis.</span>`;
 }
 
 function ligar() {
@@ -505,7 +634,34 @@ function ligar() {
   $("#f-sis").addEventListener("change", (e) => { state.sis = e.target.value; salvar(); render(); });
   $("#f-st").addEventListener("change", (e) => { state.st = e.target.value; render(); });
   $("#f-q").addEventListener("input", (e) => { state.q = e.target.value; render(); });
+  const abas = [...document.querySelectorAll(".abas [role=tab]")];
+  abas.forEach((b, i) => {
+    b.addEventListener("click", () => mostrarAba(b.dataset.aba));
+    b.addEventListener("keydown", (e) => { const d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0; if (d) { e.preventDefault(); mostrarAba(abas[(i + d + abas.length) % abas.length].dataset.aba, true); } });
+  });
+  addEventListener("hashchange", () => mostrarAba(location.hash.slice(1)));
+  const medir = () => document.documentElement.style.setProperty("--fh", (getComputedStyle($(".filters")).position === "sticky" ? $(".filters").offsetHeight : 0) + "px");
+  const medirAb = () => {
+    document.documentElement.style.setProperty("--ab", $(".abas-bar").offsetHeight + "px");
+    const th = $("#t-regras thead"); if (th && th.offsetHeight) document.documentElement.style.setProperty("--th", th.offsetHeight + "px");
+    // no computador, a tabela ocupa o restante da tela abaixo do título e dos botões da aba Regras
+    for (const id of ["s-regras", "s-heat", "s-oc"]) {
+      const tw = $(`#${id} .tbl-wrap`);
+      if (tw && tw.offsetParent && matchMedia("(min-width: 761px)").matches) {
+        const fixo = (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--fh")) || 0) + $(".abas-bar").offsetHeight;
+        const acima = tw.getBoundingClientRect().top - $("#" + id).getBoundingClientRect().top;
+        tw.style.maxHeight = Math.max(320, innerHeight - fixo - acima - 24 - 16) + "px";
+      } else if (tw) tw.style.maxHeight = "";
+    }
+  };
+  medir(); medirAb(); addEventListener("resize", () => { medir(); medirAb(); });
+  document.querySelectorAll(".abas [role=tab]").forEach((b) => b.addEventListener("click", () => requestAnimationFrame(medirAb))); if ("ResizeObserver" in window) new ResizeObserver(medir).observe($(".filters"));
+  $("#f-pend").checked = !!state.pend;
+  $("#f-pend").addEventListener("change", (e) => { state.pend = e.target.checked; salvar(); render(); });
+  $("#b-abrir").addEventListener("click", () => { sisFechados.clear(); filtradas().forEach((r) => sisAbertos.add(r.sistema)); render(); });
+  $("#b-fechar").addEventListener("click", () => { sisAbertos.clear(); aberto.clear(); filtradas().forEach((r) => sisFechados.add(r.sistema)); render(); });
   const tb = $("#t-regras tbody");
+  tb.addEventListener("click", (e) => { const b = e.target.closest(".sys-btn"); if (!b) return; const s = b.closest("tr").dataset.sis; const abrirTodos = !!state.q.trim() || state.pend || !!state.sis || !!state.st; const set = abrirTodos ? sisFechados : sisAbertos; set.has(s) ? set.delete(s) : set.add(s); render(); });
   const toggle = (tr) => { const id = tr.dataset.id; aberto.has(id) ? aberto.delete(id) : aberto.add(id); render(); };
   tb.addEventListener("click", (e) => { const tr = e.target.closest("tr.rule"); if (tr) toggle(tr); });
   tb.addEventListener("keydown", (e) => { const tr = e.target.closest("tr.rule"); if (tr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); toggle(tr); } });
@@ -525,7 +681,7 @@ function iniciar(dados) {
   const pend = Object.entries(D.parametros || {}).filter(([, v]) => v && v.valor == null).map(([, v]) => v.fonte);
   const erros = D.erros_coleta || [];
   $("#n-pend").textContent = [pend.length ? `Parâmetros pendentes: ${pend.join("; ")}.` : "", erros.length ? `Falhas de coleta nesta execução: ${erros.join("; ")}.` : "", (D.divergencias_faixa || []).length ? `Faixas publicadas divergentes do cálculo: ${D.divergencias_faixa.map((x) => `${x.chave} (publicada ${x.publicada}, calculada ${x.calculada})`).join("; ")}.` : ""].filter(Boolean).join(" ") || "Sem parâmetros pendentes ou falhas de coleta nesta execução.";
-  renderFaixas(); ligar(); render();
+  renderFaixas(); ligar(); render(); mostrarAba(location.hash.slice(1) || state.aba || "sint");
 }
 
 fetch("painel.json", { cache: "no-cache" }).then((r) => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }).then(iniciar).catch((e) => {
