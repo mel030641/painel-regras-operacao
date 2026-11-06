@@ -76,7 +76,9 @@ main section[hidden] { display: none }
 @media (max-width: 760px) { #s-regras .tbl-wrap { max-height: 72vh; max-height: 72svh } }
 #s-heat .tbl-wrap, #s-oc .tbl-wrap { overflow: auto; overscroll-behavior: contain }
 #t-heat thead th, #t-oc thead th { position: sticky; top: 0; z-index: 2; box-shadow: inset 0 -1px 0 var(--line) }
-#t-heat td.lbl { position: sticky; left: 0; z-index: 1; background: var(--surface); box-shadow: inset -1px 0 0 var(--line-soft); max-width: min(46vw, 380px); overflow: hidden; text-overflow: ellipsis }
+#t-heat td.lbl { position: sticky; left: 0; z-index: 1; background: var(--surface); box-shadow: inset -1px 0 0 var(--line-soft); white-space: normal; width: 300px; min-width: 300px; max-width: 300px; line-height: 1.3 }
+#t-heat td.lbl .r { display: block; color: var(--fg-3); font-size: .74rem }
+@media (max-width: 760px) { #t-heat td.lbl { width: 170px; min-width: 170px; max-width: 170px } }
 #t-heat thead th:first-child { left: 0; z-index: 3 }
 @media (max-width: 760px) { #s-heat .tbl-wrap, #s-oc .tbl-wrap { max-height: 72vh; max-height: 72svh } }
 
@@ -199,7 +201,7 @@ tr.detail td { background: var(--surface); padding: 0 }
 .mini th { position: sticky; top: 0 }
 
 /* mapa multitemporal */
-.heat td.cell { padding: 3px; text-align: center }
+.heat td.cell { padding: 3px; text-align: center; vertical-align: middle }
 .heat .c { display: block; min-width: 34px; height: 24px; line-height: 24px; border-radius: 3px; font: 500 .7rem var(--f-mono); color: var(--fg) }
 .heat td.lbl { white-space: nowrap; font-size: .8rem; padding: 4px 10px }
 .heat th { text-align: center }
@@ -568,7 +570,7 @@ function renderHeat(regras) {
   const ok = cssv("--ok"), tol = cssv("--tol"), nao = cssv("--nao");
   $("#t-heat tbody").innerHTML = regras.map((r) => {
     const per = noPeriodo(r);
-    return `<tr><td class="lbl"><b>${esc(r.ponto)}</b> <span class="muted">${esc(r.resolucao.replace("Res. ", ""))} · ${esc(curta(r.descricao))}</span></td>${cols.map((col) => {
+    return `<tr><td class="lbl" title="${esc(r.ponto)} · ${esc(r.resolucao)} · ${esc(r.descricao)}"><b>${esc(r.ponto)}</b><span class="r">${esc(r.resolucao.replace("Res. ", ""))} · ${esc(r.descricao)}</span></td>${cols.map((col) => {
       const c = contar(per.filter((s) => s.d >= col.a && s.d <= col.b));
       if (!c.n) return `<td class="cell"><span class="c" style="background:var(--sunk)" title="${col.rot}: sem avaliação"></span></td>`;
       const q = (c["Atende"] + c["Tolerância"]) / c.n * 100, na = c["Não atende"];
