@@ -203,6 +203,12 @@ tr.detail td { background: var(--surface); padding: 0 }
 /* mapa multitemporal */
 .heat td.cell { padding: 3px; text-align: center; vertical-align: middle }
 .heat .c { display: block; min-width: 34px; height: 24px; line-height: 24px; border-radius: 3px; font: 500 .7rem var(--f-mono); color: var(--fg) }
+.heat .c.h-na, .heat .c.h-nd { background: var(--sunk) }
+.heat .c.h-pp { background: repeating-linear-gradient(135deg, var(--tol-soft) 0 4px, color-mix(in srgb, var(--tol) 45%, var(--surface)) 4px 6px) }
+.heat .c.h-ec { background: var(--surface); box-shadow: inset 0 0 0 1px var(--fg-3) }
+.heat .c.h-sd { background: transparent; box-shadow: none; outline: 1px dashed var(--fg-3); outline-offset: -2px }
+.heat-leg { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .78rem; color: var(--fg-2); align-items: center }
+.heat-leg .c { display: inline-block; width: 22px; height: 12px; min-width: 0; border-radius: 2px; vertical-align: -2px; margin-right: 5px }
 .heat td.lbl { white-space: nowrap; font-size: .8rem; padding: 4px 10px }
 .heat th { text-align: center }
 
@@ -289,6 +295,15 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
 
   <section id="s-heat" role="tabpanel" aria-labelledby="h-heat" data-aba="heat">
     <div class="sec-head"><h2 id="h-heat">Mapa multitemporal</h2><p><span id="heat-desc"></span> Avaliações conformes ÷ avaliadas; células com violação trazem o número de dias em “Não atende”.</p></div>
+    <div class="heat heat-leg" aria-label="Legenda do mapa">
+      <span><span class="c" style="background:color-mix(in srgb, var(--ok) 32%, var(--surface))"></span>100% conforme</span>
+      <span><span class="c" style="background:color-mix(in srgb, var(--tol) 45%, var(--surface))"></span>Com tolerância</span>
+      <span><span class="c" style="background:color-mix(in srgb, var(--nao) 65%, var(--surface))"></span>Com Não atende (nº de dias)</span>
+      <span><span class="c h-na"></span>Não se aplica</span>
+      <span><span class="c h-pp"></span>Parâmetro pendente</span>
+      <span><span class="c h-ec"></span>Em curso</span>
+      <span><span class="c h-sd"></span>Sem dado</span>
+    </div>
     <div class="tbl-wrap heat"><table id="t-heat"><thead></thead><tbody></tbody></table></div>
   </section>
 
@@ -562,6 +577,7 @@ function colunasHeat() {
   return cols;
 }
 
+const HEAT_VAZIO = { "Não se aplica": "na", "Parâmetro pendente": "pp", "Em curso": "ec", "Sem dado": "sd" };
 function renderHeat(regras) {
   const cols = colunasHeat();
   const dias = (Date.parse(fim) - Date.parse(ini)) / 864e5 + 1;
@@ -572,7 +588,12 @@ function renderHeat(regras) {
     const per = noPeriodo(r);
     return `<tr><td class="lbl" title="${esc(r.ponto)} · ${esc(r.resolucao)} · ${esc(r.descricao)}"><b>${esc(r.ponto)}</b><span class="r">${esc(r.resolucao.replace("Res. ", ""))} · ${esc(r.descricao)}</span></td>${cols.map((col) => {
       const c = contar(per.filter((s) => s.d >= col.a && s.d <= col.b));
-      if (!c.n) return `<td class="cell"><span class="c" style="background:var(--sunk)" title="${col.rot}: sem avaliação"></span></td>`;
+      if (!c.n) {
+        const k = {}; per.forEach((x) => { if (x.d >= col.a && x.d <= col.b) k[x.st] = (k[x.st] || 0) + 1; });
+        const motivo = k["Parâmetro pendente"] ? "Parâmetro pendente" : k["Sem dado"] && !k["Não se aplica"] && !k["Em curso"] ? "Sem dado" : k["Em curso"] ? "Em curso" : k["Não se aplica"] ? "Não se aplica" : k["Sem dado"] ? "Sem dado" : null;
+        const det = Object.entries(k).map(([st, n]) => `${st} ${n} dia${n > 1 ? "s" : ""}`).join(", ") || "sem registro";
+        return `<td class="cell"><span class="c h-${motivo ? HEAT_VAZIO[motivo] : "nd"}" title="${esc(r.ponto)} · ${col.rot}: sem avaliação (${esc(det)})"></span></td>`;
+      }
       const q = (c["Atende"] + c["Tolerância"]) / c.n * 100, na = c["Não atende"];
       const bg = na === 0 && q >= 99.95 ? `color-mix(in srgb, ${ok} 32%, var(--surface))` : na === 0 ? `color-mix(in srgb, ${tol} 45%, var(--surface))` : `color-mix(in srgb, ${nao} ${Math.round(40 + (90 - Math.min(90, q)) / 90 * 50)}%, var(--surface))`;
       return `<td class="cell"><span class="c" style="background:${bg}" title="${esc(r.ponto)} · ${col.rot}: ${nf(q, 1)}% (${c.n} aval., ${na} não atende, ${c["Tolerância"]} tolerância)">${na ? na : ""}</span></td>`;
