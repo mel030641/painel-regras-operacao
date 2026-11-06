@@ -74,6 +74,11 @@ main section[hidden] { display: none }
 #t-regras thead th { position: sticky; top: 0; z-index: 2; box-shadow: inset 0 -1px 0 var(--line) }
 #t-regras tr.sys-row td { position: sticky; top: calc(var(--th, 34px) - 1px); z-index: 1 }
 @media (max-width: 760px) { #s-regras .tbl-wrap { max-height: 72vh; max-height: 72svh } }
+#s-heat .tbl-wrap, #s-oc .tbl-wrap { overflow: auto; overscroll-behavior: contain }
+#t-heat thead th, #t-oc thead th { position: sticky; top: 0; z-index: 2; box-shadow: inset 0 -1px 0 var(--line) }
+#t-heat td.lbl { position: sticky; left: 0; z-index: 1; background: var(--surface); box-shadow: inset -1px 0 0 var(--line-soft); max-width: min(46vw, 380px); overflow: hidden; text-overflow: ellipsis }
+#t-heat thead th:first-child { left: 0; z-index: 3 }
+@media (max-width: 760px) { #s-heat .tbl-wrap, #s-oc .tbl-wrap { max-height: 72vh; max-height: 72svh } }
 
 /* abas */
 .abas-bar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--fh, 0px)); z-index: 4; background: var(--surface); border-bottom: 1px solid var(--line) }
@@ -515,7 +520,7 @@ function mostrarAba(a, foco) {
   salvar();
   const topo = $("main").getBoundingClientRect().top + scrollY - $(".abas-bar").offsetHeight - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--fh")) || 0);
   // Regras no computador: alinha a aba sob a barra fixa, para a tabela (com rolagem própria) caber inteira na tela
-  if (scrollY > topo || (a === "regras" && foco !== false && matchMedia("(min-width: 761px)").matches && iniciado)) scrollTo({ top: Math.max(0, topo) });
+  if (scrollY > topo || (["regras", "heat", "oc"].includes(a) && foco !== false && matchMedia("(min-width: 761px)").matches && iniciado)) scrollTo({ top: Math.max(0, topo) });
   iniciado = true;
 }
 
@@ -617,15 +622,17 @@ function ligar() {
     document.documentElement.style.setProperty("--ab", $(".abas-bar").offsetHeight + "px");
     const th = $("#t-regras thead"); if (th && th.offsetHeight) document.documentElement.style.setProperty("--th", th.offsetHeight + "px");
     // no computador, a tabela ocupa o restante da tela abaixo do título e dos botões da aba Regras
-    const tw = $("#s-regras .tbl-wrap");
-    if (tw && tw.offsetParent && matchMedia("(min-width: 761px)").matches) {
-      const fixo = (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--fh")) || 0) + $(".abas-bar").offsetHeight;
-      const acima = tw.getBoundingClientRect().top - $("#s-regras").getBoundingClientRect().top;
-      tw.style.maxHeight = Math.max(320, innerHeight - fixo - acima - 24 - 16) + "px";
-    } else if (tw) tw.style.maxHeight = "";
+    for (const id of ["s-regras", "s-heat", "s-oc"]) {
+      const tw = $(`#${id} .tbl-wrap`);
+      if (tw && tw.offsetParent && matchMedia("(min-width: 761px)").matches) {
+        const fixo = (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--fh")) || 0) + $(".abas-bar").offsetHeight;
+        const acima = tw.getBoundingClientRect().top - $("#" + id).getBoundingClientRect().top;
+        tw.style.maxHeight = Math.max(320, innerHeight - fixo - acima - 24 - 16) + "px";
+      } else if (tw) tw.style.maxHeight = "";
+    }
   };
   medir(); medirAb(); addEventListener("resize", () => { medir(); medirAb(); });
-  document.querySelector(".abas [data-aba=regras]").addEventListener("click", () => requestAnimationFrame(medirAb)); if ("ResizeObserver" in window) new ResizeObserver(medir).observe($(".filters"));
+  document.querySelectorAll(".abas [role=tab]").forEach((b) => b.addEventListener("click", () => requestAnimationFrame(medirAb))); if ("ResizeObserver" in window) new ResizeObserver(medir).observe($(".filters"));
   $("#f-pend").checked = !!state.pend;
   $("#f-pend").addEventListener("change", (e) => { state.pend = e.target.checked; salvar(); render(); });
   $("#b-abrir").addEventListener("click", () => { sisFechados.clear(); filtradas().forEach((r) => sisAbertos.add(r.sistema)); render(); });
