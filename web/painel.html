@@ -4,7 +4,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: painel operacional em faixas horizontais — síntese (ICG + escalas) → faixas vigentes → regras por sistema → mapa multitemporal → ocorrências */
+/* Layout: abas — síntese (faixas vigentes + ICG + escalas), regras por sistema, mapa multitemporal, ocorrências */
 :root {
   --bg: #f5f7f8; --surface: #ffffff; --sunk: #eceff1; --line: #d9dee2; --line-soft: #e6eaed;
   --fg: #142027; --fg-2: #46565f; --fg-3: #6f7d85;
@@ -70,6 +70,10 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 main .wrap { display: grid; gap: 28px; padding-block: 24px 40px }
 main section[hidden] { display: none }
+#s-regras .tbl-wrap { max-height: calc(100vh - var(--fh, 0px) - var(--ab, 48px) - 32px); max-height: calc(100dvh - var(--fh, 0px) - var(--ab, 48px) - 32px); overflow: auto; overscroll-behavior: contain }
+#t-regras thead th { position: sticky; top: 0; z-index: 2; box-shadow: inset 0 -1px 0 var(--line) }
+#t-regras tr.sys-row td { position: sticky; top: calc(var(--th, 34px) - 1px); z-index: 1 }
+@media (max-width: 760px) { #s-regras .tbl-wrap { max-height: 72vh; max-height: 72svh } }
 
 /* abas */
 .abas-bar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--fh, 0px)); z-index: 4; background: var(--surface); border-bottom: 1px solid var(--line) }
@@ -138,6 +142,16 @@ td.n, th.n { text-align: right; white-space: nowrap }
 .st-ec.exc { color: var(--tol); border-color: var(--tol); background: var(--tol-soft) }
 
 /* faixas vigentes */
+.fx-quadro { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px }
+.fx-head { display: flex; flex-wrap: wrap; gap: 2px 12px; align-items: baseline }
+.fx-head .muted { font-size: .78rem }
+.fx-chips { display: flex; flex-wrap: wrap; gap: 6px }
+.fx { display: inline-flex; align-items: baseline; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: .82rem; border: 1px solid var(--line-soft); background: var(--sunk); color: var(--fg); text-decoration: none; cursor: default }
+.fx b { font-weight: 600 }
+.fx.l0 { background: var(--ok-soft) } .fx.l0 b { color: var(--ok) }
+.fx.l1 { background: var(--tol-soft) } .fx.l1 b { color: var(--tol) }
+.fx.l2, .fx.l3, .fx.l4 { background: var(--nao-soft) } .fx.l2 b, .fx.l3 b, .fx.l4 b { color: var(--nao) }
+.fx .pub { color: var(--fg-3); font-size: .7rem }
 .bands { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px }
 .band { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px; display: grid; gap: 8px; min-width: 0 }
 .band .name { display: flex; justify-content: space-between; gap: 8px; align-items: baseline }
@@ -227,7 +241,6 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
   <div class="abas" role="tablist" aria-label="Blocos do painel">
       <button role="tab" id="tab-sint" aria-controls="s-sint" data-aba="sint">Síntese</button>
       <button role="tab" id="tab-regras" aria-controls="s-regras" data-aba="regras">Regras <span class="badge" id="b-regras"></span></button>
-      <button role="tab" id="tab-faixas" aria-controls="s-faixas" data-aba="faixas">Faixas vigentes</button>
       <button role="tab" id="tab-heat" aria-controls="s-heat" data-aba="heat">Mapa multitemporal</button>
       <button role="tab" id="tab-oc" aria-controls="s-oc" data-aba="oc">Ocorrências <span class="badge" id="b-oc"></span></button>
     </div>
@@ -237,6 +250,10 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
   <div id="erro" hidden></div>
 
   <section id="s-sint" role="tabpanel" aria-labelledby="h-sint" data-aba="sint">
+    <div class="fx-quadro" aria-labelledby="h-faixas">
+      <div class="fx-head"><h3 id="h-faixas">Faixas operativas vigentes</h3><span class="muted">Faixa de hoje, publicada no boletim diário da ANA ou no Power BI (● ) ou calculada pela regra; não depende do período nem dos filtros.</span></div>
+      <div class="fx-chips" id="bands"></div>
+    </div>
     <div class="sec-head"><h2 id="h-sint">Síntese do período</h2><p id="p-periodo"></p></div>
     <div class="summary">
       <div class="icg">
@@ -251,10 +268,6 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
     </div>
   </section>
 
-  <section id="s-faixas" role="tabpanel" aria-labelledby="h-faixas" data-aba="faixas">
-    <div class="sec-head"><h2 id="h-faixas">Faixas operativas vigentes</h2><p>Faixa publicada no boletim diário da ANA (gov.br) ou, na falta dele, no painel Power BI do sistema hídrico. Quando não há publicação para o período, a faixa é calculada pela regra da resolução.</p></div>
-    <div class="bands" id="bands"></div>
-  </section>
 
   <section id="s-regras" role="tabpanel" aria-labelledby="h-regras" data-aba="regras">
     <div class="sec-head"><h2 id="h-regras">Regras por sistema hídrico</h2><p>Clique no sistema para abrir as regras e em uma regra para ver a série, o limite e as avaliações diárias. A folga é a distância ao limite, na unidade da regra.</p></div>
@@ -268,7 +281,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
   </section>
 
   <section id="s-heat" role="tabpanel" aria-labelledby="h-heat" data-aba="heat">
-    <div class="sec-head"><h2 id="h-heat">Mapa multitemporal</h2><p>Conformidade mensal por regra (avaliações conformes ÷ avaliadas). Células com violação trazem o número de dias em “Não atende”.</p></div>
+    <div class="sec-head"><h2 id="h-heat">Mapa multitemporal</h2><p><span id="heat-desc"></span> Avaliações conformes ÷ avaliadas; células com violação trazem o número de dias em “Não atende”.</p></div>
     <div class="tbl-wrap heat"><table id="t-heat"><thead></thead><tbody></tbody></table></div>
   </section>
 
@@ -491,7 +504,9 @@ function render() {
   renderHeat(regras); renderOc(regras);
 }
 
+let iniciado = false;
 function mostrarAba(a, foco) {
+  if (a === "faixas") a = "sint";
   if (!document.getElementById("s-" + a)) a = "sint";
   state.aba = a;
   document.querySelectorAll(".abas [role=tab]").forEach((b) => { const on = b.dataset.aba === a; b.setAttribute("aria-selected", String(on)); b.tabIndex = on ? 0 : -1; if (on && foco) b.focus(); });
@@ -499,7 +514,9 @@ function mostrarAba(a, foco) {
   if (location.hash !== "#" + a) history.replaceState(null, "", "#" + a);
   salvar();
   const topo = $("main").getBoundingClientRect().top + scrollY - $(".abas-bar").offsetHeight - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--fh")) || 0);
-  if (scrollY > topo) scrollTo({ top: Math.max(0, topo) });
+  // Regras no computador: alinha a aba sob a barra fixa, para a tabela (com rolagem própria) caber inteira na tela
+  if (scrollY > topo || (a === "regras" && foco !== false && matchMedia("(min-width: 761px)").matches && iniciado)) scrollTo({ top: Math.max(0, topo) });
+  iniciado = true;
 }
 
 function detalhe(r, per, u) {
@@ -525,17 +542,35 @@ function detalhe(r, per, u) {
 }
 
 const curta = (t) => { t = String(t || ""); return t.length > 44 ? t.slice(0, 42).replace(/\s+\S*$/, "") + "…" : t; };
+function colunasHeat() {
+  const dias = (Date.parse(fim) - Date.parse(ini)) / 864e5 + 1;
+  const cols = [];
+  if (dias > 45) { // mensal
+    let m = ini.slice(0, 7);
+    while (m <= fim.slice(0, 7)) { cols.push({ k: m, rot: `${MES[+m.slice(5) - 1]}/${m.slice(2, 4)}`, a: m + "-01", b: m + "-31" }); const d = new Date(m + "-15T12:00:00Z"); d.setUTCMonth(d.getUTCMonth() + 1); m = d.toISOString().slice(0, 7); }
+  } else { // semanal (segunda a domingo), ou diário até 10 dias
+    if (dias <= 10) { for (let d = ini; d <= fim; d = addDias(d, 1)) cols.push({ k: d, rot: df(d).slice(0, 5), a: d, b: d }); }
+    else { const w = new Date(ini + "T12:00:00Z"); let d = addDias(ini, -((w.getUTCDay() + 6) % 7)); for (; d <= fim; d = addDias(d, 7)) cols.push({ k: d, rot: "sem. " + df(d < ini ? ini : d).slice(0, 5), a: d < ini ? ini : d, b: addDias(d, 6) > fim ? fim : addDias(d, 6) }); }
+  }
+  return cols;
+}
+
 function renderHeat(regras) {
-  const meses = [...new Set(D.regras.flatMap((r) => Object.keys(r.mensal || {})))].sort();
-  $("#t-heat thead").innerHTML = `<tr><th style="text-align:left">Ponto / regra</th>${meses.map((m) => `<th>${MES[+m.slice(5) - 1]}/${m.slice(2, 4)}</th>`).join("")}</tr>`;
+  const cols = colunasHeat();
+  const dias = (Date.parse(fim) - Date.parse(ini)) / 864e5 + 1;
+  $("#heat-desc").textContent = dias > 45 ? "Conformidade mensal por regra no período selecionado (meses parciais contam só os dias do período)." : dias > 10 ? "Conformidade semanal por regra no período selecionado (semanas de segunda a domingo)." : "Resultado diário por regra no período selecionado.";
+  $("#t-heat thead").innerHTML = `<tr><th style="text-align:left">Ponto / regra</th>${cols.map((c) => `<th>${c.rot}</th>`).join("")}</tr>`;
   const ok = cssv("--ok"), tol = cssv("--tol"), nao = cssv("--nao");
-  $("#t-heat tbody").innerHTML = regras.map((r) => `<tr><td class="lbl"><b>${esc(r.ponto)}</b> <span class="muted">${esc(r.resolucao.replace("Res. ", ""))} · ${esc(curta(r.descricao))}</span></td>${meses.map((m) => {
-    const c = (r.mensal || {})[m];
-    if (!c || !c.n) return `<td class="cell"><span class="c" style="background:var(--sunk)" title="${m}: sem avaliação"></span></td>`;
-    const q = ((c["Atende"] || 0) + (c["Tolerância"] || 0)) / c.n * 100, na = c["Não atende"] || 0;
-    const bg = na === 0 && q >= 99.95 ? `color-mix(in srgb, ${ok} 32%, var(--surface))` : na === 0 ? `color-mix(in srgb, ${tol} 45%, var(--surface))` : `color-mix(in srgb, ${nao} ${Math.round(40 + (90 - Math.min(90, q)) / 90 * 50)}%, var(--surface))`;
-    return `<td class="cell"><span class="c" style="background:${bg}" title="${esc(r.ponto)} · ${m}: ${nf(q, 1)}% (${c.n} aval., ${na} não atende, ${c["Tolerância"] || 0} tolerância)">${na ? na : ""}</span></td>`;
-  }).join("")}</tr>`).join("");
+  $("#t-heat tbody").innerHTML = regras.map((r) => {
+    const per = noPeriodo(r);
+    return `<tr><td class="lbl"><b>${esc(r.ponto)}</b> <span class="muted">${esc(r.resolucao.replace("Res. ", ""))} · ${esc(curta(r.descricao))}</span></td>${cols.map((col) => {
+      const c = contar(per.filter((s) => s.d >= col.a && s.d <= col.b));
+      if (!c.n) return `<td class="cell"><span class="c" style="background:var(--sunk)" title="${col.rot}: sem avaliação"></span></td>`;
+      const q = (c["Atende"] + c["Tolerância"]) / c.n * 100, na = c["Não atende"];
+      const bg = na === 0 && q >= 99.95 ? `color-mix(in srgb, ${ok} 32%, var(--surface))` : na === 0 ? `color-mix(in srgb, ${tol} 45%, var(--surface))` : `color-mix(in srgb, ${nao} ${Math.round(40 + (90 - Math.min(90, q)) / 90 * 50)}%, var(--surface))`;
+      return `<td class="cell"><span class="c" style="background:${bg}" title="${esc(r.ponto)} · ${col.rot}: ${nf(q, 1)}% (${c.n} aval., ${na} não atende, ${c["Tolerância"]} tolerância)">${na ? na : ""}</span></td>`;
+    }).join("")}</tr>`;
+  }).join("") || `<tr><td class="empty">Nenhuma regra com os filtros atuais.</td></tr>`;
 }
 
 function renderOc(regras) {
@@ -551,18 +586,17 @@ function renderOc(regras) {
 }
 
 function renderFaixas() {
-  const NOMES = { PPJURU: "Jurumirim", PPCHAV: "Chavantes", PPCAPI: "Capivara", GRFURN: "Furnas", GRMMOR: "M. Moraes (Peixoto)", PREMBO: "Emborcação", PRITUM: "Itumbiara", SFTMAR: "Três Marias", SFSOBR: "Sobradinho", TOSMES: "Serra da Mesa", CANTAREIRA: "Sistema Cantareira" };
-  const ESC = { PPJURU: ["Normal", "Atenção", "Alerta", "Restrição"], PPCHAV: ["Normal", "Atenção", "Alerta", "Restrição"], PPCAPI: ["Normal", "Atenção", "Alerta", "Restrição"], TOSMES: ["Normal", "Atenção", "Alerta"], CANTAREIRA: ["1", "2", "3", "4", "5"] };
+  const NOMES = { PPJURU: "Jurumirim", PPCHAV: "Chavantes", PPCAPI: "Capivara", GRFURN: "Furnas", GRMMOR: "M. Moraes (Peixoto)", PREMBO: "Emborcação", PRITUM: "Itumbiara", SFTMAR: "Três Marias", SFSOBR: "Sobradinho", TOSMES: "Serra da Mesa", CANTAREIRA: "Cantareira" };
   $("#bands").innerHTML = (D.faixas || []).map((f) => {
-    const esc_ = ESC[f.rid] || ["Normal", "Atenção", "Restrição"];
     const isNivel = /^PP/.test(f.rid);
-    const ref = f.vu_ref == null ? "" : isNivel ? `${nf(f.vu_ref, 2)} m` : `VU ${nf(f.vu_ref, 1)}%`;
+    const ref = f.vu_ref == null ? "" : isNivel ? `nível de referência ${nf(f.vu_ref, 2)} m` : `VU de referência ${nf(f.vu_ref, 1)}%`;
     const per = /^\d{4}-\d{2}$/.test(f.periodo) ? `${MES[+f.periodo.slice(5) - 1]}/${f.periodo.slice(0, 4)}` : `semana de ${df(f.periodo)}`;
-    return `<div class="band"><div class="name"><h3>${esc(NOMES[f.rid] || f.rid)}</h3><span class="vu">${ref}</span></div>
-      <div class="ladder" role="img" aria-label="Faixa ${esc(f.faixa || "não definida")}">${esc_.map((n, i) => `<span class="${i === f.idx ? "on l" + i : ""}" title="${esc(n)}">${esc(n)}</span>`).join("")}</div>
-      <div><b>${esc(f.faixa || "Sem faixa")}</b></div>
-      <div class="src"><span>${per}</span><span>${f.url ? `<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.origem)}</a>` : esc(f.origem || "")}</span></div></div>`;
-  }).join("") || `<div class="empty">Faixas não disponíveis.</div>`;
+    const pub = f.origem === "Boletim ANA" || f.origem === "Power BI";
+    const tit = [`${NOMES[f.rid] || f.rid}: ${f.faixa || "sem faixa"}`, `vigência ${per}`, ref, `origem: ${f.origem || "—"}`].filter(Boolean).join(" · ");
+    const curto = String(f.faixa || "Sem faixa").replace(/^Faixa (\d) - /, "F$1 ");
+    const tag = f.url ? "a" : "span";
+    return `<${tag} class="fx l${f.idx ?? "x"}"${f.url ? ` href="${esc(f.url)}" target="_blank" rel="noopener" style="cursor:pointer"` : ""} title="${esc(tit)}">${esc(NOMES[f.rid] || f.rid)} <b>${esc(curto)}</b>${pub ? '<span class="pub" aria-label="publicada">●</span>' : ""}</${tag}>`;
+  }).join("") || `<span class="muted">Faixas não disponíveis.</span>`;
 }
 
 function ligar() {
@@ -579,7 +613,19 @@ function ligar() {
   });
   addEventListener("hashchange", () => mostrarAba(location.hash.slice(1)));
   const medir = () => document.documentElement.style.setProperty("--fh", (getComputedStyle($(".filters")).position === "sticky" ? $(".filters").offsetHeight : 0) + "px");
-  medir(); addEventListener("resize", medir); if ("ResizeObserver" in window) new ResizeObserver(medir).observe($(".filters"));
+  const medirAb = () => {
+    document.documentElement.style.setProperty("--ab", $(".abas-bar").offsetHeight + "px");
+    const th = $("#t-regras thead"); if (th && th.offsetHeight) document.documentElement.style.setProperty("--th", th.offsetHeight + "px");
+    // no computador, a tabela ocupa o restante da tela abaixo do título e dos botões da aba Regras
+    const tw = $("#s-regras .tbl-wrap");
+    if (tw && tw.offsetParent && matchMedia("(min-width: 761px)").matches) {
+      const fixo = (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--fh")) || 0) + $(".abas-bar").offsetHeight;
+      const acima = tw.getBoundingClientRect().top - $("#s-regras").getBoundingClientRect().top;
+      tw.style.maxHeight = Math.max(320, innerHeight - fixo - acima - 24 - 16) + "px";
+    } else if (tw) tw.style.maxHeight = "";
+  };
+  medir(); medirAb(); addEventListener("resize", () => { medir(); medirAb(); });
+  document.querySelector(".abas [data-aba=regras]").addEventListener("click", () => requestAnimationFrame(medirAb)); if ("ResizeObserver" in window) new ResizeObserver(medir).observe($(".filters"));
   $("#f-pend").checked = !!state.pend;
   $("#f-pend").addEventListener("change", (e) => { state.pend = e.target.checked; salvar(); render(); });
   $("#b-abrir").addEventListener("click", () => { sisFechados.clear(); filtradas().forEach((r) => sisAbertos.add(r.sistema)); render(); });
