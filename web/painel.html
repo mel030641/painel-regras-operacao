@@ -347,7 +347,7 @@ const MES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out
 const pill = (st, o) => { const s = ST[st] || ST["Sem dado"]; const exc = st === "Em curso" && o && o.exc;
   const tip = st === "Em curso" && o ? ` title="Janela aberta. Parcial: ${esc(o.parc || "")}${exc ? " (média parcial acima do limite)" : ""}"` : "";
   const lado = o && o.lado ? (st === "Tolerância" ? " · para baixo" : st === "Atende" && o.lado === "acima" ? " · tol. para cima" : "") : "";
-  return `<span class="pill ${s.c}${exc ? " exc" : ""}"${tip}><svg viewBox="0 0 12 12" aria-hidden="true">${s.i}</svg>${esc(st)}${exc ? " · parcial acima" : ""}${lado}</span>`; };
+  return `<span class="pill ${s.c}${exc ? " exc" : ""}"${tip}><svg viewBox="0 0 12 12" aria-hidden="true">${s.i}</svg>${exc ? "Parcial acima" : esc(st)}${lado}</span>`; };
 const cssv = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 const U = (r) => r.unid === "%" ? "% VU" : (r.unid || "");
 const paramDia = (r, s) => { const p = r.param || ""; if (s && s.ag) { const i = p.indexOf(", "); return (i > 0 ? p.slice(0, i) : p) + ", " + s.ag; } return p; };
