@@ -1,7 +1,1265 @@
 {
  "fonte": "Boletins diários ANA (gov.br) e painéis Power BI SOE/ANA",
- "atualizado_em": "2026-11-05T20:03:59",
+ "atualizado_em": "2026-11-08T15:03:12",
  "faixas": {
+  "CANTAREIRA|2017-10": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2017-10-25",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/cantareira-bol-diario-25-10-2017.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2017-10-01",
+    "2017-10-31"
+   ]
+  },
+  "CANTAREIRA|2017-11": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2017-11-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/cantareira-bol-diario-14-11-2017.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2017-11-01",
+    "2017-11-30"
+   ]
+  },
+  "CANTAREIRA|2017-12": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2017-12-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-diario-cantareira-15-12-2017.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2017-12-01",
+    "2017-12-31"
+   ]
+  },
+  "CANTAREIRA|2018-01": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2018-01-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/cantareira-bol-diario-16-01-2018.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2018-01-01",
+    "2018-01-31"
+   ]
+  },
+  "CANTAREIRA|2018-02": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2018-02-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-2018-02-15.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2018-02-01",
+    "2018-02-28"
+   ]
+  },
+  "CANTAREIRA|2018-03": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2018-03-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-2018-03-15.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2018-03-01",
+    "2018-03-31"
+   ]
+  },
+  "CANTAREIRA|2018-04": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2018-04-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-2018-04-16.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2018-04-01",
+    "2018-04-30"
+   ]
+  },
+  "CANTAREIRA|2018-05": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2018-05-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-2018-05-15.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2018-05-01",
+    "2018-05-31"
+   ]
+  },
+  "CANTAREIRA|2018-06": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2018-06-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-2018-06-14-1.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2018-06-01",
+    "2018-06-30"
+   ]
+  },
+  "CANTAREIRA|2018-07": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2018-07-23",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-2018-07-23.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2018-07-01",
+    "2018-07-31"
+   ]
+  },
+  "CANTAREIRA|2018-08": {
+   "faixa": "Faixa 3 - Alerta",
+   "idx": 2,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2018-08-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-2018-08-15.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2018-08-01",
+    "2018-08-31"
+   ]
+  },
+  "CANTAREIRA|2018-09": {
+   "faixa": "Faixa 3 - Alerta",
+   "idx": 2,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2018-09-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-2018-09-14.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2018-09-01",
+    "2018-09-30"
+   ]
+  },
+  "CANTAREIRA|2018-10": {
+   "faixa": "Faixa 3 - Alerta",
+   "idx": 2,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2018-10-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-2018-10-15.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2018-10-01",
+    "2018-10-31"
+   ]
+  },
+  "CANTAREIRA|2018-11": {
+   "faixa": "Faixa 3 - Alerta",
+   "idx": 2,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2018-11-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-2018-11-14.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2018-11-01",
+    "2018-11-30"
+   ]
+  },
+  "CANTAREIRA|2018-12": {
+   "faixa": "Faixa 3 - Alerta",
+   "idx": 2,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2018-12-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/cantareira-14_12_2018.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2018-12-01",
+    "2018-12-31"
+   ]
+  },
+  "CANTAREIRA|2019-01": {
+   "faixa": "Faixa 3 - Alerta",
+   "idx": 2,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2019-01-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/cantareira_20190115.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-01-01",
+    "2019-01-31"
+   ]
+  },
+  "CANTAREIRA|2019-02": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2019-02-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/19-02-15_boletim-cantareira.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-02-01",
+    "2019-02-28"
+   ]
+  },
+  "CANTAREIRA|2019-03": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 47.15,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2019-03-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/19-03-15_boletim-cantareira.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-03-01",
+    "2019-03-31"
+   ]
+  },
+  "CANTAREIRA|2019-04": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 55.22,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2019-04-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/19-04-15_boletim-cantareira.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-04-01",
+    "2019-04-30"
+   ]
+  },
+  "CANTAREIRA|2019-05": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 58.68,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2019-05-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/19-05-15_boletim-cantareira.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-05-01",
+    "2019-05-31"
+   ]
+  },
+  "CANTAREIRA|2019-06": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 57.72,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2019-06-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/19-06-14_cantareira.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-06-01",
+    "2019-06-30"
+   ]
+  },
+  "CANTAREIRA|2019-07": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 55.55,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2019-07-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-15-07-2019.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-07-01",
+    "2019-07-31"
+   ]
+  },
+  "CANTAREIRA|2019-08": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 54.08,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2019-08-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/19-08-15_boletim-cantareira.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-08-01",
+    "2019-08-31"
+   ]
+  },
+  "CANTAREIRA|2019-09": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 50.35,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2019-09-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/19-09-16_boletim-cantareira.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-09-01",
+    "2019-09-30"
+   ]
+  },
+  "CANTAREIRA|2019-10": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 47.01,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2019-10-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/19-10-15_boletim-cantareira.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-10-01",
+    "2019-10-31"
+   ]
+  },
+  "CANTAREIRA|2019-11": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 41.25,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2019-11-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/19-11-14_boletim-cantareira.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-11-01",
+    "2019-11-30"
+   ]
+  },
+  "CANTAREIRA|2019-12": {
+   "faixa": "Faixa 3 - Alerta",
+   "idx": 2,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 37.8,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2019-12-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/19-12-16_boletim-cantareira.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-12-01",
+    "2019-12-31"
+   ]
+  },
+  "CANTAREIRA|2020-01": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 40.4,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2020-01-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-7.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-01-01",
+    "2020-01-31"
+   ]
+  },
+  "CANTAREIRA|2020-02": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 45.7,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2020-02-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-30.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-02-01",
+    "2020-02-29"
+   ]
+  },
+  "CANTAREIRA|2020-03": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 59.5,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2020-03-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-48.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-03-01",
+    "2020-03-31"
+   ]
+  },
+  "CANTAREIRA|2020-04": {
+   "faixa": "Faixa 1 - Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 64.37,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2020-04-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-65.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-04-01",
+    "2020-04-30"
+   ]
+  },
+  "CANTAREIRA|2020-05": {
+   "faixa": "Faixa 1 - Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 61.76,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2020-05-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-83.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-05-01",
+    "2020-05-31"
+   ]
+  },
+  "CANTAREIRA|2020-06": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 58.43,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2020-06-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1592245208.75.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-06-01",
+    "2020-06-30"
+   ]
+  },
+  "CANTAREIRA|2020-07": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 56.31,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2020-07-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/15-07.2020",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-07-01",
+    "2020-07-31"
+   ]
+  },
+  "CANTAREIRA|2020-08": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 52.32,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2020-08-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/14-08.2020",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-08-01",
+    "2020-08-31"
+   ]
+  },
+  "CANTAREIRA|2020-09": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 47.87,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2020-09-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/15-09.2020",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-09-01",
+    "2020-09-30"
+   ]
+  },
+  "CANTAREIRA|2020-10": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 41.46,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2020-10-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/15-10.2020",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-10-01",
+    "2020-10-31"
+   ]
+  },
+  "CANTAREIRA|2020-11": {
+   "faixa": "Faixa 3 - Alerta",
+   "idx": 2,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 35.07,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2020-11-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/cantareira-2.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-11-01",
+    "2020-11-30"
+   ]
+  },
+  "CANTAREIRA|2020-12": {
+   "faixa": "Faixa 3 - Alerta",
+   "idx": 2,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 32.05,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2020-12-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/20-12-15_boletim-cantareira_periososeco.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-12-01",
+    "2020-12-31"
+   ]
+  },
+  "CANTAREIRA|2021-01": {
+   "faixa": "Faixa 3 - Alerta",
+   "idx": 2,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 36.13,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2021-01-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1610739670.32.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-01-01",
+    "2021-01-31"
+   ]
+  },
+  "CANTAREIRA|2021-02": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 42.56,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2021-02-17",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1613606415.61.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-02-01",
+    "2021-02-28"
+   ]
+  },
+  "CANTAREIRA|2021-03": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 48.3,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2021-03-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1615835821.64.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-03-01",
+    "2021-03-31"
+   ]
+  },
+  "CANTAREIRA|2021-04": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 52.81,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2021-04-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1618498663.43.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-04-01",
+    "2021-04-30"
+   ]
+  },
+  "CANTAREIRA|2021-05": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 50.79,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2021-05-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1621031089.87.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-05-01",
+    "2021-05-31"
+   ]
+  },
+  "CANTAREIRA|2021-06": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 47.67,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2021-06-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1623786340.22.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-06-01",
+    "2021-06-30"
+   ]
+  },
+  "CANTAREIRA|2021-07": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 44.96,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2021-07-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1626360569.48.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-07-01",
+    "2021-07-31"
+   ]
+  },
+  "CANTAREIRA|2021-08": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 41.52,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2021-08-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/21-08-16_cantareira.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-08-01",
+    "2021-08-31"
+   ]
+  },
+  "CANTAREIRA|2021-09": {
+   "faixa": "Faixa 3 - Alerta",
+   "idx": 2,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 37.09,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2021-09-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1631722371.17.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-09-01",
+    "2021-09-30"
+   ]
+  },
+  "CANTAREIRA|2021-10": {
+   "faixa": "Faixa 3 - Alerta",
+   "idx": 2,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 30.35,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2021-10-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/21-10-15_cantareira.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-10-01",
+    "2021-10-31"
+   ]
+  },
+  "CANTAREIRA|2021-11": {
+   "faixa": "Faixa 4 - Restrição",
+   "idx": 3,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 28.06,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2021-11-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1637105553.91.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-11-01",
+    "2021-11-30"
+   ]
+  },
+  "CANTAREIRA|2021-12": {
+   "faixa": "Faixa 4 - Restrição",
+   "idx": 3,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 25.97,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2021-12-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1639580055.7.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-12-01",
+    "2021-12-31"
+   ]
+  },
+  "CANTAREIRA|2022-01": {
+   "faixa": "Faixa 4 - Restrição",
+   "idx": 3,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 24.87,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2022-01-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1642178944.49.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2022-01-01",
+    "2022-01-31"
+   ]
+  },
+  "CANTAREIRA|2022-02": {
+   "faixa": "Faixa 3 - Alerta",
+   "idx": 2,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 33.53,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2022-02-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1644952386.92.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2022-02-01",
+    "2022-02-28"
+   ]
+  },
+  "CANTAREIRA|2022-03": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 42.95,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2022-03-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1647357241.87.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2022-03-01",
+    "2022-03-31"
+   ]
+  },
+  "CANTAREIRA|2022-04": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 45.23,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2022-04-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1649970074.24.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2022-04-01",
+    "2022-04-30"
+   ]
+  },
+  "CANTAREIRA|2022-05": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 44.0,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2022-05-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1652720106.45.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2022-05-01",
+    "2022-05-31"
+   ]
+  },
+  "CANTAREIRA|2022-06": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 41.58,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2022-06-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1655305570.35.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2022-06-01",
+    "2022-06-30"
+   ]
+  },
+  "CANTAREIRA|2022-07": {
+   "faixa": "Faixa 3 - Alerta",
+   "idx": 2,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 39.72,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2022-07-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1657890720.35.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2022-07-01",
+    "2022-07-31"
+   ]
+  },
+  "CANTAREIRA|2022-08": {
+   "faixa": "Faixa 3 - Alerta",
+   "idx": 2,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 36.24,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2022-08-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1660579915.08.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2022-08-01",
+    "2022-08-31"
+   ]
+  },
+  "CANTAREIRA|2022-09": {
+   "faixa": "Faixa 3 - Alerta",
+   "idx": 2,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 33.03,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2022-09-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1663270882.69.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2022-09-01",
+    "2022-09-30"
+   ]
+  },
+  "CANTAREIRA|2022-10": {
+   "faixa": "Faixa 3 - Alerta",
+   "idx": 2,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 32.04,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2022-10-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1665769951.22.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2022-10-01",
+    "2022-10-31"
+   ]
+  },
+  "CANTAREIRA|2022-11": {
+   "faixa": "Faixa 3 - Alerta",
+   "idx": 2,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 31.72,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2022-11-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1668642092.85.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2022-11-01",
+    "2022-11-30"
+   ]
+  },
+  "CANTAREIRA|2022-12": {
+   "faixa": "Faixa 3 - Alerta",
+   "idx": 2,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 33.09,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2022-12-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1671126197.13.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2022-12-01",
+    "2022-12-31"
+   ]
+  },
+  "CANTAREIRA|2023-01": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 42.2,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2023-01-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1673892794.05.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-01-01",
+    "2023-01-31"
+   ]
+  },
+  "CANTAREIRA|2023-02": {
+   "faixa": "Faixa 2 - Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 51.9,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2023-02-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/cantareira-12.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-02-01",
+    "2023-02-28"
+   ]
+  },
+  "CANTAREIRA|2023-03": {
+   "faixa": "Faixa 1 - Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 69.1,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2023-03-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1678908256.48.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-03-01",
+    "2023-03-31"
+   ]
+  },
+  "CANTAREIRA|2023-04": {
+   "faixa": "Faixa 1 - Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 81.55,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2023-04-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim-cantareira-1681493923.75.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-04-01",
+    "2023-04-30"
+   ]
+  },
+  "CANTAREIRA|2023-05": {
+   "faixa": "Faixa 1 - Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 85.7,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2023-05-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/cantareira-30.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-05-01",
+    "2023-05-31"
+   ]
+  },
+  "CANTAREIRA|2023-06": {
+   "faixa": "Faixa 1 - Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 84.32,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2023-06-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/cantareira-51.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-06-01",
+    "2023-06-30"
+   ]
+  },
+  "CANTAREIRA|2023-07": {
+   "faixa": "Faixa 1 - Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 83.25,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2023-07-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/cantareira-66.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-07-01",
+    "2023-07-31"
+   ]
+  },
+  "CANTAREIRA|2023-08": {
+   "faixa": "Faixa 1 - Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 78.86,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2023-08-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/cantareira-88.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-08-01",
+    "2023-08-31"
+   ]
+  },
+  "CANTAREIRA|2023-09": {
+   "faixa": "Faixa 1 - Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 72.89,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2023-09-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/cantareira-1694800387.77.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-09-01",
+    "2023-09-30"
+   ]
+  },
+  "CANTAREIRA|2023-11": {
+   "faixa": "Faixa 1 - Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 72.86,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2023-11-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/cantareira_16112023.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-11-01",
+    "2023-11-30"
+   ]
+  },
+  "CANTAREIRA|2023-12": {
+   "faixa": "Faixa 1 - Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": 73.92,
+   "limites": null,
+   "condicao": null,
+   "boletim": "2023-12-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/cantareira_sabesp-8.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-12-01",
+    "2023-12-31"
+   ]
+  },
   "CANTAREIRA|2024-01": {
    "faixa": "Faixa 1 - Normal",
    "idx": 0,
@@ -584,14 +1842,14 @@
    "faixa": "Faixa 2 - Atenção",
    "idx": 1,
    "origem": "Boletim ANA",
-   "texto_painel": "Em cumprimento ao Art. 6º da Resolução Conjunta ANA/DAEE nº 925/2017 e pelo fato de o Sistema Cantareira ter apresentado, em 30 de outubro de 2026, 50,69% de seu volume útil, a 3 faixa de operação do ",
+   "texto_painel": null,
    "periodo_hidrologico": null,
    "vu_ref": 50.69,
    "limites": null,
    "condicao": null,
-   "boletim": "2026-11-04",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim_02_cantareira_publica-1793820694.06.pdf",
-   "status": "coleta diária",
+   "boletim": "2026-11-03",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim_02_cantareira_publica-1793729707.63.pdf",
+   "status": "confirmada",
    "vigencia": [
     "2026-11-01",
     "2026-11-30"
@@ -992,14 +2250,14 @@
    "faixa": "Normal",
    "idx": 0,
    "origem": "Boletim ANA",
-   "texto_painel": "Faixa de Operação Normal Vazão máxima turbinada definida na outorga",
+   "texto_painel": null,
    "periodo_hidrologico": null,
    "vu_ref": null,
    "limites": "Vazão máxima turbinada definida na outorga",
    "condicao": null,
-   "boletim": "2026-11-05",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793904536.67.pdf",
-   "status": "coleta diária",
+   "boletim": "2026-11-03",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793729977.45.pdf",
+   "status": "confirmada",
    "vigencia": [
     "2026-11-01",
     "2026-11-30"
@@ -1400,17 +2658,680 @@
    "faixa": "Normal",
    "idx": 0,
    "origem": "Boletim ANA",
-   "texto_painel": "Faixa de Operação Normal Sem restrição de vazão máxima defluente ",
+   "texto_painel": null,
    "periodo_hidrologico": null,
    "vu_ref": null,
    "limites": "Sem restrição de vazão máxima defluente",
    "condicao": null,
-   "boletim": "2026-11-05",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793904536.67.pdf",
-   "status": "coleta diária",
+   "boletim": "2026-11-03",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793729977.45.pdf",
+   "status": "confirmada",
    "vigencia": [
     "2026-11-01",
     "2026-11-30"
+   ]
+  },
+  "PPCAPI|2023-02-25": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-03-01",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1677724675.52.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-02-25",
+    "2023-03-03"
+   ]
+  },
+  "PPCAPI|2023-03-04": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-03-08",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1678300555.73.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-03-04",
+    "2023-03-10"
+   ]
+  },
+  "PPCAPI|2023-03-11": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-03-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1678908410.77.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-03-11",
+    "2023-03-17"
+   ]
+  },
+  "PPCAPI|2023-03-18": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-03-22",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1679515273.43.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-03-18",
+    "2023-03-24"
+   ]
+  },
+  "PPCAPI|2023-03-25": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-03-29",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1680117453.33.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-03-25",
+    "2023-03-31"
+   ]
+  },
+  "PPCAPI|2023-04-01": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-04-05",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1680724870.48.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-04-01",
+    "2023-04-07"
+   ]
+  },
+  "PPCAPI|2023-04-08": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-04-12",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1681323056.26.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-04-08",
+    "2023-04-14"
+   ]
+  },
+  "PPCAPI|2023-04-15": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-04-19",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1681993414.23.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-04-15",
+    "2023-04-21"
+   ]
+  },
+  "PPCAPI|2023-04-22": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-04-26",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1682522140.72.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-04-22",
+    "2023-04-28"
+   ]
+  },
+  "PPCAPI|2023-04-29": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-05-03",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1683128251.13.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-04-29",
+    "2023-05-05"
+   ]
+  },
+  "PPCAPI|2023-05-06": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-05-10",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1683814490.38.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-05-06",
+    "2023-05-12"
+   ]
+  },
+  "PPCAPI|2023-05-13": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-05-17",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1684354062.45.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-05-13",
+    "2023-05-19"
+   ]
+  },
+  "PPCAPI|2023-05-20": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-05-24",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1684954890.57.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-05-20",
+    "2023-05-26"
+   ]
+  },
+  "PPCAPI|2023-05-27": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-05-31",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1685560190.36.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-05-27",
+    "2023-06-02"
+   ]
+  },
+  "PPCAPI|2023-06-03": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-06-07",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1686161656.68.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-06-03",
+    "2023-06-09"
+   ]
+  },
+  "PPCAPI|2023-06-10": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-06-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1686755996.76.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-06-10",
+    "2023-06-16"
+   ]
+  },
+  "PPCAPI|2023-06-17": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-06-21",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1687370435.27.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-06-17",
+    "2023-06-23"
+   ]
+  },
+  "PPCAPI|2023-06-24": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-06-28",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1687974171.05.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-06-24",
+    "2023-06-30"
+   ]
+  },
+  "PPCAPI|2023-07-01": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-07-05",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1688596158.57.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-07-01",
+    "2023-07-07"
+   ]
+  },
+  "PPCAPI|2023-07-08": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-07-13",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1689270108.07.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-07-08",
+    "2023-07-14"
+   ]
+  },
+  "PPCAPI|2023-07-15": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-07-19",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1689789232.99.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-07-15",
+    "2023-07-21"
+   ]
+  },
+  "PPCAPI|2023-07-22": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-07-26",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1690399851.55.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-07-22",
+    "2023-07-28"
+   ]
+  },
+  "PPCAPI|2023-07-29": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-08-02",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1691008471.18.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-07-29",
+    "2023-08-04"
+   ]
+  },
+  "PPCAPI|2023-08-05": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-08-09",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1691619188.3.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-08-05",
+    "2023-08-11"
+   ]
+  },
+  "PPCAPI|2023-08-12": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-08-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1692213420.81.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-08-12",
+    "2023-08-18"
+   ]
+  },
+  "PPCAPI|2023-08-19": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-08-23",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1692820071.09.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-08-19",
+    "2023-08-25"
+   ]
+  },
+  "PPCAPI|2023-08-26": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-08-30",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1693446258.96.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-08-26",
+    "2023-09-01"
+   ]
+  },
+  "PPCAPI|2023-09-02": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-09-06",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1694022519.29.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-09-02",
+    "2023-09-08"
+   ]
+  },
+  "PPCAPI|2023-09-09": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-09-13",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1694635584.33.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-09-09",
+    "2023-09-15"
+   ]
+  },
+  "PPCAPI|2023-09-16": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-09-20",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1695225353.34.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-09-16",
+    "2023-09-22"
+   ]
+  },
+  "PPCAPI|2023-09-23": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-09-26",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1695756292.16.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-09-23",
+    "2023-09-29"
+   ]
+  },
+  "PPCAPI|2023-11-04": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-11-08",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1699466118.81.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-11-04",
+    "2023-11-10"
+   ]
+  },
+  "PPCAPI|2023-11-11": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-11-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1700241211.94.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-11-11",
+    "2023-11-17"
+   ]
+  },
+  "PPCAPI|2023-11-18": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-11-22",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1700680775.3.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-11-18",
+    "2023-11-24"
+   ]
+  },
+  "PPCAPI|2023-11-25": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-11-29",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1701269249.73.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-11-25",
+    "2023-12-01"
+   ]
+  },
+  "PPCAPI|2023-12-02": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-12-06",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1701875188.69.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-12-02",
+    "2023-12-08"
+   ]
+  },
+  "PPCAPI|2023-12-09": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-12-13",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1702486417.23.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-12-09",
+    "2023-12-15"
+   ]
+  },
+  "PPCAPI|2023-12-16": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-12-20",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1703090092.37.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-12-16",
+    "2023-12-22"
+   ]
+  },
+  "PPCAPI|2023-12-23": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-12-27",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1703688784.53.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-12-23",
+    "2023-12-29"
    ]
   },
   "PPCAPI|2023-12-30": {
@@ -3933,17 +5854,680 @@
    "faixa": "Normal",
    "idx": 0,
    "origem": "Boletim ANA",
-   "texto_painel": "Normal / Vazão defluente máxima média semanal / Sem restrição",
+   "texto_painel": null,
    "periodo_hidrologico": null,
    "vu_ref": null,
    "limites": "Vazão defluente máxima média semanal: Sem restrição",
    "condicao": null,
-   "boletim": "2026-11-04",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/boletim_08_paranapanema_publica-1793820805.86.pdf",
-   "status": "coleta diária",
+   "boletim": "2026-11-03",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/boletim_08_paranapanema_publica-1793729855.56.pdf",
+   "status": "confirmada",
    "vigencia": [
     "2026-10-31",
     "2026-11-06"
+   ]
+  },
+  "PPCHAV|2023-02-25": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-03-01",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1677724675.52.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-02-25",
+    "2023-03-03"
+   ]
+  },
+  "PPCHAV|2023-03-04": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-03-08",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1678300555.73.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-03-04",
+    "2023-03-10"
+   ]
+  },
+  "PPCHAV|2023-03-11": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-03-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1678908410.77.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-03-11",
+    "2023-03-17"
+   ]
+  },
+  "PPCHAV|2023-03-18": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-03-22",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1679515273.43.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-03-18",
+    "2023-03-24"
+   ]
+  },
+  "PPCHAV|2023-03-25": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-03-29",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1680117453.33.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-03-25",
+    "2023-03-31"
+   ]
+  },
+  "PPCHAV|2023-04-01": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-04-05",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1680724870.48.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-04-01",
+    "2023-04-07"
+   ]
+  },
+  "PPCHAV|2023-04-08": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-04-12",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1681323056.26.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-04-08",
+    "2023-04-14"
+   ]
+  },
+  "PPCHAV|2023-04-15": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-04-19",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1681993414.23.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-04-15",
+    "2023-04-21"
+   ]
+  },
+  "PPCHAV|2023-04-22": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-04-26",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1682522140.72.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-04-22",
+    "2023-04-28"
+   ]
+  },
+  "PPCHAV|2023-04-29": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-05-03",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1683128251.13.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-04-29",
+    "2023-05-05"
+   ]
+  },
+  "PPCHAV|2023-05-06": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-05-10",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1683814490.38.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-05-06",
+    "2023-05-12"
+   ]
+  },
+  "PPCHAV|2023-05-13": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-05-17",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1684354062.45.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-05-13",
+    "2023-05-19"
+   ]
+  },
+  "PPCHAV|2023-05-20": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-05-24",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1684954890.57.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-05-20",
+    "2023-05-26"
+   ]
+  },
+  "PPCHAV|2023-05-27": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-05-31",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1685560190.36.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-05-27",
+    "2023-06-02"
+   ]
+  },
+  "PPCHAV|2023-06-03": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-06-07",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1686161656.68.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-06-03",
+    "2023-06-09"
+   ]
+  },
+  "PPCHAV|2023-06-10": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-06-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1686755996.76.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-06-10",
+    "2023-06-16"
+   ]
+  },
+  "PPCHAV|2023-06-17": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-06-21",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1687370435.27.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-06-17",
+    "2023-06-23"
+   ]
+  },
+  "PPCHAV|2023-06-24": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-06-28",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1687974171.05.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-06-24",
+    "2023-06-30"
+   ]
+  },
+  "PPCHAV|2023-07-01": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-07-05",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1688596158.57.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-07-01",
+    "2023-07-07"
+   ]
+  },
+  "PPCHAV|2023-07-08": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-07-13",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1689270108.07.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-07-08",
+    "2023-07-14"
+   ]
+  },
+  "PPCHAV|2023-07-15": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-07-19",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1689789232.99.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-07-15",
+    "2023-07-21"
+   ]
+  },
+  "PPCHAV|2023-07-22": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-07-26",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1690399851.55.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-07-22",
+    "2023-07-28"
+   ]
+  },
+  "PPCHAV|2023-07-29": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-08-02",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1691008471.18.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-07-29",
+    "2023-08-04"
+   ]
+  },
+  "PPCHAV|2023-08-05": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-08-09",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1691619188.3.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-08-05",
+    "2023-08-11"
+   ]
+  },
+  "PPCHAV|2023-08-12": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-08-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1692213420.81.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-08-12",
+    "2023-08-18"
+   ]
+  },
+  "PPCHAV|2023-08-19": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-08-23",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1692820071.09.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-08-19",
+    "2023-08-25"
+   ]
+  },
+  "PPCHAV|2023-08-26": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-08-30",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1693446258.96.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-08-26",
+    "2023-09-01"
+   ]
+  },
+  "PPCHAV|2023-09-02": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-09-06",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1694022519.29.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-09-02",
+    "2023-09-08"
+   ]
+  },
+  "PPCHAV|2023-09-09": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-09-13",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1694635584.33.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-09-09",
+    "2023-09-15"
+   ]
+  },
+  "PPCHAV|2023-09-16": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-09-20",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1695225353.34.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-09-16",
+    "2023-09-22"
+   ]
+  },
+  "PPCHAV|2023-09-23": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-09-26",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1695756292.16.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-09-23",
+    "2023-09-29"
+   ]
+  },
+  "PPCHAV|2023-11-04": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-11-08",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1699466118.81.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-11-04",
+    "2023-11-10"
+   ]
+  },
+  "PPCHAV|2023-11-11": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-11-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1700241211.94.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-11-11",
+    "2023-11-17"
+   ]
+  },
+  "PPCHAV|2023-11-18": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-11-22",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1700680775.3.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-11-18",
+    "2023-11-24"
+   ]
+  },
+  "PPCHAV|2023-11-25": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-11-29",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1701269249.73.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-11-25",
+    "2023-12-01"
+   ]
+  },
+  "PPCHAV|2023-12-02": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-12-06",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1701875188.69.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-12-02",
+    "2023-12-08"
+   ]
+  },
+  "PPCHAV|2023-12-09": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-12-13",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1702486417.23.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-12-09",
+    "2023-12-15"
+   ]
+  },
+  "PPCHAV|2023-12-16": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-12-20",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1703090092.37.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-12-16",
+    "2023-12-22"
+   ]
+  },
+  "PPCHAV|2023-12-23": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-12-27",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1703688784.53.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-12-23",
+    "2023-12-29"
    ]
   },
   "PPCHAV|2023-12-30": {
@@ -6466,17 +9050,680 @@
    "faixa": "Normal",
    "idx": 0,
    "origem": "Boletim ANA",
-   "texto_painel": "Normal / Vazão defluente máxima média semanal / Sem restrição",
+   "texto_painel": null,
    "periodo_hidrologico": null,
    "vu_ref": null,
    "limites": "Vazão defluente máxima média semanal: Sem restrição",
    "condicao": null,
-   "boletim": "2026-11-04",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/boletim_08_paranapanema_publica-1793820805.86.pdf",
-   "status": "coleta diária",
+   "boletim": "2026-11-03",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/boletim_08_paranapanema_publica-1793729855.56.pdf",
+   "status": "confirmada",
    "vigencia": [
     "2026-10-31",
     "2026-11-06"
+   ]
+  },
+  "PPJURU|2023-02-25": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-03-01",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1677724675.52.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-02-25",
+    "2023-03-03"
+   ]
+  },
+  "PPJURU|2023-03-04": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-03-08",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1678300555.73.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-03-04",
+    "2023-03-10"
+   ]
+  },
+  "PPJURU|2023-03-11": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-03-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1678908410.77.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-03-11",
+    "2023-03-17"
+   ]
+  },
+  "PPJURU|2023-03-18": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-03-22",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1679515273.43.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-03-18",
+    "2023-03-24"
+   ]
+  },
+  "PPJURU|2023-03-25": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-03-29",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1680117453.33.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-03-25",
+    "2023-03-31"
+   ]
+  },
+  "PPJURU|2023-04-01": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-04-05",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1680724870.48.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-04-01",
+    "2023-04-07"
+   ]
+  },
+  "PPJURU|2023-04-08": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-04-12",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1681323056.26.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-04-08",
+    "2023-04-14"
+   ]
+  },
+  "PPJURU|2023-04-15": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-04-19",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1681993414.23.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-04-15",
+    "2023-04-21"
+   ]
+  },
+  "PPJURU|2023-04-22": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-04-26",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1682522140.72.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-04-22",
+    "2023-04-28"
+   ]
+  },
+  "PPJURU|2023-04-29": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-05-03",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1683128251.13.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-04-29",
+    "2023-05-05"
+   ]
+  },
+  "PPJURU|2023-05-06": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-05-10",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1683814490.38.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-05-06",
+    "2023-05-12"
+   ]
+  },
+  "PPJURU|2023-05-13": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-05-17",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1684354062.45.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-05-13",
+    "2023-05-19"
+   ]
+  },
+  "PPJURU|2023-05-20": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-05-24",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1684954890.57.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-05-20",
+    "2023-05-26"
+   ]
+  },
+  "PPJURU|2023-05-27": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-05-31",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1685560190.36.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-05-27",
+    "2023-06-02"
+   ]
+  },
+  "PPJURU|2023-06-03": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-06-07",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1686161656.68.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-06-03",
+    "2023-06-09"
+   ]
+  },
+  "PPJURU|2023-06-10": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-06-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1686755996.76.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-06-10",
+    "2023-06-16"
+   ]
+  },
+  "PPJURU|2023-06-17": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-06-21",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1687370435.27.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-06-17",
+    "2023-06-23"
+   ]
+  },
+  "PPJURU|2023-06-24": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-06-28",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1687974171.05.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-06-24",
+    "2023-06-30"
+   ]
+  },
+  "PPJURU|2023-07-01": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-07-05",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1688596158.57.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-07-01",
+    "2023-07-07"
+   ]
+  },
+  "PPJURU|2023-07-08": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-07-13",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1689270108.07.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-07-08",
+    "2023-07-14"
+   ]
+  },
+  "PPJURU|2023-07-15": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-07-19",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1689789232.99.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-07-15",
+    "2023-07-21"
+   ]
+  },
+  "PPJURU|2023-07-22": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-07-26",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1690399851.55.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-07-22",
+    "2023-07-28"
+   ]
+  },
+  "PPJURU|2023-07-29": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-08-02",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1691008471.18.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-07-29",
+    "2023-08-04"
+   ]
+  },
+  "PPJURU|2023-08-05": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-08-09",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1691619188.3.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-08-05",
+    "2023-08-11"
+   ]
+  },
+  "PPJURU|2023-08-12": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-08-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1692213420.81.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-08-12",
+    "2023-08-18"
+   ]
+  },
+  "PPJURU|2023-08-19": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-08-23",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1692820071.09.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-08-19",
+    "2023-08-25"
+   ]
+  },
+  "PPJURU|2023-08-26": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-08-30",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1693446258.96.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-08-26",
+    "2023-09-01"
+   ]
+  },
+  "PPJURU|2023-09-02": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-09-06",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1694022519.29.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-09-02",
+    "2023-09-08"
+   ]
+  },
+  "PPJURU|2023-09-09": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-09-13",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1694635584.33.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-09-09",
+    "2023-09-15"
+   ]
+  },
+  "PPJURU|2023-09-16": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-09-20",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1695225353.34.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-09-16",
+    "2023-09-22"
+   ]
+  },
+  "PPJURU|2023-09-23": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-09-26",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1695756292.16.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-09-23",
+    "2023-09-29"
+   ]
+  },
+  "PPJURU|2023-11-04": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-11-08",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1699466118.81.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-11-04",
+    "2023-11-10"
+   ]
+  },
+  "PPJURU|2023-11-11": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-11-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1700241211.94.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-11-11",
+    "2023-11-17"
+   ]
+  },
+  "PPJURU|2023-11-18": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-11-22",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1700680775.3.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-11-18",
+    "2023-11-24"
+   ]
+  },
+  "PPJURU|2023-11-25": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-11-29",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1701269249.73.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-11-25",
+    "2023-12-01"
+   ]
+  },
+  "PPJURU|2023-12-02": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-12-06",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1701875188.69.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-12-02",
+    "2023-12-08"
+   ]
+  },
+  "PPJURU|2023-12-09": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-12-13",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1702486417.23.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-12-09",
+    "2023-12-15"
+   ]
+  },
+  "PPJURU|2023-12-16": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-12-20",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1703090092.37.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-12-16",
+    "2023-12-22"
+   ]
+  },
+  "PPJURU|2023-12-23": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão defluente máxima média semanal: Sem restrição",
+   "condicao": null,
+   "boletim": "2023-12-27",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/paranapanema-1703688784.53.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-12-23",
+    "2023-12-29"
    ]
   },
   "PPJURU|2023-12-30": {
@@ -8999,14 +12246,14 @@
    "faixa": "Normal",
    "idx": 0,
    "origem": "Boletim ANA",
-   "texto_painel": "Normal / Vazão defluente máxima média semanal / Sem restrição",
+   "texto_painel": null,
    "periodo_hidrologico": null,
    "vu_ref": null,
    "limites": "Vazão defluente máxima média semanal: Sem restrição",
    "condicao": null,
-   "boletim": "2026-11-04",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/boletim_08_paranapanema_publica-1793820805.86.pdf",
-   "status": "coleta diária",
+   "boletim": "2026-11-03",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/boletim_08_paranapanema_publica-1793729855.56.pdf",
+   "status": "confirmada",
    "vigencia": [
     "2026-10-31",
     "2026-11-06"
@@ -9407,14 +12654,14 @@
    "faixa": "Normal",
    "idx": 0,
    "origem": "Boletim ANA",
-   "texto_painel": "Faixa de Operação Normal Vazão defluente máxima média diária igual à vazão máxima turbinada",
+   "texto_painel": null,
    "periodo_hidrologico": null,
    "vu_ref": null,
    "limites": "Vazão defluente máxima média diária igual à vazão máxima turbinada",
    "condicao": null,
-   "boletim": "2026-11-05",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793904536.67.pdf",
-   "status": "coleta diária",
+   "boletim": "2026-11-03",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793729977.45.pdf",
+   "status": "confirmada",
    "vigencia": [
     "2026-11-01",
     "2026-11-30"
@@ -9815,17 +13062,544 @@
    "faixa": "Normal",
    "idx": 0,
    "origem": "Boletim ANA",
-   "texto_painel": "Faixa de Operação Normal Vazão defluente máxima média diária igual à vazão máxima turbinada",
+   "texto_painel": null,
    "periodo_hidrologico": null,
    "vu_ref": null,
    "limites": "Vazão defluente máxima média diária igual à vazão máxima turbinada",
    "condicao": null,
-   "boletim": "2026-11-05",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793904536.67.pdf",
-   "status": "coleta diária",
+   "boletim": "2026-11-03",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793729977.45.pdf",
+   "status": "confirmada",
    "vigencia": [
     "2026-11-01",
     "2026-11-30"
+   ]
+  },
+  "SFSOBR|2019-05": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 800 m³/s",
+   "condicao": null,
+   "boletim": "2019-05-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_5_2019.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-05-01",
+    "2019-05-31"
+   ]
+  },
+  "SFSOBR|2019-06": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 800 m³/s",
+   "condicao": null,
+   "boletim": "2019-06-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-14_6_2019.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-06-01",
+    "2019-06-30"
+   ]
+  },
+  "SFSOBR|2019-07": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 800 m³/s",
+   "condicao": null,
+   "boletim": "2019-07-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_7_2019.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-07-01",
+    "2019-07-31"
+   ]
+  },
+  "SFSOBR|2019-08": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 800 m³/s",
+   "condicao": null,
+   "boletim": "2019-08-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_8_2019.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-08-01",
+    "2019-08-31"
+   ]
+  },
+  "SFSOBR|2019-09": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 800 m³/s",
+   "condicao": null,
+   "boletim": "2019-09-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-16_9_2019.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-09-01",
+    "2019-09-30"
+   ]
+  },
+  "SFSOBR|2019-10": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 800 m³/s",
+   "condicao": null,
+   "boletim": "2019-10-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_10_2019.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-10-01",
+    "2019-10-31"
+   ]
+  },
+  "SFSOBR|2019-11": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 800 m³/s",
+   "condicao": null,
+   "boletim": "2019-11-18",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf_diario-14_11_2019.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-11-01",
+    "2019-11-30"
+   ]
+  },
+  "SFSOBR|2019-12": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 800 m³/s",
+   "condicao": null,
+   "boletim": "2019-12-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-16_12_2019.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-12-01",
+    "2019-12-31"
+   ]
+  },
+  "SFSOBR|2020-01": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 800 m³/s; c) Defluência máxima média mensal em Xingó: 800 m³/s",
+   "condicao": null,
+   "boletim": "2020-01-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_1_2020.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-01-01",
+    "2020-01-31"
+   ]
+  },
+  "SFSOBR|2020-02": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 800 m³/s; e; c) Defluência máxima média mensal em Xingó: 800 m³/s",
+   "condicao": null,
+   "boletim": "2020-02-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-14_2_2020.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-02-01",
+    "2020-02-29"
+   ]
+  },
+  "SFSOBR|2020-03": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 800 m³/s; e; c) Defluência máxima média mensal em Xingó: 800 m³/s",
+   "condicao": null,
+   "boletim": "2020-03-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-16_3_2020.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-03-01",
+    "2020-03-31"
+   ]
+  },
+  "SFSOBR|2020-04": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 1.100 m³/s; e",
+   "condicao": null,
+   "boletim": "2020-04-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_4_2020.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-04-01",
+    "2020-04-30"
+   ]
+  },
+  "SFSOBR|2020-05": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 1.100 m³/s; e",
+   "condicao": null,
+   "boletim": "2020-05-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_5_2020.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-05-01",
+    "2020-05-31"
+   ]
+  },
+  "SFSOBR|2020-06": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 1.100 m³/s; e",
+   "condicao": null,
+   "boletim": "2020-06-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_6_2020.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-06-01",
+    "2020-06-30"
+   ]
+  },
+  "SFSOBR|2020-07": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 1.100 m³/s; e",
+   "condicao": null,
+   "boletim": "2020-07-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/15-07.2020",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-07-01",
+    "2020-07-31"
+   ]
+  },
+  "SFSOBR|2020-08": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 1.100 m³/s; e",
+   "condicao": null,
+   "boletim": "2020-08-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/14-08.2020",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-08-01",
+    "2020-08-31"
+   ]
+  },
+  "SFSOBR|2020-09": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 1.100 m³/s; e",
+   "condicao": null,
+   "boletim": "2020-09-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/15-09.2020",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-09-01",
+    "2020-09-30"
+   ]
+  },
+  "SFSOBR|2020-10": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 1.100 m³/s; e",
+   "condicao": null,
+   "boletim": "2020-10-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/15-10.2020",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-10-01",
+    "2020-10-31"
+   ]
+  },
+  "SFSOBR|2020-11": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 1.100 m³/s; e",
+   "condicao": null,
+   "boletim": "2020-11-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-16_11_2020.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-11-01",
+    "2020-11-30"
+   ]
+  },
+  "SFSOBR|2020-12": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 800 m³/s; e; c) Defluência máxima média mensal: 2.750 m³/s (Resolução ANA Nº",
+   "condicao": null,
+   "boletim": "2020-12-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_12_2020.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-12-01",
+    "2020-12-31"
+   ]
+  },
+  "SFSOBR|2021-01": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 800 m³/s; e; c) Defluência máxima média mensal: 1.000 m³/s",
+   "condicao": null,
+   "boletim": "2021-01-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_1_2021.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-01-01",
+    "2021-01-31"
+   ]
+  },
+  "SFSOBR|2021-02": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 800 m³/s; e; c) Defluência máxima média mensal: 1.050 m³/s",
+   "condicao": null,
+   "boletim": "2021-02-17",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-17_2_2021.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-02-01",
+    "2021-02-28"
+   ]
+  },
+  "SFSOBR|2021-03": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 800 m³/s; e; c) Defluência máxima média mensal: 1.000 m³/s",
+   "condicao": null,
+   "boletim": "2021-03-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_3_2021.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-03-01",
+    "2021-03-31"
+   ]
+  },
+  "SFSOBR|2021-04": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 1.100 m³/s; e; c) Defluência máxima média mensal: não há",
+   "condicao": null,
+   "boletim": "2021-04-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_4_2021.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-04-01",
+    "2021-04-30"
+   ]
+  },
+  "SFSOBR|2021-05": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 1.100 m³/s; e; c) Defluência máxima média mensal: não há",
+   "condicao": null,
+   "boletim": "2021-05-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-14_5_2021.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-05-01",
+    "2021-05-31"
+   ]
+  },
+  "SFSOBR|2021-06": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 1.100 m³/s; e; c) Defluência máxima média mensal: não há",
+   "condicao": null,
+   "boletim": "2021-06-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_6_2021.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-06-01",
+    "2021-06-30"
+   ]
+  },
+  "SFSOBR|2021-07": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 800 m³/s; e; c) Defluência máxima média mensal: 1.000 m³/s m",
+   "condicao": null,
+   "boletim": "2021-07-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_7_2021.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-07-01",
+    "2021-07-31"
+   ]
+  },
+  "SFSOBR|2021-08": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária em Sobradinho: 800 m³/s; b) Defluência mínima média diária em Xingó: 800 m³/s; e; c) Defluência máxima média mensal: 950 m³/s",
+   "condicao": null,
+   "boletim": "2021-08-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-16_8_2021.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-08-01",
+    "2021-08-31"
+   ]
+  },
+  "SFSOBR|2023-09": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão máx. mensal Xingó LIVRE; mín. diária Sobradinho 800 m³/s; mín. diária Xingó 1100 m³/s",
+   "condicao": null,
+   "boletim": "2023-09-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sfrancisco-11.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-09-01",
+    "2023-09-30"
+   ]
+  },
+  "SFSOBR|2023-11": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão máx. mensal Xingó LIVRE; mín. diária Sobradinho 800 m³/s; mín. diária Xingó 1100 m³/s",
+   "condicao": null,
+   "boletim": "2023-11-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sfrancisco-22.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-11-01",
+    "2023-11-30"
+   ]
+  },
+  "SFSOBR|2023-12": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão máx. mensal Xingó 1350; mín. diária Sobradinho 800 m³/s; mín. diária Xingó 800 m³/s",
+   "condicao": null,
+   "boletim": "2023-12-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sfrancisco-42.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-12-01",
+    "2023-12-31"
    ]
   },
   "SFSOBR|2024-01": {
@@ -10410,17 +14184,544 @@
    "faixa": "Normal",
    "idx": 0,
    "origem": "Boletim ANA",
-   "texto_painel": " Faixa de Operação de Três Marias Faixa de Operação de Sobradinho Estabelecida em 02/11/2026 ( V.U. = 69,74% ) Estabelecida em 02/11/2026 ( V.U. = 62,39% ) NORMAL NORMAL",
+   "texto_painel": null,
    "periodo_hidrologico": null,
    "vu_ref": 62.39,
    "limites": "Vazão máx. mensal Xingó LIVRE; mín. diária Sobradinho 800 m³/s; mín. diária Xingó 1100 m³/s",
    "condicao": null,
-   "boletim": "2026-11-04",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/boletim_12_sfrancisco_publica-1793820711.71.pdf",
-   "status": "coleta diária",
+   "boletim": "2026-11-03",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/boletim_12_sfrancisco_publica-1793729929.83.pdf",
+   "status": "confirmada",
    "vigencia": [
     "2026-11-01",
     "2026-11-30"
+   ]
+  },
+  "SFTMAR|2019-05": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s",
+   "condicao": null,
+   "boletim": "2019-05-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_5_2019.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-05-01",
+    "2019-05-31"
+   ]
+  },
+  "SFTMAR|2019-06": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s",
+   "condicao": null,
+   "boletim": "2019-06-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-14_6_2019.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-06-01",
+    "2019-06-30"
+   ]
+  },
+  "SFTMAR|2019-07": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s",
+   "condicao": null,
+   "boletim": "2019-07-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_7_2019.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-07-01",
+    "2019-07-31"
+   ]
+  },
+  "SFTMAR|2019-08": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s",
+   "condicao": null,
+   "boletim": "2019-08-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_8_2019.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-08-01",
+    "2019-08-31"
+   ]
+  },
+  "SFTMAR|2019-09": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s",
+   "condicao": null,
+   "boletim": "2019-09-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-16_9_2019.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-09-01",
+    "2019-09-30"
+   ]
+  },
+  "SFTMAR|2019-10": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s",
+   "condicao": null,
+   "boletim": "2019-10-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_10_2019.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-10-01",
+    "2019-10-31"
+   ]
+  },
+  "SFTMAR|2019-11": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s",
+   "condicao": null,
+   "boletim": "2019-11-18",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf_diario-14_11_2019.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-11-01",
+    "2019-11-30"
+   ]
+  },
+  "SFTMAR|2019-12": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s",
+   "condicao": null,
+   "boletim": "2019-12-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-16_12_2019.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2019-12-01",
+    "2019-12-31"
+   ]
+  },
+  "SFTMAR|2020-01": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s; b) Defluência máxima média mensal: 350 m³/s",
+   "condicao": null,
+   "boletim": "2020-01-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_1_2020.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-01-01",
+    "2020-01-31"
+   ]
+  },
+  "SFTMAR|2020-02": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s",
+   "condicao": null,
+   "boletim": "2020-02-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-14_2_2020.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-02-01",
+    "2020-02-29"
+   ]
+  },
+  "SFTMAR|2020-03": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s",
+   "condicao": null,
+   "boletim": "2020-03-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-16_3_2020.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-03-01",
+    "2020-03-31"
+   ]
+  },
+  "SFTMAR|2020-04": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s",
+   "condicao": null,
+   "boletim": "2020-04-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_4_2020.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-04-01",
+    "2020-04-30"
+   ]
+  },
+  "SFTMAR|2020-05": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s",
+   "condicao": null,
+   "boletim": "2020-05-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_5_2020.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-05-01",
+    "2020-05-31"
+   ]
+  },
+  "SFTMAR|2020-06": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s",
+   "condicao": null,
+   "boletim": "2020-06-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_6_2020.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-06-01",
+    "2020-06-30"
+   ]
+  },
+  "SFTMAR|2020-07": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s",
+   "condicao": null,
+   "boletim": "2020-07-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/15-07.2020",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-07-01",
+    "2020-07-31"
+   ]
+  },
+  "SFTMAR|2020-08": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s",
+   "condicao": null,
+   "boletim": "2020-08-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/14-08.2020",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-08-01",
+    "2020-08-31"
+   ]
+  },
+  "SFTMAR|2020-09": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s",
+   "condicao": null,
+   "boletim": "2020-09-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/15-09.2020",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-09-01",
+    "2020-09-30"
+   ]
+  },
+  "SFTMAR|2020-10": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s",
+   "condicao": null,
+   "boletim": "2020-10-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/15-10.2020",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-10-01",
+    "2020-10-31"
+   ]
+  },
+  "SFTMAR|2020-11": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s",
+   "condicao": null,
+   "boletim": "2020-11-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-16_11_2020.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-11-01",
+    "2020-11-30"
+   ]
+  },
+  "SFTMAR|2020-12": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s; e; b) Defluência máxima média mensal: 750 m³/s (Resolução ANA Nº 51,",
+   "condicao": null,
+   "boletim": "2020-12-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_12_2020.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2020-12-01",
+    "2020-12-31"
+   ]
+  },
+  "SFTMAR|2021-01": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s; e; b) Defluência máxima média mensal: 350 m³/s",
+   "condicao": null,
+   "boletim": "2021-01-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_1_2021.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-01-01",
+    "2021-01-31"
+   ]
+  },
+  "SFTMAR|2021-02": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s; e; b) Defluência máxima média mensal: 350 m³/s",
+   "condicao": null,
+   "boletim": "2021-02-17",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-17_2_2021.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-02-01",
+    "2021-02-28"
+   ]
+  },
+  "SFTMAR|2021-03": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s; e; b) Defluência máxima média mensal: não há",
+   "condicao": null,
+   "boletim": "2021-03-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_3_2021.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-03-01",
+    "2021-03-31"
+   ]
+  },
+  "SFTMAR|2021-04": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s; e; b) Defluência máxima média mensal: não há",
+   "condicao": null,
+   "boletim": "2021-04-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_4_2021.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-04-01",
+    "2021-04-30"
+   ]
+  },
+  "SFTMAR|2021-05": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s; e; b) Defluência máxima média mensal: não há",
+   "condicao": null,
+   "boletim": "2021-05-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-14_5_2021.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-05-01",
+    "2021-05-31"
+   ]
+  },
+  "SFTMAR|2021-06": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s; e; b) Defluência máxima média mensal: não há",
+   "condicao": null,
+   "boletim": "2021-06-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_6_2021.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-06-01",
+    "2021-06-30"
+   ]
+  },
+  "SFTMAR|2021-07": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s; e; b) Defluência máxima média mensal: não há",
+   "condicao": null,
+   "boletim": "2021-07-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-15_7_2021.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-07-01",
+    "2021-07-31"
+   ]
+  },
+  "SFTMAR|2021-08": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "a) Defluência mínima média diária: 150 m³/s; e; b) Defluência máxima média mensal: 400 m³/s",
+   "condicao": null,
+   "boletim": "2021-08-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sf-16_8_2021.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2021-08-01",
+    "2021-08-31"
+   ]
+  },
+  "SFTMAR|2023-09": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão máx. mensal Três Marias LIVRE; mín. diária 150 m³/s",
+   "condicao": null,
+   "boletim": "2023-09-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sfrancisco-11.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-09-01",
+    "2023-09-30"
+   ]
+  },
+  "SFTMAR|2023-11": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão máx. mensal Três Marias 500; mín. diária 150 m³/s",
+   "condicao": null,
+   "boletim": "2023-11-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sfrancisco-22.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-11-01",
+    "2023-11-30"
+   ]
+  },
+  "SFTMAR|2023-12": {
+   "faixa": "Atenção",
+   "idx": 1,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Vazão máx. mensal Três Marias 400; mín. diária 150 m³/s",
+   "condicao": null,
+   "boletim": "2023-12-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/sfrancisco-42.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-12-01",
+    "2023-12-31"
    ]
   },
   "SFTMAR|2024-01": {
@@ -11005,17 +15306,170 @@
    "faixa": "Normal",
    "idx": 0,
    "origem": "Boletim ANA",
-   "texto_painel": " Faixa de Operação de Três Marias Faixa de Operação de Sobradinho Estabelecida em 02/11/2026 ( V.U. = 69,74% ) Estabelecida em 02/11/2026 ( V.U. = 62,39% ) NORMAL NORMAL",
+   "texto_painel": null,
    "periodo_hidrologico": null,
-   "vu_ref": 69.74,
+   "vu_ref": 69.92,
    "limites": "Vazão máx. mensal Três Marias LIVRE; mín. diária 150 m³/s",
    "condicao": null,
-   "boletim": "2026-11-04",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/boletim_12_sfrancisco_publica-1793820711.71.pdf",
-   "status": "coleta diária",
+   "boletim": "2026-11-03",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/boletim_12_sfrancisco_publica-1793729929.83.pdf",
+   "status": "confirmada",
    "vigencia": [
     "2026-11-01",
     "2026-11-30"
+   ]
+  },
+  "TOSMES|2023-03": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Defluência média máxima mensal: Sem restrição Saiba mais sobre as condições de operação",
+   "condicao": null,
+   "boletim": "2023-03-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/tocantins/boletins-tocantins-diario/tocantins-42.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-03-01",
+    "2023-03-31"
+   ]
+  },
+  "TOSMES|2023-04": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Defluência média máxima mensal: Sem restrição Saiba mais sobre as condições de operação",
+   "condicao": null,
+   "boletim": "2023-04-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/tocantins/boletins-tocantins-diario/tocantins-63.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-04-01",
+    "2023-04-30"
+   ]
+  },
+  "TOSMES|2023-05": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Defluência média máxima mensal: Sem restrição Saiba mais sobre as condições de operação",
+   "condicao": null,
+   "boletim": "2023-05-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/tocantins/boletins-tocantins-diario/tocantins-82.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-05-01",
+    "2023-05-31"
+   ]
+  },
+  "TOSMES|2023-06": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Defluência média máxima mensal: Sem restrição Saiba mais sobre as condições de operação",
+   "condicao": null,
+   "boletim": "2023-06-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/tocantins/boletins-tocantins-diario/tocantins-1686840782.11.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-06-01",
+    "2023-06-30"
+   ]
+  },
+  "TOSMES|2023-07": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Defluência média máxima mensal: Sem restrição Saiba mais sobre as condições de operação",
+   "condicao": null,
+   "boletim": "2023-07-14",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/tocantins/boletins-tocantins-diario/tocantins-1689360601.03.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-07-01",
+    "2023-07-31"
+   ]
+  },
+  "TOSMES|2023-08": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Defluência média máxima mensal: Sem restrição Saiba mais sobre as condições de operação",
+   "condicao": null,
+   "boletim": "2023-08-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/tocantins/boletins-tocantins-diario/tocantins-1692154148.08.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-08-01",
+    "2023-08-31"
+   ]
+  },
+  "TOSMES|2023-09": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Defluência média máxima mensal: Sem restrição Saiba mais sobre as condições de operação",
+   "condicao": null,
+   "boletim": "2023-09-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/tocantins/boletins-tocantins-diario/tocantins-1694800672.93.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-09-01",
+    "2023-09-30"
+   ]
+  },
+  "TOSMES|2023-11": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Defluência média máxima mensal: Sem restrição Saiba mais sobre as condições de operação",
+   "condicao": null,
+   "boletim": "2023-11-16",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/tocantins/boletins-tocantins-diario/tocantins-1700241263.04.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-11-01",
+    "2023-11-30"
+   ]
+  },
+  "TOSMES|2023-12": {
+   "faixa": "Normal",
+   "idx": 0,
+   "origem": "Boletim ANA",
+   "texto_painel": null,
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Defluência média máxima mensal: Sem restrição Saiba mais sobre as condições de operação",
+   "condicao": null,
+   "boletim": "2023-12-15",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/tocantins/boletins-tocantins-diario/tocantins-1702650706.44.pdf",
+   "status": "confirmada",
+   "vigencia": [
+    "2023-12-01",
+    "2023-12-31"
    ]
   },
   "TOSMES|2024-01": {
@@ -11600,14 +16054,14 @@
    "faixa": "Normal",
    "idx": 0,
    "origem": "Boletim ANA",
-   "texto_painel": "novembro/2026 / Normal",
+   "texto_painel": null,
    "periodo_hidrologico": null,
    "vu_ref": null,
    "limites": "Defluência média máxima mensal: Sem restrição",
    "condicao": null,
-   "boletim": "2026-11-04",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/tocantins/boletins-tocantins-diario/boletim_13_tocantins_publica-1793820745.25.pdf",
-   "status": "coleta diária",
+   "boletim": "2026-11-03",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/tocantins/boletins-tocantins-diario/boletim_13_tocantins_publica-1793729957.55.pdf",
+   "status": "confirmada",
    "vigencia": [
     "2026-11-01",
     "2026-11-30"
