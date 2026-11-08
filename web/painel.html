@@ -344,11 +344,11 @@ const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<
 const nf = (v, d) => v == null || v === "" ? "—" : (typeof v === "number" ? v.toLocaleString("pt-BR", { minimumFractionDigits: d ?? (Math.abs(v) >= 100 ? 0 : 2), maximumFractionDigits: d ?? (Math.abs(v) >= 100 ? 1 : 2) }) : esc(String(v).replace(/\./g, ",")));
 const df = (iso) => iso ? iso.slice(8, 10) + "/" + iso.slice(5, 7) + "/" + iso.slice(0, 4) : "—";
 const MES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
-const pill = (st, o) => { const s = ST[st] || ST["Sem dado"]; const exc = st === "Em curso" && o && o.exc;
+const pill = (st, o) => { const s = ST[st] || ST["Sem dado"]; const exc = st === "Em curso" && o && o.exc && !o.fechada;
   const fech = st === "Em curso" && o && o.fechada;
   const tip = st === "Em curso" && o ? ` title="${fech ? "Janela já encerrada; resultado parcial nesta data" : "Janela aberta"}. Parcial: ${esc(o.parc || "")}${exc ? " (média parcial acima do limite)" : ""}"` : "";
   const lado = o && o.lado ? (st === "Tolerância" ? " · para baixo" : st === "Atende" && o.lado === "acima" ? " · tol. para cima" : "") : "";
-  return `<span class="pill ${s.c}${exc ? " exc" : ""}"${tip}><svg viewBox="0 0 12 12" aria-hidden="true">${s.i}</svg>${exc ? "Parcial acima" : fech ? "Parcial" : esc(st)}${lado}</span>`; };
+  return `<span class="pill ${s.c}${exc ? " exc" : ""}"${tip}><svg viewBox="0 0 12 12" aria-hidden="true">${s.i}</svg>${fech ? "Parcial" : esc(st)}${lado}</span>`; };
 const cssv = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 const U = (r) => r.unid === "%" ? "% VU" : (r.unid || "");
 const paramDia = (r, s) => { const p = r.param || ""; if (s && s.ag) { const i = p.indexOf(", "); return (i > 0 ? p.slice(0, i) : p) + ", " + s.ag; } return p; };
@@ -429,7 +429,7 @@ function sparkline(r, per, w = 112, h = 30) {
   let lim = "";
   const lastLim = limNum(per[per.length - 1].lim) || limNum((per.find((s) => s.lim != null) || {}).lim);
   if (lastLim) lim = lastLim.map((L) => `<line x1="2" x2="${w - 4}" y1="${y(L).toFixed(1)}" y2="${y(L).toFixed(1)}" stroke="var(--chart-lim)" stroke-width="1" stroke-dasharray="3 2"/>`).join("");
-  const bad = per.map((s, i) => typeof s.v !== "number" ? "" : s.st === "Não atende" ? `<circle cx="${x(i).toFixed(1)}" cy="${y(s.v).toFixed(1)}" r="2.4" fill="var(--nao)"/>` : s.exc ? `<circle cx="${x(i).toFixed(1)}" cy="${y(s.v).toFixed(1)}" r="2" fill="none" stroke="var(--tol)" stroke-width="1.2"/>` : "").join("");
+  const bad = per.map((s, i) => typeof s.v !== "number" ? "" : s.st === "Não atende" ? `<circle cx="${x(i).toFixed(1)}" cy="${y(s.v).toFixed(1)}" r="2.4" fill="var(--nao)"/>` : s.exc && !s.fechada ? `<circle cx="${x(i).toFixed(1)}" cy="${y(s.v).toFixed(1)}" r="2" fill="none" stroke="var(--tol)" stroke-width="1.2"/>` : "").join("");
   const li = per.map((s, i) => [s, i]).filter(([s]) => typeof s.v === "number").pop();
   const end = li ? `<circle cx="${x(li[1]).toFixed(1)}" cy="${y(li[0].v).toFixed(1)}" r="2.6" fill="var(--chart-line)" stroke="var(--surface)" stroke-width="1.5"/>` : "";
   return `<svg class="spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="Série de ${esc(r.ponto)}">${lim}<path d="${d}" fill="none" stroke="var(--chart-line)" stroke-width="1.6" stroke-linejoin="round"/>${bad}${end}</svg>`;
@@ -454,7 +454,7 @@ function grafico(r, per) {
   const limSvg = limPath.filter(Boolean).map((p) => `<path d="${p}" fill="none" stroke="var(--chart-lim)" stroke-width="1.5" stroke-dasharray="5 3"/>`).join("");
   let d = "", pen = false, area = "";
   per.forEach((s, i) => { if (typeof s.v === "number") { d += (pen ? "L" : "M") + x(i).toFixed(1) + " " + y(s.v).toFixed(1); pen = true; } else pen = false; });
-  const marks = per.map((s, i) => typeof s.v !== "number" ? "" : (s.st === "Não atende" || s.st === "Tolerância") ? `<circle cx="${x(i)}" cy="${y(s.v)}" r="4" fill="var(${ST[s.st].v})" stroke="var(--surface)" stroke-width="2"/>` : s.exc ? `<circle cx="${x(i)}" cy="${y(s.v)}" r="3.5" fill="var(--surface)" stroke="var(--tol)" stroke-width="1.6"/>` : "").join("");
+  const marks = per.map((s, i) => typeof s.v !== "number" ? "" : (s.st === "Não atende" || s.st === "Tolerância") ? `<circle cx="${x(i)}" cy="${y(s.v)}" r="4" fill="var(${ST[s.st].v})" stroke="var(--surface)" stroke-width="2"/>` : s.exc && !s.fechada ? `<circle cx="${x(i)}" cy="${y(s.v)}" r="3.5" fill="var(--surface)" stroke="var(--tol)" stroke-width="1.6"/>` : "").join("");
   return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(paramDia(r))} em ${esc(U(r))}, ${esc(r.ponto)}, com limite">
     <text x="${L}" y="14" class="axis-lbl" fill="var(--fg-2)">${esc(paramDia(r))} (${esc(U(r))})</text>
     <line x1="${W - R - 150}" x2="${W - R - 132}" y1="10" y2="10" stroke="var(--chart-line)" stroke-width="2"/><text x="${W - R - 128}" y="14" font-size="11" fill="var(--fg-3)">valor</text>
@@ -476,7 +476,7 @@ function ligarTooltip(box, r, per) {
     const s = per[i], xx = L + (n === 1 ? (W - L - R) / 2 : i * (W - L - R) / (n - 1));
     xh.setAttribute("x1", xx); xh.setAttribute("x2", xx); xh.setAttribute("visibility", "visible");
     tip.hidden = false; tip.style.left = (xx / W * b.width) + "px"; tip.style.top = "14px";
-    tip.innerHTML = `<b>${df(s.d)}</b> · ${esc(paramDia(r, s))}<br>${s.v == null ? "sem valor" : nf(s.v) + " " + esc(U(r))} · limite ${s.lim == null ? "—" : nf(s.lim) + " " + esc(U(r))} · ${esc(s.st)}${s.st === "Em curso" ? ` (parcial: ${esc(s.parc || "—")}${s.exc ? ", acima do limite" : ""})` : ""}`;
+    tip.innerHTML = `<b>${df(s.d)}</b> · ${esc(paramDia(r, s))}<br>${s.v == null ? "sem valor" : nf(s.v) + " " + esc(U(r))} · limite ${s.lim == null ? "—" : nf(s.lim) + " " + esc(U(r))} · ${s.fechada ? "Parcial (janela encerrada)" : esc(s.st)}${s.st === "Em curso" && !s.fechada ? ` (parcial: ${esc(s.parc || "—")}${s.exc ? ", acima do limite" : ""})` : ""}`;
   };
   hit.addEventListener("pointermove", mover); hit.addEventListener("pointerdown", mover);
   hit.addEventListener("pointerleave", () => { tip.hidden = true; xh.setAttribute("visibility", "hidden"); });
@@ -526,7 +526,7 @@ function render() {
         <td class="n">${comU(u.lim, r)}</td><td class="n">${folga}</td>
         <td>${(() => { const f = fechamento(r, u);
           if (!f) return `${pill(u.st || "Sem dado", u)}<div class="muted" style="font-size:.72rem;margin-top:2px">${u.d ? df(u.d) : ""}</div>`;
-          return `<span title="Janela fechada após o período selecionado. Em ${df(u.d)}: Em curso, parcial ${esc(u.parc || "")} (${nf(u.v)} ${esc(U(r))}). Fechamento: ${nf(f.v)} ${esc(U(r))}, limite ${nf(f.lim)}.">${pill(f.st, f)}</span><div class="muted" style="font-size:.72rem;margin-top:2px">fechamento em ${df(f.d)}</div><div class="muted" style="font-size:.7rem">em ${df(u.d)}: parcial ${esc((u.parc || "").toLowerCase())}${u.exc ? " (acima)" : ""}</div>`; })()}</td>
+          return `<span title="Janela fechada após o período selecionado. Em ${df(u.d)}: Em curso, parcial ${esc(u.parc || "")} (${nf(u.v)} ${esc(U(r))}). Fechamento: ${nf(f.v)} ${esc(U(r))}, limite ${nf(f.lim)}.">${pill(f.st, f)}</span><div class="muted" style="font-size:.72rem;margin-top:2px">fechamento em ${df(f.d)}</div><div class="muted" style="font-size:.7rem">em ${df(u.d)}: parcial</div>`; })()}</td>
         <td>${sparkline(r, per)}</td>
         <td class="n"><span class="pct-bar"><span class="num">${q == null ? "—" : nf(q, 0) + "%"}</span><span class="track"><span class="fill" style="display:block;width:${q ?? 0}%;background:${corConf(q)}"></span></span></span><div class="muted" style="font-size:.72rem">${c.n} aval.${c["Não atende"] ? ` · ${c["Não atende"]} NA` : ""}</div></td></tr>`;
       if (ab) html += detalhe(r, per, u);
@@ -556,9 +556,10 @@ function mostrarAba(a, foco) {
   iniciado = true;
 }
 
-const obsTxt = (x) => x.fechada ? String(x.obs || "").replace("janela em curso", "parcial de janela já encerrada") : (x.obs || "");
+const obsTxt = (x) => String(x.obs || "").split("; ").filter((t) => t && t !== "janela em curso").join("; ");
 function detalhe(r, per, u) {
-  const linhas = per.slice().reverse().map((s) => `<tr><td>${df(s.d)}</td><td class="n">${nf(s.v)}</td><td class="n">${nf(s.lim)}</td><td class="n">${nf(s.folga)}</td><td>${pill(s.st, s)}</td><td class="muted">${esc(s.faixa || "")}</td><td class="muted">${esc(obsTxt(s))}</td></tr>`).join("");
+  const temObs = per.some((x) => obsTxt(x));
+  const linhas = per.slice().reverse().map((s) => `<tr><td>${df(s.d)}</td><td class="n">${nf(s.v)}</td><td class="n">${nf(s.lim)}</td><td class="n">${nf(s.folga)}</td><td>${pill(s.st, s)}</td><td class="muted">${esc(s.faixa || "")}</td>${temObs ? `<td class="muted">${esc(obsTxt(s))}</td>` : ""}</tr>`).join("");
   return `<tr class="detail" data-id="${esc(r.id)}"><td colspan="9"><div class="detail-box">
     <div class="detail-grid">
       <div class="chart-box">${grafico(r, per)}</div>
@@ -571,11 +572,11 @@ function detalhe(r, per, u) {
         <dt>Fonte</dt><dd class="mono">${esc(r.fonte || "")}</dd>
         <dt>Parâmetro</dt><dd>${esc(r.param || "")} (${esc(U(r))})</dd>
         <dt>Faixa</dt><dd>${esc(u.faixa || "—")}${u.orig ? ` (${esc(u.orig)})` : ""}</dd>
-        ${u.obs ? `<dt>Observação</dt><dd>${esc(obsTxt(u))}</dd>` : ""}
+        ${obsTxt(u) ? `<dt>Observação</dt><dd>${esc(obsTxt(u))}</dd>` : ""}
         <dt>Código</dt><dd class="mono">${esc(r.id)}</dd>
       </dl>
     </div>
-    <div class="mini"><table><thead><tr><th>Data</th><th class="n">Valor (${esc(U(r))})</th><th class="n">Limite (${esc(U(r))})</th><th class="n">Folga (${esc(U(r))})</th><th>Situação</th><th>Faixa</th><th>Observação</th></tr></thead><tbody>${linhas}</tbody></table></div>
+    <div class="mini"><table><thead><tr><th>Data</th><th class="n">Valor (${esc(U(r))})</th><th class="n">Limite (${esc(U(r))})</th><th class="n">Folga (${esc(U(r))})</th><th>Situação</th><th>Faixa</th>${temObs ? "<th>Observação</th>" : ""}</tr></thead><tbody>${linhas}</tbody></table></div>
   </div></td></tr>`;
 }
 
