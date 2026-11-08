@@ -218,6 +218,7 @@ footer .wrap { padding-block: 20px 28px; display: grid; gap: 10px; color: var(--
 footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 110ch }
 #erro { background: var(--nao-soft); color: var(--nao); padding: 12px 16px; border-radius: var(--r) }
 @media (prefers-reduced-motion: no-preference) { tr.rule td, .seg button { transition: background-color .12s } }
+.viol{font-size:.72rem;margin-top:3px;color:var(--nao,#b42318);font-weight:600;line-height:1.25}
 </style>
 
 <header class="top">
@@ -378,7 +379,9 @@ function fechamento(r, u) {
 }
 const efetivo = (r, per) => { const u = ultimoValido(per) || {}; return fechamento(r, u) || u; };
 // pendência: alguma avaliação em Não atende ou Tolerância no período, ou situação final (fechamento / janela aberta acima do limite) pendente
-const pendente = (r, per) => { if (per.some((x) => x.st === "Não atende" || x.st === "Tolerância")) return true; const u = efetivo(r, per); return u.st === "Não atende" || u.st === "Tolerância" || (u.st === "Em curso" && !!u.exc && !u.fechada); };
+const violacoes = (per) => per.filter((x) => x.st === "Não atende" || x.st === "Tolerância");
+const resumoViol = (v) => { const n = v.filter((x) => x.st === "Não atende").length, t = v.length - n; return n && t ? `Não atende (${n}) ou Tolerância (${t})` : n ? "Não atende" : "Tolerância"; };
+const pendente = (r, per) => { if (violacoes(per).length) return true; const u = efetivo(r, per); return u.st === "Não atende" || u.st === "Tolerância" || (u.st === "Em curso" && !!u.exc && !u.fechada); };
 try { const s = JSON.parse(localStorage.getItem("painel-soe-filtros") || "{}"); Object.assign(state, s); } catch (e) {}
 const salvar = () => { try { localStorage.setItem("painel-soe-filtros", JSON.stringify({ preset: state.preset, sis: state.sis, aba: state.aba, pend: state.pend })); } catch (e) {} };
 
@@ -525,9 +528,10 @@ function render() {
         <td>${u.faixa ? esc(u.faixa) : '<span class="muted">—</span>'}${u.orig === "Power BI" || u.orig === "Boletim ANA" ? ` <span class="muted" title="Faixa publicada (${esc(u.orig)})">●</span>` : ""}</td>
         <td class="n">${comU(u.v, r)}<span class="param">${esc(paramDia(r, u))}</span></td>
         <td class="n">${comU(u.lim, r)}</td><td class="n">${folga}</td>
-        <td>${(() => { const f = fechamento(r, u);
-          if (!f) return `${pill(u.st || "Sem dado", u)}<div class="muted" style="font-size:.72rem;margin-top:2px">${u.d ? df(u.d) : ""}</div>`;
-          return `<span title="Janela fechada após o período selecionado. Em ${df(u.d)}: Em curso, parcial ${esc(u.parc || "")} (${nf(u.v)} ${esc(U(r))}). Fechamento: ${nf(f.v)} ${esc(U(r))}, limite ${nf(f.lim)}.">${pill(f.st, f)}</span><div class="muted" style="font-size:.72rem;margin-top:2px">fechamento em ${df(f.d)}</div><div class="muted" style="font-size:.7rem">em ${df(u.d)}: parcial</div>`; })()}</td>
+        <td>${(() => { const f = fechamento(r, u), viol = violacoes(per);
+          const vtxt = viol.length ? `<div class="viol" title="Avaliações em Não atende ou Tolerância dentro do período selecionado">${viol.length} ${viol.length > 1 ? "avaliações" : "avaliação"} em ${resumoViol(viol)} no período · última em ${df(viol[viol.length - 1].d)}</div>` : "";
+          if (!f) return `${pill(u.st || "Sem dado", u)}<div class="muted" style="font-size:.72rem;margin-top:2px">${u.d ? df(u.d) : ""}</div>${vtxt}`;
+          return `<span title="Janela fechada após o período selecionado. Em ${df(u.d)}: Em curso, parcial ${esc(u.parc || "")} (${nf(u.v)} ${esc(U(r))}). Fechamento: ${nf(f.v)} ${esc(U(r))}, limite ${nf(f.lim)}.">${pill(f.st, f)}</span><div class="muted" style="font-size:.72rem;margin-top:2px">fechamento em ${df(f.d)}</div><div class="muted" style="font-size:.7rem">em ${df(u.d)}: parcial</div>${vtxt}`; })()}</td>
         <td>${sparkline(r, per)}</td>
         <td class="n"><span class="pct-bar"><span class="num">${q == null ? "—" : nf(q, 0) + "%"}</span><span class="track"><span class="fill" style="display:block;width:${q ?? 0}%;background:${corConf(q)}"></span></span></span><div class="muted" style="font-size:.72rem">${c.n} aval.${c["Não atende"] ? ` · ${c["Não atende"]} NA` : ""}</div></td></tr>`;
       if (ab) html += detalhe(r, per, u);
@@ -559,8 +563,9 @@ function mostrarAba(a, foco) {
 
 const obsTxt = (x) => String(x.obs || "").split("; ").filter((t) => t && t !== "janela em curso").join("; ");
 function detalhe(r, per, u) {
-  const temObs = per.some((x) => obsTxt(x));
-  const linhas = per.slice().reverse().map((s) => `<tr><td>${df(s.d)}</td><td class="n">${nf(s.v)}</td><td class="n">${nf(s.lim)}</td><td class="n">${nf(s.folga)}</td><td>${pill(s.st, s)}</td><td class="muted">${esc(s.faixa || "")}</td>${temObs ? `<td class="muted">${esc(obsTxt(s))}</td>` : ""}</tr>`).join("");
+  const viol = violacoes(per), soViol = state.pend && viol.length > 0, mostra = soViol ? viol : per;
+  const temObs = mostra.some((x) => obsTxt(x));
+  const linhas = mostra.slice().reverse().map((s) => `<tr><td>${df(s.d)}</td><td class="n">${nf(s.v)}</td><td class="n">${nf(s.lim)}</td><td class="n">${nf(s.folga)}</td><td>${pill(s.st, s)}</td><td class="muted">${esc(s.faixa || "")}</td>${temObs ? `<td class="muted">${esc(obsTxt(s))}</td>` : ""}</tr>`).join("");
   return `<tr class="detail" data-id="${esc(r.id)}"><td colspan="9"><div class="detail-box">
     <div class="detail-grid">
       <div class="chart-box">${grafico(r, per)}</div>
@@ -578,6 +583,7 @@ function detalhe(r, per, u) {
       </dl>
     </div>
     <div class="mini"><table><thead><tr><th>Data</th><th class="n">Valor (${esc(U(r))})</th><th class="n">Limite (${esc(U(r))})</th><th class="n">Folga (${esc(U(r))})</th><th>Situação</th><th>Faixa</th>${temObs ? "<th>Observação</th>" : ""}</tr></thead><tbody>${linhas}</tbody></table></div>
+    ${soViol ? `<p class="muted" style="font-size:.78rem;margin:6px 0 0">Com “Só pendências” marcado, a tabela mostra apenas as ${viol.length} ${viol.length > 1 ? "avaliações" : "avaliação"} em Não atende ou Tolerância do período. Desmarque o filtro para ver todos os dias.</p>` : ""}
   </div></td></tr>`;
 }
 
