@@ -56,11 +56,25 @@ PARAMETROS = {
                           "fonte": "Res. ANA 1.931/2017, art. 1º, III: 162 hm³, salvo comunicado"},
 }
 
-# Início de vigência das resoluções que entraram em vigor dentro do período do painel (2024 em diante).
-# Antes dessas datas a regra é registrada como "Não se aplica".
+# Início de vigência de cada resolução (texto oficial em normas/textos). Antes dessas datas a regra é
+# registrada como "Não se aplica". O painel cobre desde out/2017 (início do histórico de faixas dos boletins).
 VIGENCIA = {
-    "Res. ANA 193/2024": "2024-12-02",  # art. 22
-    "Res. ANA 194/2024": "2024-12-02",  # art. 22
+    "Res. Conj. ANA/DAEE 614/2010": "2010-11-23",  # art. 7º (vigor na publicação, DOU 23/11/2010)
+    "Res. ANA 147/2015": "2015-03-05",             # art. 2º (vigor na publicação, DOU 05/03/2015)
+    "Res. Conj. ANA/DAEE 925/2017": "2017-05-30",  # art. 9º (vigor na publicação, DOU 30/05/2017)
+    "Res. ANA 1.931/2017": "2017-11-01",           # art. 2º (vigor na publicação, DOU 01/11/2017)
+    "Res. ANA 49/2018": "2018-07-18",              # art. 3º (vigor na publicação, DOU 18/07/2018)
+    "Res. ANA 70/2021": "2021-12-01",              # art. 18
+    "Res. ANA 132/2022": "2023-01-01",             # art. 20
+    "Res. ANA 193/2024": "2024-12-02",             # art. 22
+    "Res. ANA 194/2024": "2024-12-02",             # art. 22
+}
+
+# Resoluções que entram em vigor "após a emissão de comunicado pela ANA", sem a data do comunicado
+# registrada aqui. Até a data ser conferida, a avaliação começa na data indicada (início original do painel).
+VIGENCIA_A_CONFERIR = {
+    "Res. Conj. ANA/DAEE/IGAM/INEA 1.382/2015": "2024-01-01",  # art. 7º: vigor após comunicado da ANA
+    "Res. ANA 2.081/2017": "2024-01-01",                       # art. 22: vigor após comunicado da ANA
 }
 
 R = []  # lista de regras

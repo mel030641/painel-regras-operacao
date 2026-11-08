@@ -239,7 +239,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
 <nav class="filters" aria-label="Filtros">
   <div class="wrap">
     <div class="seg" id="presets" role="group" aria-label="Período">
-      <button data-p="dia">Último dia</button><button data-p="7">7 dias</button><button data-p="30" aria-pressed="true">30 dias</button><button data-p="mes">Mês atual</button><button data-p="mesant">Mês anterior</button><button data-p="ano">Ano</button><button data-p="anoant">Ano anterior</button><button data-p="tudo">Desde 2024</button>
+      <button data-p="dia">Último dia</button><button data-p="7">7 dias</button><button data-p="30" aria-pressed="true">30 dias</button><button data-p="mes">Mês atual</button><button data-p="mesant">Mês anterior</button><button data-p="ano">Ano</button><button data-p="anoant">Ano anterior</button><button data-p="tudo">Todo o histórico</button>
     </div>
     <span class="range"><input type="date" id="f-ini" aria-label="Início"><span class="muted">a</span><input type="date" id="f-fim" aria-label="Fim"></span>
     <label class="field">Sistema <select id="f-sis"><option value="">Todos</option></select></label>
@@ -693,6 +693,13 @@ function ligar() {
 
 function iniciar(dados) {
   D = dados;
+  // dias anteriores à vigência da norma vêm compactados no JSON: recompõe como "Não se aplica"
+  for (const r of D.regras) {
+    const pv = r.pre_vigencia; if (!pv) continue;
+    const pre = [], t = new Date(D.periodo[0] + "T00:00:00Z"), lim = pv.ate || null, fimP = D.periodo[1];
+    for (;;) { const iso = t.toISOString().slice(0, 10); if (lim ? iso >= lim : iso > fimP) break; pre.push({ d: iso, st: "Não se aplica", obs: pv.obs }); t.setUTCDate(t.getUTCDate() + 1); }
+    r.serie = pre.concat(r.serie);
+  }
   // "Em curso" só para a janela ainda aberta; dias de janelas já encerradas viram "Parcial"
   for (const r of D.regras) {
     let ult = ""; for (const x of r.serie) if (AVAL.includes(x.st)) ult = x.d;
@@ -702,6 +709,8 @@ function iniciar(dados) {
   const g = new Date(D.gerado_em);
   $("#m-gerado").textContent = isNaN(g) ? D.gerado_em : g.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short", timeZone: "America/Sao_Paulo" });
   $("#m-regras").textContent = D.regras.length;
+  { const b = document.querySelector('#presets button[data-p="tudo"]'), m = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"][+D.periodo[0].slice(5, 7) - 1];
+    if (b) { b.textContent = `Desde ${m}/${D.periodo[0].slice(0, 4)}`; b.title = `Todo o histórico disponível (desde ${df(D.periodo[0])})`; } }
   $("#f-ini").min = $("#f-fim").min = D.periodo[0]; $("#f-ini").max = $("#f-fim").max = D.periodo[1];
   const sis = [...new Set(D.regras.map((r) => r.sistema))];
   $("#f-sis").innerHTML += sis.map((s) => `<option>${esc(s)}</option>`).join("");

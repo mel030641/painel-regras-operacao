@@ -41,7 +41,7 @@ src/boletins_ana.py        coleta diária das faixas nos boletins oficiais da AN
 src/boletins_parsers.py    leitura do texto dos boletins (pdftotext)
 src/powerbi_faixas_soe.py  extração das faixas dos painéis Power BI
 src/faixas_powerbi.py      converte as faixas extraídas em config/faixas.json (histórico)
-src/faixas_boletins.py     grava em config/faixas.json o histórico de faixas dos boletins diários (2024+)
+src/faixas_boletins.py     grava em config/faixas.json o histórico de faixas dos boletins diários (desde out/2017)
 src/publicar.py            monta o site (_site/index.html + painel.json)
 src/validar.py             confronta o cálculo com a planilha de auditoria da SOE
 web/painel.html            interface do painel
@@ -53,12 +53,14 @@ data/manual/historico/     série manual de Santa Inês usada até out/2026 (sub
 
 ## Executar localmente
 
-Requer Python 3.10 ou superior. Coleta, cálculo e publicação usam apenas a biblioteca padrão.
+Requer Python 3.10 ou superior.
+
+Período: o painel cobre desde 01/10/2017 (início do histórico de faixas nos boletins do Cantareira). Antes da entrada em vigor de cada resolução (`VIGENCIA` em `src/regras.py`, conforme o texto oficial), a regra aparece como "Não se aplica". As Res. 1.382/2015 e 2.081/2017 entram em vigor após comunicado da ANA; até a data ser conferida, são avaliadas desde 01/01/2024 (`VIGENCIA_A_CONFERIR`). Coleta, cálculo e publicação usam apenas a biblioteca padrão.
 
 ```bash
 python src/powerbi_faixas_soe.py data/powerbi
 python src/faixas_powerbi.py data/powerbi/faixas_operativas_vigentes.csv
-python src/calculo.py --inicio 2024-01-01 --meses-horarios 35
+python src/calculo.py                    # desde 01/10/2017 (1ª execução sem cache: ~1 h de download)
 python src/publicar.py
 python -m http.server -d _site 8000      # abrir http://localhost:8000
 ```
