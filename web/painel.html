@@ -364,7 +364,19 @@ const limNum = (lim) => {
 let D = null, ini = null, fim = null, aberto = new Set();
 const state = { preset: "30", sis: "", st: "", q: "", aba: "sint", pend: false };
 const sisAbertos = new Set(), sisFechados = new Set();
-const pendente = (r, per) => { const u = ultimoValido(per) || {}; return u.st === "Não atende" || u.st === "Tolerância" || (u.st === "Em curso" && !!u.exc); };
+// janela em curso no fim do período, mas já fechada depois dele: devolve o registro do fechamento
+function fechamento(r, u) {
+  if (!u || u.st !== "Em curso" || !u.d) return null;
+  const i = r.serie.findIndex((x) => x.d === u.d);
+  for (let j = i + 1; j >= 1 && j < r.serie.length; j++) {
+    const x = r.serie[j];
+    if (x.st === "Em curso" || x.st === "Sem dado") continue;
+    return AVAL.includes(x.st) ? x : null;
+  }
+  return null;
+}
+const efetivo = (r, per) => { const u = ultimoValido(per) || {}; return fechamento(r, u) || u; };
+const pendente = (r, per) => { const u = efetivo(r, per); return u.st === "Não atende" || u.st === "Tolerância" || (u.st === "Em curso" && !!u.exc); };
 try { const s = JSON.parse(localStorage.getItem("painel-soe-filtros") || "{}"); Object.assign(state, s); } catch (e) {}
 const salvar = () => { try { localStorage.setItem("painel-soe-filtros", JSON.stringify({ preset: state.preset, sis: state.sis, aba: state.aba, pend: state.pend })); } catch (e) {} };
 
@@ -497,7 +509,7 @@ function render() {
   const abrirTodos = !!state.q.trim() || state.pend || !!state.sis || !!state.st;
   for (const [sis, rs] of Object.entries(porSis)) {
     const k = { nao: 0, tol: 0, ok: 0, ec: 0 };
-    for (const r of rs) { const u = ultimoValido(noPeriodo(r)) || {}; if (u.st === "Não atende") k.nao++; else if (u.st === "Tolerância" || (u.st === "Em curso" && u.exc)) k.tol++; else if (u.st === "Atende") k.ok++; else if (u.st === "Em curso") k.ec++; }
+    for (const r of rs) { const u = efetivo(r, noPeriodo(r)); if (u.st === "Não atende") k.nao++; else if (u.st === "Tolerância" || (u.st === "Em curso" && u.exc)) k.tol++; else if (u.st === "Atende") k.ok++; else if (u.st === "Em curso") k.ec++; }
     nNao += k.nao;
     const ab_s = abrirTodos ? !sisFechados.has(sis) : sisAbertos.has(sis);
     html += `<tr class="sys-row" data-sis="${esc(sis)}"><td colspan="9"><button type="button" class="sys-btn" aria-expanded="${ab_s}"><span class="seta" aria-hidden="true">▸</span><span class="nome">${esc(sis)}</span><span class="sys-cnt"><span>${rs.length} regra${rs.length > 1 ? "s" : ""}</span>${k.nao ? `<span class="c-nao">${k.nao} não atende</span>` : ""}${k.tol ? `<span class="c-tol">${k.tol} tolerância/parcial acima</span>` : ""}${k.ok ? `<span class="c-ok">${k.ok} atende</span>` : ""}${k.ec ? `<span>${k.ec} em curso</span>` : ""}</span></button></td></tr>`;
@@ -511,7 +523,9 @@ function render() {
         <td>${u.faixa ? esc(u.faixa) : '<span class="muted">—</span>'}${u.orig === "Power BI" || u.orig === "Boletim ANA" ? ` <span class="muted" title="Faixa publicada (${esc(u.orig)})">●</span>` : ""}</td>
         <td class="n">${comU(u.v, r)}<span class="param">${esc(paramDia(r, u))}</span></td>
         <td class="n">${comU(u.lim, r)}</td><td class="n">${folga}</td>
-        <td>${pill(u.st || "Sem dado", u)}<div class="muted" style="font-size:.72rem;margin-top:2px">${u.d ? df(u.d) : ""}</div></td>
+        <td>${(() => { const f = fechamento(r, u);
+          if (!f) return `${pill(u.st || "Sem dado", u)}<div class="muted" style="font-size:.72rem;margin-top:2px">${u.d ? df(u.d) : ""}</div>`;
+          return `<span title="Janela fechada após o período selecionado. Em ${df(u.d)}: Em curso, parcial ${esc(u.parc || "")} (${nf(u.v)} ${esc(U(r))}). Fechamento: ${nf(f.v)} ${esc(U(r))}, limite ${nf(f.lim)}.">${pill(f.st, f)}</span><div class="muted" style="font-size:.72rem;margin-top:2px">fechamento em ${df(f.d)}</div><div class="muted" style="font-size:.7rem">em ${df(u.d)}: parcial ${esc((u.parc || "").toLowerCase())}${u.exc ? " (acima)" : ""}</div>`; })()}</td>
         <td>${sparkline(r, per)}</td>
         <td class="n"><span class="pct-bar"><span class="num">${q == null ? "—" : nf(q, 0) + "%"}</span><span class="track"><span class="fill" style="display:block;width:${q ?? 0}%;background:${corConf(q)}"></span></span></span><div class="muted" style="font-size:.72rem">${c.n} aval.${c["Não atende"] ? ` · ${c["Não atende"]} NA` : ""}</div></td></tr>`;
       if (ab) html += detalhe(r, per, u);
