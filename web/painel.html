@@ -345,9 +345,10 @@ const nf = (v, d) => v == null || v === "" ? "—" : (typeof v === "number" ? v.
 const df = (iso) => iso ? iso.slice(8, 10) + "/" + iso.slice(5, 7) + "/" + iso.slice(0, 4) : "—";
 const MES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
 const pill = (st, o) => { const s = ST[st] || ST["Sem dado"]; const exc = st === "Em curso" && o && o.exc;
-  const tip = st === "Em curso" && o ? ` title="Janela aberta. Parcial: ${esc(o.parc || "")}${exc ? " (média parcial acima do limite)" : ""}"` : "";
+  const fech = st === "Em curso" && o && o.fechada;
+  const tip = st === "Em curso" && o ? ` title="${fech ? "Janela já encerrada; resultado parcial nesta data" : "Janela aberta"}. Parcial: ${esc(o.parc || "")}${exc ? " (média parcial acima do limite)" : ""}"` : "";
   const lado = o && o.lado ? (st === "Tolerância" ? " · para baixo" : st === "Atende" && o.lado === "acima" ? " · tol. para cima" : "") : "";
-  return `<span class="pill ${s.c}${exc ? " exc" : ""}"${tip}><svg viewBox="0 0 12 12" aria-hidden="true">${s.i}</svg>${exc ? "Parcial acima" : esc(st)}${lado}</span>`; };
+  return `<span class="pill ${s.c}${exc ? " exc" : ""}"${tip}><svg viewBox="0 0 12 12" aria-hidden="true">${s.i}</svg>${exc ? "Parcial acima" : fech ? "Parcial" : esc(st)}${lado}</span>`; };
 const cssv = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 const U = (r) => r.unid === "%" ? "% VU" : (r.unid || "");
 const paramDia = (r, s) => { const p = r.param || ""; if (s && s.ag) { const i = p.indexOf(", "); return (i > 0 ? p.slice(0, i) : p) + ", " + s.ag; } return p; };
@@ -555,8 +556,9 @@ function mostrarAba(a, foco) {
   iniciado = true;
 }
 
+const obsTxt = (x) => x.fechada ? String(x.obs || "").replace("janela em curso", "parcial de janela já encerrada") : (x.obs || "");
 function detalhe(r, per, u) {
-  const linhas = per.slice().reverse().map((s) => `<tr><td>${df(s.d)}</td><td class="n">${nf(s.v)}</td><td class="n">${nf(s.lim)}</td><td class="n">${nf(s.folga)}</td><td>${pill(s.st, s)}</td><td class="muted">${esc(s.faixa || "")}</td><td class="muted">${esc(s.obs || "")}</td></tr>`).join("");
+  const linhas = per.slice().reverse().map((s) => `<tr><td>${df(s.d)}</td><td class="n">${nf(s.v)}</td><td class="n">${nf(s.lim)}</td><td class="n">${nf(s.folga)}</td><td>${pill(s.st, s)}</td><td class="muted">${esc(s.faixa || "")}</td><td class="muted">${esc(obsTxt(s))}</td></tr>`).join("");
   return `<tr class="detail" data-id="${esc(r.id)}"><td colspan="9"><div class="detail-box">
     <div class="detail-grid">
       <div class="chart-box">${grafico(r, per)}</div>
@@ -569,7 +571,7 @@ function detalhe(r, per, u) {
         <dt>Fonte</dt><dd class="mono">${esc(r.fonte || "")}</dd>
         <dt>Parâmetro</dt><dd>${esc(r.param || "")} (${esc(U(r))})</dd>
         <dt>Faixa</dt><dd>${esc(u.faixa || "—")}${u.orig ? ` (${esc(u.orig)})` : ""}</dd>
-        ${u.obs ? `<dt>Observação</dt><dd>${esc(u.obs)}</dd>` : ""}
+        ${u.obs ? `<dt>Observação</dt><dd>${esc(obsTxt(u))}</dd>` : ""}
         <dt>Código</dt><dd class="mono">${esc(r.id)}</dd>
       </dl>
     </div>
@@ -683,6 +685,11 @@ function ligar() {
 
 function iniciar(dados) {
   D = dados;
+  // "Em curso" só para a janela ainda aberta; dias de janelas já encerradas viram "Parcial"
+  for (const r of D.regras) {
+    let ult = ""; for (const x of r.serie) if (AVAL.includes(x.st)) ult = x.d;
+    for (const x of r.serie) if (x.st === "Em curso" && x.d < ult) x.fechada = true;
+  }
   $("#m-dados").textContent = df(D.ultimo_dado_ons);
   const g = new Date(D.gerado_em);
   $("#m-gerado").textContent = isNaN(g) ? D.gerado_em : g.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short", timeZone: "America/Sao_Paulo" });
