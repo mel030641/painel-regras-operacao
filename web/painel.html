@@ -285,7 +285,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
   <section id="s-regras" role="tabpanel" aria-labelledby="h-regras" data-aba="regras">
     <div class="sec-head"><h2 id="h-regras">Regras por sistema hídrico</h2><p>Clique no sistema para abrir as regras e em uma regra para ver a série, o limite e as avaliações diárias. A folga é a distância ao limite, na unidade da regra.</p></div>
     <div class="acoes">
-      <label class="chk"><input type="checkbox" id="f-pend"> Só pendências <span class="muted">(Não atende, Tolerância ou parcial acima do limite)</span></label>
+      <label class="chk"><input type="checkbox" id="f-pend"> Só pendências <span class="muted">(Não atende ou Tolerância em algum dia do período, ou janela aberta com parcial acima do limite)</span></label>
       <button type="button" class="btn" id="b-abrir">Abrir todos</button><button type="button" class="btn" id="b-fechar">Recolher todos</button>
     </div>
     <div class="tbl-wrap"><table id="t-regras"><thead><tr>
@@ -377,7 +377,8 @@ function fechamento(r, u) {
   return null;
 }
 const efetivo = (r, per) => { const u = ultimoValido(per) || {}; return fechamento(r, u) || u; };
-const pendente = (r, per) => { const u = efetivo(r, per); return u.st === "Não atende" || u.st === "Tolerância" || (u.st === "Em curso" && !!u.exc); };
+// pendência: alguma avaliação em Não atende ou Tolerância no período, ou situação final (fechamento / janela aberta acima do limite) pendente
+const pendente = (r, per) => { if (per.some((x) => x.st === "Não atende" || x.st === "Tolerância")) return true; const u = efetivo(r, per); return u.st === "Não atende" || u.st === "Tolerância" || (u.st === "Em curso" && !!u.exc && !u.fechada); };
 try { const s = JSON.parse(localStorage.getItem("painel-soe-filtros") || "{}"); Object.assign(state, s); } catch (e) {}
 const salvar = () => { try { localStorage.setItem("painel-soe-filtros", JSON.stringify({ preset: state.preset, sis: state.sis, aba: state.aba, pend: state.pend })); } catch (e) {} };
 
