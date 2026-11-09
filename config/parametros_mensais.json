@@ -1,4 +1,4 @@
 {
- "descricao": "Tetos mensais fixados pela ANA por comunicado (Res. ANA 2.081/2017, art. 9º), aplicáveis só nas faixas Atenção e Restrição. Chave: '<parâmetro>|aaaa-mm'; valor em m³/s. Em faixa Normal a defluência máxima é livre e nenhum valor é necessário.",
+ "descricao": "Valores mensais fixados por ato (Res. ANA 2.081/2017), em m³/s, com chave '<parâmetro>|aaaa-mm'. Parâmetros: teto_SFTMAR (Três Marias), teto_SFXING (Xingó) e teto_SFSOBR (Sobradinho). Na faixa de Atenção, o painel calcula o teto de Três Marias e de Xingó pelas curvas de segurança (config/curvas_seguranca_sf.json); um valor informado aqui prevalece sobre o cálculo. Na faixa de Restrição, informar aqui a vazão fixada pelo ONS a partir de recomendação da ANA (arts. 5º, § 3º, e 9º, § 4º). Em faixa Normal a defluência máxima é livre.",
  "valores": {}
 }

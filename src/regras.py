@@ -119,30 +119,38 @@ R.append(dict(id="194-PRSSIM", resolucao="Res. ANA 194/2024", artigos="art. 9º"
               fonte="ONS:PRSSIM:vu", minimo=15.0, condicao={"faixa": "PRITUM", "em": ["Normal", "Atenção"]}))
 
 # --------------------------------------------------------------------------- 2.081/2017 São Francisco
-ALERTA_2081 = "Nas faixas Atenção e Restrição, verificar o limite mensal fixado pela ANA. Sem esse valor, o painel aplica o limite legal, quando houver, ou indica \"Parâmetro pendente\"."
+ALERTA_2081 = ("Na faixa de Atenção, o teto mensal de Três Marias e de Xingó sai das curvas de segurança do ciclo (config/curvas_seguranca_sf.json), "
+               "consultadas com o VU do dia anterior ao 1º dia útil do mês. Na Restrição, as vazões são fixadas pelo ONS a partir de recomendação da ANA: "
+               "sem esse ato cadastrado, o painel indica \"Parâmetro pendente\" e diz o que falta.")
+PEND_TM_RESTR = "vazão defluente média mensal fixada pelo ONS a partir de recomendação da ANA (art. 5º, § 3º) não cadastrada em config/parametros_mensais.json (teto_SFTMAR)"
+PEND_SOBR_RESTR = "vazões de Sobradinho fixadas pelo ONS a partir de recomendação da ANA (art. 9º, § 4º) não cadastradas em config/parametros_mensais.json (teto_SFSOBR)"
+PEND_SOBR_ATENCAO = ("a curva de segurança fixa o máximo de Xingó; para Sobradinho a NT do ONS só estima o acréscimo de perdas e usos entre Sobradinho e Xingó, "
+                      "e não há ato que converta esse máximo em limite de Sobradinho (critério a definir pela SOE; valor manual em teto_SFSOBR)")
 R.append(dict(id="2081-SFTMAR-min", resolucao="Res. ANA 2.081/2017", artigos="arts. 3º, I e § 1º; 5º; 12", sistema="São Francisco", ponto="Três Marias",
               descricao="Defluente média diária ≥ mínima da faixa", tipo="piso", freq="diaria", niveis=3, tol=0.05,
               fonte="ONS:SFTMAR:defl", faixa="SFTMAR", pisos={"todos": [150, 150, 100]}))
-R.append(dict(id="2081-SFTMAR-max", alerta=ALERTA_2081, resolucao="Res. ANA 2.081/2017", artigos="art. 5º, §§ 2º e 3º; 12", sistema="São Francisco", ponto="Três Marias",
-              descricao="Defluente média mensal ≤ máxima fixada para o mês", tipo="teto", freq="mensal", niveis=3, tol=0.05,
+R.append(dict(id="2081-SFTMAR-max", alerta=ALERTA_2081, resolucao="Res. ANA 2.081/2017", artigos="arts. 4º; 5º, §§ 2º e 3º; 12", sistema="São Francisco", ponto="Três Marias",
+              descricao="Defluente média mensal ≤ máxima pela curva de segurança (Atenção) ou fixada pelo ONS (Restrição)", tipo="teto", freq="mensal", niveis=3, tol=0.05,
               fonte="ONS:SFTMAR:defl", faixa="SFTMAR", janela="mes",
-              tetos={"todos": [None, {"param_mensal": "teto_SFTMAR"}, {"param_mensal": "teto_SFTMAR"}]}))
+              tetos={"todos": [None, {"param_mensal": "teto_SFTMAR", "curva": "SFTMAR"}, {"param_mensal": "teto_SFTMAR", "pendente": PEND_TM_RESTR}]}))
 R.append(dict(id="2081-SFSOBR-min", resolucao="Res. ANA 2.081/2017", artigos="arts. 3º, II e § 2º; 9º; 12", sistema="São Francisco", ponto="Sobradinho",
               descricao="Defluente média diária ≥ mínima da faixa", tipo="piso", freq="diaria", niveis=3, tol=0.05,
               fonte="ONS:SFSOBR:defl", faixa="SFSOBR", pisos={"todos": [800, 800, 700]}))
 R.append(dict(id="2081-SFSOBR-max", alerta=ALERTA_2081, resolucao="Res. ANA 2.081/2017", artigos="art. 9º, §§ 2º a 4º; 12", sistema="São Francisco", ponto="Sobradinho",
               descricao="Defluente média mensal ≤ máxima fixada (seco: ≤ 1.000 m³/s em Atenção)", tipo="teto", freq="mensal", niveis=3, tol=0.05,
               fonte="ONS:SFSOBR:defl", faixa="SFSOBR", janela="mes", umido=UMIDO_DEZ_ABR,
-              tetos={"umido": [None, {"param_mensal": "teto_SFSOBR"}, {"param_mensal": "teto_SFSOBR"}],
-                     "seco": [None, {"param_mensal": "teto_SFSOBR", "limite": 1000}, {"param_mensal": "teto_SFSOBR"}]}))
+              tetos={"umido": [None, {"param_mensal": "teto_SFSOBR", "pendente": PEND_SOBR_ATENCAO, "ref_curva": "SFXING", "vu": "SFSOBR"},
+                               {"param_mensal": "teto_SFSOBR", "pendente": PEND_SOBR_RESTR}],
+                     "seco": [None, {"param_mensal": "teto_SFSOBR", "limite": 1000, "pendente": "teto abaixo de 1.000 m³/s pela curva de segurança não convertido para Sobradinho (ver Xingó)"},
+                              {"param_mensal": "teto_SFSOBR", "pendente": PEND_SOBR_RESTR}]}))
 R.append(dict(id="2081-SFXING-min", resolucao="Res. ANA 2.081/2017", artigos="arts. 3º, III e § 3º; 9º; 12", sistema="São Francisco", ponto="Xingó",
               descricao="Defluente média diária ≥ mínima da faixa de Sobradinho", tipo="piso", freq="diaria", niveis=3, tol=0.05,
               fonte="ONS:SFXING:defl", faixa="SFSOBR", pisos={"todos": [1100, 800, 700]}))
-R.append(dict(id="2081-SFXING-max", alerta=ALERTA_2081, resolucao="Res. ANA 2.081/2017", artigos="art. 9º, §§ 2º a 4º; 12", sistema="São Francisco", ponto="Xingó",
-              descricao="Defluente média mensal ≤ máxima (Restrição: ≤ 900 m³/s)", tipo="teto", freq="mensal", niveis=3, tol=0.05,
+R.append(dict(id="2081-SFXING-max", alerta=ALERTA_2081, resolucao="Res. ANA 2.081/2017", artigos="arts. 4º; 9º, §§ 2º a 4º; 12", sistema="São Francisco", ponto="Xingó",
+              descricao="Defluente média mensal ≤ máxima pela curva de segurança (Atenção) ou ≤ 900 m³/s (Restrição)", tipo="teto", freq="mensal", niveis=3, tol=0.05,
               fonte="ONS:SFXING:defl", faixa="SFSOBR", janela="mes", umido=UMIDO_DEZ_ABR,
-              tetos={"umido": [None, {"param_mensal": "teto_SFSOBR"}, 900],
-                     "seco": [None, {"param_mensal": "teto_SFSOBR", "limite": 1000}, 900]}))
+              tetos={"umido": [None, {"param_mensal": "teto_SFXING", "curva": "SFXING", "vu": "SFSOBR"}, 900],
+                     "seco": [None, {"param_mensal": "teto_SFXING", "curva": "SFXING", "vu": "SFSOBR", "limite": 1000}, 900]}))
 R.append(dict(id="2081-SFLGON", resolucao="Res. ANA 2.081/2017", artigos="art. 10, § 1º", sistema="São Francisco", ponto="Itaparica (Luiz Gonzaga)",
               descricao="VU ≥ 30% quando Sobradinho em Normal ou Atenção", tipo="vu_min", freq="diaria", niveis=2, tol=None,
               fonte="ONS:SFLGON:vu", minimo=30.0, condicao={"faixa": "SFSOBR", "em": ["Normal", "Atenção"]}))
@@ -188,12 +196,22 @@ for rid, nome, alinea, piso in [("PBPARA", "Paraibuna", "a", 10), ("PBSTAB", "Sa
                   descricao=f"Vazão a jusante ≥ {piso} m³/s (instantânea; menor valor horário do dia)", tipo="piso_horario", freq="diaria", niveis=2, tol=None,
                   fonte=f"ONSH:{rid}:defl", minimo=float(piso)))
 R.append(dict(id="1382-PBSTAC-guandu", resolucao="Res. Conj. ANA/DAEE/IGAM/INEA 1.382/2015", artigos="art. 1º, I, f", sistema="Paraíba do Sul", ponto="Santa Cecília (bombeamento Guandu)",
-              descricao="Vazão bombeada para o Guandu ≥ 119 m³/s (média diária); tolerância de 5% (113,05 m³/s), critério da SOE", tipo="piso", freq="diaria", niveis=3, tol=0.05,
+              descricao="Vazão bombeada para o Guandu ≥ 119 m³/s (média diária); tolerância de 5% (113,05 m³/s) desde 20/08/2021", tipo="piso", freq="diaria", niveis=3, tol=0.05,
+              tol_desde="2021-08-20", tol_ato="Ofício Circular nº 1/2021/JG/ANA, de 20/08/2021 (aprovação do GAOPS na 52ª reunião, de 17/08/2021)",
               fonte="ONS:PBSTAC:transf", pisos={"todos": 119},
               alerta="A resolução não prevê exceção. Nos dias em \"Não atende\", verificar se a redução foi justificada (cheia, manutenção ou falha de equipamento)."))
 R.append(dict(id="1382-estagios", resolucao="Res. Conj. ANA/DAEE/IGAM/INEA 1.382/2015", artigos="art. 1º, V e § 1º", sistema="Paraíba do Sul", ponto="Funil, Santa Branca, Paraibuna, Jaguari",
               descricao="VU ≥ mínimo do estágio de deplecionamento vigente (variação absoluta de 5 p.p. do valor de referência)", tipo="estagios", freq="diaria", niveis=3, tol=None, tol_pp=5.0,
-              fontes={"PBFUNI": [30, 30, 30], "PBSTAB": [70, 40, 10], "PBPARA": [80, 40, 5], "PBJAGU": [80, 50, 20]}))
+              fontes={"PBFUNI": [30, 30, 30], "PBSTAB": [70, 40, 10], "PBPARA": [80, 40, 5], "PBJAGU": [80, 50, 20]},
+              # Revisões temporárias por comunicado da ANA (art. 1º, § 2º). estagio: 0 = 1º, 1 = 2º, 2 = 3º.
+              revisoes=[
+                  dict(fonte="PBFUNI", estagio=2, valor=20, inicio="2021-09-22", fim="2021-11-30",
+                       ato="Ofício Circular nº 2/2021/JG/ANA, de 22/09/2021"),
+                  dict(fonte="PBFUNI", estagio=2, valor=20, inicio="2021-12-01", fim="2021-12-31",
+                       ato="Ofício Circular nº 5/2021/JG/ANA, de 30/11/2021"),
+                  dict(fonte="PBFUNI", estagio=2, valor=20, inicio="2026-01-20", fim="2026-03-31",
+                       ato="Ofício Circular nº 1/2026/DP-ANA-SEI, de 20/01/2026"),
+              ]))
 
 # --------------------------------------------------------------------------- 1.931/2017 Jaguari → Atibainha
 R.append(dict(id="1931-max", resolucao="Res. ANA 1.931/2017", artigos="art. 1º, II", sistema="Transposição Jaguari–Atibainha", ponto="Captação no Jaguari",
@@ -239,9 +257,29 @@ for cod, nome, maxnormal in [("29001", "Jaguari-Jacareí", 844.00), ("29002", "C
                   descricao=f"Out–jun: cota ≤ NA máximo normal ({maxnormal:.2f} m)".replace(".", ","), tipo="teto_cota", freq="diaria", niveis=2, tol=None,
                   fonte=f"SAR:{cod}:cota", maximo=maxnormal, meses=[10, 11, 12, 1, 2, 3, 4, 5, 6]))
 
-for cod, nome, seco, umido in [("29001", "Jaguari-Jacareí", 40, 100), ("29002", "Cachoeira", 5, 7), ("29003", "Atibainha", 5, 11), ("29004", "Paiva Castro", 1, 1)]:
+# Nível máximo operacional (arts. 1º, §§ 2º e 3º, 3º e 4º): definido mensalmente pelo DAEE. Sem esse ato, usa-se a cota máxima
+# recomendada pelo DAEE e pela ANA no Anexo 1, item 3 (out–abr; não há valor para Jaguari-Jacareí nem para maio e junho).
+PEND_NA_OP = ("nível máximo operacional do mês, definido pelo DAEE a partir dos volumes de espera (art. 1º, §§ 1º e 2º, e art. 3º), "
+              "não disponível; informar em config/parametros_mensais.json ({chave})")
+for cod, nome, cota_rec in [("29001", "Jaguari-Jacareí", None), ("29002", "Cachoeira", 820.00), ("29003", "Atibainha", 786.00), ("29004", "Paiva Castro", 745.00)]:
+    meses_rec = {str(m): cota_rec for m in (10, 11, 12, 1, 2, 3, 4)} if cota_rec else {}
+    desc = (f"Out–jun: cota ≤ nível máximo operacional (out–abr: {cota_rec:.2f} m, cota máxima recomendada no Anexo 1)".replace(".", ",")
+            if cota_rec else "Out–jun: cota ≤ nível máximo operacional definido pelo DAEE")
+    R.append(dict(id=f"614-op-{cod}", resolucao="Res. Conj. ANA/DAEE 614/2010", artigos="arts. 1º, §§ 2º e 3º, 3º e 4º; Anexo 1, item 3", sistema="Cantareira (cheias)", ponto=nome,
+                  descricao=desc, tipo="teto_cota", freq="diaria", niveis=2, tol=None, fonte=f"SAR:{cod}:cota", meses=[10, 11, 12, 1, 2, 3, 4, 5, 6],
+                  maximo_meses=meses_rec, param_mensal=f"na_op_{cod}", pendente=PEND_NA_OP.format(chave=f"na_op_{cod}|aaaa-mm"),
+                  obs_maximo="cota máxima recomendada pelo DAEE e pela ANA (Anexo 1, item 3); o nível operacional mensal do DAEE não está cadastrado",
+                  alerta="Acima deste nível e abaixo do NA máximo normal, o sistema está em Situação de Atenção (art. 4º): a Sabesp deve retornar ao nível operacional sem violar as vazões de restrição."))
+
+for cod, nome, seco, umido in [("29001", "Jaguari-Jacareí", 40, 100), ("29002", "Cachoeira", 5, 7), ("29003", "Atibainha", 5, 11), ("29004", "Paiva Castro", 1, None)]:
+    extra = {}
+    if umido is None:
+        extra["pendente"] = ("vazão de restrição de dezembro a junho válida só até fev/2011 (1 m³/s); o valor posterior ao desassoreamento do rio Juqueri, "
+                             "a ser definido pelo DAEE (Anexo 1, item 4, OBS 3), não foi localizado")
     R.append(dict(id=f"614-restr-{cod}", resolucao="Res. Conj. ANA/DAEE 614/2010", artigos="Anexo 1, item 4", sistema="Cantareira (cheias)", ponto=nome,
-                  descricao=f"Descarga ≤ vazão de restrição ({seco} m³/s jul–nov; {umido} m³/s dez–jun)", tipo="teto_diario", freq="diaria", niveis=2, tol=None,
-                  fonte=f"SAR:{cod}:defl", umido=[12, 1, 2, 3, 4, 5, 6], tetos={"umido": umido, "seco": seco}))
+                  descricao=(f"Descarga ≤ vazão de restrição ({seco} m³/s jul–nov; {umido} m³/s dez–jun)" if umido is not None else
+                             f"Descarga ≤ vazão de restrição ({seco} m³/s jul–nov; dez–jun: valor posterior a fev/2011 pendente)"),
+                  tipo="teto_diario", freq="diaria", niveis=2, tol=None,
+                  fonte=f"SAR:{cod}:defl", umido=[12, 1, 2, 3, 4, 5, 6], tetos={"umido": umido, "seco": seco}, **extra))
 
 REGRAS = R
