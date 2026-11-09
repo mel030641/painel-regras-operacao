@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manual do Painel SOE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #f5f7f8; --surface: #ffffff; --sunk: #eceff1; --line: #d9dee2;
+  --fg: #142027; --fg-2: #46565f; --fg-3: #6f7d85; --accent: #0b6e7f; --accent-soft: #d8ecef;
+  --ok: #0c8a2e; --ok-soft: #dff2e3; --tol: #b97800; --tol-soft: #fbefd2; --nao: #c62f2f; --nao-soft: #f8dede; --na: #8a969d; --na-soft: #e9edef;
+  --f-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace; --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1619; --surface: #162026; --sunk: #1c282f; --line: #2a3a42; --fg: #e4ecef; --fg-2: #a9b8bf; --fg-3: #7f9099;
+  --accent: #4fb8c9; --accent-soft: #173a42; --ok: #3cc35f; --ok-soft: #15331d; --tol: #f0b23a; --tol-soft: #3a2d10;
+  --nao: #f06a6a; --nao-soft: #3d1a1a; --na: #7f9099; --na-soft: #1f2b31; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1619; --surface: #162026; --sunk: #1c282f; --line: #2a3a42; --fg: #e4ecef; --fg-2: #a9b8bf; --fg-3: #7f9099;
+  --accent: #4fb8c9; --accent-soft: #173a42; --ok: #3cc35f; --ok-soft: #15331d; --tol: #f0b23a; --tol-soft: #3a2d10;
+  --nao: #f06a6a; --nao-soft: #3d1a1a; --na: #7f9099; --na-soft: #1f2b31; color-scheme: dark }
+* { box-sizing: border-box }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.6 var(--f-body) }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px }
+header { background: var(--surface); border-bottom: 1px solid var(--line); padding: 22px 0 18px }
+header a.voltar { color: var(--accent); text-decoration: none; font-size: .9rem }
+h1, h2, h3 { font-family: var(--f-display); margin: 0; text-wrap: balance }
+h1 { font-size: 1.9rem; line-height: 1.15; margin-top: 6px }
+h2 { font-size: 1.35rem; margin: 34px 0 10px; padding-top: 8px; border-top: 1px solid var(--line) }
+h3 { font-size: 1.08rem; margin: 20px 0 6px }
+.lead { color: var(--fg-2); max-width: 70ch; margin: 6px 0 0 }
+.grid { display: grid; grid-template-columns: 230px 1fr; gap: 32px; padding: 20px 16px 60px }
+nav.toc { position: sticky; top: 16px; align-self: start; font-size: .9rem }
+nav.toc ol { margin: 0; padding-left: 20px } nav.toc li { margin: 3px 0 }
+nav.toc a { color: var(--fg-2); text-decoration: none } nav.toc a:hover { color: var(--accent) }
+main p, main li { max-width: 78ch }
+main a { color: var(--accent) }
+table { border-collapse: collapse; width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); font-size: .9rem; margin: 8px 0 }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top }
+th { background: var(--sunk); font-family: var(--f-display); font-weight: 600; letter-spacing: .02em }
+.tbl { overflow-x: auto }
+.pill { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: .8rem; font-weight: 600; white-space: nowrap }
+.ok { background: var(--ok-soft); color: var(--ok) } .tol { background: var(--tol-soft); color: var(--tol) } .nao { background: var(--nao-soft); color: var(--nao) }
+.na { background: var(--na-soft); color: var(--fg-2) } .ec { border: 1px solid var(--tol); color: var(--tol) }
+.nota { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 10px 14px; border-radius: 0 var(--r) var(--r) 0; margin: 12px 0 }
+code { font-family: var(--f-mono); font-size: .85em; background: var(--sunk); padding: 1px 4px; border-radius: 3px }
+@media (max-width: 820px) { .grid { grid-template-columns: 1fr; gap: 8px } nav.toc { position: static } }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="voltar" href="index.html">← Voltar ao painel</a>
+  <h1>Manual do usuário: Monitoramento das Regras de Operação de Reservatórios</h1>
+  <p class="lead">Superintendência de Operações e Eventos Críticos (SOE/ANA). Este manual explica como o painel apura o cumprimento das regras de operação, como ler cada aba e quais são as limitações conhecidas.</p>
+</div></header>
+
+<div class="wrap grid">
+<nav class="toc" aria-label="Sumário"><ol>
+  <li><a href="#objetivo">Objetivo e cobertura</a></li>
+  <li><a href="#atualizacao">Atualização e fontes</a></li>
+  <li><a href="#filtros">Filtros</a></li>
+  <li><a href="#abas">Abas do painel</a></li>
+  <li><a href="#situacoes">Situações</a></li>
+  <li><a href="#janelas">Regras de janela</a></li>
+  <li><a href="#faixas">Faixas operativas</a></li>
+  <li><a href="#conformidade">Índice de conformidade</a></li>
+  <li><a href="#vigencia">Vigência das normas</a></li>
+  <li><a href="#documentos">Documentos para download</a></li>
+  <li><a href="#limitacoes">Limitações</a></li>
+  <li><a href="#glossario">Glossário</a></li>
+</ol></nav>
+
+<main>
+<h2 id="objetivo" style="border-top:0;margin-top:0">1. Objetivo e cobertura</h2>
+<p>O painel verifica, dia a dia, se a operação dos reservatórios cumpre as regras fixadas nas resoluções da ANA e nas resoluções conjuntas com órgãos gestores estaduais. Cada regra é comparada com o dado observado e recebe uma situação (Atende, Tolerância, Não atende etc.), com o valor apurado, o limite e a folga.</p>
+<p>São 62 regras, agrupadas por sistema hídrico:</p>
+<div class="tbl"><table>
+  <thead><tr><th>Sistema hídrico</th><th>Normas</th></tr></thead>
+  <tbody>
+    <tr><td>Paranapanema</td><td>Res. ANA 132/2022</td></tr>
+    <tr><td>Rio Grande e Paranaíba</td><td>Res. ANA 193/2024 e 194/2024</td></tr>
+    <tr><td>São Francisco e rio Preto</td><td>Res. ANA 2.081/2017; Res. ANA 147/2015 (Queimado)</td></tr>
+    <tr><td>Tocantins</td><td>Res. ANA 70/2021</td></tr>
+    <tr><td>Uruguai</td><td>Res. ANA 49/2018 (Foz do Chapecó)</td></tr>
+    <tr><td>Paraíba do Sul</td><td>Res. Conj. ANA/DAEE/IGAM/INEA 1.382/2015</td></tr>
+    <tr><td>Cantareira, PCJ e cheias</td><td>Res. Conj. ANA/DAEE 925/2017; Res. Conj. ANA/DAEE 614/2010</td></tr>
+    <tr><td>Transposição Jaguari–Atibainha</td><td>Res. ANA 1.931/2017 e comunicados conjuntos de volume anual</td></tr>
+  </tbody></table></div>
+<p>O histórico começa em 01/10/2017, início da série de faixas publicadas nos boletins do Sistema Cantareira. Antes da entrada em vigor de cada norma, a regra aparece como “Não se aplica” (ver <a href="#vigencia">seção 9</a>).</p>
+
+<h2 id="atualizacao">2. Atualização e fontes</h2>
+<p>O painel é recalculado duas vezes por dia, às 11h e às 17h (horário de Brasília). O cabeçalho mostra a data do último dado disponível (“Dados até”) e o horário do processamento. Em geral, o último dia com dado é o anterior ao da consulta.</p>
+<div class="tbl"><table>
+  <thead><tr><th>Dado</th><th>Fonte</th></tr></thead>
+  <tbody>
+    <tr><td>Níveis, volumes e vazões diários e horários</td><td>ONS Dados Abertos (dados hidrológicos por reservatório)</td></tr>
+    <tr><td>Reservatórios do Sistema Cantareira</td><td>SAR/ANA; API Mananciais da Sabesp como reserva</td></tr>
+    <tr><td>Postos do PCJ (Valinhos, Atibaia, Buenópolis)</td><td>SAISP/DAEE</td></tr>
+    <tr><td>Captação em Santa Inês e na EEAB Jaguari</td><td>API Mananciais da Sabesp</td></tr>
+    <tr><td>Faixas operativas</td><td>Boletins diários da Sala de Situação/ANA; painéis Power BI da SOE; cálculo pela regra da resolução</td></tr>
+  </tbody></table></div>
+<p>Se uma fonte falhar, as regras afetadas aparecem como “Sem dado” e a falha é registrada nas notas do rodapé do painel. As demais regras não são afetadas.</p>
+
+<h2 id="filtros">3. Filtros</h2>
+<p>Os filtros ficam no topo e valem para todas as abas, exceto Documentos.</p>
+<ul>
+  <li><b>Período:</b> atalhos (último dia, 7 dias, 30 dias, mês atual, mês anterior, ano, ano anterior e todo o histórico) ou datas de início e fim.</li>
+  <li><b>Sistema:</b> restringe a um sistema hídrico.</li>
+  <li><b>Situação:</b> mostra só as regras cuja situação no último dia avaliado do período é a escolhida.</li>
+  <li><b>Busca:</b> procura por ponto de controle, resolução, artigo ou texto da regra.</li>
+  <li><b>Só pendências</b> (aba Regras): mostra só as regras com alguma avaliação em Não atende ou Tolerância no período, ou com janela em curso cuja média parcial já passa do limite. A célula Situação informa quantas avaliações pendentes houve e a data da última. Ao abrir a regra, a tabela de detalhe lista só esses dias; desmarque o filtro para ver todos.</li>
+</ul>
+
+<h2 id="abas">4. Abas do painel</h2>
+<h3>Síntese</h3>
+<p>Mostra as faixas operativas vigentes de cada reservatório (com a origem da informação), o índice de conformidade do período e a conformidade por escala de apuração (diária, semanal, mensal, anual).</p>
+<h3>Regras</h3>
+<p>Lista as regras agrupadas por sistema. Cada sistema pode ser aberto ou recolhido e traz a contagem de regras por situação. As colunas são: ponto de controle e regra, norma, faixa, valor apurado, limite, folga, situação, série no período e conformidade. Clique numa regra para ver o gráfico do valor contra o limite, os metadados (norma, escala, métrica, fonte, parâmetro) e a tabela diária.</p>
+<h3>Mapa multitemporal</h3>
+<p>Cruza regras e tempo. A coluna de tempo se ajusta ao período: dias (até 10 dias), semanas (11 a 45 dias) ou meses (acima de 45 dias). A cor indica o resultado; o número na célula indica quantos dias ficaram em Não atende. Células sem avaliação são diferenciadas: cinza liso (não se aplica), hachura amarela (parâmetro pendente), contorno (em curso) e tracejado (sem dado).</p>
+<h3>Ocorrências</h3>
+<p>Lista as avaliações em Não atende ou Tolerância no período, da mais recente para a mais antiga, com valor, limite e desvio.</p>
+<h3>Documentos</h3>
+<p>Reúne este manual e as planilhas para download (ver <a href="#documentos">seção 10</a>).</p>
+
+<h2 id="situacoes">5. Situações</h2>
+<div class="tbl"><table>
+  <thead><tr><th>Situação</th><th>Significado</th></tr></thead>
+  <tbody>
+    <tr><td><span class="pill ok">Atende</span></td><td>O valor apurado respeita o limite da regra.</td></tr>
+    <tr><td><span class="pill tol">Tolerância</span></td><td>O valor passou do limite, mas está dentro da tolerância prevista na norma (por exemplo, 5% nas Res. 132/2022, 193/2024, 194/2024, 2.081/2017 e 70/2021). Só existe onde a resolução prevê tolerância.</td></tr>
+    <tr><td><span class="pill nao">Não atende</span></td><td>O valor passou do limite e da tolerância, quando houver.</td></tr>
+    <tr><td><span class="pill ec">Em curso</span></td><td>Regra de janela (semana, mês ou ano) cuja janela atual ainda não fechou. Mostra a média parcial.</td></tr>
+    <tr><td><span class="pill na">Parcial</span></td><td>Dia de uma janela já encerrada, antes do fechamento. O resultado da janela aparece no dia de fechamento.</td></tr>
+    <tr><td><span class="pill na">Não se aplica</span></td><td>A regra não vale naquele dia: fora do período, da faixa ou da condição de aplicação, ou antes da entrada em vigor da norma.</td></tr>
+    <tr><td><span class="pill na">Sem dado</span></td><td>A fonte não publicou o dado do dia.</td></tr>
+    <tr><td><span class="pill na">Parâmetro pendente</span></td><td>Falta um valor que depende de ato da ANA, comunicado ou outorga (por exemplo, teto mensal ou volume anual).</td></tr>
+  </tbody></table></div>
+
+<h2 id="janelas">6. Regras de janela</h2>
+<p>Regras apuradas por média semanal (semana operativa de sábado a sexta), mensal ou por acumulado anual só recebem Atende, Tolerância ou Não atende no fechamento da janela. Até lá:</p>
+<ul>
+  <li>Na janela atual, aberta, os dias aparecem como <b>Em curso</b>, com a média parcial. Se a parcial já passa do limite, a linha recebe destaque amarelo.</li>
+  <li>Nas janelas já encerradas, os dias anteriores ao fechamento aparecem como <b>Parcial</b>.</li>
+  <li>Quando o período escolhido termina no meio de uma janela já fechada, a coluna Situação mostra o resultado do fechamento e a data em que ele ocorreu.</li>
+</ul>
+<p>Dias Em curso e Parcial não entram no índice de conformidade.</p>
+
+<h2 id="faixas">7. Faixas operativas</h2>
+<p>Muitas regras dependem da faixa operativa do reservatório (Normal, Atenção, Alerta, Restrição etc.). A faixa de cada período é obtida nesta ordem de prioridade:</p>
+<ol>
+  <li>boletim diário oficial da ANA, publicado no gov.br;</li>
+  <li>painel Power BI da SOE, quando não há boletim para o período;</li>
+  <li>cálculo pela regra da resolução, quando não há publicação.</li>
+</ol>
+<p>No painel, o símbolo ● ao lado da faixa indica faixa publicada (boletim ou Power BI). O histórico completo, com o link de cada boletim, está na planilha “Histórico das faixas operativas”.</p>
+
+<h2 id="conformidade">8. Índice de conformidade</h2>
+<p>Índice de conformidade = (Atende + Tolerância) ÷ avaliações com resultado (Atende + Tolerância + Não atende), no período e nos filtros selecionados. Os dias Em curso, Parcial, Não se aplica, Sem dado e Parâmetro pendente ficam fora do cálculo.</p>
+
+<h2 id="vigencia">9. Vigência das normas</h2>
+<p>Cada regra só é avaliada a partir da entrada em vigor da sua norma, conforme o texto oficial:</p>
+<div class="tbl"><table>
+  <thead><tr><th>Norma</th><th>Avaliada desde</th><th>Fundamento</th></tr></thead>
+  <tbody>
+    <tr><td>Res. Conj. ANA/DAEE 614/2010</td><td>início do painel</td><td>art. 7º (vigor na publicação, DOU 23/11/2010)</td></tr>
+    <tr><td>Res. ANA 147/2015</td><td>início do painel</td><td>art. 2º (vigor na publicação, DOU 05/03/2015)</td></tr>
+    <tr><td>Res. Conj. ANA/DAEE 925/2017</td><td>início do painel</td><td>art. 9º (vigor na publicação, DOU 30/05/2017)</td></tr>
+    <tr><td>Res. ANA 1.931/2017</td><td>01/11/2017</td><td>art. 2º (vigor na publicação, DOU 01/11/2017)</td></tr>
+    <tr><td>Res. ANA 49/2018</td><td>18/07/2018</td><td>art. 3º (vigor na publicação, DOU 18/07/2018)</td></tr>
+    <tr><td>Res. ANA 70/2021</td><td>01/12/2021</td><td>art. 18</td></tr>
+    <tr><td>Res. ANA 132/2022</td><td>01/01/2023</td><td>art. 20</td></tr>
+    <tr><td>Res. ANA 193/2024 e 194/2024</td><td>02/12/2024</td><td>art. 22</td></tr>
+    <tr><td>Res. Conj. 1.382/2015 e Res. ANA 2.081/2017</td><td>01/01/2024 (provisório)</td><td>entram em vigor após comunicado da ANA; a data do comunicado ainda será conferida</td></tr>
+  </tbody></table></div>
+
+<h2 id="documentos">10. Documentos para download</h2>
+<p>As planilhas são geradas a cada atualização, com todo o histórico, sem os filtros da tela.</p>
+<ul>
+  <li><b>Planilha de acompanhamento:</b> aba Regras (situação no último dia avaliado e conformidade no ano, em 12 meses e no histórico), aba Mensal (avaliações por regra e mês) e aba Ocorrências (cada avaliação em Não atende ou Tolerância).</li>
+  <li><b>Histórico das faixas operativas:</b> cada período de vigência de faixa, com a origem, o status de conferência e o link do boletim.</li>
+  <li><b>Indicadores ASREG:</b> reproduz as colunas da planilha de indicadores da ASREG (retrato de 03/11/2026) e acrescenta a situação e a conformidade do ano apuradas pelo painel. Quando uma linha corresponde a mais de uma regra do painel, vale a pior situação entre elas.</li>
+  <li><b>Dados do painel (JSON):</b> série diária completa de todas as regras.</li>
+</ul>
+
+<h2 id="limitacoes">11. Limitações</h2>
+<ul>
+  <li>O painel apura a regra com o dado disponível nas fontes públicas, que pode ser revisto depois. Divergências com boletins e informes dos agentes devem ser conferidas na fonte.</li>
+  <li>Regras que dependem de ato posterior (tetos mensais da Res. 2.081/2017, volume anual da Res. 1.931/2017 em anos sem comunicado registrado) ficam como “Parâmetro pendente” até o valor ser cadastrado.</li>
+  <li>Os servidores que executam o cálculo ficam fora do Brasil; o SAR e o SAISP às vezes recusam ou demoram a responder. Nesses casos a regra aparece como “Sem dado”.</li>
+  <li>O painel é um instrumento de acompanhamento. A caracterização de descumprimento para fins de fiscalização depende de análise técnica da SOE.</li>
+</ul>
+
+<h2 id="glossario">12. Glossário</h2>
+<ul>
+  <li><b>Folga:</b> distância entre o valor apurado e o limite, na unidade da regra. Positiva quando há margem; negativa quando o limite foi ultrapassado.</li>
+  <li><b>VU:</b> volume útil, em % ou hm³.</li>
+  <li><b>Semana operativa:</b> de sábado a sexta-feira (Res. ANA 132/2022, art. 8º).</li>
+  <li><b>Janela:</b> intervalo de apuração da regra (dia, semana operativa, mês ou ano).</li>
+  <li><b>Faixa operativa:</b> estado de armazenamento do reservatório ou sistema que define os limites aplicáveis.</li>
+</ul>
+</main>
+</div>
+</body>
+</html>

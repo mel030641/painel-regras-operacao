@@ -50,8 +50,10 @@ jobs:
       - name: Coleta e cálculo
         run: python src/calculo.py   # out/2017 até hoje (dado horário do ONS fica no cache entre execuções)
 
-      - name: Montar site
-        run: python src/publicar.py
+      - name: Montar site (painel, manual e planilhas)
+        run: |
+          pip install -q -r requirements.txt
+          python src/publicar.py
 
       - name: Gravar histórico de faixas
         run: |

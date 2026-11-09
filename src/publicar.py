@@ -2,8 +2,8 @@
 publicar.py - Monta o site estático do painel (GitHub Pages) a partir de web/painel.html e do resultado do cálculo.
 
 Uso: python src/publicar.py [painel.json] [pasta_site]
-Padrão: data/painel.json -> _site/index.html + _site/painel.json
-Dependências: somente biblioteca padrão.
+Padrão: data/painel.json -> _site/index.html, _site/painel.json, _site/manual.html e _site/docs/*.xlsx
+Dependências: biblioteca padrão; openpyxl para as planilhas (sem ele, o site sai sem a pasta docs).
 """
 from __future__ import annotations
 
@@ -36,6 +36,15 @@ def main():
     (site / "index.html").write_text(html, encoding="utf-8")
     shutil.copyfile(painel, site / "painel.json")
     (site / ".nojekyll").write_text("", encoding="utf-8")
+    shutil.copyfile(RAIZ / "web" / "manual.html", site / "manual.html")
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import documentos
+    except ImportError as e:
+        print(f"[aviso] planilhas não geradas ({e}); instale openpyxl (requirements.txt)")
+    else:
+        sys.argv = [sys.argv[0], str(painel), str(site)]
+        documentos.main()
     print(f"[ok] site em {site} ({(site / 'painel.json').stat().st_size / 1e6:.1f} MB de dados)")
 
 

@@ -219,6 +219,12 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
 #erro { background: var(--nao-soft); color: var(--nao); padding: 12px 16px; border-radius: var(--r) }
 @media (prefers-reduced-motion: no-preference) { tr.rule td, .seg button { transition: background-color .12s } }
 .viol{font-size:.72rem;margin-top:3px;color:var(--nao,#b42318);font-weight:600;line-height:1.25}
+.docs { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px }
+.doc { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); color: var(--fg); text-decoration: none }
+.doc:hover, .doc:focus-visible { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) }
+.doc b { font-family: var(--f-display); font-size: 1.05rem; font-weight: 600 }
+.doc span:last-child { color: var(--fg-2); font-size: .85rem }
+.doc .tipo { align-self: flex-start; font: 500 .7rem/1 var(--f-mono); text-transform: uppercase; letter-spacing: .06em; color: var(--accent); background: var(--accent-soft); padding: 3px 6px; border-radius: 3px }
 </style>
 
 <header class="top">
@@ -257,6 +263,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
       <button role="tab" id="tab-regras" aria-controls="s-regras" data-aba="regras">Regras <span class="badge" id="b-regras"></span></button>
       <button role="tab" id="tab-heat" aria-controls="s-heat" data-aba="heat">Mapa multitemporal</button>
       <button role="tab" id="tab-oc" aria-controls="s-oc" data-aba="oc">Ocorrências <span class="badge" id="b-oc"></span></button>
+      <button role="tab" id="tab-docs" aria-controls="s-docs" data-aba="docs">Documentos</button>
     </div>
 </div></nav>
 
@@ -313,6 +320,18 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
     <div class="tbl-wrap"><table id="t-oc"><thead><tr>
       <th>Data</th><th>Sistema</th><th>Ponto</th><th>Norma</th><th>Regra</th><th>Parâmetro</th><th class="n">Valor</th><th class="n">Limite</th><th class="n">Desvio</th><th>Situação</th></tr></thead><tbody></tbody></table></div>
   </section>
+
+  <section id="s-docs" role="tabpanel" aria-labelledby="h-docs" data-aba="docs">
+    <div class="sec-head"><h2 id="h-docs">Documentos</h2><p>Manual e planilhas gerados a cada atualização do painel, com os mesmos dados das outras abas (histórico completo, sem os filtros da tela).</p></div>
+    <div class="docs">
+      <a class="doc" href="manual.html" target="_blank" rel="noopener"><span class="tipo">Página</span><b>Manual do usuário</b><span>Como ler o painel: abas, filtros, situações, janelas em curso, faixas, fontes e limitações.</span></a>
+      <a class="doc" href="docs/acompanhamento_regras.xlsx" download><span class="tipo">Excel</span><b>Planilha de acompanhamento</b><span>Situação atual e conformidade de cada regra (ano, 12 meses e histórico), contagem mensal e lista de ocorrências.</span></a>
+      <a class="doc" href="docs/historico_faixas.xlsx" download><span class="tipo">Excel</span><b>Histórico das faixas operativas</b><span>Faixas publicadas nos boletins diários da ANA e no Power BI da SOE, por período de vigência, com o link do boletim.</span></a>
+      <a class="doc" href="docs/indicadores_ASREG.xlsx" download><span class="tipo">Excel</span><b>Indicadores ASREG</b><span>Planilha de indicadores das regras de operação (formato ASREG) com a situação e a conformidade apuradas pelo painel.</span></a>
+      <a class="doc" href="painel.json" download><span class="tipo">JSON</span><b>Dados do painel</b><span>Série diária completa de todas as regras (valor, limite, folga, situação e faixa), para uso em outras ferramentas.</span></a>
+    </div>
+    <p class="muted" id="docs-gerado" style="font-size:.8rem;margin-top:10px"></p>
+  </section>
 </div></main>
 
 <footer><div class="wrap">
@@ -322,6 +341,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
     <li>Métrica de três níveis (Atende, Tolerância, Não atende) somente onde a resolução prevê tolerância; dois níveis nos demais casos. “Não se aplica” indica regra fora da condição de aplicação; “Sem dado” indica ausência do dado na fonte.</li>
     <li>Regras de janela (semana operativa, mês e ano) só recebem Atende, Tolerância ou Não atende no fechamento da janela. Antes disso aparecem como “Em curso”, com destaque quando a média parcial excede o limite, e não entram no índice de conformidade. O volume anual é acumulado desde 1º de janeiro e avaliado no fechamento do ano (31/12).</li>
     <li>Índice de conformidade global = (Atende + Tolerância) ÷ avaliações com resultado, no período e filtros selecionados.</li>
+    <li>Manual do usuário e planilhas para download na aba <a href="#docs">Documentos</a>.</li>
     <li id="n-pend"></li>
   </ul>
 </div></footer>
@@ -711,6 +731,7 @@ function iniciar(dados) {
   $("#m-regras").textContent = D.regras.length;
   { const b = document.querySelector('#presets button[data-p="tudo"]'), m = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"][+D.periodo[0].slice(5, 7) - 1];
     if (b) { b.textContent = `Desde ${m}/${D.periodo[0].slice(0, 4)}`; b.title = `Todo o histórico disponível (desde ${df(D.periodo[0])})`; } }
+  if ($("#docs-gerado")) $("#docs-gerado").textContent = `Arquivos gerados com os dados de ${df(D.periodo[0])} a ${df(D.periodo[1])}.`;
   $("#f-ini").min = $("#f-fim").min = D.periodo[0]; $("#f-ini").max = $("#f-fim").max = D.periodo[1];
   const sis = [...new Set(D.regras.map((r) => r.sistema))];
   $("#f-sis").innerHTML += sis.map((s) => `<option>${esc(s)}</option>`).join("");
