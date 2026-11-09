@@ -282,4 +282,28 @@ for cod, nome, seco, umido in [("29001", "Jaguari-Jacareí", 40, 100), ("29002",
                   tipo="teto_diario", freq="diaria", niveis=2, tol=None,
                   fonte=f"SAR:{cod}:defl", umido=[12, 1, 2, 3, 4, 5, 6], tetos={"umido": umido, "seco": seco}, **extra))
 
+# --------------------------------------------------------------------------- dependência de ato complementar
+# Regras cujo limite depende, no todo ou em parte, de ato que não está na resolução (comunicado, curva, outorga,
+# definição mensal de outro órgão). O painel mostra um marcador e permite filtrar esses casos para acompanhamento.
+COMPLEMENTAR = {
+    "2081-SFTMAR-max": "Curvas de segurança do ciclo (NT do ONS e não objeção da ANA, art. 4º); na Restrição, vazão fixada pelo ONS por recomendação da ANA",
+    "2081-SFXING-max": "Curvas de segurança do ciclo (NT do ONS e não objeção da ANA, art. 4º)",
+    "2081-SFSOBR-max": "Teto mensal de Sobradinho (sem critério definido na Atenção); na Restrição, vazões fixadas pelo ONS por recomendação da ANA",
+    "1382-estagios": "Revisões temporárias dos limites dos estágios por comunicado da ANA (art. 1º, § 2º)",
+    "1931-volume": "Comunicado conjunto anual de volume suplementar (art. 1º, III)",
+    "614-op-29001": "Nível máximo operacional definido mensalmente pelo DAEE (art. 1º, § 2º, e art. 3º)",
+    "614-op-29002": "Nível máximo operacional definido mensalmente pelo DAEE (maio e junho; art. 1º, § 2º, e art. 3º)",
+    "614-op-29003": "Nível máximo operacional definido mensalmente pelo DAEE (maio e junho; art. 1º, § 2º, e art. 3º)",
+    "614-op-29004": "Nível máximo operacional definido mensalmente pelo DAEE (maio e junho; art. 1º, § 2º, e art. 3º)",
+    "614-restr-29004": "Vazão de restrição de dezembro a junho após fev/2011, a definir pelo DAEE (Anexo 1, item 4, OBS 3)",
+    "193-GRFURN": "Vazão outorgada de Furnas (limite na faixa Normal do período seco)",
+    "193-GRMMOR": "Vazão outorgada de Mascarenhas de Moraes (limite na faixa de Atenção do período seco)",
+    "194-PREMBO": "Vazão outorgada de Emborcação (limite na faixa Normal do período seco)",
+    "194-PRITUM": "Vazão outorgada de Itumbiara (limite na faixa Normal do período seco)",
+}
+for _r in R:
+    if _r["id"] in COMPLEMENTAR:
+        _r["complementar"] = COMPLEMENTAR[_r["id"]]
+assert set(COMPLEMENTAR) <= {_r["id"] for _r in R}, set(COMPLEMENTAR) - {_r["id"] for _r in R}
+
 REGRAS = R

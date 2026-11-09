@@ -97,6 +97,7 @@ main section[hidden] { display: none }
 .acoes { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center }
 .chk { display: inline-flex; gap: 6px; align-items: center; border: 1px solid var(--line); border-radius: var(--r); padding: 5px 10px; background: var(--surface); cursor: pointer; font-size: .85rem }
 .chk:has(input:checked) { border-color: var(--tol); background: var(--tol-soft); color: var(--fg) }
+.compl { display: inline-block; margin-left: 6px; padding: 0 6px; border: 1px solid var(--line); border-radius: 999px; font-size: .7rem; font-weight: 600; color: var(--fg-2); vertical-align: 1px; white-space: nowrap }
 .btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 5px 10px; cursor: pointer; font-size: .85rem; color: var(--fg-2) }
 .btn:hover { background: var(--sunk); color: var(--fg) }
 tr.sys-row { cursor: pointer }
@@ -293,6 +294,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
   <section id="s-regras" role="tabpanel" aria-labelledby="h-regras" data-aba="regras">
     <div class="sec-head"><h2 id="h-regras">Regras por sistema hídrico</h2><p>Clique no sistema para abrir as regras e em uma regra para ver a série, o limite e as avaliações diárias. A folga é a distância ao limite, na unidade da regra.</p></div>
     <div class="acoes">
+      <label class="chk"><input type="checkbox" id="f-compl"> Só regras com ato complementar <span class="muted">(limite depende de comunicado, curva, outorga ou definição de outro órgão)</span></label>
       <label class="chk"><input type="checkbox" id="f-pend"> Só pendências <span class="muted">(Não atende ou Tolerância em algum dia do período, ou janela aberta com parcial acima do limite)</span></label>
       <button type="button" class="btn" id="b-abrir">Abrir todos</button><button type="button" class="btn" id="b-fechar">Recolher todos</button>
     </div>
@@ -402,7 +404,7 @@ const violacoes = (per) => per.filter((x) => x.st === "Não atende" || x.st === 
 const resumoViol = (v) => { const n = v.filter((x) => x.st === "Não atende").length, t = v.length - n; return n && t ? `Não atende (${n}) ou Tolerância (${t})` : n ? "Não atende" : "Tolerância"; };
 const pendente = (r, per) => { if (violacoes(per).length) return true; const u = efetivo(r, per); return u.st === "Não atende" || u.st === "Tolerância" || (u.st === "Em curso" && !!u.exc && !u.fechada); };
 try { const s = JSON.parse(localStorage.getItem("painel-soe-filtros") || "{}"); Object.assign(state, s); } catch (e) {}
-const salvar = () => { try { localStorage.setItem("painel-soe-filtros", JSON.stringify({ preset: state.preset, sis: state.sis, aba: state.aba, pend: state.pend })); } catch (e) {} };
+const salvar = () => { try { localStorage.setItem("painel-soe-filtros", JSON.stringify({ preset: state.preset, sis: state.sis, aba: state.aba, pend: state.pend, compl: state.compl })); } catch (e) {} };
 
 function addDias(iso, n) { const d = new Date(iso + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); }
 function aplicarPreset(p) {
@@ -434,6 +436,7 @@ function filtradas() {
     if (q && !sa(`${r.ponto} ${r.resolucao} ${r.artigos || ""} ${r.descricao} ${r.sistema} ${r.id}`).includes(q)) return false;
     const per = noPeriodo(r);
     if (state.pend && !pendente(r, per)) return false;
+    if (state.compl && !r.complementar) return false;
     if (state.st === "viol") { const c = contar(per); if (!c["Não atende"] && !c["Tolerância"]) return false; }
     else if (state.st) { const u = ultimoValido(per); if (!u || u.st !== state.st) return false; }
     return true;
@@ -531,7 +534,7 @@ function render() {
   const porSis = {};
   regras.forEach((r) => (porSis[r.sistema] = porSis[r.sistema] || []).push(r));
   let html = "", nNao = 0;
-  const abrirTodos = !!state.q.trim() || state.pend || !!state.sis || !!state.st;
+  const abrirTodos = !!state.q.trim() || state.pend || state.compl || !!state.sis || !!state.st;
   for (const [sis, rs] of Object.entries(porSis)) {
     const k = { nao: 0, tol: 0, ok: 0, ec: 0 };
     for (const r of rs) { const u = efetivo(r, noPeriodo(r)); if (u.st === "Não atende") k.nao++; else if (u.st === "Tolerância" || (u.st === "Em curso" && u.exc)) k.tol++; else if (u.st === "Atende") k.ok++; else if (u.st === "Em curso") k.ec++; }
@@ -543,7 +546,7 @@ function render() {
       const per = noPeriodo(r), u = ultimoValido(per) || {}, c = contar(per), q = conf(c), ab = aberto.has(r.id);
       const folga = u.folga == null ? "—" : `${comU(u.folga, r)}${u.pct != null && r.unid !== "%" ? ` <span class="muted">(${nf(u.pct, 0)}%)</span>` : ""}`;
       html += `<tr class="rule" tabindex="0" data-id="${esc(r.id)}" aria-expanded="${ab}">
-        <td><div class="ponto">${esc(r.ponto)}</div><div class="desc">${esc(r.descricao)}</div>${r.alerta ? `<div class="alerta">⚠ ${esc(r.alerta)}</div>` : ""}</td>
+        <td><div class="ponto">${esc(r.ponto)}${r.complementar ? `<span class="compl" title="Depende de ato complementar: ${esc(r.complementar)}">ato complementar</span>` : ""}</div><div class="desc">${esc(r.descricao)}</div>${r.alerta ? `<div class="alerta">⚠ ${esc(r.alerta)}</div>` : ""}</td>
         <td class="norma">${esc(r.resolucao)}<small>${esc(r.artigos || "")}</small></td>
         <td>${u.faixa ? esc(u.faixa) : '<span class="muted">—</span>'}${u.orig === "Power BI" || u.orig === "Boletim ANA" ? ` <span class="muted" title="Faixa publicada (${esc(u.orig)})">●</span>` : ""}</td>
         <td class="n">${comU(u.v, r)}<span class="param">${esc(paramDia(r, u))}</span></td>
@@ -591,6 +594,7 @@ function detalhe(r, per, u) {
       <div class="chart-box">${grafico(r, per)}</div>
       <dl class="kv">
         <dt>Regra</dt><dd>${esc(r.descricao)}</dd>
+        ${r.complementar ? `<dt>Ato complementar</dt><dd>${esc(r.complementar)}</dd>` : ""}
         ${r.alerta ? `<dt>Verificar</dt><dd class="alerta" style="font-size:inherit">${esc(r.alerta)}</dd>` : ""}
         <dt>Norma</dt><dd>${esc(r.resolucao)}, ${esc(r.artigos || "")}</dd>
         <dt>Escala</dt><dd>${ESCALAS[escala(r)] || esc(r.freq)}</dd>
@@ -700,12 +704,14 @@ function ligar() {
   };
   medir(); medirAb(); addEventListener("resize", () => { medir(); medirAb(); });
   document.querySelectorAll(".abas [role=tab]").forEach((b) => b.addEventListener("click", () => requestAnimationFrame(medirAb))); if ("ResizeObserver" in window) new ResizeObserver(medir).observe($(".filters"));
+  $("#f-compl").checked = !!state.compl;
+  $("#f-compl").addEventListener("change", (e) => { state.compl = e.target.checked; salvar(); render(); });
   $("#f-pend").checked = !!state.pend;
   $("#f-pend").addEventListener("change", (e) => { state.pend = e.target.checked; salvar(); render(); });
   $("#b-abrir").addEventListener("click", () => { sisFechados.clear(); filtradas().forEach((r) => sisAbertos.add(r.sistema)); render(); });
   $("#b-fechar").addEventListener("click", () => { sisAbertos.clear(); aberto.clear(); filtradas().forEach((r) => sisFechados.add(r.sistema)); render(); });
   const tb = $("#t-regras tbody");
-  tb.addEventListener("click", (e) => { const b = e.target.closest(".sys-btn"); if (!b) return; const s = b.closest("tr").dataset.sis; const abrirTodos = !!state.q.trim() || state.pend || !!state.sis || !!state.st; const set = abrirTodos ? sisFechados : sisAbertos; set.has(s) ? set.delete(s) : set.add(s); render(); });
+  tb.addEventListener("click", (e) => { const b = e.target.closest(".sys-btn"); if (!b) return; const s = b.closest("tr").dataset.sis; const abrirTodos = !!state.q.trim() || state.pend || state.compl || !!state.sis || !!state.st; const set = abrirTodos ? sisFechados : sisAbertos; set.has(s) ? set.delete(s) : set.add(s); render(); });
   const toggle = (tr) => { const id = tr.dataset.id; aberto.has(id) ? aberto.delete(id) : aberto.add(id); render(); };
   tb.addEventListener("click", (e) => { const tr = e.target.closest("tr.rule"); if (tr) toggle(tr); });
   tb.addEventListener("keydown", (e) => { const tr = e.target.closest("tr.rule"); if (tr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); toggle(tr); } });
