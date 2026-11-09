@@ -2,7 +2,7 @@
 calculo.py - Calcula status de cumprimento e folga de cada regra (src/regras.py) e gera data/painel.json.
 
 Uso:
-    python src/calculo.py                       # avalia de 01/01/2024 até hoje
+    python src/calculo.py                       # avalia de 01/10/2017 até hoje
     python src/calculo.py --inicio 2026-10-01 --fim 2026-10-31
     python src/calculo.py --meses-horarios 36   # quantos meses de dado horário do ONS baixar (padrão 36)
 
@@ -475,13 +475,17 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
             return out
         ini = d.replace(month=1, day=1)
         vol = sum(max(serie.get(x.isoformat(), 0.0), 0.0) for x in dias(ini, d)) * 86400 / 1e6  # valores negativos = sentido inverso
+        vol = round(vol, 2)  # resolução de 0,01 hm³: diferenças menores estão abaixo da precisão do dado da Sabesp
         par = PARAMETROS[regra["param"]]
-        lim = par.get("por_ano", {}).get(str(d.year), None) if "por_ano" in par else par["valor"]
+        # limite do ano: comunicado cadastrado em por_ano; sem comunicado, vale o limite base da resolução
+        lim = par.get("por_ano", {}).get(str(d.year), par.get("base")) if "por_ano" in par else par["valor"]
         out["v"], out["lim"], out["obs"] = vol, lim, par.get("fonte_por_ano", {}).get(str(d.year), par["fonte"])
         if lim is None:
             out["st"], out["obs"] = PP, f"limite anual de {d.year} não informado (PARAMETROS['{regra['param']}']['por_ano'])"
             return out
         out["st"], out["folga"], out["pct"] = classificar(vol, lim, "max", None)
+        if out["st"] == NAO and str(d.year) not in par.get("por_ano", {}):
+            out["obs"] += "; acima do limite base: verificar se houve comunicado de volume suplementar no ano"
         return em_curso(out, d, "ano")  # avaliado no fechamento do ano (31/12)
 
     if t == "fds":

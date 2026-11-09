@@ -55,7 +55,7 @@ data/manual/historico/     série manual de Santa Inês usada até out/2026 (sub
 
 Requer Python 3.10 ou superior.
 
-Período: o painel cobre desde 01/10/2017 (início do histórico de faixas nos boletins do Cantareira). Antes da entrada em vigor de cada resolução (`VIGENCIA` em `src/regras.py`, conforme o texto oficial), a regra aparece como "Não se aplica". As Res. 1.382/2015 e 2.081/2017 entram em vigor após comunicado da ANA; até a data ser conferida, são avaliadas desde 01/01/2024 (`VIGENCIA_A_CONFERIR`). Coleta, cálculo e publicação usam apenas a biblioteca padrão.
+Período: o painel cobre desde 01/10/2017 (início do histórico de faixas nos boletins do Cantareira). Antes da entrada em vigor de cada resolução (`VIGENCIA` em `src/regras.py`, conforme o texto oficial), a regra aparece como "Não se aplica". As Res. 1.382/2015 e 2.081/2017 entram em vigor após comunicado da ANA: 01/12/2016 (Ofício Circular nº 48/2016/AA-ANA) e 01/05/2019 (Ofício Circular nº 1/2019/AA-CD-ANA), respectivamente. Coleta, cálculo e publicação usam apenas a biblioteca padrão.
 
 ```bash
 python src/powerbi_faixas_soe.py data/powerbi

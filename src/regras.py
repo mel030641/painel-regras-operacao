@@ -49,12 +49,12 @@ PARAMETROS = {
     "outorga_PREMBO": {"valor": 972.0, "fonte": "Outorga (planilha de auditoria SOE, out/2026)"},
     "outorga_PRITUM": {"valor": 2928.0, "fonte": "Outorga (planilha de auditoria SOE, out/2026)"},
     "outorga_GRMMOR": {"valor": 1188.64, "fonte": "Outorga ANA nº 2.704/2024, art. 1º, IX: vazão máxima turbinada de M. Mascarenhas de Moraes (efeitos desde 01/10/2024)"},
-    "vol_anual_jaguari": {"valor": 268.28, "por_ano": {"2021": 202.0, "2024": 162.0, "2025": 186.7, "2026": 268.28},
+    "vol_anual_jaguari": {"valor": 268.28, "base": 162.0, "por_ano": {"2021": 202.0, "2024": 162.0, "2025": 186.7, "2026": 268.28},
                           "fonte_por_ano": {"2021": "Comunicado Conjunto ANA/DAEE/IGAM/INEA de 2021 (transposição excepcional até 31/12/2021), item I.b: até 202 hm³ em 2021",
                                             "2024": "Res. ANA 1.931/2017, art. 1º, III (sem comunicado em 2024, confirmado pela SOE em 04/11/2026)",
                                             "2025": "Comunicado Conjunto ANA/SP-Águas/IGAM/INEA de 2025, item I.a (162 + 24,7 hm³ suplementares, até 31/12/2025)",
                                             "2026": "Comunicado Conjunto nº 3/2026 (planilha de auditoria SOE)"},
-                          "fonte": "Res. ANA 1.931/2017, art. 1º, III: 162 hm³, salvo comunicado"},
+                          "fonte": "Res. ANA 1.931/2017, art. 1º, III: limite base de 162 hm³ (sem comunicado cadastrado para o ano)"},
 }
 
 # Início de vigência de cada resolução (texto oficial em normas/textos). Antes dessas datas a regra é
@@ -69,13 +69,14 @@ VIGENCIA = {
     "Res. ANA 132/2022": "2023-01-01",             # art. 20
     "Res. ANA 193/2024": "2024-12-02",             # art. 22
     "Res. ANA 194/2024": "2024-12-02",             # art. 22
+    # Resoluções que entram em vigor "após a emissão de comunicado pela ANA":
+    "Res. Conj. ANA/DAEE/IGAM/INEA 1.382/2015": "2016-12-01",  # art. 7º; Ofício Circular nº 48/2016/AA-ANA, de 30/11/2016
+    "Res. ANA 2.081/2017": "2019-05-01",                       # art. 22; Ofício Circular nº 1/2019/AA-CD-ANA, de 30/04/2019
 }
 
-# Resoluções que entram em vigor "após a emissão de comunicado pela ANA", sem a data do comunicado
-# registrada aqui. Até a data ser conferida, a avaliação começa na data indicada (início original do painel).
+# Resoluções cuja data de entrada em vigor ainda não foi conferida no comunicado da ANA.
+# Até a data ser conferida, a avaliação começa na data indicada.
 VIGENCIA_A_CONFERIR = {
-    "Res. Conj. ANA/DAEE/IGAM/INEA 1.382/2015": "2024-01-01",  # art. 7º: vigor após comunicado da ANA
-    "Res. ANA 2.081/2017": "2024-01-01",                       # art. 22: vigor após comunicado da ANA
 }
 
 R = []  # lista de regras
