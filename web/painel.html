@@ -325,10 +325,9 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
     <div class="sec-head"><h2 id="h-docs">Documentos</h2><p>Manual e planilhas gerados a cada atualização do painel, com os mesmos dados das outras abas (histórico completo, sem os filtros da tela).</p></div>
     <div class="docs">
       <a class="doc" href="manual.html" target="_blank" rel="noopener"><span class="tipo">Página</span><b>Manual do usuário</b><span>Como ler o painel: abas, filtros, situações, janelas em curso, faixas, fontes e limitações.</span></a>
-      <a class="doc" href="docs/acompanhamento_regras.xlsx" download><span class="tipo">Excel</span><b>Planilha de acompanhamento</b><span>Situação atual e conformidade de cada regra (ano, 12 meses e histórico), contagem mensal e lista de ocorrências.</span></a>
+      <a class="doc" href="docs/acompanhamento_regras.xlsx" download><span class="tipo">Excel</span><b>Extrato de acompanhamento</b><span>Situação atual e conformidade de cada regra (ano, 12 meses e histórico), contagem mensal e lista de ocorrências.</span></a>
       <a class="doc" href="docs/historico_faixas.xlsx" download><span class="tipo">Excel</span><b>Histórico das faixas operativas</b><span>Faixas publicadas nos boletins diários da ANA e no Power BI da SOE, por período de vigência, com o link do boletim.</span></a>
       <a class="doc" href="docs/indicadores_ASREG.xlsx" download><span class="tipo">Excel</span><b>Indicadores ASREG</b><span>Planilha de indicadores das regras de operação (formato ASREG) com a situação e a conformidade apuradas pelo painel.</span></a>
-      <a class="doc" href="painel.json" download><span class="tipo">JSON</span><b>Dados do painel</b><span>Série diária completa de todas as regras (valor, limite, folga, situação e faixa), para uso em outras ferramentas.</span></a>
     </div>
     <p class="muted" id="docs-gerado" style="font-size:.8rem;margin-top:10px"></p>
   </section>
@@ -655,7 +654,7 @@ function renderOc(regras) {
     const l = limNum(s.lim); let dv = "—";
     if (typeof s.v === "number" && l && l.length === 1 && l[0]) dv = nf((s.v - l[0]) / l[0] * 100, 1) + "%";
     return `<tr><td class="num">${df(s.d)}</td><td>${esc(r.sistema)}</td><td><b>${esc(r.ponto)}</b></td><td class="norma">${esc(r.resolucao)}</td><td class="muted">${esc(r.descricao)}</td><td class="muted">${esc(paramDia(r, s))}</td><td class="n">${comU(s.v, r)}</td><td class="n">${comU(s.lim, r)}</td><td class="n">${dv}</td><td>${pill(s.st, s)}</td></tr>`;
-  }).join("") + (oc.length > 400 ? `<tr><td colspan="10" class="empty">Mostrando as 400 ocorrências mais recentes de ${oc.length.toLocaleString("pt-BR")}. Reduza o período ou use a planilha de acompanhamento (aba Documentos), que traz todas.</td></tr>` : "") || `<tr><td colspan="10" class="empty">Nenhuma ocorrência no período e filtros selecionados.</td></tr>`;
+  }).join("") + (oc.length > 400 ? `<tr><td colspan="10" class="empty">Mostrando as 400 ocorrências mais recentes de ${oc.length.toLocaleString("pt-BR")}. Reduza o período ou use o extrato de acompanhamento (aba Documentos), que traz todas.</td></tr>` : "") || `<tr><td colspan="10" class="empty">Nenhuma ocorrência no período e filtros selecionados.</td></tr>`;
 }
 
 function renderFaixas() {
