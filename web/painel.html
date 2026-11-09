@@ -232,7 +232,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
     <div class="brand">
       <span class="eyebrow">ANA · Superintendência de Operações e Eventos Críticos</span>
       <h1>Monitoramento das Regras de Operação de Reservatórios</h1>
-      <p>Cumprimento das resoluções e marcos regulatórios dos sistemas hídricos, apurado diariamente com dados do ONS, do SAR/ANA e do SAISP, e com as faixas operativas publicadas nos painéis da SOE.</p>
+      <p>Cumprimento das resoluções e marcos regulatórios dos sistemas hídricos, apurado diariamente com dados do ONS, do SAR/ANA, do SAISP e da Sabesp, e com as faixas operativas publicadas nos boletins diários da ANA e nos painéis da SOE.</p>
     </div>
     <div class="meta">
       <div>Dados até<b id="m-dados">—</b></div>
@@ -254,7 +254,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
       <option value="Atende">Último: Atende</option><option value="Tolerância">Último: Tolerância</option><option value="Não atende">Último: Não atende</option>
       <option value="Sem dado">Último: Sem dado</option><option value="Em curso">Último: Em curso</option><option value="Não se aplica">Último: Não se aplica</option><option value="Parâmetro pendente">Último: Parâmetro pendente</option>
     </select></label>
-    <label class="field"><input type="search" id="f-q" placeholder="Buscar ponto, resolução…" aria-label="Buscar"></label>
+    <label class="field"><input type="search" id="f-q" placeholder="Buscar ponto, resolução, artigo…" aria-label="Buscar"></label>
   </div>
 </nav>
 <nav class="abas-bar" aria-label="Blocos do painel"><div class="wrap">
@@ -428,10 +428,11 @@ function conf(c) { return c.n ? (c["Atende"] + c["Tolerância"]) / c.n * 100 : n
 function corConf(p) { if (p == null) return "var(--sunk)"; if (p >= 99.95) return cssv("--ok"); if (p >= 90) return cssv("--tol"); return cssv("--nao"); }
 
 function filtradas() {
-  const q = state.q.trim().toLowerCase();
+  const sa = (t) => String(t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  const q = sa(state.q.trim());
   return D.regras.filter((r) => {
     if (state.sis && r.sistema !== state.sis) return false;
-    if (q && !(`${r.ponto} ${r.resolucao} ${r.descricao} ${r.sistema} ${r.id}`.toLowerCase().includes(q))) return false;
+    if (q && !sa(`${r.ponto} ${r.resolucao} ${r.artigos || ""} ${r.descricao} ${r.sistema} ${r.id}`).includes(q)) return false;
     const per = noPeriodo(r);
     if (state.pend && !pendente(r, per)) return false;
     if (state.st === "viol") { const c = contar(per); if (!c["Não atende"] && !c["Tolerância"]) return false; }
@@ -518,7 +519,7 @@ function render() {
   }
   const p = conf(tot);
   $("#icg").innerHTML = p == null ? "—" : `${nf(p, 1)}<small>%</small>`;
-  $("#icg-lbl").textContent = p == null ? "Nenhuma avaliação no período." : `${tot.n.toLocaleString("pt-BR")} avaliações diárias · ${tot["Não atende"]} em “Não atende”, ${tot["Tolerância"]} em “Tolerância”`;
+  $("#icg-lbl").textContent = p == null ? "Nenhuma avaliação no período." : `${tot.n.toLocaleString("pt-BR")} avaliações · ${tot["Não atende"].toLocaleString("pt-BR")} em “Não atende”, ${tot["Tolerância"].toLocaleString("pt-BR")} em “Tolerância”`;
   $("#icg-bar").innerHTML = AVAL.map((k) => tot[k] ? `<span style="flex:${tot[k]};background:var(${ST[k].v})" title="${k}: ${tot[k]}"></span>` : "").join("");
   $("#icg-leg").innerHTML = AVAL.map((k) => `<span><i style="background:var(${ST[k].v})"></i>${k} ${tot[k].toLocaleString("pt-BR")}</span>`).join("");
   $("#t-escalas tbody").innerHTML = Object.keys(ESCALAS).filter((e) => porEsc[e]).map((e) => {
@@ -614,9 +615,9 @@ function colunasHeat() {
   if (dias > 45) { // mensal
     let m = ini.slice(0, 7);
     while (m <= fim.slice(0, 7)) { cols.push({ k: m, rot: `${MES[+m.slice(5) - 1]}/${m.slice(2, 4)}`, a: m + "-01", b: m + "-31" }); const d = new Date(m + "-15T12:00:00Z"); d.setUTCMonth(d.getUTCMonth() + 1); m = d.toISOString().slice(0, 7); }
-  } else { // semanal (segunda a domingo), ou diário até 10 dias
+  } else { // semanal (semana operativa, sábado a sexta), ou diário até 10 dias
     if (dias <= 10) { for (let d = ini; d <= fim; d = addDias(d, 1)) cols.push({ k: d, rot: df(d).slice(0, 5), a: d, b: d }); }
-    else { const w = new Date(ini + "T12:00:00Z"); let d = addDias(ini, -((w.getUTCDay() + 6) % 7)); for (; d <= fim; d = addDias(d, 7)) cols.push({ k: d, rot: "sem. " + df(d < ini ? ini : d).slice(0, 5), a: d < ini ? ini : d, b: addDias(d, 6) > fim ? fim : addDias(d, 6) }); }
+    else { const w = new Date(ini + "T12:00:00Z"); let d = addDias(ini, -((w.getUTCDay() + 1) % 7)); for (; d <= fim; d = addDias(d, 7)) cols.push({ k: d, rot: "sem. " + df(d < ini ? ini : d).slice(0, 5), a: d < ini ? ini : d, b: addDias(d, 6) > fim ? fim : addDias(d, 6) }); }
   }
   return cols;
 }
@@ -625,7 +626,7 @@ const HEAT_VAZIO = { "Não se aplica": "na", "Parâmetro pendente": "pp", "Em cu
 function renderHeat(regras) {
   const cols = colunasHeat();
   const dias = (Date.parse(fim) - Date.parse(ini)) / 864e5 + 1;
-  $("#heat-desc").textContent = dias > 45 ? "Conformidade mensal por regra no período selecionado (meses parciais contam só os dias do período)." : dias > 10 ? "Conformidade semanal por regra no período selecionado (semanas de segunda a domingo)." : "Resultado diário por regra no período selecionado.";
+  $("#heat-desc").textContent = dias > 45 ? "Conformidade mensal por regra no período selecionado (meses parciais contam só os dias do período)." : dias > 10 ? "Conformidade semanal por regra no período selecionado (semana operativa, de sábado a sexta)." : "Resultado diário por regra no período selecionado.";
   $("#t-heat thead").innerHTML = `<tr><th style="text-align:left">Ponto / regra</th>${cols.map((c) => `<th>${c.rot}</th>`).join("")}</tr>`;
   const ok = cssv("--ok"), tol = cssv("--tol"), nao = cssv("--nao");
   $("#t-heat tbody").innerHTML = regras.map((r) => {
@@ -654,7 +655,7 @@ function renderOc(regras) {
     const l = limNum(s.lim); let dv = "—";
     if (typeof s.v === "number" && l && l.length === 1 && l[0]) dv = nf((s.v - l[0]) / l[0] * 100, 1) + "%";
     return `<tr><td class="num">${df(s.d)}</td><td>${esc(r.sistema)}</td><td><b>${esc(r.ponto)}</b></td><td class="norma">${esc(r.resolucao)}</td><td class="muted">${esc(r.descricao)}</td><td class="muted">${esc(paramDia(r, s))}</td><td class="n">${comU(s.v, r)}</td><td class="n">${comU(s.lim, r)}</td><td class="n">${dv}</td><td>${pill(s.st, s)}</td></tr>`;
-  }).join("") || `<tr><td colspan="10" class="empty">Nenhuma ocorrência no período e filtros selecionados.</td></tr>`;
+  }).join("") + (oc.length > 400 ? `<tr><td colspan="10" class="empty">Mostrando as 400 ocorrências mais recentes de ${oc.length.toLocaleString("pt-BR")}. Reduza o período ou use a planilha de acompanhamento (aba Documentos), que traz todas.</td></tr>` : "") || `<tr><td colspan="10" class="empty">Nenhuma ocorrência no período e filtros selecionados.</td></tr>`;
 }
 
 function renderFaixas() {
@@ -673,7 +674,7 @@ function renderFaixas() {
 
 function ligar() {
   document.querySelectorAll("#presets button").forEach((b) => b.addEventListener("click", () => { state.preset = b.dataset.p; aplicarPreset(state.preset); salvar(); render(); }));
-  const custom = () => { const a = $("#f-ini").value, b = $("#f-fim").value; if (!a || !b) return; ini = a <= b ? a : b; fim = a <= b ? b : a; state.preset = ""; document.querySelectorAll("#presets button").forEach((x) => x.setAttribute("aria-pressed", "false")); render(); };
+  const custom = () => { const a = $("#f-ini").value, b = $("#f-fim").value; if (!a || !b) return; ini = a <= b ? a : b; fim = a <= b ? b : a; $("#f-ini").value = ini; $("#f-fim").value = fim; state.preset = ""; document.querySelectorAll("#presets button").forEach((x) => x.setAttribute("aria-pressed", "false")); render(); };
   $("#f-ini").addEventListener("change", custom); $("#f-fim").addEventListener("change", custom);
   $("#f-sis").addEventListener("change", (e) => { state.sis = e.target.value; salvar(); render(); });
   $("#f-st").addEventListener("change", (e) => { state.st = e.target.value; render(); });

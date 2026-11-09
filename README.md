@@ -94,9 +94,9 @@ python src/validar.py "Planilha de Auditoria Multitemporal.xlsx" data/painel.jso
    - **Workflow:** clique em **Add file > Create new file**, digite o nome `.github/workflows/painel.yml` (as barras criam as pastas), cole o conteúdo de `workflow-painel.yml` e clique em **Commit changes**. O arquivo de workflow precisa ficar exatamente nesse caminho para o GitHub reconhecê-lo.
 4. **Ativar o GitHub Pages.** Em **Settings > Pages**, em **Build and deployment > Source**, escolha **GitHub Actions**.
 5. **Permitir que o workflow grave o histórico de faixas.** Em **Settings > Actions > General > Workflow permissions**, marque **Read and write permissions** e salve.
-6. **Executar pela primeira vez.** Em **Actions**, selecione **Atualizar painel** e clique em **Run workflow**. Ao final (cerca de 10 minutos), o endereço do painel aparece no resumo da execução, no formato `https://<usuario>.github.io/painel-regras-operacao/`.
+6. **Executar pela primeira vez.** Em **Actions**, selecione **Atualizar painel** e clique em **Run workflow**. Ao final (a 1ª execução leva cerca de 1 hora, pois baixa o histórico desde out/2017; as seguintes, poucos minutos), o endereço do painel aparece no resumo da execução, no formato `https://<usuario>.github.io/painel-regras-operacao/`.
 
-Depois disso, o painel é atualizado todos os dias às 10h30 (horário de Brasília).
+Depois disso, o painel é atualizado todos os dias às 11h e às 17h (horário de Brasília), por disparo externo do cron-job.org (`workflow_dispatch`).
 
 ### Limitações conhecidas
 
