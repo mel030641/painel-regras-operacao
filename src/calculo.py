@@ -300,10 +300,10 @@ Faixas.estagios = _historico_estagios
 # ============================================================================ avaliação
 def classificar(valor, limite, sentido: str, tol):
     """sentido 'max' (valor ≤ limite) ou 'min' (valor ≥ limite). Retorna (status, folga, folga_pct)."""
+    if limite is None:  # a norma não fixa limite nesta faixa/período: não há obrigação a apurar (decisão SOE, 09/11/2026)
+        return NA, None, None
     if valor is None:
         return SD, None, None
-    if limite is None:
-        return OK, None, None
     folga = (limite - valor) if sentido == "max" else (valor - limite)
     pct = folga / limite * 100 if limite else None
     if folga >= -1e-9:
@@ -380,7 +380,8 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
             out["ag"] = AGREG_JANELA.get(janela)  # agregação aplicada neste dia difere da padrão da regra
         out["st"], out["folga"], out["pct"] = classificar(v, lim, "max", regra["tol"] if regra["niveis"] == 3 else None)
         if lim is None:
-            out["obs"] = "sem limite na faixa"
+            out["obs"] = "sem limite na faixa (a norma não restringe)"
+            return out
         if fim_janela(d, janela) > d and janela != "dia":
             out["obs"] = ((out["obs"] or "") + "; janela em curso").strip("; ")
         return em_curso(out, d, janela)
