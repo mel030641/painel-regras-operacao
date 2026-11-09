@@ -113,6 +113,8 @@ code { font-family: var(--f-mono); font-size: .85em; background: var(--sunk); pa
   <li><b>Sistema:</b> restringe a um sistema hídrico.</li>
   <li><b>Situação:</b> mostra só as regras cuja situação no último dia avaliado do período é a escolhida.</li>
   <li><b>Busca:</b> procura por ponto de controle, resolução, artigo ou texto da regra.</li>
+  <li><b>Texto da norma</b> (aba Regras): ao passar o mouse sobre a coluna Norma, aparece o texto dos artigos, parágrafos, incisos e alíneas citados na regra. O mesmo texto fica em "Texto da norma", no detalhe da regra, que também funciona em celular e tablet. É uma transcrição para consulta: não substitui o texto publicado no DOU e não incorpora alterações posteriores.</li>
+  <li><b>Só regras com ato complementar</b> (aba Regras): mostra só as regras cujo parâmetro depende de um ato posterior à resolução (curvas de segurança do ciclo, comunicados da ANA, nível operacional do DAEE, vazão outorgada). Essas regras levam o selo <i>ato complementar</i> ao lado do nome do ponto; passe o cursor sobre o selo, ou abra a regra, para ver qual ato é necessário. O selo é provisório, para a equipe definir como acompanhar esses atos.</li>
   <li><b>Só pendências</b> (aba Regras): mostra só as regras com alguma avaliação em Não atende ou Tolerância no período, ou com janela em curso cuja média parcial já passa do limite. A célula Situação informa quantas avaliações pendentes houve e a data da última. Ao abrir a regra, a tabela de detalhe lista só esses dias; desmarque o filtro para ver todos.</li>
 </ul>
 
@@ -133,13 +135,13 @@ code { font-family: var(--f-mono); font-size: .85em; background: var(--sunk); pa
   <thead><tr><th>Situação</th><th>Significado</th></tr></thead>
   <tbody>
     <tr><td><span class="pill ok">Atende</span></td><td>O valor apurado respeita o limite da regra.</td></tr>
-    <tr><td><span class="pill tol">Tolerância</span></td><td>O valor passou do limite, mas está dentro da tolerância prevista na norma (por exemplo, 5% nas Res. 132/2022, 193/2024, 194/2024, 2.081/2017 e 70/2021). Só existe onde a resolução prevê tolerância.</td></tr>
+    <tr><td><span class="pill tol">Tolerância</span></td><td>O valor passou do limite, mas está dentro da tolerância prevista na norma (por exemplo, 5% nas Res. 132/2022, 193/2024, 194/2024, 2.081/2017 e 70/2021, e no bombeamento ao Guandu desde 20/08/2021). Só existe onde a resolução prevê tolerância.</td></tr>
     <tr><td><span class="pill nao">Não atende</span></td><td>O valor passou do limite e da tolerância, quando houver.</td></tr>
     <tr><td><span class="pill ec">Em curso</span></td><td>Regra de janela (semana, mês ou ano) cuja janela atual ainda não fechou. Mostra a média parcial.</td></tr>
     <tr><td><span class="pill na">Parcial</span></td><td>Dia de uma janela já encerrada, antes do fechamento. O resultado da janela aparece no dia de fechamento.</td></tr>
     <tr><td><span class="pill na">Não se aplica</span></td><td>A regra não vale naquele dia: fora do período, da faixa ou da condição de aplicação, faixa em que a norma não fixa limite (por exemplo, faixa Normal nas Res. 132/2022, 193/2024 e 194/2024), ou antes da entrada em vigor da norma. Não entra no índice de conformidade.</td></tr>
     <tr><td><span class="pill na">Sem dado</span></td><td>A fonte não publicou o dado do dia.</td></tr>
-    <tr><td><span class="pill na">Parâmetro pendente</span></td><td>Falta um valor que depende de ato da ANA, comunicado ou outorga (por exemplo, teto mensal ou volume anual).</td></tr>
+    <tr><td><span class="pill na">Parâmetro pendente</span></td><td>O limite depende de um ato que não está cadastrado no painel (comunicado, recomendação ou definição mensal de outro órgão). A observação do dia diz qual ato ou informação falta. Difere de “Sem dado”, que indica falta da medição.</td></tr>
   </tbody></table></div>
 
 <h2 id="janelas">6. Regras de janela</h2>
@@ -176,7 +178,8 @@ code { font-family: var(--f-mono); font-size: .85em; background: var(--sunk); pa
     <tr><td>Res. ANA 70/2021</td><td>01/12/2021</td><td>art. 18</td></tr>
     <tr><td>Res. ANA 132/2022</td><td>01/01/2023</td><td>art. 20</td></tr>
     <tr><td>Res. ANA 193/2024 e 194/2024</td><td>02/12/2024</td><td>art. 22</td></tr>
-    <tr><td>Res. Conj. 1.382/2015 e Res. ANA 2.081/2017</td><td>01/01/2024 (provisório)</td><td>entram em vigor após comunicado da ANA; a data do comunicado ainda será conferida</td></tr>
+    <tr><td>Res. Conj. 1.382/2015</td><td>01/12/2016</td><td>art. 7º: vigor após comunicado da ANA (Ofício Circular nº 48/2016/AA-ANA, de 30/11/2016)</td></tr>
+    <tr><td>Res. ANA 2.081/2017</td><td>01/05/2019</td><td>art. 22: vigor após comunicado da ANA (Ofício Circular nº 1/2019/AA-CD-ANA, de 30/04/2019)</td></tr>
   </tbody></table></div>
 
 <h2 id="documentos">10. Documentos para download</h2>
@@ -190,7 +193,22 @@ code { font-family: var(--f-mono); font-size: .85em; background: var(--sunk); pa
 <h2 id="limitacoes">11. Limitações</h2>
 <ul>
   <li>O painel apura a regra com o dado disponível nas fontes públicas, que pode ser revisto depois. Divergências com boletins e informes dos agentes devem ser conferidas na fonte.</li>
-  <li>Regras que dependem de ato posterior (tetos mensais da Res. 2.081/2017, volume anual da Res. 1.931/2017 em anos sem comunicado registrado) ficam como “Parâmetro pendente” até o valor ser cadastrado.</li>
+  <li>Regras que dependem de ato que não está cadastrado ficam como “Parâmetro pendente” até o valor ser informado. A tabela abaixo resume os casos e os atos já cadastrados.</li>
+</ul>
+<table>
+  <thead><tr><th>Regra</th><th>Ato ou informação usada</th><th>O que ainda falta (Parâmetro pendente)</th></tr></thead>
+  <tbody>
+    <tr><td>Res. ANA 2.081/2017: máxima mensal de Três Marias e Xingó na faixa de Atenção</td><td>Curvas de segurança de cada ciclo, de 2018/2019 a 2025/2026, com a não objeção da ANA (Ofícios nº 20/2019, 19/2020, 17/2021, 9/2022, 12/2023, 87/2024 e 47/2025/SOE-ANA). O teto é o maior patamar cuja curva fica abaixo do VU do dia anterior ao 1º dia útil do mês, nunca abaixo da mínima da faixa (150 e 800 m³/s). Arquivo <code>config/curvas_seguranca_sf.json</code>.</td><td>Ciclo 2026/2027: manifestação da ANA sobre a NT ONS DOP 0130/2026 não localizada. Ciclo 2018/2019: curvas apresentadas em 22/04/2019, sem ofício de não objeção localizado (usadas porque vigoraram de maio a novembro de 2019).</td></tr>
+    <tr><td>Res. ANA 2.081/2017: Sobradinho na faixa de Atenção</td><td>No período seco, limite legal de 1.000 m³/s.</td><td>A curva de segurança fixa o máximo de Xingó; não há ato que converta esse valor em limite de Sobradinho. A observação mostra o máximo de Xingó como referência.</td></tr>
+    <tr><td>Res. ANA 2.081/2017: faixa de Restrição (Três Marias e Sobradinho)</td><td>Xingó: 900 m³/s (art. 9º, § 4º).</td><td>Vazões fixadas pelo ONS a partir de recomendação da ANA (arts. 5º, § 3º, e 9º, § 4º). Informar em <code>config/parametros_mensais.json</code>.</td></tr>
+    <tr><td>Res. Conj. 614/2010: nível máximo operacional</td><td>Cachoeira 820,00 m, Atibainha 786,00 m e Paiva Castro 745,00 m, de outubro a abril (cotas máximas recomendadas no Anexo 1, item 3).</td><td>Nível máximo operacional definido mensalmente pelo DAEE (art. 1º, § 2º, e art. 3º): falta em maio e junho e, em Jaguari-Jacareí, em todo o período. Informar em <code>config/parametros_mensais.json</code>, chave <code>na_op_&lt;código SAR&gt;|aaaa-mm</code>.</td></tr>
+    <tr><td>Res. Conj. 614/2010: vazão de restrição de Paiva Castro</td><td>1 m³/s de julho a novembro.</td><td>De dezembro a junho, o valor de 1 m³/s valia até fevereiro de 2011; o valor posterior ao desassoreamento do rio Juqueri (Anexo 1, item 4, OBS 3) não foi localizado.</td></tr>
+    <tr><td>Res. Conj. 1.382/2015: estágios de deplecionamento</td><td>Revisões temporárias do 3º estágio de Funil para 20% (art. 1º, § 2º): 22/09 a 30/11/2021 (Ofício Circular nº 2/2021/JG/ANA), 01/12 a 31/12/2021 (Ofício Circular nº 5/2021/JG/ANA) e 20/01 a 31/03/2026 (Ofício Circular nº 1/2026/DP-ANA-SEI).</td><td>—</td></tr>
+    <tr><td>Res. Conj. 1.382/2015: bombeamento ao Guandu</td><td>Tolerância de 5% abaixo de 119 m³/s desde 20/08/2021 (Ofício Circular nº 1/2021/JG/ANA, aprovação do GAOPS na 52ª reunião). Antes dessa data, a regra tem dois níveis.</td><td>—</td></tr>
+    <tr><td>Res. ANA 1.931/2017: volume anual do Jaguari</td><td>Limite base de 162 hm³ e volumes dos comunicados de 2021, 2024, 2025 e 2026.</td><td>Ano acima de 162 hm³ sem comunicado: a observação pede a verificação de comunicado de volume suplementar.</td></tr>
+  </tbody>
+</table>
+<ul>
   <li>Os servidores que executam o cálculo ficam fora do Brasil; o SAR e o SAISP às vezes recusam ou demoram a responder. Nesses casos a regra aparece como “Sem dado”.</li>
   <li>O painel é um instrumento de acompanhamento. A caracterização de descumprimento para fins de fiscalização depende de análise técnica da SOE.</li>
 </ul>

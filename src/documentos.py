@@ -91,7 +91,7 @@ def acompanhamento(D, destino: Path):
         "Regras: situação no último dia avaliado, conformidade no ano corrente, nos últimos 12 meses e em todo o histórico.",
         "Conformidade = (Atende + Tolerância) ÷ avaliações com resultado (Atende + Tolerância + Não atende), mesmo critério do painel. Dias Em curso, Sem dado, Não se aplica e Parâmetro pendente não entram na conta.",
         "Mensal: contagem de avaliações por regra e mês. Ocorrências: cada avaliação em Não atende ou Tolerância, com valor, limite e folga.",
-        "Antes da entrada em vigor de cada resolução a regra é 'Não se aplica'. As Res. 1.382/2015 e 2.081/2017 (vigor após comunicado da ANA) são avaliadas desde 01/01/2024 até a data ser conferida.",
+        "Antes da entrada em vigor de cada resolução a regra é 'Não se aplica'. As Res. 1.382/2015 e 2.081/2017 entram em vigor após comunicado da ANA: 01/12/2016 e 01/05/2019, respectivamente.",
     ])
     linhas, mensal, ocorr = [], [], []
     for r in D["regras"]:

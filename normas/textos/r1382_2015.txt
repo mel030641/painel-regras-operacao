@@ -1,0 +1,76 @@
+Info
+RESOLUÇÃO CONJUNTA ANA/DAEE/IGAM/INEA Nº 1.382, DE 7 DE DEZEMBRO DE 2015
+Dispõe sobre as condições de operação a serem observadas para o Sistema Hidráulico Paraíba do Sul, que compreende tanto os reservatórios localizados na bacia quanto as estruturas de transposição das águas do rio Paraíba do Sul para o Sistema Guandu.
+O DIRETOR-PRESIDENTE DA AGÊNCIA NACIONAL DE ÁGUAS - ANA, no uso da atribuição que lhe confere o art. 95, incisos III e XVII, do Regimento Interno, aprovado pela Resolução nº 2020, de 15 de dezembro de 2014, torna público que a DIRETORIA COLEGIADA, em sua 594ª Reunião Ordinária, realizada em 07 de dezembro de 2015, o SUPERINTENDENTE DO DEPARTAMENTO DE ÁGUAS E ENERGIA ELÉTRICA - DAEE, do Estado de São Paulo, no uso das atribuições que lhe confere o art. 11 do Regulamento, aprovado pelo Decreto Estadual nº 52,636, de 3 de fevereiro de 1971, a DIRETORA-GERAL DO INSTITUTO MINEIRO DE GESTÃO DAS ÁGUAS IGAM, do Estado de Minas Gerais, no uso das atribuições que lhe confere o art. 9º do Regulamento, aprovado pelo Decreto Estadual nº 46.636, de 28 de outubro de 2014, e o PRESIDENTE DO INSTITUTO ESTADUAL DO AMBIENTE INEA, do Estado do Rio de Janeiro, no uso das atribuições que lhe confere o art. 14 do Regulamento, aprovado pelo Decreto Estadual nº 41.628 de 12 de janeiro de 2009, com base no Processo ANA nº 02501.000897/2003-15,
+considerando o disposto no art. 4º, inciso XII e § 3º, da Lei nº 9.984, de 17 de julho de 2000, que estabelece caber à ANA definir e fiscalizar as condições de operação de reservatórios, por agentes públicos e privados, visando a garantir o uso múltiplo dos recursos hídricos, conforme estabelecido nos planos de recursos hídricos das respectivas bacias hidrográficas, e que no caso de reservatórios de aproveitamentos hidrelétricos a definição será efetuada em articulação com o Operador Nacional do Sistema Elétrico – ONS;
+considerando a importância da bacia do rio Paraíba do Sul para o abastecimento de várias cidades do seu vale e, também, para as Regiões Metropolitanas do Rio de Janeiro, de São Paulo e de Campinas;
+considerando que o compartilhamento dos recursos hídricos da bacia do rio Paraíba do Sul deve se inspirar nos princípios do aproveitamento múltiplo, racional, harmônico e integrado, visando sempre ao benefício de todas as partes;
+considerando que os volumes armazenados abaixo dos níveis mínimos operacionais dos reservatórios do Sistema Hidráulico Paraíba do Sul representam uma reserva estratégica para uso em situações de escassez pelos Estados de Minas Gerais, Rio de Janeiro e São Paulo;
+considerando que as condições de operação para os reservatórios do Sistema Hidráulico Paraíba do Sul devem garantir o uso múltiplo dos recursos hídricos, resolvem:
+Art. 1º Estabelecer as seguintes condições a serem observadas pelo ONS para a operação do Sistema Hidráulico Paraíba do Sul, que compreende tanto os reservatórios localizados na bacia quanto as estruturas de transposição das águas do rio Paraíba do Sul para o Sistema Guandu:
+I -  a vazão a jusante dos aproveitamentos deve respeitar os seguintes limites mínimos:
+a) Paraibuna: 10 m³/s (instantânea);
+b) Santa Branca: 30 m³/s (instantânea);
+c) Jaguari: 4 m³/s (instantânea):
+d) Funil: 70 m³/s (instantânea):
+e) Santa Cecilia: 71 m³/s (instantânea);
+f) Bombeada para o rio Guandu em Santa Cecilia: 119 m³/s (média diária); e
+g) Pereira Passos: 120 m/s (instantânea).
+II - será considerada como operação normal para o Sistema Hidráulico Paraíba do Sul aquela cujas vazões instantâneas forem de 71 m³/s (com até 5% de variação acima deste valor) a jusante da barragem de Santa Cecília e de 120 m³/s (com até 2% de variação acima deste valor) a jusante do aproveitamento de Pereira Passos;
+III - somente será permitido o aumento das vazões acima do limite de 71 m³/s (com variação de até 5% acima deste valor) a jusante da barragem de Santa Cecília caso seja verificada ao menos uma das seguintes condições:
+a) ocorrerem vazões incrementais não controladas no trecho entre os aproveitamentos de Funil e Santa Cecília; ou
+b) o reservatório de Funil estiver operando para atender às regras de controle de chela; ou
+c) o Sistema Hidráulico Paraíba do Sul estiver operando acima de 80% do volume útil do reservatório equivalente.
+IV - somente será permitido o aumento das vazões a jusante do aproveitamento de Pereira Passos acima do limite mínimo de 120 m³/s (com variação de até 2% acima deste valor), até o limite de 160 m³/s, quando a barragem de Santa Cecilia estiver liberando para o rio Paraíba do Sul uma vazão de 90 m³/s ou mais e caso seja verificada ao menos uma das seguintes condições:
+a) ocorrerem vazões incrementais não controladas no trecho entre os aproveitamentos de Funil e Santa Cecília; ou
+b) o reservatório de Funil estiver operando para atender às regras de controle de cheia;
+c) o Sistema Hidráulico Paraíba do Sul estiver operando acima de 80% do volume útil do reservatório equivalente.
+V - A operação do Sistema Hidráulico Paraíba do Sul deve respeitar os seguintes limites mínimos percentuais de volume útil dos reservatórios, observadas a ordem e os estágios de deplecionamento indicados:
+Ordem de deplecionamento
+Estágios de deplecionamento (%)
+1º
+2º
+3º
+1ª
+Funil
+30
+30
+30
+2ª
+Santa Branca
+70
+40
+10
+3ª
+Paraibuna
+80
+40
+5
+4ª
+Jaguari
+80
+50
+20
+§ 1º A mudança de estágio de deplecionamento de cada reservatório para o estágio seguinte somente poderá ocorrer quando todos atingirem seus valores mínimos percentuais, permitida uma variação de 5% do valor de referência.
+§ 2º Os limites mínimos de volume útil, a ordem e os estágios de deplecionamento poderão ser revistos pela ANA por meio de comunicado, com anuência dos órgãos gestores estaduais de recursos hídricos de Minas Gerais, Rio de Janeiro e São Paulo, desde que devidamente justificado.
+Art. 2º Para garantir o atendimento das vazões mínimas, estabelecidas no inciso I do Art. 1º, o ONS está autorizado a operar o reservatório de Paraibuna abaixo do nível mínimo operacional normal (694,60m), até o nível que equivale à disponibilização de um volume adicional de 425 milhões de m³, sendo, numa primeira etapa, até o nível que equivale à disponibilização de um volume de 263 milhões de m³.
+Parágrafo único. Para a operação do reservatório de Paraibuna abaixo de seu nível mínimo operacional normal, a Companhia Energética de São Paulo - CESP, na qualidade de concessionário do aproveitamento, deverá providenciar laudo técnico-operacional, e o monitoramento associado a avaliações especificas, de forma a garantir a segurança das estruturas hidráulicas e eletromecânicas, identificar os riscos inerentes à operação de deplecionamento e adotar medidas preventivas e mitigadoras dos eventuais impactos ambientais e econômicos.
+Art. 3º O ONS deverá encaminhar à ANA, anualmente, para avaliação:
+I - estudo contendo atualização da curva de segurança de armazenamento para operação normal do Sistema Hidráulico Paraíba do Sul, que apresenta os volumes mínimos necessários do reservatório equivalente da bacia, para cada mês, visando assegurar as condições de operação das usinas hidrelétricas e o atendimento aos requisitos ambientais e de usos múltiplos da água; e
+II - Relatório de Diretrizes para as Regras de Controle de Cheias - Bacia do Rio Paraíba do Sul.
+Art. 4º O ONS poderá solicitar à ANA operação especial, desde que devidamente justificada.
+Art. 5º Institui-se o Grupo de Assessoramento à Operação do Sistema Hidráulico Paraíba do Sul - GAOPS, com vigência coincidente com a vigência da presente Resolução.
+§ 1º O GAOPS será composto por representantes da ANA, que o coordenará, DAEE, IGAM, INEA, ONS e CEIVAP, nomeados em Portaria específica, a qual poderá definir procedimentos adicionais para o funcionamento do GAOPS.
+§ 2º O GAOPS terá como objetivos realizar o acompanhamento permanente da operação do Sistema Hidráulico Paraíba do Sul, a fim de possibilitar o cumprimento das condições de operação estabelecidas na presente Resolução e analisar e propor soluções alternativas aos órgãos gestores em situações não previstas pelas condições gerais estabelecidas.
+Art. 6º Esta Resolução não dispensa nem substitui a obtenção pelos agentes responsáveis pelos reservatórios de certidões, alvarás ou licenças de qualquer natureza, exigidos pela legislação federal, estadual ou municipal.
+Art. 7º Esta Resolução entrará em vigor após a emissão de comunicado pela ANA, com anuência dos órgãos gestores estaduais de recursos hídricos de Minas Gerais, Rio de Janeiro e São Paulo, e somente poderá ser alterada com a prévia concordância destes.
+Art. 8º Revoga-se a Resolução nº 211, de 26 de maio de 2003, publicada no DOU em 5 de junho de 2003, seção 1, página 42.
+VICENTE ANDREU
+Diretor-Presidente da ANA
+RICARDO DARUIZ BORSARI
+Superintendente do DAEE
+MARIA DE FÁTIMA CHAGAS DIAS COELHO
+Diretora-Geral do IGAM
+MARCUS DE ALMEIDA LIMA
+Presidente do INEA
+Este texto não substitui a versão publicada no DOU 237, Seção 1, Páginas 64 e 65, de 11/12/2015.

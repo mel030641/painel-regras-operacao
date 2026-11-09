@@ -46,7 +46,8 @@ src/publicar.py            monta o site (_site/index.html + painel.json)
 src/validar.py             confronta o cálculo com a planilha de auditoria da SOE
 web/painel.html            interface do painel
 config/faixas.json         faixas publicadas (boletim ANA ou Power BI), por reservatório e período
-config/parametros_mensais.json  tetos mensais fixados por comunicado (Res. 2.081/2017)
+config/parametros_mensais.json  valores mensais fixados por ato (2.081/2017 e 614/2010)
+config/curvas_seguranca_sf.json curvas de segurança de Três Marias e Sobradinho por ciclo (2.081/2017)
 data/manual/historico/     série manual de Santa Inês usada até out/2026 (substituída pela API Sabesp)
 .github/workflows/painel.yml    atualização diária e publicação (cópia em workflow-painel.yml)
 ```
@@ -55,7 +56,7 @@ data/manual/historico/     série manual de Santa Inês usada até out/2026 (sub
 
 Requer Python 3.10 ou superior.
 
-Período: o painel cobre desde 01/10/2017 (início do histórico de faixas nos boletins do Cantareira). Antes da entrada em vigor de cada resolução (`VIGENCIA` em `src/regras.py`, conforme o texto oficial), a regra aparece como "Não se aplica". As Res. 1.382/2015 e 2.081/2017 entram em vigor após comunicado da ANA; até a data ser conferida, são avaliadas desde 01/01/2024 (`VIGENCIA_A_CONFERIR`). Coleta, cálculo e publicação usam apenas a biblioteca padrão.
+Período: o painel cobre desde 01/10/2017 (início do histórico de faixas nos boletins do Cantareira). Antes da entrada em vigor de cada resolução (`VIGENCIA` em `src/regras.py`, conforme o texto oficial), a regra aparece como "Não se aplica". As Res. 1.382/2015 e 2.081/2017 entram em vigor após comunicado da ANA: 01/12/2016 (Ofício Circular nº 48/2016/AA-ANA) e 01/05/2019 (Ofício Circular nº 1/2019/AA-CD-ANA), respectivamente. Coleta, cálculo e publicação usam apenas a biblioteca padrão.
 
 ```bash
 python src/powerbi_faixas_soe.py data/powerbi
@@ -73,15 +74,19 @@ python src/validar.py "Planilha de Auditoria Multitemporal.xlsx" data/painel.jso
 
 ## Status e métrica
 
-- Três níveis (Atende, Tolerância, Não atende) somente onde a resolução prevê tolerância (132/2022, 193/2024, 194/2024, 2.081/2017, 70/2021 e estágios da 1.382/2015, com variação absoluta de 5 p.p. de VU) e no bombeamento ao Guandu (5% de 119 m³/s, critério da SOE); dois níveis nos demais casos.
+- Três níveis (Atende, Tolerância, Não atende) somente onde a resolução prevê tolerância (132/2022, 193/2024, 194/2024, 2.081/2017, 70/2021 e estágios da 1.382/2015, com variação absoluta de 5 p.p. de VU) e no bombeamento ao Guandu (5% de 119 m³/s desde 20/08/2021, Ofício Circular nº 1/2021/JG/ANA); dois níveis nos demais casos.
 - "Não se aplica": regra fora da sua condição de aplicação (período, faixa ou gatilho).
 - "Sem dado": a fonte não publicou o dado do dia.
-- "Parâmetro pendente": falta um valor que depende de ato da ANA ou de outorga.
+- "Parâmetro pendente": o limite depende de ato que não está cadastrado; a observação do dia diz qual ato ou informação falta.
 
 ## Manutenção
 
 - **Faixas**: a cada execução, o workflow lê as faixas nesta ordem: (1) boletim diário oficial da ANA no gov.br (`src/boletins_ana.py`); (2) painéis Power BI da SOE, só para período sem boletim; (3) faixa calculada pela regra da resolução, quando não há publicação. O histórico fica em `config/faixas.json`, e o painel indica a origem de cada faixa. No Paranapanema e no Grande e Paranaíba, o boletim só é aceito a partir de segunda-feira e do dia 4 do mês, respectivamente, porque os boletins do início do período ainda podem trazer a faixa anterior.
-- **Tetos mensais da Res. 2.081/2017** (faixas Atenção e Restrição): registrar em `config/parametros_mensais.json`, chave `"teto_SFSOBR|aaaa-mm"`.
+- **Texto das normas**: os textos das resoluções ficam em `normas/textos/r<número>_<ano>.txt`. `src/textos_normas.py` recorta os dispositivos citados no campo `artigos` de cada regra, e o painel os mostra na coluna Norma e no detalhe. Ao cadastrar uma resolução nova, incluir o texto e conferir o recorte com `python src/textos_normas.py`. Citação ambígua vai em `CORRECOES`.
+- **Regras que dependem de ato complementar**: o dicionário `COMPLEMENTAR` em `src/regras.py` indica, por regra, o ato posterior à resolução de que o parâmetro depende. O painel mostra o selo "ato complementar" e o filtro "Só regras com ato complementar" na aba Regras. Ao cadastrar nova regra nessa condição, incluir a entrada no dicionário.
+- **Curvas de segurança do São Francisco** (Res. 2.081/2017, art. 4º): a cada ciclo (dezembro a novembro), acrescentar as tabelas de Três Marias e de Xingó da NT do ONS em `config/curvas_seguranca_sf.json`, com o ofício de não objeção da ANA em `manifestacao_ana`. Sem esse ofício, o teto fica como Parâmetro pendente.
+- **Valores mensais por ato** (`config/parametros_mensais.json`, chave `"<parâmetro>|aaaa-mm"`): `teto_SFTMAR`, `teto_SFXING` e `teto_SFSOBR` (vazões da faixa de Restrição fixadas pelo ONS a partir de recomendação da ANA; um valor informado prevalece sobre a curva) e `na_op_<código SAR>` (nível máximo operacional mensal do DAEE, Res. 614/2010).
+- **Revisões temporárias dos estágios da 1.382/2015** (art. 1º, § 2º): lista `revisoes` da regra `1382-estagios` em `src/regras.py`.
 - **Santa Inês**: coletada automaticamente da API Mananciais da Sabesp (`https://mananciais.sabesp.com.br/api/v4`, EEAB 36). O valor do dia D é a média de D-1 07h a D 07h. A planilha manual de out/2026 ficou em `data/manual/historico/` só como registro.
 - **Postos PCJ**: continuam no SAISP, com média diária de 00h a 24h (decisão da SOE em 04/11/2026). A API Sabesp também publica esses postos, mas no dia de 07h a 07h, e por isso não é usada para eles.
 - **Rede**: o ambiente que roda o cálculo precisa acessar `mananciais.sabesp.com.br`.

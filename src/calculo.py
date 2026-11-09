@@ -2,7 +2,7 @@
 calculo.py - Calcula status de cumprimento e folga de cada regra (src/regras.py) e gera data/painel.json.
 
 Uso:
-    python src/calculo.py                       # avalia de 01/01/2024 até hoje
+    python src/calculo.py                       # avalia de 01/10/2017 até hoje
     python src/calculo.py --inicio 2026-10-01 --fim 2026-10-31
     python src/calculo.py --meses-horarios 36   # quantos meses de dado horário do ONS baixar (padrão 36)
 
@@ -22,6 +22,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import coleta  # noqa: E402
 from regras import FAIXAS, PARAMETROS, REGRAS, VIGENCIA, VIGENCIA_A_CONFERIR  # noqa: E402
+from textos_normas import trechos  # noqa: E402
 
 RAIZ = Path(__file__).resolve().parents[1]
 CONFIG = RAIZ / "config"
@@ -124,6 +125,7 @@ class Dados:
 
         self.faixas_pbi = _ler_json(CONFIG / "faixas.json", {}).get("faixas", {})
         self.param_mensal = _ler_json(CONFIG / "parametros_mensais.json", {}).get("valores", {})
+        self.curvas_sf = _ler_json(CONFIG / "curvas_seguranca_sf.json", {}).get("ciclos", [])
 
     # ---- séries diárias {data_iso: valor}
     def diaria(self, fonte: str) -> dict[str, float]:
@@ -217,6 +219,47 @@ def media(serie: dict[str, float], a: dt.date, b: dt.date):
     return (sum(v) / len(v), len(v)) if v else (None, 0)
 
 
+# ============================================================================ curvas de segurança (2.081/2017)
+MIN_ATENCAO_2081 = {"SFTMAR": 150, "SFXING": 800}  # defluência mínima na faixa de Atenção (arts. 5º, § 2º, e 9º, §§ 2º e 3º)
+
+
+def _fmt(x: float, casas: int = 1) -> str:
+    return f"{x:,.{casas}f}".replace(",", "X").replace(".", ",").replace("X", ".")
+
+
+def teto_curva(dados, curva: str, vu_id: str, d: dt.date):
+    """Defluência média mensal máxima na faixa de Atenção pela curva de segurança do ciclo (2.081/2017, arts. 4º, 5º e 9º).
+
+    Maior patamar cuja curva (armazenamento mínimo no início do mês) fica abaixo do VU do dia anterior ao 1º dia útil do mês;
+    nunca abaixo da defluência mínima da faixa (diretriz da ANA registrada nas NT do ONS). Retorna (limite, obs);
+    limite None quando falta a curva ou o ato da ANA, e a obs diz o que falta.
+    """
+    mes = d.strftime("%Y-%m")
+    ciclo = next((c for c in dados.curvas_sf if mes in c.get(curva, {}).get("meses", {})), None)
+    if ciclo is None:
+        return None, f"curva de segurança do ciclo que inclui {d:%m/%Y} não cadastrada (config/curvas_seguranca_sf.json; NT do ONS, art. 4º)"
+    if not ciclo.get("manifestacao_ana"):
+        return None, f"curvas do ciclo {ciclo['ciclo']} ({ciclo['fonte']}) sem manifestação da ANA localizada"
+    util = d.replace(day=1)
+    while util.weekday() >= 5 or (util.month == 1 and util.day == 1):
+        util += dt.timedelta(days=1)
+    serie = dados.diaria(f"ONS:{vu_id}:vu")
+    ref, vu = util - dt.timedelta(days=1), None
+    for k in range(4):  # tolera até 3 dias sem dado
+        vu = serie.get((ref - dt.timedelta(days=k)).isoformat())
+        if vu is not None:
+            ref -= dt.timedelta(days=k)
+            break
+    if vu is None:
+        return None, f"VU de {vu_id} em {ref:%d/%m/%Y} indisponível para consultar a curva de segurança {ciclo['ciclo']}"
+    tab = ciclo[curva]
+    ok = [p for p, c in zip(tab["patamares"], tab["meses"][mes]) if c is not None and c <= vu + 1e-9]
+    lim = max(ok + [MIN_ATENCAO_2081[curva]])
+    obs = (f"curva de segurança {ciclo['ciclo']}: VU {_fmt(vu)}% em {ref:%d/%m/%Y} → máx. {_fmt(lim, 0)} m³/s "
+           f"({ciclo['fonte']}; {ciclo['manifestacao_ana']})")
+    return float(lim), obs
+
+
 # ============================================================================ faixas
 class Faixas:
     def __init__(self, dados: Dados):
@@ -270,6 +313,14 @@ class Faixas:
         return res
 
 
+def min_estagio(regra, r: str, k: int, iso: str):
+    """Mínimo de VU do reservatório r no estágio k na data iso, com as revisões temporárias por comunicado (1.382/2015, art. 1º, § 2º)."""
+    for rev in regra.get("revisoes", []):
+        if rev["fonte"] == r and rev["estagio"] == k and rev["inicio"] <= iso <= rev["fim"]:
+            return rev["valor"], rev
+    return regra["fontes"][r][k], None
+
+
 def _historico_estagios(self, regra):
     """Estágio de deplecionamento dia a dia (1.382/2015, art. 1º, V, § 1º).
     Início: menor estágio compatível com os VUs do primeiro dia disponível. Avança para o estágio seguinte quando
@@ -284,10 +335,11 @@ def _historico_estagios(self, regra):
     for d in dias_c:
         vus = {r: series[r][d] for r in mins}
         if est is None:
-            est = next((k for k in range(3) if all(vus[r] >= mins[r][k] - tol for r in mins)), 2)
-        while est < 2 and all(vus[r] <= mins[r][est] + tol for r in mins):
+            est = next((k for k in range(3) if all(vus[r] >= min_estagio(regra, r, k, d)[0] - tol for r in mins)), 2)
+        m = lambda r, k: min_estagio(regra, r, k, d)[0]  # noqa: E731
+        while est < 2 and all(vus[r] <= m(r, est) + tol for r in mins):
             est += 1
-        while est > 0 and all(vus[r] >= mins[r][est - 1] for r in mins):
+        while est > 0 and all(vus[r] >= m(r, est - 1) for r in mins):
             est -= 1
         hist[d] = (est, vus)
     self.cache["_est"] = hist
@@ -359,14 +411,25 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
                 lim = PARAMETROS[tet["param"]]["valor"]
                 out["obs"] = PARAMETROS[tet["param"]]["fonte"]
             else:
-                lim = dados.param_mensal.get(f"{tet['param_mensal']}|{d.strftime('%Y-%m')}")
+                pm = tet.get("param_mensal")
+                lim = dados.param_mensal.get(f"{pm}|{d.strftime('%Y-%m')}") if pm else None
+                if lim is not None:
+                    out["obs"] = f"teto informado em config/parametros_mensais.json ({pm})"
+                elif "curva" in tet:
+                    lim, out["obs"] = teto_curva(dados, tet["curva"], tet.get("vu", regra["faixa"]), d)
                 if lim is None and "limite" in tet:
-                    lim, out["obs"] = tet["limite"], "limite legal; verificar o valor mensal fixado pela ANA (não informado)"
-                elif lim is not None and "limite" in tet:
-                    lim = min(lim, tet["limite"])
+                    falta = out["obs"] or tet.get("pendente") or "valor mensal não informado"
+                    lim, out["obs"] = tet["limite"], f"limite legal de {_fmt(tet['limite'], 0)} m³/s aplicado; {falta}"
+                elif lim is not None and "limite" in tet and tet["limite"] < lim:
+                    lim = tet["limite"]
+                    out["obs"] = f"{out['obs']}; limitado a {_fmt(tet['limite'], 0)} m³/s no período seco"
             if lim is None:
                 out["st"] = PP
-                out["obs"] = out["obs"] or "verificar o teto mensal fixado pela ANA (não informado em config/parametros_mensais.json)"
+                out["obs"] = out["obs"] or tet.get("pendente") or "teto mensal não informado em config/parametros_mensais.json"
+                if tet.get("ref_curva"):
+                    ref_lim, ref_obs = teto_curva(dados, tet["ref_curva"], tet.get("vu", regra["faixa"]), d)
+                    if ref_lim is not None:
+                        out["obs"] += f" (referência: {ref_obs.replace('máx.', 'máx. de Xingó')})"
                 out["v"] = media(dados.diaria(regra["fonte"]), inicio_janela(d, janela), d)[0]
                 return out
         elif tet is not None:
@@ -400,12 +463,20 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
         serie = dados.diaria(regra["fonte"])
         v = serie.get(iso)
         out["v"], out["lim"] = v, lim
-        out["st"], out["folga"], out["pct"] = classificar(v, lim, "min", regra["tol"] if regra["niveis"] == 3 else None)
+        tol = regra["tol"] if regra["niveis"] == 3 else None
+        if tol and regra.get("tol_desde") and iso < regra["tol_desde"]:
+            tol = None  # tolerância só vale a partir do ato que a fixou
+        out["st"], out["folga"], out["pct"] = classificar(v, lim, "min", tol)
+        if out["st"] == TOL and regra.get("tol_ato"):
+            out["obs"] = f"tolerância de {regra['tol'] * 100:.0f}% ({regra['tol_ato']})"
         return out
 
     if t == "teto_diario":
         lim = _sel(regra, "tetos", d)
         v = dados.diaria(regra["fonte"]).get(iso)
+        if lim is None and regra.get("pendente"):
+            out["v"], out["st"], out["obs"] = v, PP, regra["pendente"]
+            return out
         if regra.get("sentido") == "inverso" and v is not None:
             # a Sabesp publica o bombeamento Atibainha -> Jaguari como valor negativo
             if v >= 0:
@@ -451,8 +522,21 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
             out["st"] = NA
             return out
         v = dados.diaria(regra["fonte"]).get(iso)
-        out["v"], out["lim"] = v, regra["maximo"]
-        out["st"], out["folga"], out["pct"] = classificar(v, regra["maximo"], "max", None)
+        lim = regra.get("maximo")
+        if "maximo_meses" in regra:  # limite que varia no ano; valor mensal informado (param_mensal) prevalece
+            pm = regra.get("param_mensal")
+            lim = dados.param_mensal.get(f"{pm}|{d.strftime('%Y-%m')}") if pm else None
+            if lim is not None:
+                out["obs"] = f"nível informado em config/parametros_mensais.json ({pm})"
+            else:
+                lim = regra["maximo_meses"].get(str(d.month))
+                if lim is not None and regra.get("obs_maximo"):
+                    out["obs"] = regra["obs_maximo"]
+            if lim is None:
+                out["v"], out["st"], out["obs"] = v, PP, regra["pendente"]
+                return out
+        out["v"], out["lim"] = v, lim
+        out["st"], out["folga"], out["pct"] = classificar(v, lim, "max", None)
         return out
 
     if t in ("piso_horario", "teto_horario"):
@@ -475,13 +559,17 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
             return out
         ini = d.replace(month=1, day=1)
         vol = sum(max(serie.get(x.isoformat(), 0.0), 0.0) for x in dias(ini, d)) * 86400 / 1e6  # valores negativos = sentido inverso
+        vol = round(vol, 2)  # resolução de 0,01 hm³: diferenças menores estão abaixo da precisão do dado da Sabesp
         par = PARAMETROS[regra["param"]]
-        lim = par.get("por_ano", {}).get(str(d.year), None) if "por_ano" in par else par["valor"]
+        # limite do ano: comunicado cadastrado em por_ano; sem comunicado, vale o limite base da resolução
+        lim = par.get("por_ano", {}).get(str(d.year), par.get("base")) if "por_ano" in par else par["valor"]
         out["v"], out["lim"], out["obs"] = vol, lim, par.get("fonte_por_ano", {}).get(str(d.year), par["fonte"])
         if lim is None:
             out["st"], out["obs"] = PP, f"limite anual de {d.year} não informado (PARAMETROS['{regra['param']}']['por_ano'])"
             return out
         out["st"], out["folga"], out["pct"] = classificar(vol, lim, "max", None)
+        if out["st"] == NAO and str(d.year) not in par.get("por_ano", {}):
+            out["obs"] += "; acima do limite base: verificar se houve comunicado de volume suplementar no ano"
         return em_curso(out, d, "ano")  # avaliado no fechamento do ano (31/12)
 
     if t == "fds":
@@ -542,9 +630,11 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
             return out
         estagio, vus = reg
         tol = regra["tol_pp"]
-        aval, abaixo, acima = [], [], []
+        aval, abaixo, acima, revistos = [], [], [], []
         for r, v in vus.items():
-            lim = regra["fontes"][r][estagio]
+            lim, rev = min_estagio(regra, r, estagio, iso)
+            if rev:
+                revistos.append(f"mínimo de {NOME_ONS.get(r, r)} no {estagio + 1}º estágio revisto para {rev['valor']}% ({rev['ato']})")
             dev = v - lim  # desvio absoluto, em p.p. de VU
             st = OK if dev >= 0 else (TOL if dev >= -tol - 1e-9 else NAO)
             if -tol - 1e-9 <= dev < 0:
@@ -567,7 +657,7 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
         if acima:
             partes.append("tolerância para cima: " + ", ".join(acima))
         partes.append(", ".join(f"{NOME_ONS.get(k, k)} {x:.1f}%" for k, x in vus.items()))
-        out["obs"] = "; ".join(partes)
+        out["obs"] = "; ".join(partes + revistos)
         return out
 
     if t == "movel":
@@ -726,9 +816,10 @@ def executar(inicio: dt.date, fim: dt.date, meses_horarios: int) -> dict:
             if s["st"] in (OK, TOL, NAO):
                 mensal[s["d"][:7]][s["st"]] += 1
                 mensal[s["d"][:7]]["n"] += 1
-        meta = {k: v for k, v in regra.items() if k in ("id", "resolucao", "artigos", "sistema", "ponto", "descricao", "freq", "niveis", "tol", "tol_pp", "fonte", "tipo", "alerta")}
+        meta = {k: v for k, v in regra.items() if k in ("id", "resolucao", "artigos", "sistema", "ponto", "descricao", "freq", "niveis", "tol", "tol_pp", "fonte", "tipo", "alerta", "complementar")}
         meta["unid"] = unidade(regra)
         meta["param"] = parametro(regra)
+        meta["texto_norma"] = trechos(regra["resolucao"], regra.get("artigos", ""))
         serie = serie[-DIAS_SERIE:]
         # Dias anteriores à vigência saem da série (o painel os recompõe como "Não se aplica"): reduz o JSON.
         n_pre = 0
