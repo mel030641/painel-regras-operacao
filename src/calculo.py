@@ -22,6 +22,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import coleta  # noqa: E402
 from regras import FAIXAS, PARAMETROS, REGRAS, VIGENCIA, VIGENCIA_A_CONFERIR  # noqa: E402
+from textos_normas import trechos  # noqa: E402
 
 RAIZ = Path(__file__).resolve().parents[1]
 CONFIG = RAIZ / "config"
@@ -818,6 +819,7 @@ def executar(inicio: dt.date, fim: dt.date, meses_horarios: int) -> dict:
         meta = {k: v for k, v in regra.items() if k in ("id", "resolucao", "artigos", "sistema", "ponto", "descricao", "freq", "niveis", "tol", "tol_pp", "fonte", "tipo", "alerta", "complementar")}
         meta["unid"] = unidade(regra)
         meta["param"] = parametro(regra)
+        meta["texto_norma"] = trechos(regra["resolucao"], regra.get("artigos", ""))
         serie = serie[-DIAS_SERIE:]
         # Dias anteriores à vigência saem da série (o painel os recompõe como "Não se aplica"): reduz o JSON.
         n_pre = 0

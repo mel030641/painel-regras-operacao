@@ -1,0 +1,61 @@
+Info
+RESOLUÇÃO ANA Nº 70, DE 19 DE ABRIL DE 2021
+Dispõe sobre as condições para a operação do Sistema Hídrico do Rio Tocantins, composto pelos reservatórios de Serra da Mesa, Cana Brava, São Salvador, Peixe Angical, Lajeado (Luís Eduardo Magalhães), Estreito e Tucuruí.
+O DIRETOR-PRESIDENTE SUBSTITUTO DA AGÊNCIA NACIONAL DE ÁGUAS E SANEAMENTO BÁSICO - ANA, no uso da atribuição que lhe confere a Portaria nº 218, de 17 de julho de 2019, e o art. 115, inciso IV, do Anexo I da Resolução nº 76, de 25 de setembro de 2019, publicada no DOU de 14 de outubro de 2019, que aprovou o Regimento Interno da ANA, torna público que a DIRETORIA COLEGIADA, em sua 819ª Reunião Ordinária, realizada em 12 de abril de 2021, considerando o disposto no art. 4da Lei nº 9.984, de 17 de julho de 2000, e com base nos elementos constantes do Processo nº 02500.000416/2019-21, resolveu:
+Art. 1º A operação dos reservatórios que compõem o Sistema Hídrico do Rio Tocantins, composto pelos reservatórios de Serra da Mesa, Cana Brava, São Salvador, Peixe Angical, Lajeado, Estreito e Tucuruí, deve observar os níveis operacionais da tabela abaixo:
+RESERVATÓRIONÍVEL DE ÁGUA MÁXIMO OPERACONAL (m)
+NÍVEL DE ÁGUA MÍNIMO NORMAL (m)
+Serra da Mesa460,00417,30
+Cana Brava333,00330,00
+São Salvador287,00286,50
+Peixe Angical263,00261,00
+Lajeado212,30211,50
+Estreito156,00151,00
+Tucuruí74,0051,60
+Art. 2º Para fins de operação do Sistema Hídrico do Rio Tocantins, ficam definidos os seguintes períodos:
+I - período úmido: de dezembro a maio; e
+II - período seco: de junho a novembro.
+Art. 3º Ficam estabelecidos os seguintes limites para as vazões mínimas médias diárias a serem liberadas pelos reservatórios do Sistema Hídrico do Rio Tocantins:
+I - Serra da Mesa: 100 m³/s no período úmido e 300 m³/s no período seco; e
+II - Estreito: 744 m³/s.
+§ 1º Para controle das defluências serão utilizados os dados fornecidos pelo ONS e, complementarmente, as estações fluviométricas integrantes da Resolução Conjunta ANA/ANEEL nº 3, de 10 de agosto de 2010, para cada um dos reservatórios que compõem o Sistema Hídrico do Rio Tocantins.
+§ 2º Durante o período úmido, sempre que for necessário reduzir a vazão defluente do reservatório de Serra da Mesa abaixo de 300 m³/s, o agente responsável deverá informar ao Instituto Brasileiro do Meio Ambiente e dos Recursos Naturais Renováveis – Ibama e executar medidas para o monitoramento e mitigação dos eventuais impactos no trecho entre Serra da Mesa e o lago do reservatório de Cana Brava.
+Art 4º Ficam estabelecidas as seguintes faixas de operação para o reservatório de Serra da Mesa no período úmido:
+I - Faixa de Operação Normal: quando o armazenamento do reservatório de Serra da Mesa for igual ou superior ao nível d’água de 431,67 m (20% VU[1]); e
+II - Faixa de Operação de Atenção: quando o armazenamento do reservatório de Serra da Mesa estiver entre 431,67 m (20% VU) e 417,30 m (0% VU).
+§ 1º Quando o reservatório de Serra da Mesa estiver operando na Faixa de Operação Normal não haverá restrição de vazão máxima média mensal defluente.
+§ 2º Quando o reservatório de Serra da Mesa estiver operando na Faixa de Operação de Atenção, a máxima vazão defluente média mensal será de 397 m³/s.
+§ 3º Sempre que o reservatório de Serra da Mesa estiver operando com defluências inferiores a 300 m³/s, deve ser considerado o nível mínimo operativo de 332,50 m para o reservatório de Cana Brava de modo a atender as condicionantes estabelecidas pelo Ibama no trecho compreendido entre os dois reservatórios.
+Art 5º Ficam estabelecidas as seguintes faixas de operação para o reservatório de Serra da Mesa no período seco:
+I - Faixa de Operação Normal: quando o armazenamento do reservatório de Serra da Mesa for igual ou superior ao nível d’água de 431,67 m (20% VU);
+II - Faixa de Operação de Atenção: quando o armazenamento do reservatório de Serra da Mesa estiver entre 431,67 m (20% VU) e 425,41 m (10% VU); e
+III - Faixa de Operação de Alerta: quando o armazenamento do reservatório de Serra da Mesa estiver entre o nível d’água de 425,41 m (10% do VU) e 417,30 m (0% VU).
+§ 1º Quando o reservatório de Serra da Mesa estiver operando na Faixa de Operação Normal não haverá restrição de vazão média máxima mensal defluente turbinada.
+§ 2º Quando o reservatório de Serra da Mesa estiver operando na Faixa de Operação de Atenção, a vazão média máxima mensal defluente será de 794 m³/s.
+§ 3º Quando o reservatório de Serra da Mesa estiver operando na Faixa de Operação de Alerta, a vazão média máxima mensal defluente será de 397 m³/s.
+§ 4º Sempre que o reservatório de Serra da Mesa estiver operando na Faixa de Operação de Alerta, o ONS deverá encaminhar à ANA, com periodicidade mensal, estudo evidenciando a criticidade do cenário hidrológico em termos de vazões afluentes e volumes armazenados, e estudo de cenários para os meses subsequentes, que irão subsidiar a avaliação da situação pela ANA.
+Art. 6º O período de operação especial do reservatório de Serra da Mesa, durante a Temporada de Praias no rio Tocantins, no Estado de Tocantins, ocorrerá anualmente entre 10 de junho e 20 de agosto.
+§ 1º Durante o período de operação especial do reservatório de Serra da Mesa:
+I – a vazão defluente deverá ser mantida constante, mesmo que haja alteração de faixa de operação;
+II - a operação do aproveitamento hidrelétrico de Peixe Angical deverá ocorrer de forma a minimizar as flutuações provocadas por eventuais vazões incrementais entre os reservatórios de Serra da Mesa e Peixe Angical;
+III - a operação do aproveitamento hidrelétrico de Lajeado deverá ocorrer de forma a minimizar as flutuações provocadas por eventuais vazões incrementais entre os reservatórios de Peixe Angical e Lajeado.
+§ 2º Caso não seja possível minimizar as flutuações provocadas por eventuais vazões incrementais entre os aproveitamentos hidrelétricos de Peixe Angical e Lajeado por meio da sua operação, o ONS deverá informar imediatamente ao órgão estadual de Tocantins responsável pelo setor de turismo e à ANA.
+§ 3º O ONS deverá informar a vazão a ser praticada pelo reservatório de Serra da Mesa durante o período de operação especial ao órgão estadual de Tocantins responsável pelo setor de turismo, à ANA e aos agentes de geração responsáveis pela operação dos reservatórios dos Sistema Hídrico do Rio Tocantins, até 10 de maio de cada ano.
+Art. 7º O período de operação especial do reservatório de Estreito, durante a Temporada de Praias no rio Tocantins nos Estados do Maranhão e do Tocantins, ocorrerá anualmente de 1º de julho até o segundo domingo de setembro.
+§ 1º Durante o período de operação especial do reservatório de Estreito, essa deverá ocorrer de forma a minimizar as flutuações provocadas por eventuais vazões incrementais entre os reservatórios de Lajeado e Estreito.
+§ 2º Durante o período de operação especial do reservatório de Estreito, caso não seja possível minimizar as flutuações provocadas por eventuais vazões incrementais por meio de sua operação, o agente responsável deverá informar imediatamente à Defesa Civil do município de Imperatriz, no Estado do Maranhão, e à ANA.
+Art. 8º As defluências estabelecidas por esta Resolução, terão uma tolerância de variação de 5%, para mais ou para menos.
+Art. 9º Os agentes responsáveis pela operação dos reservatórios do Sistema Hídrico do Rio Tocantins devem se articular com a Marinha do Brasil de forma a garantir a segurança da navegação e a salvaguarda da vida humana, conforme a Lei nº 9.537, de 11 de dezembro de 1997.
+Art. 10. Os agentes responsáveis pela operação dos reservatórios do Sistema Hídrico do Rio Tocantins deverão dar publicidade às informações técnicas de sua operação.
+Art. 11. O ONS poderá, excepcionalmente, operar os reservatórios do Sistema Hídrico do Rio Tocantins para atendimento de questões elétricas, apresentando justificativas à ANA até 10 dias após o feito.
+Parágrafo único. Caso seja necessário manter a operação excepcional por 10 dias consecutivos ou mais, o ONS deverá solicitar autorização especial à ANA.
+Art. 12. Em situação de risco que venha a comprometer a geração de energia elétrica para atendimento ao Sistema Interligado Nacional – SIN, conforme reconhecido pelo Comitê de Monitoramento do Setor Elétrico – CMSE, os limites de defluências do reservatório de Serra da Mesa poderão ser revistos pela ANA, em articulação com o ONS, por meio de ato específico.
+Art. 13. O ONS deverá operar o Sistema Hídrico do Rio Tocantins observando o atendimento das restrições operativas existentes.
+Art. 14. As condições de operação estabelecidas nesta resolução ficam suspensas, no que couber, quando um ou mais reservatórios do Sistema Hídrico do Rio Tocantins estiverem operando para controle de cheias ou para segurança de barragem. A declaração da operação para controle de cheias ou para segurança de barragem deverá ser efetuada pelo agente responsável pelo reservatório.
+Art. 15. Esta Resolução não dispensa e nem substitui a obtenção, pelos agentes responsáveis pelos reservatórios, de certidões, alvarás ou licenças de qualquer natureza, exigidos pela legislação federal, estadual ou municipal.
+Art. 16. Ficam revogadas as Resoluções ANA nº 529, de 19 de outubro de 2004 e, nº 376, de 6 de junho de 2011.
+Art. 17. Esta Resolução será objeto de Avaliação de Resultado Regulatório no prazo de cinco anos, contado da data de sua entrada em vigor.
+Art. 18. Esta Resolução entrará em vigor em 1º de dezembro de 2021.
+RICARDO ANDRADE
+[1] VU - Volume Útil do Reservatório.
+Este texto não substitui a versão publicada no DOU 74, Seção 1, Página 158, de 22/04/2021.
