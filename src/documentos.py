@@ -162,11 +162,89 @@ def historico_faixas(destino: Path):
     return len(linhas)
 
 
+ASREG_ORIGINAL = RAIZ / "config" / "asreg" / "Indicadores SOE - aval_CORSH.xlsx"
+
+
+def _apurado(regs, ano):
+    """Situação (pior entre as regras), último dia avaliado, conformidade e contagens do ano, última ocorrência."""
+    if not regs:
+        return ["—", "Não monitorada", None, None, None, None, None, None]
+    sts = [(r.get("ultimo") or {}).get("st") for r in regs]
+    pior = max(sts, key=lambda s: GRAV.get(s, 0))
+    if GRAV.get(pior, 0) == 0:
+        pior = sts[0]
+    datas = [(r.get("ultimo") or {}).get("d") for r in regs if (r.get("ultimo") or {}).get("d")]
+    c = Counter(x["st"] for r in regs for x in r.get("serie", []) if x["d"].startswith(ano))
+    p, n = conformidade(c)
+    viol = [x["d"] for r in regs for x in r.get("serie", []) if x["st"] in ("Não atende", "Tolerância")]
+    return [", ".join(r["id"] for r in regs), pior, _d(min(datas)) if datas else None, p, n, c["Não atende"],
+            c["Tolerância"], _d(max(viol)) if viol else None]
+
+
+def _status_mensal(wb, A, R, hoje):
+    ano = str(hoje.year)
+    meses = [f"{ano}-{m:02d}" for m in range(1, hoje.month + 1)]
+    ws = wb.create_sheet(f"Status mensal {ano}")
+    ws.append(["Resolução", "Reservatório / Ponto de Controle"] + meses)
+    for i, w in enumerate([30, 30] + [10] * len(meses), 1):
+        ws.column_dimensions[get_column_letter(i)].width = w
+        ws.cell(row=1, column=i).font, ws.cell(row=1, column=i).fill = Font(bold=True, color="FFFFFF"), CAB
+    for l in A["linhas"]:
+        regs = [R[i] for i in l["regras_painel"] if i in R]
+        if not regs:
+            continue
+        ln = [l["Resolução"], l["Reservatório / Ponto de Controle"]]
+        for m in meses:
+            k = Counter()
+            for r in regs:
+                k.update({s: v for s, v in (r.get("mensal", {}).get(m) or {}).items() if s in AVAL})
+            ln.append(max((s for s in AVAL if k[s]), key=GRAV.get, default="—"))
+        ws.append(ln)
+        for c in ws[ws.max_row][2:]:
+            if c.value in COR:
+                c.fill = PatternFill("solid", fgColor=COR[c.value])
+    ws.freeze_panes = "C2"
+
+
 def asreg(D, destino: Path):
     A = json.loads((RAIZ / "config" / "asreg_indicadores.json").read_text(encoding="utf-8"))
     R = {r["id"]: r for r in D["regras"]}
     hoje = _d(D["periodo"][1])
     ano = str(hoje.year)
+    if ASREG_ORIGINAL.exists():  # planilha original da ASREG + colunas apuradas pelo painel
+        from openpyxl import load_workbook
+        wb = load_workbook(ASREG_ORIGINAL)
+        ws = wb["Table 1"]
+        extra = ["Regras do painel", "Situação (painel)", "Último dia avaliado", f"Conformidade {ano} (%)", f"Avaliações {ano}",
+                 f"Não atende {ano}", f"Tolerância {ano}", "Última ocorrência"]
+        c0 = ws.max_column + 2  # uma coluna vazia separa o original das colunas do painel
+        for j, t in enumerate(extra):
+            cel = ws.cell(row=1, column=c0 + j, value=t)
+            cel.font, cel.fill = Font(bold=True, color="FFFFFF"), PatternFill("solid", fgColor="0E7C86")
+            cel.alignment = Alignment(wrap_text=True, vertical="center")
+            ws.column_dimensions[get_column_letter(c0 + j)].width = 28 if j == 0 else 14
+        for l in A["linhas"]:
+            vals = _apurado([R[i] for i in l["regras_painel"] if i in R], ano)
+            for j, v in enumerate(vals):
+                cel = ws.cell(row=l["linha"], column=c0 + j, value=v)
+                if isinstance(v, dt.date):
+                    cel.number_format = "DD/MM/YYYY"
+                if j == 1 and v in COR:
+                    cel.fill = PatternFill("solid", fgColor=COR[v])
+        lm = wb.create_sheet("Leia-me", 0)
+        lm.column_dimensions["A"].width = 120
+        for t in ["Indicadores das regras de operação de reservatórios (SOE) - planilha da ASREG com a apuração do painel",
+                  "Base: 'Indicadores SOE - aval_CORSH.xlsx' (SharePoint GGESeASMEA), cópia salva em 09/11/2026; abas 'Table 1' e 'Planilha1' preservadas como no original.",
+                  f"Colunas acrescentadas à direita da 'Table 1' (cabeçalho verde-água): apuração do painel em {hoje:%d/%m/%Y}, situação do último dia avaliado e conformidade em {ano}.",
+                  "Quando uma linha corresponde a mais de uma regra do painel (ex.: mínima diária e máxima mensal), vale a pior situação entre elas, e as contagens somam as regras.",
+                  "Conformidade = (Atende + Tolerância) ÷ avaliações com resultado, mesmo critério do painel.",
+                  f"Aba 'Status mensal {ano}': pior situação apurada em cada mês, por linha da ASREG."]:
+            lm.append([t])
+            lm.cell(row=lm.max_row, column=1).alignment = Alignment(wrap_text=True, vertical="top")
+        lm["A1"].font = Font(bold=True, size=13)
+        _status_mensal(wb, A, R, hoje)
+        wb.save(destino)
+        return len(A["linhas"])
     wb = Workbook()
     leia_me(wb, "Indicadores das regras de operação de reservatórios (SOE) - formato ASREG", [
         f"Base: {A['fonte']}",
