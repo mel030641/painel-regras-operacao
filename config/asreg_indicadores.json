@@ -1,0 +1,603 @@
+{
+ "fonte": "Planilha 'Indicadores SOE - aval_CORSH.xlsx' (ASREG), aba 'Table 1', retrato de 03/11/2026 transcrito em 2026-11-03_email_ASREG_indicadores_SOE.md. Colunas não transcritas ficam em branco; conferir com o arquivo vivo no SharePoint.",
+ "comuns": {
+  "Tipo de indicador": "Resultado",
+  "Indicador": "Status de Cumprimento Operacional",
+  "Data de Início": "Não informado",
+  "Freq. Coleta": "Diária",
+  "Meta": "Não informado",
+  "Gatilho de avaliação": "Não informado",
+  "UORG": "SOE",
+  "Automatizado": "Sim",
+  "Indicador plausível?": "Sim"
+ },
+ "linhas": [
+  {
+   "linha": 2,
+   "Resolução": "Res. ANA 132/2022",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Paranapanema",
+   "Reservatório / Ponto de Controle": "Jurumirim",
+   "Formalização": "AIR",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Defluência máxima média semanal ≤ teto da faixa (+5% = Tolerância)",
+   "Artigo(s) da Resolução de Referência": "Arts. 2º e 3º; art. 10 (tolerância 5%)",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Paranapanema pág. 2; pág. 1",
+   "regras_painel": [
+    "132-PPJURU"
+   ]
+  },
+  {
+   "linha": 3,
+   "Resolução": "Res. ANA 132/2022",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Paranapanema",
+   "Reservatório / Ponto de Controle": "Chavantes",
+   "Formalização": "AIR",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Idem",
+   "Artigo(s) da Resolução de Referência": "Arts. 4º e 5º; art. 10",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Paranapanema pág. 3; pág. 1",
+   "regras_painel": [
+    "132-PPCHAV"
+   ]
+  },
+  {
+   "linha": 4,
+   "Resolução": "Res. ANA 132/2022",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Paranapanema",
+   "Reservatório / Ponto de Controle": "Capivara",
+   "Formalização": "AIR",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Idem",
+   "Artigo(s) da Resolução de Referência": "Arts. 6º e 7º; art. 10",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Paranapanema pág. 4; pág. 1",
+   "regras_painel": [
+    "132-PPCAPI"
+   ]
+  },
+  {
+   "linha": 5,
+   "Resolução": "Res. ANA 193/2024",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Rio Grande",
+   "Reservatório / Ponto de Controle": "Furnas",
+   "Formalização": "AIR",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Defluência ≤ teto da faixa e do período úmido/seco (+5% = Tolerância)",
+   "Artigo(s) da Resolução de Referência": "Arts. 3º a 5º; art. 11",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Grande e Paranaíba pág. 1; pág. 2",
+   "regras_painel": [
+    "193-GRFURN"
+   ]
+  },
+  {
+   "linha": 6,
+   "Resolução": "Res. ANA 193/2024",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Rio Grande",
+   "Reservatório / Ponto de Controle": "M. M. Moraes (Peixoto)",
+   "Formalização": "AIR",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Idem",
+   "Artigo(s) da Resolução de Referência": "Arts. 6º a 8º; art. 11",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Grande e Paranaíba pág. 1; pág. 2",
+   "regras_painel": [
+    "193-GRMMOR"
+   ]
+  },
+  {
+   "linha": 7,
+   "Resolução": "Res. ANA 193/2024",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Rio Grande",
+   "Reservatório / Ponto de Controle": "Marimbondo",
+   "Formalização": "AIR",
+   "Métrica": "Atende / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "V.U. ≥ 15% enquanto Furnas está em Normal ou Atenção",
+   "Artigo(s) da Resolução de Referência": "Art. 9º",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Grande e Paranaíba pág. 1; pág. 2",
+   "regras_painel": [
+    "193-GRMARI"
+   ]
+  },
+  {
+   "linha": 8,
+   "Resolução": "Res. ANA 193/2024",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Rio Grande",
+   "Reservatório / Ponto de Controle": "Água Vermelha",
+   "Formalização": "AIR",
+   "Métrica": "Atende / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Idem",
+   "Artigo(s) da Resolução de Referência": "Art. 9º",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Grande e Paranaíba pág. 1; pág. 2",
+   "regras_painel": [
+    "193-GRAGVL"
+   ]
+  },
+  {
+   "linha": 9,
+   "Resolução": "Res. ANA 194/2024",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Paranaíba",
+   "Reservatório / Ponto de Controle": "T. C. Santiago (Emborcação)",
+   "Formalização": "AIR",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Defluência ≤ teto da faixa e do período (+5% = Tolerância)",
+   "Artigo(s) da Resolução de Referência": "Arts. 3º a 5º; art. 11",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Grande e Paranaíba pág. 3; pág. 4",
+   "regras_painel": [
+    "194-PREMBO"
+   ]
+  },
+  {
+   "linha": 10,
+   "Resolução": "Res. ANA 194/2024",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Paranaíba",
+   "Reservatório / Ponto de Controle": "Itumbiara",
+   "Formalização": "AIR",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Idem",
+   "Artigo(s) da Resolução de Referência": "Arts. 6º a 8º; art. 11",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Grande e Paranaíba pág. 3; pág. 4",
+   "regras_painel": [
+    "194-PRITUM"
+   ]
+  },
+  {
+   "linha": 11,
+   "Resolução": "Res. ANA 194/2024",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Paranaíba",
+   "Reservatório / Ponto de Controle": "São Simão",
+   "Formalização": "AIR",
+   "Métrica": "Atende / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "V.U. ≥ 15% enquanto Itumbiara está em Normal ou Atenção",
+   "Artigo(s) da Resolução de Referência": "Art. 9º",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Grande e Paranaíba pág. 3; pág. 4",
+   "regras_painel": [
+    "194-PRSSIM"
+   ]
+  },
+  {
+   "linha": 12,
+   "Resolução": "Res. ANA 2081/2017",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "São Francisco",
+   "Reservatório / Ponto de Controle": "Três Marias",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Defluência ≤ máxima mensal e ≥ mínima diária da faixa (±5%)",
+   "Artigo(s) da Resolução de Referência": "Art. 5º, §§1º a 3º; art. 12",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim São Francisco pág. 1; pág. 2",
+   "regras_painel": [
+    "2081-SFTMAR-min",
+    "2081-SFTMAR-max"
+   ]
+  },
+  {
+   "linha": 13,
+   "Resolução": "Res. ANA 2081/2017",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "São Francisco",
+   "Reservatório / Ponto de Controle": "Sobradinho",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Defluência ≤ teto da regra conjunta e ≥ piso diário (±5%)",
+   "Artigo(s) da Resolução de Referência": "Art. 9º, §§1º a 4º; art. 12",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim São Francisco pág. 1; pág. 3",
+   "regras_painel": [
+    "2081-SFSOBR-min",
+    "2081-SFSOBR-max"
+   ]
+  },
+  {
+   "linha": 14,
+   "Resolução": "Res. ANA 2081/2017",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "São Francisco",
+   "Reservatório / Ponto de Controle": "Xingó",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Idem",
+   "Artigo(s) da Resolução de Referência": "Art. 9º, §§1º a 4º; art. 12",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim São Francisco pág. 1 (mín. diária 1.100 m³/s); pág. 5",
+   "regras_painel": [
+    "2081-SFXING-min",
+    "2081-SFXING-max"
+   ]
+  },
+  {
+   "linha": 15,
+   "Resolução": "Res. ANA 2081/2017",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "São Francisco",
+   "Reservatório / Ponto de Controle": "Itaparica (Luiz Gonzaga)",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "V.U. ≥ 30% quando Sobradinho está em Normal ou Atenção",
+   "Artigo(s) da Resolução de Referência": "Art. 10, §§1º e 2º",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim São Francisco pág. 1; pág. 4",
+   "regras_painel": [
+    "2081-SFLGON"
+   ]
+  },
+  {
+   "linha": 16,
+   "Resolução": "Res. ANA 70/2021",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Tocantins",
+   "Reservatório / Ponto de Controle": "Serra da Mesa",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Defluência ≤ teto e ≥ mínimo do período (±5%)",
+   "Artigo(s) da Resolução de Referência": "Arts. 3º, 4º e 5º; art. 8º",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Tocantins pág. 1; pág. 2",
+   "regras_painel": [
+    "70-TOSMES-min",
+    "70-TOSMES-max"
+   ]
+  },
+  {
+   "linha": 17,
+   "Resolução": "Res. ANA 70/2021",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Tocantins",
+   "Reservatório / Ponto de Controle": "Estreito",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Vazão média diária defluente ≥ 744 m³/s (±5%)",
+   "Artigo(s) da Resolução de Referência": "Art. 3º, II; art. 8º",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Tocantins pág. 1; pág. 5",
+   "regras_painel": [
+    "70-TOUHET"
+   ]
+  },
+  {
+   "linha": 18,
+   "Resolução": "Res. ANA 49/2018",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Rio Uruguai",
+   "Reservatório / Ponto de Controle": "Foz do Chapecó",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Se afluência prevista para o fim de semana ≤ 1.000 m³/s, defluência no fim de semana ≤ 1.000 m³/s",
+   "Artigo(s) da Resolução de Referência": "Art. 1º, caput e §1º",
+   "Base de dados": "Informe semanal do agente (e-mail) / Boletins / SAR",
+   "Sistema": "Fluxos Power Automate (Teams) - programação semanal e comparativo executado x programado / SAR",
+   "Forma de monitoramento": "Fluxos Power Automate (Teams); Boletim Iguaçu/Uruguai pág. 3 (sem menção à regra)",
+   "regras_painel": [
+    "49-RIUHFC"
+   ]
+  },
+  {
+   "linha": 19,
+   "Resolução": "Res. Conj. ANA/DAEE/IGAM/INEA 1382/2015",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Paraíba do Sul",
+   "Reservatório / Ponto de Controle": "Paraibuna",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Vazão instantânea ≥ 10 m³/s e redução de V.U. na ordem do estágio de deplecionamento (±5%)",
+   "Artigo(s) da Resolução de Referência": "Art. 1º, I, a; art. 1º, V, §1º",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Paraíba do Sul pág. 3; págs. 1 e 2",
+   "regras_painel": [
+    "1382-PBPARA",
+    "1382-estagios"
+   ]
+  },
+  {
+   "linha": 20,
+   "Resolução": "Res. Conj. 1382/2015",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Paraíba do Sul",
+   "Reservatório / Ponto de Controle": "Santa Branca",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Idem, ≥ 30 m³/s",
+   "Artigo(s) da Resolução de Referência": "Art. 1º, I, b; art. 1º, V, §1º",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Paraíba do Sul pág. 4; págs. 1 e 2",
+   "regras_painel": [
+    "1382-PBSTAB",
+    "1382-estagios"
+   ]
+  },
+  {
+   "linha": 21,
+   "Resolução": "Res. Conj. 1382/2015",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Paraíba do Sul",
+   "Reservatório / Ponto de Controle": "Jaguari",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Idem, ≥ 4 m³/s",
+   "Artigo(s) da Resolução de Referência": "Art. 1º, I, c; art. 1º, V, §1º",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Paraíba do Sul pág. 5; págs. 1 e 2",
+   "regras_painel": [
+    "1382-PBJAGU",
+    "1382-estagios"
+   ]
+  },
+  {
+   "linha": 22,
+   "Resolução": "Res. Conj. 1382/2015",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Paraíba do Sul",
+   "Reservatório / Ponto de Controle": "Funil",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Idem, ≥ 70 m³/s",
+   "Artigo(s) da Resolução de Referência": "Art. 1º, I, d; art. 1º, V, §1º",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Paraíba do Sul pág. 6; págs. 1 e 2",
+   "regras_painel": [
+    "1382-PBFUNI",
+    "1382-estagios"
+   ]
+  },
+  {
+   "linha": 23,
+   "Resolução": "Res. Conj. 1382/2015",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Paraíba do Sul",
+   "Reservatório / Ponto de Controle": "Santa Cecília",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Bombeamento para o Guandu ≥ 119 m³/s e defluência a jusante ≥ 71 m³/s (variação até 5%)",
+   "Artigo(s) da Resolução de Referência": "Art. 1º, I, e e f; inciso II",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Paraíba do Sul pág. 7; pág. 1",
+   "regras_painel": [
+    "1382-PBSTAC-guandu",
+    "1382-PBSTAC"
+   ]
+  },
+  {
+   "linha": 24,
+   "Resolução": "Res. Conj. 1382/2015",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Paraíba do Sul",
+   "Reservatório / Ponto de Controle": "Pereira Passos",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Vazão a jusante ≥ 120 m³/s (variação até 2%)",
+   "Artigo(s) da Resolução de Referência": "Art. 1º, I, g; inciso II",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Paraíba do Sul pág. 8",
+   "regras_painel": [
+    "1382-RLPPAS"
+   ]
+  },
+  {
+   "linha": 25,
+   "Resolução": "Res. Conj. ANA/DAEE 925/2017",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Cantareira",
+   "Reservatório / Ponto de Controle": "Elevatória Santa Inês (captação RMSP)",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Vazão captada para a RMSP ≤ limite da faixa + vazão transposta autorizada",
+   "Artigo(s) da Resolução de Referência": "Art. 4º, §§1º a 4º",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Cantareira pág. 5; pág. 1",
+   "regras_painel": [
+    "925-santaines"
+   ]
+  },
+  {
+   "linha": 26,
+   "Resolução": "Res. Conj. 925/2017",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Cantareira",
+   "Reservatório / Ponto de Controle": "Valinhos (rio Atibaia)",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Vazão a jusante ≥ média móvel de 15 dias da faixa e ≥ 10 m³/s diária",
+   "Artigo(s) da Resolução de Referência": "Art. 5º, §§2º, 3º, 5º e 10",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Cantareira pág. 8",
+   "regras_painel": [
+    "925-valinhos-dia",
+    "925-valinhos-movel"
+   ]
+  },
+  {
+   "linha": 27,
+   "Resolução": "Res. Conj. 925/2017",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Cantareira",
+   "Reservatório / Ponto de Controle": "Atibaia (rio Atibaia)",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Idem, mínimo 2 m³/s",
+   "Artigo(s) da Resolução de Referência": "Art. 5º, §§2º, 3º, 5º e 10",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Cantareira pág. 7",
+   "regras_painel": [
+    "925-atibaia-dia",
+    "925-atibaia-movel"
+   ]
+  },
+  {
+   "linha": 28,
+   "Resolução": "Res. Conj. 925/2017",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Cantareira",
+   "Reservatório / Ponto de Controle": "Buenópolis (rio Jaguari)",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Idem, mínimo 2 m³/s",
+   "Artigo(s) da Resolução de Referência": "Art. 5º, §§2º, 3º, 5º e 10",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Cantareira pág. 6",
+   "regras_painel": [
+    "925-buenopolis-dia",
+    "925-buenopolis-movel"
+   ]
+  },
+  {
+   "linha": 29,
+   "Resolução": "Res. Conj. ANA/DAEE 614/2010",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Cantareira",
+   "Reservatório / Ponto de Controle": "Jaguari-Jacareí",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Nível ≤ máx. operacional (Atende), ≤ máx. normal (Tolerância), acima (Não Atende)",
+   "Artigo(s) da Resolução de Referência": "Art. 1º, §3º e Anexo 1",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Cantareira pág. 1",
+   "regras_painel": [
+    "614-29001"
+   ]
+  },
+  {
+   "linha": 30,
+   "Resolução": "Res. Conj. 614/2010",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Cantareira",
+   "Reservatório / Ponto de Controle": "Cachoeira",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Idem",
+   "Artigo(s) da Resolução de Referência": "Art. 1º, §3º e Anexo 1",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Cantareira pág. 1",
+   "regras_painel": [
+    "614-29002"
+   ]
+  },
+  {
+   "linha": 31,
+   "Resolução": "Res. Conj. 614/2010",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Cantareira",
+   "Reservatório / Ponto de Controle": "Atibainha",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Idem",
+   "Artigo(s) da Resolução de Referência": "Art. 1º, §3º e Anexo 1",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Cantareira pág. 1",
+   "regras_painel": [
+    "614-29003"
+   ]
+  },
+  {
+   "linha": 32,
+   "Resolução": "Res. Conj. 614/2010",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Cantareira",
+   "Reservatório / Ponto de Controle": "Paiva Castro",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Tolerância / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Idem",
+   "Artigo(s) da Resolução de Referência": "Art. 1º, §3º e Anexo 1",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Cantareira pág. 1",
+   "regras_painel": [
+    "614-29004"
+   ]
+  },
+  {
+   "linha": 33,
+   "Resolução": "Res. ANA 1931/2017",
+   "Monitorada": "Sim",
+   "Sistema Hídrico": "Transposição Jaguari-Atibainha",
+   "Reservatório / Ponto de Controle": "Elevatória da interligação",
+   "Formalização": "Não informado",
+   "Métrica": "Atende / Não Atende",
+   "Detalhamento da métrica (Como é calculado)": "Média anual ≤ 5,13 m³/s, pontual ≤ 8,5 m³/s, volume anual ≤ 162 hm³",
+   "Artigo(s) da Resolução de Referência": "Art. 1º, I a III",
+   "Base de dados": "Boletins / SAR",
+   "Sistema": "SAR (Sistema de Acompanhamento de Reservatórios)",
+   "Forma de monitoramento": "Boletim Cantareira pág. 3; remissão no Boletim Paraíba do Sul págs. 1 e 5",
+   "regras_painel": [
+    "1931-max",
+    "1931-volume"
+   ]
+  },
+  {
+   "linha": 34,
+   "Resolução": "Res. ANA 147/2015",
+   "Monitorada": "Não",
+   "Sistema Hídrico": "Rio Preto",
+   "Reservatório / Ponto de Controle": "Queimado",
+   "Formalização": "Não informado",
+   "Métrica": "Não aplicado",
+   "Detalhamento da métrica (Como é calculado)": "Não aplicado",
+   "Artigo(s) da Resolução de Referência": "Não aplicado",
+   "Base de dados": "",
+   "Sistema": "",
+   "Forma de monitoramento": "Monitorada = Não; \"Não há indicador proposto\"; \"Não é monitorado\"",
+   "regras_painel": []
+  },
+  {
+   "linha": 35,
+   "Resolução": "Res. Conj. ANA/DAEE 336/2017",
+   "Monitorada": "Não",
+   "Sistema Hídrico": "Bacias PCJ",
+   "Reservatório / Ponto de Controle": "Aproveitamentos das bacias PCJ",
+   "Formalização": "Não informado",
+   "Métrica": "Não aplicado",
+   "Detalhamento da métrica (Como é calculado)": "Não aplicado",
+   "Artigo(s) da Resolução de Referência": "Não aplicado",
+   "Base de dados": "",
+   "Sistema": "",
+   "Forma de monitoramento": "Monitorada = Não; \"Não há indicador proposto\"; \"Não é monitorado\"",
+   "regras_painel": []
+  }
+ ]
+}

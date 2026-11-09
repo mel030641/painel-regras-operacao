@@ -17,7 +17,7 @@ concurrency:
 jobs:
   atualizar:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 120   # 1ª execução baixa o histórico desde out/2017 (ONS horário, SAISP); as seguintes usam o cache
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
@@ -48,10 +48,12 @@ jobs:
           python src/faixas_powerbi.py data/powerbi/faixas_operativas_vigentes.csv
 
       - name: Coleta e cálculo
-        run: python src/calculo.py   # jan/2024 até hoje, com dado horário desde jan/2024
+        run: python src/calculo.py   # out/2017 até hoje (dado horário do ONS fica no cache entre execuções)
 
-      - name: Montar site
-        run: python src/publicar.py
+      - name: Montar site (painel, manual e planilhas)
+        run: |
+          pip install -q -r requirements.txt
+          python src/publicar.py
 
       - name: Gravar histórico de faixas
         run: |

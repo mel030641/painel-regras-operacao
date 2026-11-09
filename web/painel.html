@@ -4,7 +4,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: painel operacional em faixas horizontais — síntese (ICG + escalas) → faixas vigentes → regras por sistema → mapa multitemporal → ocorrências */
+/* Layout: abas — síntese (faixas vigentes + ICG + escalas), regras por sistema, mapa multitemporal, ocorrências */
 :root {
   --bg: #f5f7f8; --surface: #ffffff; --sunk: #eceff1; --line: #d9dee2; --line-soft: #e6eaed;
   --fg: #142027; --fg-2: #46565f; --fg-3: #6f7d85;
@@ -69,6 +69,47 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .range input { width: 9.2rem }
 
 main .wrap { display: grid; gap: 28px; padding-block: 24px 40px }
+main section[hidden] { display: none }
+#s-regras .tbl-wrap { max-height: calc(100vh - var(--fh, 0px) - var(--ab, 48px) - 32px); max-height: calc(100dvh - var(--fh, 0px) - var(--ab, 48px) - 32px); overflow: auto; overscroll-behavior: contain }
+#t-regras thead th { position: sticky; top: 0; z-index: 2; box-shadow: inset 0 -1px 0 var(--line) }
+#t-regras tr.sys-row td { position: sticky; top: calc(var(--th, 34px) - 1px); z-index: 1 }
+@media (max-width: 760px) { #s-regras .tbl-wrap { max-height: 72vh; max-height: 72svh } }
+#s-heat .tbl-wrap, #s-oc .tbl-wrap { overflow: auto; overscroll-behavior: contain }
+#t-heat thead th, #t-oc thead th { position: sticky; top: 0; z-index: 2; box-shadow: inset 0 -1px 0 var(--line) }
+#t-heat td.lbl { position: sticky; left: 0; z-index: 1; background: var(--surface); box-shadow: inset -1px 0 0 var(--line-soft); white-space: normal; width: 300px; min-width: 300px; max-width: 300px; line-height: 1.3 }
+#t-heat td.lbl .r { display: block; color: var(--fg-3); font-size: .74rem }
+@media (max-width: 760px) { #t-heat td.lbl { width: 170px; min-width: 170px; max-width: 170px } }
+#t-heat thead th:first-child { left: 0; z-index: 3 }
+@media (max-width: 760px) { #s-heat .tbl-wrap, #s-oc .tbl-wrap { max-height: 72vh; max-height: 72svh } }
+
+/* abas */
+.abas-bar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--fh, 0px)); z-index: 4; background: var(--surface); border-bottom: 1px solid var(--line) }
+.abas { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; padding-top: 4px; width: 100% }
+@media (max-width: 760px) { .filters { position: static } .chk .muted { display: none } }
+.abas::-webkit-scrollbar { display: none }
+.abas button { border: 0; background: none; padding: 7px 12px 8px; cursor: pointer; color: var(--fg-2); font: 600 .9rem var(--f-display); letter-spacing: .02em; white-space: nowrap; border-bottom: 3px solid transparent; display: inline-flex; gap: 6px; align-items: center }
+.abas button:hover { color: var(--fg); background: var(--sunk); border-radius: 4px 4px 0 0 }
+.abas button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent) }
+.abas .badge { font: 600 .7rem var(--f-mono); padding: 0 6px; border-radius: 999px; background: var(--sunk); color: var(--fg-2) }
+.abas .badge.nao { background: var(--nao-soft); color: var(--nao) }
+
+/* barra de ações das regras */
+.acoes { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center }
+.chk { display: inline-flex; gap: 6px; align-items: center; border: 1px solid var(--line); border-radius: var(--r); padding: 5px 10px; background: var(--surface); cursor: pointer; font-size: .85rem }
+.chk:has(input:checked) { border-color: var(--tol); background: var(--tol-soft); color: var(--fg) }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 5px 10px; cursor: pointer; font-size: .85rem; color: var(--fg-2) }
+.btn:hover { background: var(--sunk); color: var(--fg) }
+tr.sys-row { cursor: pointer }
+tr.sys-row td { padding: 0 }
+.sys-btn { display: flex; width: 100%; gap: 6px 14px; flex-wrap: wrap; align-items: center; background: none; border: 0; padding: 9px 8px; cursor: pointer; text-align: left; font: inherit; color: inherit; text-transform: inherit; letter-spacing: inherit }
+.sys-btn .seta { display: inline-block; width: 1em; transition: transform .12s; color: var(--fg-3) }
+.sys-btn[aria-expanded="true"] .seta { transform: rotate(90deg) }
+.sys-btn .nome { flex: 1 1 auto }
+.sys-cnt { display: inline-flex; gap: 6px; flex-wrap: wrap; text-transform: none; letter-spacing: 0; font: 500 .74rem var(--f-body) }
+.sys-cnt span { padding: 1px 7px; border-radius: 999px; background: var(--surface); color: var(--fg-2); border: 1px solid var(--line-soft) }
+.sys-cnt .c-nao { background: var(--nao-soft); color: var(--nao); border-color: transparent; font-weight: 600 }
+.sys-cnt .c-tol { background: var(--tol-soft); color: var(--tol); border-color: transparent; font-weight: 600 }
+.sys-cnt .c-ok { background: var(--ok-soft); color: var(--ok); border-color: transparent }
 section { display: grid; gap: 12px; min-width: 0 }
 .sec-head { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; justify-content: space-between }
 .sec-head p { margin: 0; color: var(--fg-2); font-size: .85rem; max-width: 80ch }
@@ -108,6 +149,16 @@ td.n, th.n { text-align: right; white-space: nowrap }
 .st-ec.exc { color: var(--tol); border-color: var(--tol); background: var(--tol-soft) }
 
 /* faixas vigentes */
+.fx-quadro { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px }
+.fx-head { display: flex; flex-wrap: wrap; gap: 2px 12px; align-items: baseline }
+.fx-head .muted { font-size: .78rem }
+.fx-chips { display: flex; flex-wrap: wrap; gap: 6px }
+.fx { display: inline-flex; align-items: baseline; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: .82rem; border: 1px solid var(--line-soft); background: var(--sunk); color: var(--fg); text-decoration: none; cursor: default }
+.fx b { font-weight: 600 }
+.fx.l0 { background: var(--ok-soft) } .fx.l0 b { color: var(--ok) }
+.fx.l1 { background: var(--tol-soft) } .fx.l1 b { color: var(--tol) }
+.fx.l2, .fx.l3, .fx.l4 { background: var(--nao-soft) } .fx.l2 b, .fx.l3 b, .fx.l4 b { color: var(--nao) }
+.fx .pub { color: var(--fg-3); font-size: .7rem }
 .bands { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px }
 .band { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px; display: grid; gap: 8px; min-width: 0 }
 .band .name { display: flex; justify-content: space-between; gap: 8px; align-items: baseline }
@@ -150,8 +201,14 @@ tr.detail td { background: var(--surface); padding: 0 }
 .mini th { position: sticky; top: 0 }
 
 /* mapa multitemporal */
-.heat td.cell { padding: 3px; text-align: center }
+.heat td.cell { padding: 3px; text-align: center; vertical-align: middle }
 .heat .c { display: block; min-width: 34px; height: 24px; line-height: 24px; border-radius: 3px; font: 500 .7rem var(--f-mono); color: var(--fg) }
+.heat .c.h-na, .heat .c.h-nd { background: var(--sunk) }
+.heat .c.h-pp { background: repeating-linear-gradient(135deg, var(--tol-soft) 0 4px, color-mix(in srgb, var(--tol) 45%, var(--surface)) 4px 6px) }
+.heat .c.h-ec { background: var(--surface); box-shadow: inset 0 0 0 1px var(--fg-3) }
+.heat .c.h-sd { background: transparent; box-shadow: none; outline: 1px dashed var(--fg-3); outline-offset: -2px }
+.heat-leg { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .78rem; color: var(--fg-2); align-items: center }
+.heat-leg .c { display: inline-block; width: 22px; height: 12px; min-width: 0; border-radius: 2px; vertical-align: -2px; margin-right: 5px }
 .heat td.lbl { white-space: nowrap; font-size: .8rem; padding: 4px 10px }
 .heat th { text-align: center }
 
@@ -161,6 +218,13 @@ footer .wrap { padding-block: 20px 28px; display: grid; gap: 10px; color: var(--
 footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 110ch }
 #erro { background: var(--nao-soft); color: var(--nao); padding: 12px 16px; border-radius: var(--r) }
 @media (prefers-reduced-motion: no-preference) { tr.rule td, .seg button { transition: background-color .12s } }
+.viol{font-size:.72rem;margin-top:3px;color:var(--nao,#b42318);font-weight:600;line-height:1.25}
+.docs { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px }
+.doc { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); color: var(--fg); text-decoration: none }
+.doc:hover, .doc:focus-visible { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) }
+.doc b { font-family: var(--f-display); font-size: 1.05rem; font-weight: 600 }
+.doc span:last-child { color: var(--fg-2); font-size: .85rem }
+.doc .tipo { align-self: flex-start; font: 500 .7rem/1 var(--f-mono); text-transform: uppercase; letter-spacing: .06em; color: var(--accent); background: var(--accent-soft); padding: 3px 6px; border-radius: 3px }
 </style>
 
 <header class="top">
@@ -168,7 +232,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
     <div class="brand">
       <span class="eyebrow">ANA · Superintendência de Operações e Eventos Críticos</span>
       <h1>Monitoramento das Regras de Operação de Reservatórios</h1>
-      <p>Cumprimento das resoluções e marcos regulatórios dos sistemas hídricos, apurado diariamente com dados do ONS, do SAR/ANA e do SAISP, e com as faixas operativas publicadas nos painéis da SOE.</p>
+      <p>Cumprimento das resoluções e marcos regulatórios dos sistemas hídricos, apurado diariamente com dados do ONS, do SAR/ANA, do SAISP e da Sabesp, e com as faixas operativas publicadas nos boletins diários da ANA e nos painéis da SOE.</p>
     </div>
     <div class="meta">
       <div>Dados até<b id="m-dados">—</b></div>
@@ -181,7 +245,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
 <nav class="filters" aria-label="Filtros">
   <div class="wrap">
     <div class="seg" id="presets" role="group" aria-label="Período">
-      <button data-p="dia">Último dia</button><button data-p="7">7 dias</button><button data-p="30" aria-pressed="true">30 dias</button><button data-p="mes">Mês atual</button><button data-p="mesant">Mês anterior</button><button data-p="ano">Ano</button><button data-p="anoant">Ano anterior</button><button data-p="tudo">Desde 2024</button>
+      <button data-p="dia">Último dia</button><button data-p="7">7 dias</button><button data-p="30" aria-pressed="true">30 dias</button><button data-p="mes">Mês atual</button><button data-p="mesant">Mês anterior</button><button data-p="ano">Ano</button><button data-p="anoant">Ano anterior</button><button data-p="tudo">Todo o histórico</button>
     </div>
     <span class="range"><input type="date" id="f-ini" aria-label="Início"><span class="muted">a</span><input type="date" id="f-fim" aria-label="Fim"></span>
     <label class="field">Sistema <select id="f-sis"><option value="">Todos</option></select></label>
@@ -190,14 +254,27 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
       <option value="Atende">Último: Atende</option><option value="Tolerância">Último: Tolerância</option><option value="Não atende">Último: Não atende</option>
       <option value="Sem dado">Último: Sem dado</option><option value="Em curso">Último: Em curso</option><option value="Não se aplica">Último: Não se aplica</option><option value="Parâmetro pendente">Último: Parâmetro pendente</option>
     </select></label>
-    <label class="field"><input type="search" id="f-q" placeholder="Buscar ponto, resolução…" aria-label="Buscar"></label>
+    <label class="field"><input type="search" id="f-q" placeholder="Buscar ponto, resolução, artigo…" aria-label="Buscar"></label>
   </div>
 </nav>
+<nav class="abas-bar" aria-label="Blocos do painel"><div class="wrap">
+  <div class="abas" role="tablist" aria-label="Blocos do painel">
+      <button role="tab" id="tab-sint" aria-controls="s-sint" data-aba="sint">Síntese</button>
+      <button role="tab" id="tab-regras" aria-controls="s-regras" data-aba="regras">Regras <span class="badge" id="b-regras"></span></button>
+      <button role="tab" id="tab-heat" aria-controls="s-heat" data-aba="heat">Mapa multitemporal</button>
+      <button role="tab" id="tab-oc" aria-controls="s-oc" data-aba="oc">Ocorrências <span class="badge" id="b-oc"></span></button>
+      <button role="tab" id="tab-docs" aria-controls="s-docs" data-aba="docs">Documentos</button>
+    </div>
+</div></nav>
 
 <main><div class="wrap">
   <div id="erro" hidden></div>
 
-  <section aria-labelledby="h-sint">
+  <section id="s-sint" role="tabpanel" aria-labelledby="h-sint" data-aba="sint">
+    <div class="fx-quadro" aria-labelledby="h-faixas">
+      <div class="fx-head"><h3 id="h-faixas">Faixas operativas vigentes</h3><span class="muted">Faixa de hoje, publicada no boletim diário da ANA ou no Power BI (● ) ou calculada pela regra; não depende do período nem dos filtros.</span></div>
+      <div class="fx-chips" id="bands"></div>
+    </div>
     <div class="sec-head"><h2 id="h-sint">Síntese do período</h2><p id="p-periodo"></p></div>
     <div class="summary">
       <div class="icg">
@@ -212,27 +289,47 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
     </div>
   </section>
 
-  <section aria-labelledby="h-faixas">
-    <div class="sec-head"><h2 id="h-faixas">Faixas operativas vigentes</h2><p>Faixa publicada no boletim diário da ANA (gov.br) ou, na falta dele, no painel Power BI do sistema hídrico. Quando não há publicação para o período, a faixa é calculada pela regra da resolução.</p></div>
-    <div class="bands" id="bands"></div>
-  </section>
 
-  <section aria-labelledby="h-regras">
-    <div class="sec-head"><h2 id="h-regras">Regras por sistema hídrico</h2><p>Clique em uma regra para ver a série, o limite e as avaliações diárias. A folga é a distância ao limite, na unidade da regra.</p></div>
+  <section id="s-regras" role="tabpanel" aria-labelledby="h-regras" data-aba="regras">
+    <div class="sec-head"><h2 id="h-regras">Regras por sistema hídrico</h2><p>Clique no sistema para abrir as regras e em uma regra para ver a série, o limite e as avaliações diárias. A folga é a distância ao limite, na unidade da regra.</p></div>
+    <div class="acoes">
+      <label class="chk"><input type="checkbox" id="f-pend"> Só pendências <span class="muted">(Não atende ou Tolerância em algum dia do período, ou janela aberta com parcial acima do limite)</span></label>
+      <button type="button" class="btn" id="b-abrir">Abrir todos</button><button type="button" class="btn" id="b-fechar">Recolher todos</button>
+    </div>
     <div class="tbl-wrap"><table id="t-regras"><thead><tr>
       <th>Ponto de controle / regra</th><th>Norma</th><th>Faixa</th><th class="n">Valor apurado</th><th class="n">Limite</th><th class="n">Folga</th><th>Situação</th><th>Série no período</th><th class="n">Conformidade</th>
     </tr></thead><tbody></tbody></table></div>
   </section>
 
-  <section aria-labelledby="h-heat">
-    <div class="sec-head"><h2 id="h-heat">Mapa multitemporal</h2><p>Conformidade mensal por regra (avaliações conformes ÷ avaliadas). Células com violação trazem o número de dias em “Não atende”.</p></div>
+  <section id="s-heat" role="tabpanel" aria-labelledby="h-heat" data-aba="heat">
+    <div class="sec-head"><h2 id="h-heat">Mapa multitemporal</h2><p><span id="heat-desc"></span> Avaliações conformes ÷ avaliadas; células com violação trazem o número de dias em “Não atende”.</p></div>
+    <div class="heat heat-leg" aria-label="Legenda do mapa">
+      <span><span class="c" style="background:color-mix(in srgb, var(--ok) 32%, var(--surface))"></span>100% conforme</span>
+      <span><span class="c" style="background:color-mix(in srgb, var(--tol) 45%, var(--surface))"></span>Com tolerância</span>
+      <span><span class="c" style="background:color-mix(in srgb, var(--nao) 65%, var(--surface))"></span>Com Não atende (nº de dias)</span>
+      <span><span class="c h-na"></span>Não se aplica</span>
+      <span><span class="c h-pp"></span>Parâmetro pendente</span>
+      <span><span class="c h-ec"></span>Em curso</span>
+      <span><span class="c h-sd"></span>Sem dado</span>
+    </div>
     <div class="tbl-wrap heat"><table id="t-heat"><thead></thead><tbody></tbody></table></div>
   </section>
 
-  <section aria-labelledby="h-oc">
+  <section id="s-oc" role="tabpanel" aria-labelledby="h-oc" data-aba="oc">
     <div class="sec-head"><h2 id="h-oc">Ocorrências no período</h2><p>Avaliações em “Não atende” ou “Tolerância”, da mais recente para a mais antiga.</p></div>
     <div class="tbl-wrap"><table id="t-oc"><thead><tr>
       <th>Data</th><th>Sistema</th><th>Ponto</th><th>Norma</th><th>Regra</th><th>Parâmetro</th><th class="n">Valor</th><th class="n">Limite</th><th class="n">Desvio</th><th>Situação</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section id="s-docs" role="tabpanel" aria-labelledby="h-docs" data-aba="docs">
+    <div class="sec-head"><h2 id="h-docs">Documentos</h2><p>Manual e planilhas gerados a cada atualização do painel, com os mesmos dados das outras abas (histórico completo, sem os filtros da tela).</p></div>
+    <div class="docs">
+      <a class="doc" href="manual.html" target="_blank" rel="noopener"><span class="tipo">Página</span><b>Manual do usuário</b><span>Como ler o painel: abas, filtros, situações, janelas em curso, faixas, fontes e limitações.</span></a>
+      <a class="doc" href="docs/acompanhamento_regras.xlsx" download><span class="tipo">Excel</span><b>Extrato de acompanhamento</b><span>Situação atual e conformidade de cada regra (ano, 12 meses e histórico), contagem mensal e lista de ocorrências.</span></a>
+      <a class="doc" href="docs/historico_faixas.xlsx" download><span class="tipo">Excel</span><b>Histórico das faixas operativas</b><span>Faixas publicadas nos boletins diários da ANA e no Power BI da SOE, por período de vigência, com o link do boletim.</span></a>
+      <a class="doc" href="docs/indicadores_ASREG.xlsx" download><span class="tipo">Excel</span><b>Indicadores ASREG</b><span>Planilha de indicadores das regras de operação (formato ASREG) com a situação e a conformidade apuradas pelo painel.</span></a>
+    </div>
+    <p class="muted" id="docs-gerado" style="font-size:.8rem;margin-top:10px"></p>
   </section>
 </div></main>
 
@@ -240,9 +337,10 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
   <h3>Notas metodológicas</h3>
   <ul>
     <li>Fontes primárias: ONS Dados Abertos (dados hidrológicos diários e horários por reservatório), SAR/ANA (Sistema Cantareira), SAISP/DAEE (postos do PCJ), boletins diários da Sala de Situação/ANA e painéis Power BI da SOE (faixas operativas).</li>
-    <li>Métrica de três níveis (Atende, Tolerância, Não atende) somente onde a resolução prevê tolerância; dois níveis nos demais casos. “Não se aplica” indica regra fora da condição de aplicação; “Sem dado” indica ausência do dado na fonte.</li>
+    <li>Métrica de três níveis (Atende, Tolerância, Não atende) somente onde a resolução prevê tolerância; dois níveis nos demais casos. “Não se aplica” indica regra fora da condição de aplicação ou faixa em que a norma não fixa limite; “Sem dado” indica ausência do dado na fonte.</li>
     <li>Regras de janela (semana operativa, mês e ano) só recebem Atende, Tolerância ou Não atende no fechamento da janela. Antes disso aparecem como “Em curso”, com destaque quando a média parcial excede o limite, e não entram no índice de conformidade. O volume anual é acumulado desde 1º de janeiro e avaliado no fechamento do ano (31/12).</li>
     <li>Índice de conformidade global = (Atende + Tolerância) ÷ avaliações com resultado, no período e filtros selecionados.</li>
+    <li>Manual do usuário e planilhas para download na aba <a href="#docs">Documentos</a>.</li>
     <li id="n-pend"></li>
   </ul>
 </div></footer>
@@ -266,10 +364,11 @@ const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<
 const nf = (v, d) => v == null || v === "" ? "—" : (typeof v === "number" ? v.toLocaleString("pt-BR", { minimumFractionDigits: d ?? (Math.abs(v) >= 100 ? 0 : 2), maximumFractionDigits: d ?? (Math.abs(v) >= 100 ? 1 : 2) }) : esc(String(v).replace(/\./g, ",")));
 const df = (iso) => iso ? iso.slice(8, 10) + "/" + iso.slice(5, 7) + "/" + iso.slice(0, 4) : "—";
 const MES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
-const pill = (st, o) => { const s = ST[st] || ST["Sem dado"]; const exc = st === "Em curso" && o && o.exc;
-  const tip = st === "Em curso" && o ? ` title="Janela aberta. Parcial: ${esc(o.parc || "")}${exc ? " (média parcial acima do limite)" : ""}"` : "";
+const pill = (st, o) => { const s = ST[st] || ST["Sem dado"]; const exc = st === "Em curso" && o && o.exc && !o.fechada;
+  const fech = st === "Em curso" && o && o.fechada;
+  const tip = st === "Em curso" && o ? ` title="${fech ? "Janela já encerrada; resultado parcial nesta data" : "Janela aberta"}. Parcial: ${esc(o.parc || "")}${exc ? " (média parcial acima do limite)" : ""}"` : "";
   const lado = o && o.lado ? (st === "Tolerância" ? " · para baixo" : st === "Atende" && o.lado === "acima" ? " · tol. para cima" : "") : "";
-  return `<span class="pill ${s.c}${exc ? " exc" : ""}"${tip}><svg viewBox="0 0 12 12" aria-hidden="true">${s.i}</svg>${esc(st)}${exc ? " · parcial acima" : ""}${lado}</span>`; };
+  return `<span class="pill ${s.c}${exc ? " exc" : ""}"${tip}><svg viewBox="0 0 12 12" aria-hidden="true">${s.i}</svg>${fech ? "Parcial" : esc(st)}${lado}</span>`; };
 const cssv = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 const U = (r) => r.unid === "%" ? "% VU" : (r.unid || "");
 const paramDia = (r, s) => { const p = r.param || ""; if (s && s.ag) { const i = p.indexOf(", "); return (i > 0 ? p.slice(0, i) : p) + ", " + s.ag; } return p; };
@@ -284,9 +383,26 @@ const limNum = (lim) => {
 };
 
 let D = null, ini = null, fim = null, aberto = new Set();
-const state = { preset: "30", sis: "", st: "", q: "" };
+const state = { preset: "30", sis: "", st: "", q: "", aba: "sint", pend: false };
+const sisAbertos = new Set(), sisFechados = new Set();
+// janela em curso no fim do período, mas já fechada depois dele: devolve o registro do fechamento
+function fechamento(r, u) {
+  if (!u || u.st !== "Em curso" || !u.d) return null;
+  const i = r.serie.findIndex((x) => x.d === u.d);
+  for (let j = i + 1; j >= 1 && j < r.serie.length; j++) {
+    const x = r.serie[j];
+    if (x.st === "Em curso" || x.st === "Sem dado") continue;
+    return AVAL.includes(x.st) ? x : null;
+  }
+  return null;
+}
+const efetivo = (r, per) => { const u = ultimoValido(per) || {}; return fechamento(r, u) || u; };
+// pendência: alguma avaliação em Não atende ou Tolerância no período, ou situação final (fechamento / janela aberta acima do limite) pendente
+const violacoes = (per) => per.filter((x) => x.st === "Não atende" || x.st === "Tolerância");
+const resumoViol = (v) => { const n = v.filter((x) => x.st === "Não atende").length, t = v.length - n; return n && t ? `Não atende (${n}) ou Tolerância (${t})` : n ? "Não atende" : "Tolerância"; };
+const pendente = (r, per) => { if (violacoes(per).length) return true; const u = efetivo(r, per); return u.st === "Não atende" || u.st === "Tolerância" || (u.st === "Em curso" && !!u.exc && !u.fechada); };
 try { const s = JSON.parse(localStorage.getItem("painel-soe-filtros") || "{}"); Object.assign(state, s); } catch (e) {}
-const salvar = () => { try { localStorage.setItem("painel-soe-filtros", JSON.stringify({ preset: state.preset, sis: state.sis })); } catch (e) {} };
+const salvar = () => { try { localStorage.setItem("painel-soe-filtros", JSON.stringify({ preset: state.preset, sis: state.sis, aba: state.aba, pend: state.pend })); } catch (e) {} };
 
 function addDias(iso, n) { const d = new Date(iso + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); }
 function aplicarPreset(p) {
@@ -311,11 +427,13 @@ function conf(c) { return c.n ? (c["Atende"] + c["Tolerância"]) / c.n * 100 : n
 function corConf(p) { if (p == null) return "var(--sunk)"; if (p >= 99.95) return cssv("--ok"); if (p >= 90) return cssv("--tol"); return cssv("--nao"); }
 
 function filtradas() {
-  const q = state.q.trim().toLowerCase();
+  const sa = (t) => String(t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  const q = sa(state.q.trim());
   return D.regras.filter((r) => {
     if (state.sis && r.sistema !== state.sis) return false;
-    if (q && !(`${r.ponto} ${r.resolucao} ${r.descricao} ${r.sistema} ${r.id}`.toLowerCase().includes(q))) return false;
+    if (q && !sa(`${r.ponto} ${r.resolucao} ${r.artigos || ""} ${r.descricao} ${r.sistema} ${r.id}`).includes(q)) return false;
     const per = noPeriodo(r);
+    if (state.pend && !pendente(r, per)) return false;
     if (state.st === "viol") { const c = contar(per); if (!c["Não atende"] && !c["Tolerância"]) return false; }
     else if (state.st) { const u = ultimoValido(per); if (!u || u.st !== state.st) return false; }
     return true;
@@ -335,7 +453,7 @@ function sparkline(r, per, w = 112, h = 30) {
   let lim = "";
   const lastLim = limNum(per[per.length - 1].lim) || limNum((per.find((s) => s.lim != null) || {}).lim);
   if (lastLim) lim = lastLim.map((L) => `<line x1="2" x2="${w - 4}" y1="${y(L).toFixed(1)}" y2="${y(L).toFixed(1)}" stroke="var(--chart-lim)" stroke-width="1" stroke-dasharray="3 2"/>`).join("");
-  const bad = per.map((s, i) => typeof s.v !== "number" ? "" : s.st === "Não atende" ? `<circle cx="${x(i).toFixed(1)}" cy="${y(s.v).toFixed(1)}" r="2.4" fill="var(--nao)"/>` : s.exc ? `<circle cx="${x(i).toFixed(1)}" cy="${y(s.v).toFixed(1)}" r="2" fill="none" stroke="var(--tol)" stroke-width="1.2"/>` : "").join("");
+  const bad = per.map((s, i) => typeof s.v !== "number" ? "" : s.st === "Não atende" ? `<circle cx="${x(i).toFixed(1)}" cy="${y(s.v).toFixed(1)}" r="2.4" fill="var(--nao)"/>` : s.exc && !s.fechada ? `<circle cx="${x(i).toFixed(1)}" cy="${y(s.v).toFixed(1)}" r="2" fill="none" stroke="var(--tol)" stroke-width="1.2"/>` : "").join("");
   const li = per.map((s, i) => [s, i]).filter(([s]) => typeof s.v === "number").pop();
   const end = li ? `<circle cx="${x(li[1]).toFixed(1)}" cy="${y(li[0].v).toFixed(1)}" r="2.6" fill="var(--chart-line)" stroke="var(--surface)" stroke-width="1.5"/>` : "";
   return `<svg class="spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="Série de ${esc(r.ponto)}">${lim}<path d="${d}" fill="none" stroke="var(--chart-line)" stroke-width="1.6" stroke-linejoin="round"/>${bad}${end}</svg>`;
@@ -360,7 +478,7 @@ function grafico(r, per) {
   const limSvg = limPath.filter(Boolean).map((p) => `<path d="${p}" fill="none" stroke="var(--chart-lim)" stroke-width="1.5" stroke-dasharray="5 3"/>`).join("");
   let d = "", pen = false, area = "";
   per.forEach((s, i) => { if (typeof s.v === "number") { d += (pen ? "L" : "M") + x(i).toFixed(1) + " " + y(s.v).toFixed(1); pen = true; } else pen = false; });
-  const marks = per.map((s, i) => typeof s.v !== "number" ? "" : (s.st === "Não atende" || s.st === "Tolerância") ? `<circle cx="${x(i)}" cy="${y(s.v)}" r="4" fill="var(${ST[s.st].v})" stroke="var(--surface)" stroke-width="2"/>` : s.exc ? `<circle cx="${x(i)}" cy="${y(s.v)}" r="3.5" fill="var(--surface)" stroke="var(--tol)" stroke-width="1.6"/>` : "").join("");
+  const marks = per.map((s, i) => typeof s.v !== "number" ? "" : (s.st === "Não atende" || s.st === "Tolerância") ? `<circle cx="${x(i)}" cy="${y(s.v)}" r="4" fill="var(${ST[s.st].v})" stroke="var(--surface)" stroke-width="2"/>` : s.exc && !s.fechada ? `<circle cx="${x(i)}" cy="${y(s.v)}" r="3.5" fill="var(--surface)" stroke="var(--tol)" stroke-width="1.6"/>` : "").join("");
   return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(paramDia(r))} em ${esc(U(r))}, ${esc(r.ponto)}, com limite">
     <text x="${L}" y="14" class="axis-lbl" fill="var(--fg-2)">${esc(paramDia(r))} (${esc(U(r))})</text>
     <line x1="${W - R - 150}" x2="${W - R - 132}" y1="10" y2="10" stroke="var(--chart-line)" stroke-width="2"/><text x="${W - R - 128}" y="14" font-size="11" fill="var(--fg-3)">valor</text>
@@ -382,7 +500,7 @@ function ligarTooltip(box, r, per) {
     const s = per[i], xx = L + (n === 1 ? (W - L - R) / 2 : i * (W - L - R) / (n - 1));
     xh.setAttribute("x1", xx); xh.setAttribute("x2", xx); xh.setAttribute("visibility", "visible");
     tip.hidden = false; tip.style.left = (xx / W * b.width) + "px"; tip.style.top = "14px";
-    tip.innerHTML = `<b>${df(s.d)}</b> · ${esc(paramDia(r, s))}<br>${s.v == null ? "sem valor" : nf(s.v) + " " + esc(U(r))} · limite ${s.lim == null ? "—" : nf(s.lim) + " " + esc(U(r))} · ${esc(s.st)}${s.st === "Em curso" ? ` (parcial: ${esc(s.parc || "—")}${s.exc ? ", acima do limite" : ""})` : ""}`;
+    tip.innerHTML = `<b>${df(s.d)}</b> · ${esc(paramDia(r, s))}<br>${s.v == null ? "sem valor" : nf(s.v) + " " + esc(U(r))} · limite ${s.lim == null ? "—" : nf(s.lim) + " " + esc(U(r))} · ${s.fechada ? "Parcial (janela encerrada)" : esc(s.st)}${s.st === "Em curso" && !s.fechada ? ` (parcial: ${esc(s.parc || "—")}${s.exc ? ", acima do limite" : ""})` : ""}`;
   };
   hit.addEventListener("pointermove", mover); hit.addEventListener("pointerdown", mover);
   hit.addEventListener("pointerleave", () => { tip.hidden = true; xh.setAttribute("visibility", "hidden"); });
@@ -400,7 +518,7 @@ function render() {
   }
   const p = conf(tot);
   $("#icg").innerHTML = p == null ? "—" : `${nf(p, 1)}<small>%</small>`;
-  $("#icg-lbl").textContent = p == null ? "Nenhuma avaliação no período." : `${tot.n.toLocaleString("pt-BR")} avaliações diárias · ${tot["Não atende"]} em “Não atende”, ${tot["Tolerância"]} em “Tolerância”`;
+  $("#icg-lbl").textContent = p == null ? "Nenhuma avaliação no período." : `${tot.n.toLocaleString("pt-BR")} avaliações · ${tot["Não atende"].toLocaleString("pt-BR")} em “Não atende”, ${tot["Tolerância"].toLocaleString("pt-BR")} em “Tolerância”`;
   $("#icg-bar").innerHTML = AVAL.map((k) => tot[k] ? `<span style="flex:${tot[k]};background:var(${ST[k].v})" title="${k}: ${tot[k]}"></span>` : "").join("");
   $("#icg-leg").innerHTML = AVAL.map((k) => `<span><i style="background:var(${ST[k].v})"></i>${k} ${tot[k].toLocaleString("pt-BR")}</span>`).join("");
   $("#t-escalas tbody").innerHTML = Object.keys(ESCALAS).filter((e) => porEsc[e]).map((e) => {
@@ -412,9 +530,15 @@ function render() {
   // regras
   const porSis = {};
   regras.forEach((r) => (porSis[r.sistema] = porSis[r.sistema] || []).push(r));
-  let html = "";
+  let html = "", nNao = 0;
+  const abrirTodos = !!state.q.trim() || state.pend || !!state.sis || !!state.st;
   for (const [sis, rs] of Object.entries(porSis)) {
-    html += `<tr class="sys-row"><td colspan="9">${esc(sis)}</td></tr>`;
+    const k = { nao: 0, tol: 0, ok: 0, ec: 0 };
+    for (const r of rs) { const u = efetivo(r, noPeriodo(r)); if (u.st === "Não atende") k.nao++; else if (u.st === "Tolerância" || (u.st === "Em curso" && u.exc)) k.tol++; else if (u.st === "Atende") k.ok++; else if (u.st === "Em curso") k.ec++; }
+    nNao += k.nao;
+    const ab_s = abrirTodos ? !sisFechados.has(sis) : sisAbertos.has(sis);
+    html += `<tr class="sys-row" data-sis="${esc(sis)}"><td colspan="9"><button type="button" class="sys-btn" aria-expanded="${ab_s}"><span class="seta" aria-hidden="true">▸</span><span class="nome">${esc(sis)}</span><span class="sys-cnt"><span>${rs.length} regra${rs.length > 1 ? "s" : ""}</span>${k.nao ? `<span class="c-nao">${k.nao} não atende</span>` : ""}${k.tol ? `<span class="c-tol">${k.tol} tolerância/parcial acima</span>` : ""}${k.ok ? `<span class="c-ok">${k.ok} atende</span>` : ""}${k.ec ? `<span>${k.ec} em curso</span>` : ""}</span></button></td></tr>`;
+    if (!ab_s) continue;
     for (const r of rs) {
       const per = noPeriodo(r), u = ultimoValido(per) || {}, c = contar(per), q = conf(c), ab = aberto.has(r.id);
       const folga = u.folga == null ? "—" : `${comU(u.folga, r)}${u.pct != null && r.unid !== "%" ? ` <span class="muted">(${nf(u.pct, 0)}%)</span>` : ""}`;
@@ -424,20 +548,44 @@ function render() {
         <td>${u.faixa ? esc(u.faixa) : '<span class="muted">—</span>'}${u.orig === "Power BI" || u.orig === "Boletim ANA" ? ` <span class="muted" title="Faixa publicada (${esc(u.orig)})">●</span>` : ""}</td>
         <td class="n">${comU(u.v, r)}<span class="param">${esc(paramDia(r, u))}</span></td>
         <td class="n">${comU(u.lim, r)}</td><td class="n">${folga}</td>
-        <td>${pill(u.st || "Sem dado", u)}<div class="muted" style="font-size:.72rem;margin-top:2px">${u.d ? df(u.d) : ""}</div></td>
+        <td>${(() => { const f = fechamento(r, u), viol = violacoes(per);
+          const vtxt = viol.length ? `<div class="viol" title="Avaliações em Não atende ou Tolerância dentro do período selecionado">${viol.length} ${viol.length > 1 ? "avaliações" : "avaliação"} em ${resumoViol(viol)} no período · última em ${df(viol[viol.length - 1].d)}</div>` : "";
+          if (!f) return `${pill(u.st || "Sem dado", u)}<div class="muted" style="font-size:.72rem;margin-top:2px">${u.d ? df(u.d) : ""}</div>${vtxt}`;
+          return `<span title="Janela fechada após o período selecionado. Em ${df(u.d)}: Em curso, parcial ${esc(u.parc || "")} (${nf(u.v)} ${esc(U(r))}). Fechamento: ${nf(f.v)} ${esc(U(r))}, limite ${nf(f.lim)}.">${pill(f.st, f)}</span><div class="muted" style="font-size:.72rem;margin-top:2px">fechamento em ${df(f.d)}</div><div class="muted" style="font-size:.7rem">em ${df(u.d)}: parcial</div>${vtxt}`; })()}</td>
         <td>${sparkline(r, per)}</td>
         <td class="n"><span class="pct-bar"><span class="num">${q == null ? "—" : nf(q, 0) + "%"}</span><span class="track"><span class="fill" style="display:block;width:${q ?? 0}%;background:${corConf(q)}"></span></span></span><div class="muted" style="font-size:.72rem">${c.n} aval.${c["Não atende"] ? ` · ${c["Não atende"]} NA` : ""}</div></td></tr>`;
       if (ab) html += detalhe(r, per, u);
     }
   }
-  $("#t-regras tbody").innerHTML = html || `<tr><td colspan="9" class="empty">Nenhuma regra com os filtros atuais.</td></tr>`;
+  $("#t-regras tbody").innerHTML = html || `<tr><td colspan="9" class="empty">${state.pend ? "Nenhuma regra pendente no período e filtros selecionados." : "Nenhuma regra com os filtros atuais."}</td></tr>`;
+  $("#b-regras").textContent = nNao ? `${nNao} NA` : regras.length;
+  $("#b-regras").className = "badge" + (nNao ? " nao" : "");
+  $("#b-regras").title = nNao ? `${nNao} regra(s) com último resultado Não atende` : `${regras.length} regras`;
   document.querySelectorAll("tr.detail").forEach((tr) => { const r = D.regras.find((x) => x.id === tr.dataset.id); ligarTooltip(tr.querySelector(".chart-box"), r, noPeriodo(r)); });
 
   renderHeat(regras); renderOc(regras);
 }
 
+let iniciado = false;
+function mostrarAba(a, foco) {
+  if (a === "faixas") a = "sint";
+  if (!document.getElementById("s-" + a)) a = "sint";
+  state.aba = a;
+  document.querySelectorAll(".abas [role=tab]").forEach((b) => { const on = b.dataset.aba === a; b.setAttribute("aria-selected", String(on)); b.tabIndex = on ? 0 : -1; if (on && foco) b.focus(); });
+  document.querySelectorAll("main section[data-aba]").forEach((sec) => { sec.hidden = sec.dataset.aba !== a; });
+  if (location.hash !== "#" + a) history.replaceState(null, "", "#" + a);
+  salvar();
+  const topo = $("main").getBoundingClientRect().top + scrollY - $(".abas-bar").offsetHeight - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--fh")) || 0);
+  // Regras no computador: alinha a aba sob a barra fixa, para a tabela (com rolagem própria) caber inteira na tela
+  if (scrollY > topo || (["regras", "heat", "oc"].includes(a) && foco !== false && matchMedia("(min-width: 761px)").matches && iniciado)) scrollTo({ top: Math.max(0, topo) });
+  iniciado = true;
+}
+
+const obsTxt = (x) => String(x.obs || "").split("; ").filter((t) => t && t !== "janela em curso").join("; ");
 function detalhe(r, per, u) {
-  const linhas = per.slice().reverse().map((s) => `<tr><td>${df(s.d)}</td><td class="n">${nf(s.v)}</td><td class="n">${nf(s.lim)}</td><td class="n">${nf(s.folga)}</td><td>${pill(s.st, s)}</td><td class="muted">${esc(s.faixa || "")}</td><td class="muted">${esc(s.obs || "")}</td></tr>`).join("");
+  const viol = violacoes(per), soViol = state.pend && viol.length > 0, mostra = soViol ? viol : per;
+  const temObs = mostra.some((x) => obsTxt(x));
+  const linhas = mostra.slice().reverse().map((s) => `<tr><td>${df(s.d)}</td><td class="n">${nf(s.v)}</td><td class="n">${nf(s.lim)}</td><td class="n">${nf(s.folga)}</td><td>${pill(s.st, s)}</td><td class="muted">${esc(s.faixa || "")}</td>${temObs ? `<td class="muted">${esc(obsTxt(s))}</td>` : ""}</tr>`).join("");
   return `<tr class="detail" data-id="${esc(r.id)}"><td colspan="9"><div class="detail-box">
     <div class="detail-grid">
       <div class="chart-box">${grafico(r, per)}</div>
@@ -450,62 +598,114 @@ function detalhe(r, per, u) {
         <dt>Fonte</dt><dd class="mono">${esc(r.fonte || "")}</dd>
         <dt>Parâmetro</dt><dd>${esc(r.param || "")} (${esc(U(r))})</dd>
         <dt>Faixa</dt><dd>${esc(u.faixa || "—")}${u.orig ? ` (${esc(u.orig)})` : ""}</dd>
-        ${u.obs ? `<dt>Observação</dt><dd>${esc(u.obs)}</dd>` : ""}
+        ${obsTxt(u) ? `<dt>Observação</dt><dd>${esc(obsTxt(u))}</dd>` : ""}
         <dt>Código</dt><dd class="mono">${esc(r.id)}</dd>
       </dl>
     </div>
-    <div class="mini"><table><thead><tr><th>Data</th><th class="n">Valor (${esc(U(r))})</th><th class="n">Limite (${esc(U(r))})</th><th class="n">Folga (${esc(U(r))})</th><th>Situação</th><th>Faixa</th><th>Observação</th></tr></thead><tbody>${linhas}</tbody></table></div>
+    <div class="mini"><table><thead><tr><th>Data</th><th class="n">Valor (${esc(U(r))})</th><th class="n">Limite (${esc(U(r))})</th><th class="n">Folga (${esc(U(r))})</th><th>Situação</th><th>Faixa</th>${temObs ? "<th>Observação</th>" : ""}</tr></thead><tbody>${linhas}</tbody></table></div>
+    ${soViol ? `<p class="muted" style="font-size:.78rem;margin:6px 0 0">Com “Só pendências” marcado, a tabela mostra apenas as ${viol.length} ${viol.length > 1 ? "avaliações" : "avaliação"} em Não atende ou Tolerância do período. Desmarque o filtro para ver todos os dias.</p>` : ""}
   </div></td></tr>`;
 }
 
 const curta = (t) => { t = String(t || ""); return t.length > 44 ? t.slice(0, 42).replace(/\s+\S*$/, "") + "…" : t; };
+function colunasHeat() {
+  const dias = (Date.parse(fim) - Date.parse(ini)) / 864e5 + 1;
+  const cols = [];
+  if (dias > 45) { // mensal
+    let m = ini.slice(0, 7);
+    while (m <= fim.slice(0, 7)) { cols.push({ k: m, rot: `${MES[+m.slice(5) - 1]}/${m.slice(2, 4)}`, a: m + "-01", b: m + "-31" }); const d = new Date(m + "-15T12:00:00Z"); d.setUTCMonth(d.getUTCMonth() + 1); m = d.toISOString().slice(0, 7); }
+  } else { // semanal (semana operativa, sábado a sexta), ou diário até 10 dias
+    if (dias <= 10) { for (let d = ini; d <= fim; d = addDias(d, 1)) cols.push({ k: d, rot: df(d).slice(0, 5), a: d, b: d }); }
+    else { const w = new Date(ini + "T12:00:00Z"); let d = addDias(ini, -((w.getUTCDay() + 1) % 7)); for (; d <= fim; d = addDias(d, 7)) cols.push({ k: d, rot: "sem. " + df(d < ini ? ini : d).slice(0, 5), a: d < ini ? ini : d, b: addDias(d, 6) > fim ? fim : addDias(d, 6) }); }
+  }
+  return cols;
+}
+
+const HEAT_VAZIO = { "Não se aplica": "na", "Parâmetro pendente": "pp", "Em curso": "ec", "Sem dado": "sd" };
 function renderHeat(regras) {
-  const meses = [...new Set(D.regras.flatMap((r) => Object.keys(r.mensal || {})))].sort();
-  $("#t-heat thead").innerHTML = `<tr><th style="text-align:left">Ponto / regra</th>${meses.map((m) => `<th>${MES[+m.slice(5) - 1]}/${m.slice(2, 4)}</th>`).join("")}</tr>`;
+  const cols = colunasHeat();
+  const dias = (Date.parse(fim) - Date.parse(ini)) / 864e5 + 1;
+  $("#heat-desc").textContent = dias > 45 ? "Conformidade mensal por regra no período selecionado (meses parciais contam só os dias do período)." : dias > 10 ? "Conformidade semanal por regra no período selecionado (semana operativa, de sábado a sexta)." : "Resultado diário por regra no período selecionado.";
+  $("#t-heat thead").innerHTML = `<tr><th style="text-align:left">Ponto / regra</th>${cols.map((c) => `<th>${c.rot}</th>`).join("")}</tr>`;
   const ok = cssv("--ok"), tol = cssv("--tol"), nao = cssv("--nao");
-  $("#t-heat tbody").innerHTML = regras.map((r) => `<tr><td class="lbl"><b>${esc(r.ponto)}</b> <span class="muted">${esc(r.resolucao.replace("Res. ", ""))} · ${esc(curta(r.descricao))}</span></td>${meses.map((m) => {
-    const c = (r.mensal || {})[m];
-    if (!c || !c.n) return `<td class="cell"><span class="c" style="background:var(--sunk)" title="${m}: sem avaliação"></span></td>`;
-    const q = ((c["Atende"] || 0) + (c["Tolerância"] || 0)) / c.n * 100, na = c["Não atende"] || 0;
-    const bg = na === 0 && q >= 99.95 ? `color-mix(in srgb, ${ok} 32%, var(--surface))` : na === 0 ? `color-mix(in srgb, ${tol} 45%, var(--surface))` : `color-mix(in srgb, ${nao} ${Math.round(40 + (90 - Math.min(90, q)) / 90 * 50)}%, var(--surface))`;
-    return `<td class="cell"><span class="c" style="background:${bg}" title="${esc(r.ponto)} · ${m}: ${nf(q, 1)}% (${c.n} aval., ${na} não atende, ${c["Tolerância"] || 0} tolerância)">${na ? na : ""}</span></td>`;
-  }).join("")}</tr>`).join("");
+  $("#t-heat tbody").innerHTML = regras.map((r) => {
+    const per = noPeriodo(r);
+    return `<tr><td class="lbl" title="${esc(r.ponto)} · ${esc(r.resolucao)} · ${esc(r.descricao)}"><b>${esc(r.ponto)}</b><span class="r">${esc(r.resolucao.replace("Res. ", ""))} · ${esc(r.descricao)}</span></td>${cols.map((col) => {
+      const c = contar(per.filter((s) => s.d >= col.a && s.d <= col.b));
+      if (!c.n) {
+        const k = {}; per.forEach((x) => { if (x.d >= col.a && x.d <= col.b) k[x.st] = (k[x.st] || 0) + 1; });
+        const motivo = k["Parâmetro pendente"] ? "Parâmetro pendente" : k["Sem dado"] && !k["Não se aplica"] && !k["Em curso"] ? "Sem dado" : k["Em curso"] ? "Em curso" : k["Não se aplica"] ? "Não se aplica" : k["Sem dado"] ? "Sem dado" : null;
+        const det = Object.entries(k).map(([st, n]) => `${st} ${n} dia${n > 1 ? "s" : ""}`).join(", ") || "sem registro";
+        return `<td class="cell"><span class="c h-${motivo ? HEAT_VAZIO[motivo] : "nd"}" title="${esc(r.ponto)} · ${col.rot}: sem avaliação (${esc(det)})"></span></td>`;
+      }
+      const q = (c["Atende"] + c["Tolerância"]) / c.n * 100, na = c["Não atende"];
+      const bg = na === 0 && q >= 99.95 ? `color-mix(in srgb, ${ok} 32%, var(--surface))` : na === 0 ? `color-mix(in srgb, ${tol} 45%, var(--surface))` : `color-mix(in srgb, ${nao} ${Math.round(40 + (90 - Math.min(90, q)) / 90 * 50)}%, var(--surface))`;
+      return `<td class="cell"><span class="c" style="background:${bg}" title="${esc(r.ponto)} · ${col.rot}: ${nf(q, 1)}% (${c.n} aval., ${na} não atende, ${c["Tolerância"]} tolerância)">${na ? na : ""}</span></td>`;
+    }).join("")}</tr>`;
+  }).join("") || `<tr><td class="empty">Nenhuma regra com os filtros atuais.</td></tr>`;
 }
 
 function renderOc(regras) {
   const oc = [];
   for (const r of regras) for (const s of noPeriodo(r)) if (s.st === "Não atende" || s.st === "Tolerância") oc.push([r, s]);
   oc.sort((a, b) => b[1].d.localeCompare(a[1].d));
+  $("#b-oc").textContent = oc.length ? oc.length.toLocaleString("pt-BR") : "";
   $("#t-oc tbody").innerHTML = oc.slice(0, 400).map(([r, s]) => {
     const l = limNum(s.lim); let dv = "—";
     if (typeof s.v === "number" && l && l.length === 1 && l[0]) dv = nf((s.v - l[0]) / l[0] * 100, 1) + "%";
     return `<tr><td class="num">${df(s.d)}</td><td>${esc(r.sistema)}</td><td><b>${esc(r.ponto)}</b></td><td class="norma">${esc(r.resolucao)}</td><td class="muted">${esc(r.descricao)}</td><td class="muted">${esc(paramDia(r, s))}</td><td class="n">${comU(s.v, r)}</td><td class="n">${comU(s.lim, r)}</td><td class="n">${dv}</td><td>${pill(s.st, s)}</td></tr>`;
-  }).join("") || `<tr><td colspan="10" class="empty">Nenhuma ocorrência no período e filtros selecionados.</td></tr>`;
+  }).join("") + (oc.length > 400 ? `<tr><td colspan="10" class="empty">Mostrando as 400 ocorrências mais recentes de ${oc.length.toLocaleString("pt-BR")}. Reduza o período ou use o extrato de acompanhamento (aba Documentos), que traz todas.</td></tr>` : "") || `<tr><td colspan="10" class="empty">Nenhuma ocorrência no período e filtros selecionados.</td></tr>`;
 }
 
 function renderFaixas() {
-  const NOMES = { PPJURU: "Jurumirim", PPCHAV: "Chavantes", PPCAPI: "Capivara", GRFURN: "Furnas", GRMMOR: "M. Moraes (Peixoto)", PREMBO: "Emborcação", PRITUM: "Itumbiara", SFTMAR: "Três Marias", SFSOBR: "Sobradinho", TOSMES: "Serra da Mesa", CANTAREIRA: "Sistema Cantareira" };
-  const ESC = { PPJURU: ["Normal", "Atenção", "Alerta", "Restrição"], PPCHAV: ["Normal", "Atenção", "Alerta", "Restrição"], PPCAPI: ["Normal", "Atenção", "Alerta", "Restrição"], TOSMES: ["Normal", "Atenção", "Alerta"], CANTAREIRA: ["1", "2", "3", "4", "5"] };
+  const NOMES = { PPJURU: "Jurumirim", PPCHAV: "Chavantes", PPCAPI: "Capivara", GRFURN: "Furnas", GRMMOR: "M. Moraes (Peixoto)", PREMBO: "Emborcação", PRITUM: "Itumbiara", SFTMAR: "Três Marias", SFSOBR: "Sobradinho", TOSMES: "Serra da Mesa", CANTAREIRA: "Cantareira" };
   $("#bands").innerHTML = (D.faixas || []).map((f) => {
-    const esc_ = ESC[f.rid] || ["Normal", "Atenção", "Restrição"];
     const isNivel = /^PP/.test(f.rid);
-    const ref = f.vu_ref == null ? "" : isNivel ? `${nf(f.vu_ref, 2)} m` : `VU ${nf(f.vu_ref, 1)}%`;
+    const ref = f.vu_ref == null ? "" : isNivel ? `nível de referência ${nf(f.vu_ref, 2)} m` : `VU de referência ${nf(f.vu_ref, 1)}%`;
     const per = /^\d{4}-\d{2}$/.test(f.periodo) ? `${MES[+f.periodo.slice(5) - 1]}/${f.periodo.slice(0, 4)}` : `semana de ${df(f.periodo)}`;
-    return `<div class="band"><div class="name"><h3>${esc(NOMES[f.rid] || f.rid)}</h3><span class="vu">${ref}</span></div>
-      <div class="ladder" role="img" aria-label="Faixa ${esc(f.faixa || "não definida")}">${esc_.map((n, i) => `<span class="${i === f.idx ? "on l" + i : ""}" title="${esc(n)}">${esc(n)}</span>`).join("")}</div>
-      <div><b>${esc(f.faixa || "Sem faixa")}</b></div>
-      <div class="src"><span>${per}</span><span>${f.url ? `<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.origem)}</a>` : esc(f.origem || "")}</span></div></div>`;
-  }).join("") || `<div class="empty">Faixas não disponíveis.</div>`;
+    const pub = f.origem === "Boletim ANA" || f.origem === "Power BI";
+    const tit = [`${NOMES[f.rid] || f.rid}: ${f.faixa || "sem faixa"}`, `vigência ${per}`, ref, `origem: ${f.origem || "—"}`].filter(Boolean).join(" · ");
+    const curto = String(f.faixa || "Sem faixa").replace(/^Faixa (\d) - /, "F$1 ");
+    const tag = f.url ? "a" : "span";
+    return `<${tag} class="fx l${f.idx ?? "x"}"${f.url ? ` href="${esc(f.url)}" target="_blank" rel="noopener" style="cursor:pointer"` : ""} title="${esc(tit)}">${esc(NOMES[f.rid] || f.rid)} <b>${esc(curto)}</b>${pub ? '<span class="pub" aria-label="publicada">●</span>' : ""}</${tag}>`;
+  }).join("") || `<span class="muted">Faixas não disponíveis.</span>`;
 }
 
 function ligar() {
   document.querySelectorAll("#presets button").forEach((b) => b.addEventListener("click", () => { state.preset = b.dataset.p; aplicarPreset(state.preset); salvar(); render(); }));
-  const custom = () => { const a = $("#f-ini").value, b = $("#f-fim").value; if (!a || !b) return; ini = a <= b ? a : b; fim = a <= b ? b : a; state.preset = ""; document.querySelectorAll("#presets button").forEach((x) => x.setAttribute("aria-pressed", "false")); render(); };
+  const custom = () => { const a = $("#f-ini").value, b = $("#f-fim").value; if (!a || !b) return; ini = a <= b ? a : b; fim = a <= b ? b : a; $("#f-ini").value = ini; $("#f-fim").value = fim; state.preset = ""; document.querySelectorAll("#presets button").forEach((x) => x.setAttribute("aria-pressed", "false")); render(); };
   $("#f-ini").addEventListener("change", custom); $("#f-fim").addEventListener("change", custom);
   $("#f-sis").addEventListener("change", (e) => { state.sis = e.target.value; salvar(); render(); });
   $("#f-st").addEventListener("change", (e) => { state.st = e.target.value; render(); });
   $("#f-q").addEventListener("input", (e) => { state.q = e.target.value; render(); });
+  const abas = [...document.querySelectorAll(".abas [role=tab]")];
+  abas.forEach((b, i) => {
+    b.addEventListener("click", () => mostrarAba(b.dataset.aba));
+    b.addEventListener("keydown", (e) => { const d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0; if (d) { e.preventDefault(); mostrarAba(abas[(i + d + abas.length) % abas.length].dataset.aba, true); } });
+  });
+  addEventListener("hashchange", () => mostrarAba(location.hash.slice(1)));
+  const medir = () => document.documentElement.style.setProperty("--fh", (getComputedStyle($(".filters")).position === "sticky" ? $(".filters").offsetHeight : 0) + "px");
+  const medirAb = () => {
+    document.documentElement.style.setProperty("--ab", $(".abas-bar").offsetHeight + "px");
+    const th = $("#t-regras thead"); if (th && th.offsetHeight) document.documentElement.style.setProperty("--th", th.offsetHeight + "px");
+    // no computador, a tabela ocupa o restante da tela abaixo do título e dos botões da aba Regras
+    for (const id of ["s-regras", "s-heat", "s-oc"]) {
+      const tw = $(`#${id} .tbl-wrap`);
+      if (tw && tw.offsetParent && matchMedia("(min-width: 761px)").matches) {
+        const fixo = (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--fh")) || 0) + $(".abas-bar").offsetHeight;
+        const acima = tw.getBoundingClientRect().top - $("#" + id).getBoundingClientRect().top;
+        tw.style.maxHeight = Math.max(320, innerHeight - fixo - acima - 24 - 16) + "px";
+      } else if (tw) tw.style.maxHeight = "";
+    }
+  };
+  medir(); medirAb(); addEventListener("resize", () => { medir(); medirAb(); });
+  document.querySelectorAll(".abas [role=tab]").forEach((b) => b.addEventListener("click", () => requestAnimationFrame(medirAb))); if ("ResizeObserver" in window) new ResizeObserver(medir).observe($(".filters"));
+  $("#f-pend").checked = !!state.pend;
+  $("#f-pend").addEventListener("change", (e) => { state.pend = e.target.checked; salvar(); render(); });
+  $("#b-abrir").addEventListener("click", () => { sisFechados.clear(); filtradas().forEach((r) => sisAbertos.add(r.sistema)); render(); });
+  $("#b-fechar").addEventListener("click", () => { sisAbertos.clear(); aberto.clear(); filtradas().forEach((r) => sisFechados.add(r.sistema)); render(); });
   const tb = $("#t-regras tbody");
+  tb.addEventListener("click", (e) => { const b = e.target.closest(".sys-btn"); if (!b) return; const s = b.closest("tr").dataset.sis; const abrirTodos = !!state.q.trim() || state.pend || !!state.sis || !!state.st; const set = abrirTodos ? sisFechados : sisAbertos; set.has(s) ? set.delete(s) : set.add(s); render(); });
   const toggle = (tr) => { const id = tr.dataset.id; aberto.has(id) ? aberto.delete(id) : aberto.add(id); render(); };
   tb.addEventListener("click", (e) => { const tr = e.target.closest("tr.rule"); if (tr) toggle(tr); });
   tb.addEventListener("keydown", (e) => { const tr = e.target.closest("tr.rule"); if (tr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); toggle(tr); } });
@@ -513,10 +713,25 @@ function ligar() {
 
 function iniciar(dados) {
   D = dados;
+  // dias anteriores à vigência da norma vêm compactados no JSON: recompõe como "Não se aplica"
+  for (const r of D.regras) {
+    const pv = r.pre_vigencia; if (!pv) continue;
+    const pre = [], t = new Date(D.periodo[0] + "T00:00:00Z"), lim = pv.ate || null, fimP = D.periodo[1];
+    for (;;) { const iso = t.toISOString().slice(0, 10); if (lim ? iso >= lim : iso > fimP) break; pre.push({ d: iso, st: "Não se aplica", obs: pv.obs }); t.setUTCDate(t.getUTCDate() + 1); }
+    r.serie = pre.concat(r.serie);
+  }
+  // "Em curso" só para a janela ainda aberta; dias de janelas já encerradas viram "Parcial"
+  for (const r of D.regras) {
+    let ult = ""; for (const x of r.serie) if (AVAL.includes(x.st)) ult = x.d;
+    for (const x of r.serie) if (x.st === "Em curso" && x.d < ult) x.fechada = true;
+  }
   $("#m-dados").textContent = df(D.ultimo_dado_ons);
   const g = new Date(D.gerado_em);
   $("#m-gerado").textContent = isNaN(g) ? D.gerado_em : g.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short", timeZone: "America/Sao_Paulo" });
   $("#m-regras").textContent = D.regras.length;
+  { const b = document.querySelector('#presets button[data-p="tudo"]'), m = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"][+D.periodo[0].slice(5, 7) - 1];
+    if (b) { b.textContent = `Desde ${m}/${D.periodo[0].slice(0, 4)}`; b.title = `Todo o histórico disponível (desde ${df(D.periodo[0])})`; } }
+  if ($("#docs-gerado")) $("#docs-gerado").textContent = `Arquivos gerados com os dados de ${df(D.periodo[0])} a ${df(D.periodo[1])}.`;
   $("#f-ini").min = $("#f-fim").min = D.periodo[0]; $("#f-ini").max = $("#f-fim").max = D.periodo[1];
   const sis = [...new Set(D.regras.map((r) => r.sistema))];
   $("#f-sis").innerHTML += sis.map((s) => `<option>${esc(s)}</option>`).join("");
@@ -525,7 +740,7 @@ function iniciar(dados) {
   const pend = Object.entries(D.parametros || {}).filter(([, v]) => v && v.valor == null).map(([, v]) => v.fonte);
   const erros = D.erros_coleta || [];
   $("#n-pend").textContent = [pend.length ? `Parâmetros pendentes: ${pend.join("; ")}.` : "", erros.length ? `Falhas de coleta nesta execução: ${erros.join("; ")}.` : "", (D.divergencias_faixa || []).length ? `Faixas publicadas divergentes do cálculo: ${D.divergencias_faixa.map((x) => `${x.chave} (publicada ${x.publicada}, calculada ${x.calculada})`).join("; ")}.` : ""].filter(Boolean).join(" ") || "Sem parâmetros pendentes ou falhas de coleta nesta execução.";
-  renderFaixas(); ligar(); render();
+  renderFaixas(); ligar(); render(); mostrarAba(location.hash.slice(1) || state.aba || "sint");
 }
 
 fetch("painel.json", { cache: "no-cache" }).then((r) => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }).then(iniciar).catch((e) => {

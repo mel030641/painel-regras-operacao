@@ -21,12 +21,12 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import coleta  # noqa: E402
-from regras import FAIXAS, PARAMETROS, REGRAS, VIGENCIA  # noqa: E402
+from regras import FAIXAS, PARAMETROS, REGRAS, VIGENCIA, VIGENCIA_A_CONFERIR  # noqa: E402
 
 RAIZ = Path(__file__).resolve().parents[1]
 CONFIG = RAIZ / "config"
 SAIDA = RAIZ / "data" / "painel.json"
-DIAS_SERIE = 1200  # dias de série enviados ao painel (cobre desde jan/2024)
+DIAS_SERIE = 4000  # dias de série enviados ao painel (cobre desde out/2017)
 VU_CANTAREIRA_HM3 = 981.56  # 925/2017, art. 1º, § 1º
 CANTAREIRA_SAR = ["29001", "29002", "29003", "29004"]
 
@@ -75,6 +75,8 @@ class Dados:
         self.ons = coleta.ons_diario(anos, ids_d)
 
         meses, d = [], dt.date(fim.year, fim.month, 1)
+        if meses_horarios <= 0:  # desde o mês de início
+            meses_horarios = (fim.year - inicio.year) * 12 + fim.month - inicio.month + 1
         for _ in range(meses_horarios):
             meses.append((d.year, d.month))
             d = (d - dt.timedelta(days=1)).replace(day=1)
@@ -298,10 +300,10 @@ Faixas.estagios = _historico_estagios
 # ============================================================================ avaliação
 def classificar(valor, limite, sentido: str, tol):
     """sentido 'max' (valor ≤ limite) ou 'min' (valor ≥ limite). Retorna (status, folga, folga_pct)."""
+    if limite is None:  # a norma não fixa limite nesta faixa/período: não há obrigação a apurar (decisão SOE, 09/11/2026)
+        return NA, None, None
     if valor is None:
         return SD, None, None
-    if limite is None:
-        return OK, None, None
     folga = (limite - valor) if sentido == "max" else (valor - limite)
     pct = folga / limite * 100 if limite else None
     if folga >= -1e-9:
@@ -331,6 +333,10 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
     vig = VIGENCIA.get(regra["resolucao"])
     if vig and iso < vig:
         out["st"], out["obs"] = NA, f"antes da entrada em vigor ({vig[8:]}/{vig[5:7]}/{vig[:4]})"
+        return out
+    vac = VIGENCIA_A_CONFERIR.get(regra["resolucao"])
+    if vac and iso < vac:
+        out["st"], out["obs"] = NA, f"antes de {vac[8:]}/{vac[5:7]}/{vac[:4]}: data de entrada em vigor (comunicado da ANA) a conferir"
         return out
 
     def com_faixa(rid):
@@ -374,7 +380,8 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
             out["ag"] = AGREG_JANELA.get(janela)  # agregação aplicada neste dia difere da padrão da regra
         out["st"], out["folga"], out["pct"] = classificar(v, lim, "max", regra["tol"] if regra["niveis"] == 3 else None)
         if lim is None:
-            out["obs"] = "sem limite na faixa"
+            out["obs"] = "sem limite na faixa (a norma não restringe)"
+            return out
         if fim_janela(d, janela) > d and janela != "dia":
             out["obs"] = ((out["obs"] or "") + "; janela em curso").strip("; ")
         return em_curso(out, d, janela)
@@ -722,8 +729,14 @@ def executar(inicio: dt.date, fim: dt.date, meses_horarios: int) -> dict:
         meta = {k: v for k, v in regra.items() if k in ("id", "resolucao", "artigos", "sistema", "ponto", "descricao", "freq", "niveis", "tol", "tol_pp", "fonte", "tipo", "alerta")}
         meta["unid"] = unidade(regra)
         meta["param"] = parametro(regra)
+        serie = serie[-DIAS_SERIE:]
+        # Dias anteriores à vigência saem da série (o painel os recompõe como "Não se aplica"): reduz o JSON.
+        n_pre = 0
+        while n_pre < len(serie) and serie[n_pre]["st"] == NA and str(serie[n_pre].get("obs", "")).startswith("antes d"):
+            n_pre += 1
+        pre = {"ate": serie[n_pre]["d"] if n_pre < len(serie) else None, "obs": serie[0].get("obs")} if n_pre else None
         saida["regras"].append({**meta, "ultimo": ult, "mensal": {k: dict(v) for k, v in sorted(mensal.items())},
-                                "serie": serie[-DIAS_SERIE:]})
+                                **({"pre_vigencia": pre} if pre else {}), "serie": serie[n_pre:]})
     saida["faixas"] = []
     for rid in FAIXAS:
         nome, idx, orig, ref = faixas.de(rid, fim)
@@ -739,9 +752,9 @@ def executar(inicio: dt.date, fim: dt.date, meses_horarios: int) -> dict:
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     hoje = dt.date.today()
-    ap.add_argument("--inicio", default="2024-01-01")  # início do histórico de faixas dos boletins
+    ap.add_argument("--inicio", default="2017-10-01")  # início do histórico de faixas dos boletins (Cantareira)
     ap.add_argument("--fim", default=hoje.isoformat())
-    ap.add_argument("--meses-horarios", type=int, default=36)  # dado horário desde jan/2024
+    ap.add_argument("--meses-horarios", type=int, default=0)  # 0 = dado horário desde --inicio
     ap.add_argument("--saida", default=str(SAIDA))
     a = ap.parse_args()
     res = executar(dt.date.fromisoformat(a.inicio), dt.date.fromisoformat(a.fim), a.meses_horarios)
