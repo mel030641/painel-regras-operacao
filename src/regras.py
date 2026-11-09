@@ -286,6 +286,8 @@ for cod, nome, seco, umido in [("29001", "Jaguari-Jacareí", 40, 100), ("29002",
 # Regras cujo limite depende, no todo ou em parte, de ato que não está na resolução (comunicado, curva, outorga,
 # definição mensal de outro órgão). O painel mostra um marcador e permite filtrar esses casos para acompanhamento.
 COMPLEMENTAR = {
+    "49-RIUHFC": "Previsão de afluência sex–dom obtida pelo ONS às quintas-feiras e informe semanal do agente com a programação de defluências (art. 1º, §§ 1º a 3º); sem esses dados, o painel usa a afluência observada como aproximação do gatilho",
+    "70-TOSMES-praias": "Vazão a ser praticada na temporada de praias, informada anualmente pelo ONS até 10 de maio (art. 6º, § 3º); sem esse valor, o painel usa a média do período como referência",
     "2081-SFTMAR-max": "Curvas de segurança do ciclo (NT do ONS e não objeção da ANA, art. 4º); na Restrição, vazão fixada pelo ONS por recomendação da ANA",
     "2081-SFXING-max": "Curvas de segurança do ciclo (NT do ONS e não objeção da ANA, art. 4º)",
     "2081-SFSOBR-max": "Teto mensal de Sobradinho (sem critério definido na Atenção); na Restrição, vazões fixadas pelo ONS por recomendação da ANA",
