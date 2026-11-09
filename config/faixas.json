@@ -1,6 +1,6 @@
 {
  "fonte": "Boletins diários ANA (gov.br) e painéis Power BI SOE/ANA",
- "atualizado_em": "2026-11-08T15:03:12",
+ "atualizado_em": "2026-11-09T14:04:48",
  "faixas": {
   "CANTAREIRA|2017-10": {
    "faixa": "Faixa 2 - Atenção",
@@ -1842,14 +1842,14 @@
    "faixa": "Faixa 2 - Atenção",
    "idx": 1,
    "origem": "Boletim ANA",
-   "texto_painel": null,
+   "texto_painel": "Em cumprimento ao Art. 6º da Resolução Conjunta ANA/DAEE nº 925/2017 e pelo fato de o Sistema Cantareira ter apresentado, em 30 de outubro de 2026, 50,69% de seu volume útil, a 3 faixa de operação do ",
    "periodo_hidrologico": null,
    "vu_ref": 50.69,
    "limites": null,
    "condicao": null,
-   "boletim": "2026-11-03",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim_02_cantareira_publica-1793729707.63.pdf",
-   "status": "confirmada",
+   "boletim": "2026-11-06",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistema-cantareira/boletins/diario/boletim_02_cantareira_publica-1793988722.29.pdf",
+   "status": "coleta diária",
    "vigencia": [
     "2026-11-01",
     "2026-11-30"
@@ -2250,14 +2250,14 @@
    "faixa": "Normal",
    "idx": 0,
    "origem": "Boletim ANA",
-   "texto_painel": null,
+   "texto_painel": "Faixa de Operação Normal Vazão máxima turbinada definida na outorga",
    "periodo_hidrologico": null,
    "vu_ref": null,
    "limites": "Vazão máxima turbinada definida na outorga",
    "condicao": null,
-   "boletim": "2026-11-03",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793729977.45.pdf",
-   "status": "confirmada",
+   "boletim": "2026-11-06",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793988661.16.pdf",
+   "status": "coleta diária",
    "vigencia": [
     "2026-11-01",
     "2026-11-30"
@@ -2658,14 +2658,14 @@
    "faixa": "Normal",
    "idx": 0,
    "origem": "Boletim ANA",
-   "texto_painel": null,
+   "texto_painel": "Faixa de Operação Normal Sem restrição de vazão máxima defluente ",
    "periodo_hidrologico": null,
    "vu_ref": null,
    "limites": "Sem restrição de vazão máxima defluente",
    "condicao": null,
-   "boletim": "2026-11-03",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793729977.45.pdf",
-   "status": "confirmada",
+   "boletim": "2026-11-06",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793988661.16.pdf",
+   "status": "coleta diária",
    "vigencia": [
     "2026-11-01",
     "2026-11-30"
@@ -5867,6 +5867,18 @@
     "2026-11-06"
    ]
   },
+  "PPCAPI|2026-11-07": {
+   "faixa": "Normal",
+   "idx": 0,
+   "texto_painel": "Normal",
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Nível atual = 332.63 m; limiar Atenção = 327.11 m; Alerta = 324.27 m; Restrição = 323.5 m",
+   "condicao": "Sem restrição",
+   "atualizacao_painel": "2026-11-09T12:56:53.067",
+   "extraido_em": "2026-11-09T14:01Z",
+   "url": "https://app.powerbi.com/view?r=eyJrIjoiZGMxN2ZjZmEtNDlmOS00MjE0LWJlOTgtYjNjOWJiZjFhZjZlIiwidCI6ImUwYmI0MDEyLTgxMGItNDY5YS04YjRkLTY2N2ZjZDFiYWY4OCJ9"
+  },
   "PPCHAV|2023-02-25": {
    "faixa": "Normal",
    "idx": 0,
@@ -9062,6 +9074,18 @@
     "2026-10-31",
     "2026-11-06"
    ]
+  },
+  "PPCHAV|2026-11-07": {
+   "faixa": "Normal",
+   "idx": 0,
+   "texto_painel": "Normal",
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Nível atual = 472.85 m; limiar Atenção = 469.06 m; Alerta = 468.15 m; Restrição = 467.21 m",
+   "condicao": "Sem restrição",
+   "atualizacao_painel": "2026-11-09T12:56:53.067",
+   "extraido_em": "2026-11-09T14:01Z",
+   "url": "https://app.powerbi.com/view?r=eyJrIjoiZGMxN2ZjZmEtNDlmOS00MjE0LWJlOTgtYjNjOWJiZjFhZjZlIiwidCI6ImUwYmI0MDEyLTgxMGItNDY5YS04YjRkLTY2N2ZjZDFiYWY4OCJ9"
   },
   "PPJURU|2023-02-25": {
    "faixa": "Normal",
@@ -12259,6 +12283,18 @@
     "2026-11-06"
    ]
   },
+  "PPJURU|2026-11-07": {
+   "faixa": "Normal",
+   "idx": 0,
+   "texto_painel": "Normal",
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Nível atual = 566.7 m; limiar Atenção = 563.35 m; Alerta = 562.48 m; Restrição = 562.04 m",
+   "condicao": "Sem restrição",
+   "atualizacao_painel": "2026-11-09T12:56:53.067",
+   "extraido_em": "2026-11-09T14:01Z",
+   "url": "https://app.powerbi.com/view?r=eyJrIjoiZGMxN2ZjZmEtNDlmOS00MjE0LWJlOTgtYjNjOWJiZjFhZjZlIiwidCI6ImUwYmI0MDEyLTgxMGItNDY5YS04YjRkLTY2N2ZjZDFiYWY4OCJ9"
+  },
   "PREMBO|2024-12": {
    "faixa": "Atenção",
    "idx": 1,
@@ -12654,14 +12690,14 @@
    "faixa": "Normal",
    "idx": 0,
    "origem": "Boletim ANA",
-   "texto_painel": null,
+   "texto_painel": "Faixa de Operação Normal Vazão defluente máxima média diária igual à vazão máxima turbinada",
    "periodo_hidrologico": null,
    "vu_ref": null,
    "limites": "Vazão defluente máxima média diária igual à vazão máxima turbinada",
    "condicao": null,
-   "boletim": "2026-11-03",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793729977.45.pdf",
-   "status": "confirmada",
+   "boletim": "2026-11-06",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793988661.16.pdf",
+   "status": "coleta diária",
    "vigencia": [
     "2026-11-01",
     "2026-11-30"
@@ -13062,14 +13098,14 @@
    "faixa": "Normal",
    "idx": 0,
    "origem": "Boletim ANA",
-   "texto_painel": null,
+   "texto_painel": "Faixa de Operação Normal Vazão defluente máxima média diária igual à vazão máxima turbinada",
    "periodo_hidrologico": null,
    "vu_ref": null,
    "limites": "Vazão defluente máxima média diária igual à vazão máxima turbinada",
    "condicao": null,
-   "boletim": "2026-11-03",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793729977.45.pdf",
-   "status": "confirmada",
+   "boletim": "2026-11-06",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1793988661.16.pdf",
+   "status": "coleta diária",
    "vigencia": [
     "2026-11-01",
     "2026-11-30"
@@ -14184,14 +14220,14 @@
    "faixa": "Normal",
    "idx": 0,
    "origem": "Boletim ANA",
-   "texto_painel": null,
+   "texto_painel": " Faixa de Operação de Três Marias Faixa de Operação de Sobradinho Estabelecida em 02/11/2026 ( V.U. = 69,74% ) Estabelecida em 02/11/2026 ( V.U. = 62,50% ) NORMAL NORMAL",
    "periodo_hidrologico": null,
-   "vu_ref": 62.39,
+   "vu_ref": 62.5,
    "limites": "Vazão máx. mensal Xingó LIVRE; mín. diária Sobradinho 800 m³/s; mín. diária Xingó 1100 m³/s",
    "condicao": null,
-   "boletim": "2026-11-03",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/boletim_12_sfrancisco_publica-1793729929.83.pdf",
-   "status": "confirmada",
+   "boletim": "2026-11-06",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/boletim_12_sfrancisco_publica-1793988704.55.pdf",
+   "status": "coleta diária",
    "vigencia": [
     "2026-11-01",
     "2026-11-30"
@@ -15306,14 +15342,14 @@
    "faixa": "Normal",
    "idx": 0,
    "origem": "Boletim ANA",
-   "texto_painel": null,
+   "texto_painel": " Faixa de Operação de Três Marias Faixa de Operação de Sobradinho Estabelecida em 02/11/2026 ( V.U. = 69,74% ) Estabelecida em 02/11/2026 ( V.U. = 62,50% ) NORMAL NORMAL",
    "periodo_hidrologico": null,
-   "vu_ref": 69.92,
+   "vu_ref": 69.74,
    "limites": "Vazão máx. mensal Três Marias LIVRE; mín. diária 150 m³/s",
    "condicao": null,
-   "boletim": "2026-11-03",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/boletim_12_sfrancisco_publica-1793729929.83.pdf",
-   "status": "confirmada",
+   "boletim": "2026-11-06",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/boletim_12_sfrancisco_publica-1793988704.55.pdf",
+   "status": "coleta diária",
    "vigencia": [
     "2026-11-01",
     "2026-11-30"
@@ -16054,14 +16090,14 @@
    "faixa": "Normal",
    "idx": 0,
    "origem": "Boletim ANA",
-   "texto_painel": null,
+   "texto_painel": "novembro/2026 / Normal",
    "periodo_hidrologico": null,
    "vu_ref": null,
    "limites": "Defluência média máxima mensal: Sem restrição",
    "condicao": null,
-   "boletim": "2026-11-03",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/tocantins/boletins-tocantins-diario/boletim_13_tocantins_publica-1793729957.55.pdf",
-   "status": "confirmada",
+   "boletim": "2026-11-06",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/tocantins/boletins-tocantins-diario/boletim_13_tocantins_publica-1793988686.24.pdf",
+   "status": "coleta diária",
    "vigencia": [
     "2026-11-01",
     "2026-11-30"
