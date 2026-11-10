@@ -84,6 +84,11 @@ main section[hidden] { display: none }
 @media (max-width: 760px) { #t-heat td.lbl { width: 170px; min-width: 170px; max-width: 170px } }
 #t-heat thead th:first-child { left: 0; z-index: 3 }
 @media (max-width: 760px) { #s-heat .tbl-wrap, #s-oc .tbl-wrap { max-height: 72vh; max-height: 72svh } }
+/* mapa em tela cheia */
+#s-heat .sec-head .btn { white-space: nowrap }
+#s-heat.tela-cheia { position: fixed; inset: 0; z-index: 30; background: var(--bg); padding: max(12px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 12px max(16px, env(safe-area-inset-left, 0px)); display: grid; grid-template-rows: auto auto minmax(0, 1fr); gap: 10px }
+#s-heat.tela-cheia .tbl-wrap { max-height: none !important; min-height: 0 }
+body.mapa-cheio { overflow: hidden }
 
 /* abas */
 .abas-bar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--fh, 0px)); z-index: 4; background: var(--surface); border-bottom: 1px solid var(--line) }
@@ -320,7 +325,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
   </section>
 
   <section id="s-heat" role="tabpanel" aria-labelledby="h-heat" data-aba="heat">
-    <div class="sec-head"><h2 id="h-heat">Mapa multitemporal</h2><p><span id="heat-desc"></span> Avaliações conformes ÷ avaliadas; células com violação trazem o número de dias em “Não atende”.</p></div>
+    <div class="sec-head"><h2 id="h-heat">Mapa multitemporal</h2><p><span id="heat-desc"></span> Avaliações conformes ÷ avaliadas; células com violação trazem o número de dias em “Não atende”.</p><button type="button" class="btn" id="b-heat-full" aria-pressed="false" title="Expandir o mapa para a tela toda (Esc para sair)">⤢ Tela cheia</button></div>
     <div class="heat heat-leg" aria-label="Legenda do mapa">
       <span><span class="c" style="background:color-mix(in srgb, var(--ok) 32%, var(--surface))"></span>100% conforme</span>
       <span><span class="c" style="background:color-mix(in srgb, var(--tol) 45%, var(--surface))"></span>Com tolerância</span>
@@ -737,6 +742,19 @@ function ligar() {
   };
   medir(); medirAb(); addEventListener("resize", () => { medir(); medirAb(); });
   document.querySelectorAll(".abas [role=tab]").forEach((b) => b.addEventListener("click", () => requestAnimationFrame(medirAb))); if ("ResizeObserver" in window) new ResizeObserver(medir).observe($(".filters"));
+  // mapa multitemporal em tela cheia: ocupa a janela e, quando o navegador permite, a tela toda
+  const secHeat = $("#s-heat"), bHeat = $("#b-heat-full");
+  const telaCheia = (on) => {
+    secHeat.classList.toggle("tela-cheia", on); document.body.classList.toggle("mapa-cheio", on);
+    bHeat.setAttribute("aria-pressed", String(on)); bHeat.textContent = on ? "✕ Sair da tela cheia" : "⤢ Tela cheia";
+    if (on && !document.fullscreenElement && document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(() => {});
+    if (!on && document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {});
+    if (!on) medirAb();
+  };
+  bHeat.addEventListener("click", () => telaCheia(!secHeat.classList.contains("tela-cheia")));
+  document.addEventListener("fullscreenchange", () => { if (!document.fullscreenElement && secHeat.classList.contains("tela-cheia")) telaCheia(false); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && secHeat.classList.contains("tela-cheia")) telaCheia(false); });
+  document.querySelectorAll(".abas [role=tab]").forEach((b) => b.addEventListener("click", () => { if (secHeat.classList.contains("tela-cheia")) telaCheia(false); }));
   $("#f-compl").checked = !!state.compl;
   $("#f-compl").addEventListener("change", (e) => { state.compl = e.target.checked; salvar(); render(); });
   $("#f-pend").checked = !!state.pend;
