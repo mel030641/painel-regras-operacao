@@ -24,6 +24,15 @@ import coleta  # noqa: E402
 from regras import FAIXAS, PARAMETROS, REGRAS, VIGENCIA, VIGENCIA_A_CONFERIR  # noqa: E402
 from textos_normas import trechos  # noqa: E402
 
+_EV = Path(__file__).resolve().parent.parent / "config" / "eventos_operacao.json"
+EVENTOS = json.loads(_EV.read_text(encoding="utf-8"))["eventos"] if _EV.exists() else []
+
+
+def obs_eventos(regra_id: str, iso: str) -> str | None:
+    """Observação das situações declaradas (config/eventos_operacao.json) que cobrem o dia da regra."""
+    txt = [e["obs"] for e in EVENTOS if regra_id in e["regras"] and e["inicio"] <= iso <= (e.get("fim") or "9999-12-31")]
+    return "; ".join(txt) or None
+
 RAIZ = Path(__file__).resolve().parents[1]
 CONFIG = RAIZ / "config"
 SAIDA = RAIZ / "data" / "painel.json"
@@ -797,7 +806,7 @@ def executar(inicio: dt.date, fim: dt.date, meses_horarios: int) -> dict:
     ultimo_ons = max((max(v) for v in dados.ons.values() if v), default=None)
     saida = {"gerado_em": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
              "periodo": [inicio.isoformat(), fim.isoformat()], "ultimo_dado_ons": ultimo_ons,
-             "erros_coleta": dados.erros, "parametros": PARAMETROS, "regras": []}
+             "erros_coleta": dados.erros, "parametros": PARAMETROS, "eventos": EVENTOS, "regras": []}
     for regra in REGRAS:
         serie = []
         for d in dias(inicio, fim):
@@ -807,6 +816,9 @@ def executar(inicio: dt.date, fim: dt.date, meses_horarios: int) -> dict:
                 a = {"d": d.isoformat(), "st": SD, "obs": f"erro: {e}"}
             if a.get("st") == NAO and regra.get("alerta"):
                 a["obs"] = "; ".join(x for x in (a.get("obs"), "verificar se a redução foi justificada") if x)
+            ev = obs_eventos(regra["id"], a["d"])
+            if ev and a.get("st") not in (SD,):
+                a["obs"] = "; ".join(x for x in (a.get("obs"), ev) if x)
             serie.append({k: _r(v) for k, v in a.items() if v is not None or k in ("d", "st")})
         # último registro avaliado (ignora dias sem dado no fim da série)
         validos = [s for s in serie if s["st"] not in (SD,)]
