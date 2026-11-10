@@ -199,7 +199,7 @@ R.append(dict(id="1382-PBSTAC-guandu", resolucao="Res. Conj. ANA/DAEE/IGAM/INEA 
               descricao="Vazão bombeada para o Guandu ≥ 119 m³/s (média diária); tolerância de 5% (113,05 m³/s) desde 20/08/2021", tipo="piso", freq="diaria", niveis=3, tol=0.05,
               tol_desde="2021-08-20", tol_ato="Ofício Circular nº 1/2021/JG/ANA, de 20/08/2021 (aprovação do GAOPS na 52ª reunião, de 17/08/2021)",
               fonte="ONS:PBSTAC:transf", pisos={"todos": 119},
-              alerta="A resolução não prevê exceção. Nos dias em \"Não atende\", verificar se a redução foi justificada (cheia, manutenção ou falha de equipamento)."))
+              alerta="A resolução não prevê exceção. Nos dias em \"Não atende\", verificar se a redução foi justificada (cheia, manutenção ou falha de equipamento). Situações declaradas pelo ONS, como a operação de Funil para controle de cheias, aparecem na observação do dia (config/eventos_operacao.json)."))
 R.append(dict(id="1382-estagios", resolucao="Res. Conj. ANA/DAEE/IGAM/INEA 1.382/2015", artigos="art. 1º, V e § 1º", sistema="Paraíba do Sul", ponto="Funil, Santa Branca, Paraibuna, Jaguari",
               descricao="VU ≥ mínimo do estágio de deplecionamento vigente (variação absoluta de 5 p.p. do valor de referência)", tipo="estagios", freq="diaria", niveis=3, tol=None, tol_pp=5.0,
               fontes={"PBFUNI": [30, 30, 30], "PBSTAB": [70, 40, 10], "PBPARA": [80, 40, 5], "PBJAGU": [80, 50, 20]},

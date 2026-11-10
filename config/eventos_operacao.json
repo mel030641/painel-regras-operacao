@@ -1,0 +1,14 @@
+{
+  "descricao": "Situações de operação declaradas pelo operador ou pela ANA que não mudam o limite da regra, mas ajudam a avaliar o dia (ex.: operação para controle de cheias). O painel acrescenta a observação nos dias do período, nas regras indicadas; a situação da avaliação não muda. 'fim' nulo indica que o término ainda não foi declarado.",
+  "eventos": [
+    {
+      "id": "funil-controle-cheias-2026",
+      "sistema": "Paraíba do Sul",
+      "inicio": "2026-10-06",
+      "fim": null,
+      "regras": ["1382-PBSTAC-guandu", "1382-PBSTAC", "1382-RLPPAS", "1382-PBFUNI"],
+      "obs": "Funil em operação para controle de cheias desde 06/10/2026: defluências de Funil e vazão objetivo em Santa Cecília definidas pelo controle do nível de Funil (e-mail do ONS à CORSH de 05/10/2026, Operação de Funil para atendimento às Regras de Controle de Cheias; Res. 1.382/2015, art. 1º, III, b, e IV, b)",
+      "fonte": "E-mail do ONS (Paulo Diniz de Oliveira, Gerência de Recursos Hídricos e Meteorologia) à CORSH, de 05/10/2026, compartilhado no chat da CORSH em 10/11/2026"
+    }
+  ]
+}
