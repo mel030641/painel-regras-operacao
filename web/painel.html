@@ -1,5 +1,6 @@
 <title>Regras de Operação SOE</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<script>try { const t = localStorage.getItem("painel-soe-tema"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -52,6 +53,8 @@ header.top .wrap { padding-block: 20px 16px; display: flex; flex-wrap: wrap; gap
 .brand p { margin: 0; color: var(--fg-2); max-width: 70ch }
 .meta { display: flex; flex-wrap: wrap; gap: 8px 24px; color: var(--fg-2); font-size: .82rem }
 .meta b { display: block; font: 500 .95rem var(--f-mono); color: var(--fg) }
+.tema { display: flex; flex-direction: column; gap: 3px }
+.tema .seg button { padding: 3px 9px; font-size: .8rem }
 
 /* filtros */
 .filters { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line) }
@@ -251,6 +254,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
       <div>Dados até<b id="m-dados">—</b></div>
       <div>Processado em<b id="m-gerado">—</b></div>
       <div>Regras auditadas<b id="m-regras">—</b></div>
+      <div class="tema">Tema<span class="seg" id="tema" role="group" aria-label="Tema"><button type="button" data-t="auto" title="Segue o tema do sistema">Automático</button><button type="button" data-t="light">Claro</button><button type="button" data-t="dark">Escuro</button></span></div>
     </div>
   </div>
 </header>
@@ -397,6 +401,20 @@ const limNum = (lim) => {
 };
 
 let D = null, ini = null, fim = null, aberto = new Set();
+// tema: automático (segue o sistema), claro ou escuro; a escolha vale também para o manual
+(() => {
+  const K = "painel-soe-tema", raiz = document.documentElement;
+  const marca = (t) => document.querySelectorAll("#tema button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.t === t)));
+  marca(raiz.dataset.theme || "auto");
+  $("#tema").addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (!b) return;
+    const t = b.dataset.t;
+    if (t === "auto") delete raiz.dataset.theme; else raiz.dataset.theme = t;
+    try { t === "auto" ? localStorage.removeItem(K) : localStorage.setItem(K, t); } catch (err) {}
+    marca(t);
+    if (D) render();   // gráficos e barras leem as cores do tema ao desenhar
+  });
+})();
 const state = { preset: "30", sis: "", st: "", q: "", aba: "sint", pend: false };
 const sisAbertos = new Set(), sisFechados = new Set();
 // janela em curso no fim do período, mas já fechada depois dele: devolve o registro do fechamento
