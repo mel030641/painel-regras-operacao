@@ -1,6 +1,6 @@
 {
  "fonte": "Boletins diários ANA (gov.br) e painéis Power BI SOE/ANA",
- "atualizado_em": "2026-11-11T14:09:37",
+ "atualizado_em": "2026-11-11T20:04:46",
  "faixas": {
   "CANTAREIRA|2017-10": {
    "faixa": "Faixa 2 - Atenção",
@@ -2255,8 +2255,8 @@
    "vu_ref": null,
    "limites": "Vazão máxima turbinada definida na outorga",
    "condicao": null,
-   "boletim": "2026-11-10",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica_2026-11-10.pdf",
+   "boletim": "2026-11-11",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1794424416.19.pdf",
    "status": "coleta diária",
    "vigencia": [
     "2026-11-01",
@@ -2663,8 +2663,8 @@
    "vu_ref": null,
    "limites": "Sem restrição de vazão máxima defluente",
    "condicao": null,
-   "boletim": "2026-11-10",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica_2026-11-10.pdf",
+   "boletim": "2026-11-11",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1794424416.19.pdf",
    "status": "coleta diária",
    "vigencia": [
     "2026-11-01",
@@ -5876,8 +5876,8 @@
    "vu_ref": null,
    "limites": "Vazão defluente máxima média semanal: Sem restrição",
    "condicao": null,
-   "boletim": "2026-11-10",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/boletim_08_paranapanema_publica_2026-11-10.pdf",
+   "boletim": "2026-11-11",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/boletim_08_paranapanema_publica-1794424222.07.pdf",
    "status": "coleta diária",
    "vigencia": [
     "2026-11-07",
@@ -9089,8 +9089,8 @@
    "vu_ref": null,
    "limites": "Vazão defluente máxima média semanal: Sem restrição",
    "condicao": null,
-   "boletim": "2026-11-10",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/boletim_08_paranapanema_publica_2026-11-10.pdf",
+   "boletim": "2026-11-11",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/boletim_08_paranapanema_publica-1794424222.07.pdf",
    "status": "coleta diária",
    "vigencia": [
     "2026-11-07",
@@ -12302,8 +12302,8 @@
    "vu_ref": null,
    "limites": "Vazão defluente máxima média semanal: Sem restrição",
    "condicao": null,
-   "boletim": "2026-11-10",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/boletim_08_paranapanema_publica_2026-11-10.pdf",
+   "boletim": "2026-11-11",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/boletim_08_paranapanema_publica-1794424222.07.pdf",
    "status": "coleta diária",
    "vigencia": [
     "2026-11-07",
@@ -12710,8 +12710,8 @@
    "vu_ref": null,
    "limites": "Vazão defluente máxima média diária igual à vazão máxima turbinada",
    "condicao": null,
-   "boletim": "2026-11-10",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica_2026-11-10.pdf",
+   "boletim": "2026-11-11",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1794424416.19.pdf",
    "status": "coleta diária",
    "vigencia": [
     "2026-11-01",
@@ -13118,8 +13118,8 @@
    "vu_ref": null,
    "limites": "Vazão defluente máxima média diária igual à vazão máxima turbinada",
    "condicao": null,
-   "boletim": "2026-11-10",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica_2026-11-10.pdf",
+   "boletim": "2026-11-11",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sistemas-hidricos-dos-rios-grande-e-paranaiba/boletins/diario/boletim_14_grande_paranaiba_publica-1794424416.19.pdf",
    "status": "coleta diária",
    "vigencia": [
     "2026-11-01",
@@ -14240,8 +14240,8 @@
    "vu_ref": 62.5,
    "limites": "Vazão máx. mensal Xingó LIVRE; mín. diária Sobradinho 800 m³/s; mín. diária Xingó 1100 m³/s",
    "condicao": null,
-   "boletim": "2026-11-10",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/boletim_12_sfrancisco_publica_2026-11-10.pdf",
+   "boletim": "2026-11-11",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/boletim_12_sfrancisco_publica-1794424348.95.pdf",
    "status": "coleta diária",
    "vigencia": [
     "2026-11-01",
@@ -15362,8 +15362,8 @@
    "vu_ref": 69.74,
    "limites": "Vazão máx. mensal Três Marias LIVRE; mín. diária 150 m³/s",
    "condicao": null,
-   "boletim": "2026-11-10",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/boletim_12_sfrancisco_publica_2026-11-10.pdf",
+   "boletim": "2026-11-11",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/boletins/diario/boletim_12_sfrancisco_publica-1794424348.95.pdf",
    "status": "coleta diária",
    "vigencia": [
     "2026-11-01",
@@ -16110,8 +16110,8 @@
    "vu_ref": null,
    "limites": "Defluência média máxima mensal: Sem restrição",
    "condicao": null,
-   "boletim": "2026-11-10",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/tocantins/boletins-tocantins-diario/boletim_13_tocantins_publica_2026-11-10.pdf",
+   "boletim": "2026-11-11",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/tocantins/boletins-tocantins-diario/boletim_13_tocantins_publica-1794424383.41.pdf",
    "status": "coleta diária",
    "vigencia": [
     "2026-11-01",
