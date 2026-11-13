@@ -821,7 +821,7 @@ function iniciar(dados) {
   aplicarPreset(state.preset || "30");
   const pend = Object.entries(D.parametros || {}).filter(([, v]) => v && v.valor == null).map(([, v]) => v.fonte);
   const erros = D.erros_coleta || [];
-  $("#n-pend").textContent = [pend.length ? `Parâmetros pendentes: ${pend.join("; ")}.` : "", erros.length ? `Falhas de coleta nesta execução: ${erros.join("; ")}.` : "", (D.divergencias_faixa || []).length ? `Faixas publicadas divergentes do cálculo: ${D.divergencias_faixa.map((x) => `${x.chave} (publicada ${x.publicada}, calculada ${x.calculada})`).join("; ")}.` : ""].filter(Boolean).join(" ") || "Sem parâmetros pendentes ou falhas de coleta nesta execução.";
+  $("#n-pend").textContent = [pend.length ? `Parâmetros pendentes: ${pend.join("; ")}.` : "", erros.length ? `Falhas de coleta nesta execução: ${erros.join("; ")}.` : ""].filter(Boolean).join(" ") || "Sem parâmetros pendentes ou falhas de coleta nesta execução.";
   renderFaixas(); ligar(); render(); mostrarAba(location.hash.slice(1) || state.aba || "sint");
 }
 
