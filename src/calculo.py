@@ -493,6 +493,11 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
     if t == "teto_diario":
         lim = _sel(regra, "tetos", d)
         v = dados.diaria(regra["fonte"]).get(iso)
+        if lim is None and regra.get("param_mensal"):  # vazão de restrição mensal fixada por ato (restricao_mensal)
+            chave = f"{regra['param_mensal']}|{d.strftime('%Y-%m')}"
+            lim = dados.param_mensal.get(chave)
+            if lim is not None:
+                out["obs"] = f"vazão de restrição fixada por ato: {atos.citacao_mensal(chave)}"
         if lim is None and regra.get("pendente"):
             out["v"], out["st"], out["obs"] = v, PP, regra["pendente"]
             return out
@@ -623,7 +628,12 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
             out["st"] = NA
             return out
         serie = dados.diaria(regra["fonte"])
-        m, _ = media(serie, a, d)
+        ato = atos.vazoes_temporada().get(f"{regra.get('temporada')}|{d.year}") if regra.get("temporada") else None
+        if ato:  # vazão da temporada informada por ato (Res. ANA 70/2021, art. 6º, § 3º)
+            m = ato["valor"]
+            out["obs"] = f"vazão da temporada fixada por ato: {ato['citacao']}"
+        else:
+            m, _ = media(serie, a, d)
         v = serie.get(iso)
         if v is None or m is None:
             return out

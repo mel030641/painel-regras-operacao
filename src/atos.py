@@ -17,7 +17,11 @@ from pathlib import Path
 ARQUIVO = Path(__file__).resolve().parent.parent / "config" / "atos_complementares.json"
 
 TIPOS = {"outorga", "comunicado", "oficio", "confirmacao", "registro", "valor_mensal", "situacao_declarada"}
-EFEITOS = {"parametro", "revisao_estagio", "tolerancia", "curva_seguranca", "valores_mensais", "situacao"}
+EFEITOS = {"parametro", "revisao_estagio", "tolerancia", "curva_seguranca", "valores_mensais", "restricao_mensal",
+           "vazao_temporada", "situacao"}
+MENSAIS = ("valores_mensais", "restricao_mensal")  # mesmo formato: {parametro, valores {aaaa-mm: valor}}
+MES = re.compile(r"^\d{4}-\d{2}$")
+RASTREIO = ("cadastrado_por", "cadastrado_em", "revisado_por")  # opcionais; preenchidos pelo formulário ou à mão
 DATA = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 
@@ -50,6 +54,23 @@ def _conferir(atos: list[dict]) -> None:
             erros.append(f"{rot}: vigência termina antes de começar")
         if a.get("data") is not None and not DATA.match(str(a["data"])):
             erros.append(f"{rot}: data '{a['data']}' fora do formato aaaa-mm-dd")
+        for k in MENSAIS:
+            if k in ef:
+                m = ef[k]
+                if not isinstance(m, dict) or not m.get("parametro") or not isinstance(m.get("valores"), dict) or not m["valores"]:
+                    erros.append(f"{rot}: efeito '{k}' precisa de parametro e valores {{aaaa-mm: valor}}")
+                else:
+                    for mes, v in m["valores"].items():
+                        if not MES.match(str(mes)):
+                            erros.append(f"{rot}: {k}: mês '{mes}' fora do formato aaaa-mm")
+                        if not isinstance(v, (int, float)):
+                            erros.append(f"{rot}: {k}: valor de {mes} não numérico")
+        if "vazao_temporada" in ef:
+            t = ef["vazao_temporada"]
+            if not isinstance(t, dict) or not t.get("reservatorio") or not re.match(r"^\d{4}$", str(t.get("ano", ""))) or not isinstance(t.get("valor"), (int, float)):
+                erros.append(f"{rot}: efeito 'vazao_temporada' precisa de reservatorio, ano (aaaa) e valor numérico")
+        if a.get("cadastrado_em") is not None and not DATA.match(str(a["cadastrado_em"])[:10]):
+            erros.append(f"{rot}: cadastrado_em '{a['cadastrado_em']}' fora do formato aaaa-mm-dd")
         if "revisao_estagio" in ef and not a["vigencia"].get("fim"):
             erros.append(f"{rot}: revisão de estágio precisa de vigência com fim")
     if erros:
@@ -116,11 +137,17 @@ def manifestacoes_curvas() -> dict[str, str]:
     return {a["efeito"]["curva_seguranca"]: a["citacao"] for a in _com("curva_seguranca")}
 
 
+def _mensais():
+    for k in MENSAIS:
+        for a in _com(k):
+            yield a, a["efeito"][k]
+
+
 def valores_mensais() -> dict[str, float]:
-    """{'<parâmetro>|aaaa-mm': valor} dos valores mensais fixados por ato (tetos da 2.081/2017, nível operacional da 614/2010)."""
+    """{'<parâmetro>|aaaa-mm': valor} dos valores mensais fixados por ato: tetos da 2.081/2017, nível operacional
+    da 614/2010 (valores_mensais) e vazão de restrição mensal da 614/2010 (restricao_mensal)."""
     out = {}
-    for a in _com("valores_mensais"):
-        ef = a["efeito"]["valores_mensais"]
+    for _, ef in _mensais():
         for mes, v in ef["valores"].items():
             out[f"{ef['parametro']}|{mes}"] = v
     return out
@@ -129,11 +156,19 @@ def valores_mensais() -> dict[str, float]:
 def citacao_mensal(chave: str) -> str | None:
     """Texto do ato que fixou o valor mensal '<parâmetro>|aaaa-mm'."""
     par, mes = chave.split("|")
-    for a in _com("valores_mensais"):
-        ef = a["efeito"]["valores_mensais"]
+    for a, ef in _mensais():
         if ef["parametro"] == par and mes in ef["valores"]:
             return a["citacao"]
     return None
+
+
+def vazoes_temporada() -> dict[str, dict]:
+    """{'<reservatório>|aaaa': {'valor', 'citacao'}} da vazão da temporada informada por ato (Res. ANA 70/2021, art. 6º, § 3º)."""
+    out = {}
+    for a in _com("vazao_temporada"):
+        t = a["efeito"]["vazao_temporada"]
+        out[f"{t['reservatorio']}|{t['ano']}"] = {"valor": t["valor"], "citacao": a["citacao"]}
+    return out
 
 
 def situacoes() -> list[dict]:
@@ -148,6 +183,10 @@ def _num(v: float, casas: int | None = None) -> str:
     if casas is None and "." in t:
         t = t.rstrip("0").rstrip(".")
     return t.replace(",", "§").replace(".", ",").replace("§", ".")
+
+
+MESES = ("jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")
+_mes = lambda m: f"{MESES[int(m[5:7]) - 1]}/{m[:4]}"  # noqa: E731  ('2026-12' -> 'dez/2026')
 
 
 def efeito_txt(a: dict) -> str:
@@ -167,10 +206,18 @@ def efeito_txt(a: dict) -> str:
         return f"tolerância de {_num(ef['tolerancia'] * 100)}%"
     if "curva_seguranca" in ef:
         return f"curvas de segurança do ciclo {ef['curva_seguranca']}"
-    if "valores_mensais" in ef:
-        v = ef["valores_mensais"]
-        meses = sorted(v["valores"])
-        return f"{v['parametro']}: {len(meses)} valor(es) mensal(is), {meses[0]} a {meses[-1]}" if meses else v["parametro"]
+    for k in MENSAIS:
+        if k in ef:
+            v = ef[k]
+            meses = sorted(v["valores"])
+            nome = "vazão de restrição" if k == "restricao_mensal" else v["parametro"]
+            if len(set(v["valores"].values())) == 1:
+                un = " m³/s" if k == "restricao_mensal" else ""
+                return f"{nome}: {_num(next(iter(v['valores'].values())))}{un} de {_mes(meses[0])} a {_mes(meses[-1])}"
+            return f"{nome}: {len(meses)} valores mensais, {_mes(meses[0])} a {_mes(meses[-1])}"
+    if "vazao_temporada" in ef:
+        t = ef["vazao_temporada"]
+        return f"vazão da temporada {t['ano']} em {t['reservatorio']}: {_num(t['valor'])} m³/s"
     if "situacao" in ef:
         return f"situação declarada ({ef['situacao']}); só observação"
     return ", ".join(sorted(ef))
@@ -178,7 +225,7 @@ def efeito_txt(a: dict) -> str:
 
 def resumo() -> list[dict]:
     """Lista enxuta dos atos para o painel (aba de atos complementares)."""
-    campos = ("id", "tipo", "documento", "data", "sei", "regras", "vigencia", "citacao")
+    campos = ("id", "tipo", "documento", "data", "sei", "regras", "vigencia", "citacao") + RASTREIO
     return [{**{k: a.get(k) for k in campos}, "efeito_txt": efeito_txt(a)} for a in todos()]
 
 
@@ -222,15 +269,23 @@ def cobertura(regra_id: str, serie: list[dict], pendente: str = "Parâmetro pend
 
 if __name__ == "__main__":
     import sys
+    # --validar: só confere o cadastro e as regras citadas (usado na validação dos pedidos de cadastro); sai com 1 se houver erro
+    validar = "--validar" in sys.argv[1:]
     sys.path.insert(0, str(Path(__file__).parent))
     import regras
     ids = {r["id"] for r in regras.REGRAS}
-    atos = todos()
+    try:
+        atos = todos()
+    except CadastroInvalido as e:
+        print(f"[erro] {e}")
+        sys.exit(1)
     sem_regra = [(a["id"], r) for a in atos for r in a["regras"] if r not in ids]
     print(f"{len(atos)} atos em {ARQUIVO.name}")
-    for a in atos:
+    for a in atos if not validar else []:
         v = a["vigencia"]
         print(f"  {a['id']:<28} {a['tipo']:<18} {v.get('inicio') or '—'} a {v.get('fim') or '—'}  {', '.join(a['regras'])}")
     if sem_regra:
         print("Regras citadas que não existem em src/regras.py:", sem_regra)
         sys.exit(1)
+    if validar:
+        print("[ok] cadastro válido")
