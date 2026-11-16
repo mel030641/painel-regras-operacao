@@ -1,0 +1,83 @@
+# Pedido de cadastro de ato complementar (issue aberta pelo formulário web/cadastro.html) -> PR validado.
+# Só processa pedidos de quem tem acesso ao repositório (dono, membro ou colaborador). O PR não entra sozinho:
+# alguém da equipe revisa e faz o merge; o painel só passa a usar o ato depois disso.
+name: Cadastro de ato complementar
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: cadastro-ato-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  pedido:
+    if: >-
+      startsWith(github.event.issue.title, '[cadastro de ato]') &&
+      contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.issue.author_association)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      ISSUE: ${{ github.event.issue.number }}
+      CORPO: ${{ github.event.issue.body }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validar e aplicar o registro
+        id: aplicar
+        run: |
+          printf '%s' "$CORPO" > "$RUNNER_TEMP/pedido.md"
+          set +e
+          python src/atos_pedido.py "$RUNNER_TEMP/pedido.md" --saida-github "$GITHUB_OUTPUT" > "$RUNNER_TEMP/saida.txt" 2>&1
+          rc=$?
+          set -e
+          cat "$RUNNER_TEMP/saida.txt"
+          if [ $rc -ne 0 ]; then
+            { echo "O pedido não passou na validação do cadastro e nenhum PR foi aberto:"; echo; echo '```'; cat "$RUNNER_TEMP/saida.txt"; echo '```';
+              echo; echo "Corrija o registro no formulário e edite esta issue com o novo bloco json (a validação roda de novo)."; } > "$RUNNER_TEMP/comentario.md"
+            gh issue comment "$ISSUE" --body-file "$RUNNER_TEMP/comentario.md"
+            exit 1
+          fi
+          python src/atos.py --validar
+
+      - name: Abrir ou atualizar o PR
+        env:
+          ATO_ID: ${{ steps.aplicar.outputs.id }}
+          ACAO: ${{ steps.aplicar.outputs.acao }}
+          DOCUMENTO: ${{ steps.aplicar.outputs.documento }}
+        run: |
+          ramo="cadastro-ato/$ATO_ID"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$ramo"
+          git add config/atos_complementares.json
+          if git diff --cached --quiet; then
+            gh issue comment "$ISSUE" --body "O registro já é igual ao do cadastro; nada a alterar."
+            exit 0
+          fi
+          git commit -m "Cadastro de ato: $ACAO $ATO_ID ($DOCUMENTO)" -m "Pedido #$ISSUE"
+          git push --force -u origin "$ramo"
+          pr=$(gh pr list --head "$ramo" --state open --json number --jq '.[0].number')
+          if [ -z "$pr" ]; then
+            { echo "Pedido #$ISSUE gerado pelo formulário de cadastro de atos complementares."; echo;
+              echo "- Ação: $ACAO o ato \`$ATO_ID\` ($DOCUMENTO)"; echo "- Validação: \`python src/atos.py --validar\` passou"; echo;
+              echo "Antes do merge, confira o registro com o documento original (número, data, vigência, valores e regras afetadas)."; echo;
+              echo "Closes #$ISSUE"; } > "$RUNNER_TEMP/pr.md"
+            if ! gh pr create --base main --head "$ramo" --title "Cadastro de ato: $ATO_ID" --body-file "$RUNNER_TEMP/pr.md"; then
+              gh issue comment "$ISSUE" --body "O registro foi validado e gravado no ramo \`$ramo\`, mas a automação não conseguiu abrir o PR. Abra-o em https://github.com/${GITHUB_REPOSITORY}/compare/main...$ramo (ou habilite em Settings > Actions > General a opção que permite ao GitHub Actions criar pull requests)."
+              exit 0
+            fi
+            pr=$(gh pr list --head "$ramo" --state open --json number --jq '.[0].number')
+          fi
+          gh issue comment "$ISSUE" --body "Registro validado. PR #$pr aberto (ou atualizado) com a alteração do cadastro; o ato entra no painel depois do merge."
