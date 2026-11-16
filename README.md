@@ -40,8 +40,7 @@ src/calculo.py             avaliação diária, status e folga -> data/painel.js
 src/serie_compacta.py      grava a série diária de cada regra em colunas no painel.json (~3x menor) e a recompõe para as planilhas
 src/boletins_ana.py        coleta diária das faixas nos boletins oficiais da ANA (gov.br)
 src/boletins_parsers.py    leitura do texto dos boletins (pdftotext)
-src/powerbi_faixas_soe.py  extração das faixas dos painéis Power BI
-src/faixas_powerbi.py      converte as faixas extraídas em config/faixas.json (histórico)
+src/faixas_powerbi.py      lê as faixas dos painéis Power BI e grava config/faixas.json (histórico); CSV de conferência opcional (--csv)
 src/faixas_boletins.py     grava em config/faixas.json o histórico de faixas dos boletins diários (desde out/2017)
 src/publicar.py            monta o site (_site/index.html + painel.json)
 src/validar.py             confronta o cálculo com a planilha de auditoria da SOE
@@ -61,8 +60,7 @@ Requer Python 3.10 ou superior.
 Período: o painel cobre desde 01/10/2017 (início do histórico de faixas nos boletins do Cantareira). Antes da entrada em vigor de cada resolução (`VIGENCIA` em `src/regras.py`, conforme o texto oficial), a regra aparece como "Não se aplica". As Res. 1.382/2015 e 2.081/2017 entram em vigor após comunicado da ANA: 01/12/2016 (Ofício Circular nº 48/2016/AA-ANA) e 01/05/2019 (Ofício Circular nº 1/2019/AA-CD-ANA), respectivamente. Coleta, cálculo e publicação usam apenas a biblioteca padrão.
 
 ```bash
-python src/powerbi_faixas_soe.py data/powerbi
-python src/faixas_powerbi.py data/powerbi/faixas_operativas_vigentes.csv
+python src/faixas_powerbi.py --csv data/powerbi   # faixas do Power BI -> config/faixas.json (+ CSV de conferência)
 python src/calculo.py                    # desde 01/10/2017 (1ª execução sem cache: ~1 h de download)
 python src/publicar.py
 python -m http.server -d _site 8000      # abrir http://localhost:8000
