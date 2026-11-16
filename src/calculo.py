@@ -710,6 +710,7 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
         if regra.get("informativa"):
             garantido = regra["minimo"] * ((b - a).days + 1) * 86400 / 1e6
             out["obs"] += f" de {garantido:.1f} hm³ garantidos; saldo disponível ao PCJ {garantido - v * n * 86400 / 1e6:.1f} hm³"
+            out["lib"], out["gar"] = round(v * n * 86400 / 1e6, 1), round(garantido, 1)
         elif resta > 0:
             total = (b - a).days + 1
             nec = (regra["minimo"] * total - v * n) / resta
@@ -828,7 +829,7 @@ def executar(inicio: dt.date, fim: dt.date, meses_horarios: int) -> dict:
             if s["st"] in (OK, TOL, NAO):
                 mensal[s["d"][:7]][s["st"]] += 1
                 mensal[s["d"][:7]]["n"] += 1
-        meta = {k: v for k, v in regra.items() if k in ("id", "resolucao", "artigos", "sistema", "ponto", "grupo", "descricao", "freq", "niveis", "tol", "tol_pp", "fonte", "tipo", "alerta", "complementar")}
+        meta = {k: v for k, v in regra.items() if k in ("id", "resolucao", "artigos", "sistema", "ponto", "grupo", "descricao", "freq", "niveis", "tol", "tol_pp", "fonte", "tipo", "alerta", "complementar", "informativa")}
         meta["unid"] = unidade(regra)
         meta["param"] = parametro(regra)
         meta["texto_norma"] = trechos(regra["resolucao"], regra.get("artigos", ""))
