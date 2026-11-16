@@ -42,16 +42,26 @@ src/boletins_ana.py        coleta diária das faixas nos boletins oficiais da AN
 src/boletins_parsers.py    leitura do texto dos boletins (pdftotext)
 src/powerbi_faixas_soe.py  extração das faixas dos painéis Power BI
 src/faixas_powerbi.py      converte as faixas extraídas em config/faixas.json (histórico)
-src/faixas_boletins.py     grava em config/faixas.json o histórico de faixas dos boletins diários (desde out/2017)
 src/publicar.py            monta o site (_site/index.html + painel.json)
-src/validar.py             confronta o cálculo com a planilha de auditoria da SOE
 web/painel.html            interface do painel
 config/faixas.json         faixas publicadas (boletim ANA ou Power BI), por reservatório e período
 config/parametros_mensais.json  valores mensais fixados por ato (2.081/2017 e 614/2010)
 config/curvas_seguranca_sf.json curvas de segurança de Três Marias e Sobradinho por ciclo (2.081/2017)
-data/manual/historico/     série manual de Santa Inês usada até out/2026 (substituída pela API Sabesp)
+ferramentas/               scripts de uso único (carga inicial e validação); não rodam no fluxo diário
+data/historico/            arquivos de registro da carga inicial e da validação
 .github/workflows/painel.yml    atualização diária e publicação (cópia em workflow-painel.yml)
 ```
+
+### Ferramentas de uso único
+
+Ficam fora de `src/` porque não fazem parte da atualização diária. Foram usadas uma vez e estão guardadas para consulta ou nova carga.
+
+| Arquivo | Para que serviu |
+|---|---|
+| `ferramentas/validar.py` | Comparou o cálculo com a "Planilha de Auditoria Multitemporal de Eventos SOE" (out/2026). |
+| `data/historico/validacao_out2026.csv` | Resultado dessa comparação. |
+| `ferramentas/faixas_boletins.py` | Importou para `config/faixas.json` o histórico de faixas dos boletins diários desde out/2017. |
+| `data/historico/santa_ines_planilha_out2026.csv` | Planilha manual de Santa Inês usada na carga inicial, antes da coleta pela API Sabesp. |
 
 ## Executar localmente
 
@@ -70,7 +80,7 @@ python -m http.server -d _site 8000      # abrir http://localhost:8000
 Validação contra a planilha de auditoria (requer `pip install openpyxl`):
 
 ```bash
-python src/validar.py "Planilha de Auditoria Multitemporal.xlsx" data/painel.json data/validacao.csv
+python ferramentas/validar.py "Planilha de Auditoria Multitemporal.xlsx" data/painel.json data/validacao.csv
 ```
 
 ## Status e métrica
@@ -89,7 +99,7 @@ python src/validar.py "Planilha de Auditoria Multitemporal.xlsx" data/painel.jso
 - **Curvas de segurança do São Francisco** (Res. 2.081/2017, art. 4º): a cada ciclo (dezembro a novembro), acrescentar as tabelas de Três Marias e de Xingó da NT do ONS em `config/curvas_seguranca_sf.json`, com o ofício de não objeção da ANA em `manifestacao_ana`. Sem esse ofício, o teto fica como Parâmetro pendente.
 - **Valores mensais por ato** (`config/parametros_mensais.json`, chave `"<parâmetro>|aaaa-mm"`): `teto_SFTMAR`, `teto_SFXING` e `teto_SFSOBR` (vazões da faixa de Restrição fixadas pelo ONS a partir de recomendação da ANA; um valor informado prevalece sobre a curva) e `na_op_<código SAR>` (nível máximo operacional mensal do DAEE, Res. 614/2010).
 - **Revisões temporárias dos estágios da 1.382/2015** (art. 1º, § 2º): lista `revisoes` da regra `1382-estagios` em `src/regras.py`.
-- **Santa Inês**: coletada automaticamente da API Mananciais da Sabesp (`https://mananciais.sabesp.com.br/api/v4`, EEAB 36). O valor do dia D é a média de D-1 07h a D 07h. A planilha manual de out/2026 ficou em `data/manual/historico/` só como registro.
+- **Santa Inês**: coletada automaticamente da API Mananciais da Sabesp (`https://mananciais.sabesp.com.br/api/v4`, EEAB 36). O valor do dia D é a média de D-1 07h a D 07h. A planilha manual de out/2026 ficou em `data/historico/` só como registro.
 - **Postos PCJ**: continuam no SAISP, com média diária de 00h a 24h (decisão da SOE em 04/11/2026). A API Sabesp também publica esses postos, mas no dia de 07h a 07h, e por isso não é usada para eles.
 - **Rede**: o ambiente que roda o cálculo precisa acessar `mananciais.sabesp.com.br`.
 

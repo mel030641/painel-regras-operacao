@@ -8,7 +8,7 @@ Prioridade (decisão SOE de 04/11/2026): faixa publicada (boletim oficial; Power
 sobre a calculada; o cálculo pela norma fica como conferência (divergencias_faixa no painel.json).
 Entradas de boletim substituem entradas do Power BI do mesmo período; as demais são preservadas.
 
-Uso: python src/faixas_boletins.py <faixas_historico_vigencias.csv> [config/faixas.json]
+Uso: python ferramentas/faixas_boletins.py <faixas_historico_vigencias.csv> [config/faixas.json]
 """
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ import json
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from regras import FAIXAS  # noqa: E402
 
 
