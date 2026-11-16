@@ -121,7 +121,7 @@ tr.sys-row td { padding: 0 }
 .sys-cnt .c-ok { background: var(--ok-soft); color: var(--ok); border-color: transparent }
 section { display: grid; gap: 12px; min-width: 0 }
 .sec-head { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; justify-content: space-between }
-.sec-head p { margin: 0; color: var(--fg-2); font-size: .85rem; max-width: 80ch }
+.sec-head p { margin: 0; color: var(--fg-2); font-size: .85rem; max-width: 80ch; overflow-wrap: anywhere }
 
 /* síntese */
 .summary { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 16px }
@@ -998,7 +998,8 @@ function ligar() {
   // aba Atos complementares: filtros da lista, exportação, linha -> regra, selo da aba Regras -> atos da regra
   const tipos = [...new Set((D.atos_complementares || []).map((a) => a.tipo))];
   $("#fa-tipo").innerHTML += tipos.map((t) => `<option value="${esc(t)}">${esc(TIPO_ATO[t] || t)}</option>`).join("");
-  const rids = [...new Set((D.atos_complementares || []).flatMap((a) => a.regras || []))].sort();
+  // regras com ato no cadastro e regras que dependem de ato (mesmo sem nenhum cadastrado)
+  const rids = [...new Set([...(D.atos_complementares || []).flatMap((a) => a.regras || []), ...D.regras.filter((r) => r.complementar).map((r) => r.id)])].sort();
   $("#fa-regra").innerHTML += rids.map((id) => { const r = D.regras.find((x) => x.id === id); return `<option value="${esc(id)}">${esc(r ? r.ponto + " · " + id : id)}</option>`; }).join("");
   $("#fa-tipo").addEventListener("change", (e) => { fa.tipo = e.target.value; render(); });
   $("#fa-regra").addEventListener("change", (e) => { fa.regra = e.target.value; render(); });
