@@ -1,0 +1,437 @@
+{
+ "descricao": "Cadastro único dos atos complementares às resoluções: outorgas, comunicados, ofícios e situações declaradas que fixam ou alteram o limite ou o gatilho de uma regra. Cada ato tem: id; tipo (outorga, comunicado, oficio, confirmacao, registro, valor_mensal ou situacao_declarada); documento; data (aaaa-mm-dd); sei; regras afetadas (ids de src/regras.py); vigencia {inicio, fim} (fim nulo = sem término declarado); citacao (texto mostrado no painel); e efeito, com um dos campos: parametro/valor (limite fixo, ex.: outorga), parametro/ano/valor (limite anual), revisao_estagio {reservatorio, estagio 0-2, valor}, tolerancia (fração), curva_seguranca (ciclo de config/curvas_seguranca_sf.json), valores_mensais {parametro, valores {aaaa-mm: valor}} ou situacao (só observação; não muda a avaliação). Lido por src/atos.py.",
+ "atos": [
+  {
+   "id": "outorga-GRFURN",
+   "tipo": "outorga",
+   "documento": "Outorga nº 1033/2019",
+   "data": null,
+   "sei": null,
+   "regras": [
+    "193-GRFURN"
+   ],
+   "vigencia": {
+    "inicio": null,
+    "fim": null
+   },
+   "citacao": "Outorga nº 1033/2019 (planilha de auditoria SOE, out/2026)",
+   "efeito": {
+    "parametro": "outorga_GRFURN",
+    "valor": 1440.0
+   }
+  },
+  {
+   "id": "outorga-GRMMOR",
+   "tipo": "outorga",
+   "documento": "Outorga ANA nº 2.704/2024",
+   "data": null,
+   "sei": null,
+   "regras": [
+    "193-GRMMOR"
+   ],
+   "vigencia": {
+    "inicio": "2024-10-01",
+    "fim": null
+   },
+   "citacao": "Outorga ANA nº 2.704/2024, art. 1º, IX: vazão máxima turbinada de M. Mascarenhas de Moraes (efeitos desde 01/10/2024)",
+   "efeito": {
+    "parametro": "outorga_GRMMOR",
+    "valor": 1188.64
+   }
+  },
+  {
+   "id": "outorga-PREMBO",
+   "tipo": "outorga",
+   "documento": "Outorga (número a conferir)",
+   "data": null,
+   "sei": null,
+   "regras": [
+    "194-PREMBO"
+   ],
+   "vigencia": {
+    "inicio": null,
+    "fim": null
+   },
+   "citacao": "Outorga (planilha de auditoria SOE, out/2026)",
+   "efeito": {
+    "parametro": "outorga_PREMBO",
+    "valor": 972.0
+   }
+  },
+  {
+   "id": "outorga-PRITUM",
+   "tipo": "outorga",
+   "documento": "Outorga (número a conferir)",
+   "data": null,
+   "sei": null,
+   "regras": [
+    "194-PRITUM"
+   ],
+   "vigencia": {
+    "inicio": null,
+    "fim": null
+   },
+   "citacao": "Outorga (planilha de auditoria SOE, out/2026)",
+   "efeito": {
+    "parametro": "outorga_PRITUM",
+    "valor": 2928.0
+   }
+  },
+  {
+   "id": "volume-transposicao-2021",
+   "tipo": "comunicado",
+   "documento": "Comunicado Conjunto ANA/DAEE/IGAM/INEA de 2021",
+   "data": null,
+   "sei": null,
+   "regras": [
+    "1931-volume"
+   ],
+   "vigencia": {
+    "inicio": "2021-01-01",
+    "fim": "2021-12-31"
+   },
+   "citacao": "Comunicado Conjunto ANA/DAEE/IGAM/INEA de 2021 (transposição excepcional até 31/12/2021), item I.b: até 202 hm³ em 2021",
+   "efeito": {
+    "parametro": "vol_anual_jaguari",
+    "ano": "2021",
+    "valor": 202.0
+   }
+  },
+  {
+   "id": "volume-transposicao-2024",
+   "tipo": "confirmacao",
+   "documento": "Sem comunicado em 2024 (vale o limite base de 162 hm³)",
+   "data": null,
+   "sei": null,
+   "regras": [
+    "1931-volume"
+   ],
+   "vigencia": {
+    "inicio": "2024-01-01",
+    "fim": "2024-12-31"
+   },
+   "citacao": "Res. ANA 1.931/2017, art. 1º, III (sem comunicado em 2024, confirmado pela SOE em 04/11/2026)",
+   "efeito": {
+    "parametro": "vol_anual_jaguari",
+    "ano": "2024",
+    "valor": 162.0
+   }
+  },
+  {
+   "id": "volume-transposicao-2025",
+   "tipo": "comunicado",
+   "documento": "Comunicado Conjunto ANA/SP-Águas/IGAM/INEA de 2025",
+   "data": null,
+   "sei": null,
+   "regras": [
+    "1931-volume"
+   ],
+   "vigencia": {
+    "inicio": "2025-01-01",
+    "fim": "2025-12-31"
+   },
+   "citacao": "Comunicado Conjunto ANA/SP-Águas/IGAM/INEA de 2025, item I.a (162 + 24,7 hm³ suplementares, até 31/12/2025)",
+   "efeito": {
+    "parametro": "vol_anual_jaguari",
+    "ano": "2025",
+    "valor": 186.7
+   }
+  },
+  {
+   "id": "volume-transposicao-2026",
+   "tipo": "comunicado",
+   "documento": "Comunicado Conjunto nº 3/2026",
+   "data": null,
+   "sei": null,
+   "regras": [
+    "1931-volume"
+   ],
+   "vigencia": {
+    "inicio": "2026-01-01",
+    "fim": "2026-12-31"
+   },
+   "citacao": "Comunicado Conjunto nº 3/2026 (planilha de auditoria SOE)",
+   "efeito": {
+    "parametro": "vol_anual_jaguari",
+    "ano": "2026",
+    "valor": 268.28
+   }
+  },
+  {
+   "id": "estagios-1382-2021-1",
+   "tipo": "comunicado",
+   "documento": "Ofício Circular nº 2/2021/JG/ANA",
+   "data": "2021-09-22",
+   "sei": null,
+   "regras": [
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2021-09-22",
+    "fim": "2021-11-30"
+   },
+   "citacao": "Ofício Circular nº 2/2021/JG/ANA, de 22/09/2021",
+   "efeito": {
+    "revisao_estagio": {
+     "reservatorio": "PBFUNI",
+     "estagio": 2,
+     "valor": 20
+    }
+   }
+  },
+  {
+   "id": "estagios-1382-2021-2",
+   "tipo": "comunicado",
+   "documento": "Ofício Circular nº 5/2021/JG/ANA",
+   "data": "2021-11-30",
+   "sei": null,
+   "regras": [
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2021-12-01",
+    "fim": "2021-12-31"
+   },
+   "citacao": "Ofício Circular nº 5/2021/JG/ANA, de 30/11/2021",
+   "efeito": {
+    "revisao_estagio": {
+     "reservatorio": "PBFUNI",
+     "estagio": 2,
+     "valor": 20
+    }
+   }
+  },
+  {
+   "id": "estagios-1382-2026-3",
+   "tipo": "comunicado",
+   "documento": "Ofício Circular nº 1/2026/DP-ANA-SEI",
+   "data": "2026-01-20",
+   "sei": null,
+   "regras": [
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2026-01-20",
+    "fim": "2026-03-31"
+   },
+   "citacao": "Ofício Circular nº 1/2026/DP-ANA-SEI, de 20/01/2026",
+   "efeito": {
+    "revisao_estagio": {
+     "reservatorio": "PBFUNI",
+     "estagio": 2,
+     "valor": 20
+    }
+   }
+  },
+  {
+   "id": "tolerancia-guandu-2021",
+   "tipo": "oficio",
+   "documento": "Ofício Circular nº 1/2021/JG/ANA",
+   "data": "2021-08-20",
+   "sei": null,
+   "regras": [
+    "1382-PBSTAC-guandu"
+   ],
+   "vigencia": {
+    "inicio": "2021-08-20",
+    "fim": null
+   },
+   "citacao": "Ofício Circular nº 1/2021/JG/ANA, de 20/08/2021 (aprovação do GAOPS na 52ª reunião, de 17/08/2021)",
+   "efeito": {
+    "tolerancia": 0.05
+   }
+  },
+  {
+   "id": "curvas-sf-2018-2019",
+   "tipo": "registro",
+   "documento": "Reunião de 22/04/2019 (sem ofício localizado)",
+   "data": "2019-04-22",
+   "sei": null,
+   "regras": [
+    "2081-SFTMAR-max",
+    "2081-SFXING-max"
+   ],
+   "vigencia": {
+    "inicio": "2019-05-01",
+    "fim": "2019-11-30"
+   },
+   "citacao": "apresentadas na reunião de 22/04/2019; manifestação formal da ANA não localizada (a NT ONS DOP 0102/2024 registra que vigoraram de maio a novembro de 2019)",
+   "efeito": {
+    "curva_seguranca": "2018/2019"
+   }
+  },
+  {
+   "id": "curvas-sf-2019-2020",
+   "tipo": "oficio",
+   "documento": "Ofício nº 20/2019/SOE-ANA",
+   "data": "2019-11-28",
+   "sei": null,
+   "regras": [
+    "2081-SFTMAR-max",
+    "2081-SFXING-max"
+   ],
+   "vigencia": {
+    "inicio": "2019-12-01",
+    "fim": "2020-11-30"
+   },
+   "citacao": "Ofício nº 20/2019/SOE-ANA, de 28/11/2019 (não objeção)",
+   "efeito": {
+    "curva_seguranca": "2019/2020"
+   }
+  },
+  {
+   "id": "curvas-sf-2020-2021",
+   "tipo": "oficio",
+   "documento": "Ofício nº 19/2020/SOE-ANA",
+   "data": "2020-11-23",
+   "sei": null,
+   "regras": [
+    "2081-SFTMAR-max",
+    "2081-SFXING-max"
+   ],
+   "vigencia": {
+    "inicio": "2020-12-01",
+    "fim": "2021-11-30"
+   },
+   "citacao": "Ofício nº 19/2020/SOE-ANA, de 23/11/2020 (não objeção)",
+   "efeito": {
+    "curva_seguranca": "2020/2021"
+   }
+  },
+  {
+   "id": "curvas-sf-2021-2022",
+   "tipo": "oficio",
+   "documento": "Ofício nº 17/2021/SOE-ANA",
+   "data": "2021-10-26",
+   "sei": null,
+   "regras": [
+    "2081-SFTMAR-max",
+    "2081-SFXING-max"
+   ],
+   "vigencia": {
+    "inicio": "2021-12-01",
+    "fim": "2022-11-30"
+   },
+   "citacao": "Ofício nº 17/2021/SOE-ANA, de 26/10/2021 (não objeção)",
+   "efeito": {
+    "curva_seguranca": "2021/2022"
+   }
+  },
+  {
+   "id": "curvas-sf-2022-2023",
+   "tipo": "oficio",
+   "documento": "Ofício nº 9/2022/SOE-ANA",
+   "data": "2022-10-25",
+   "sei": null,
+   "regras": [
+    "2081-SFTMAR-max",
+    "2081-SFXING-max"
+   ],
+   "vigencia": {
+    "inicio": "2022-12-01",
+    "fim": "2023-11-30"
+   },
+   "citacao": "Ofício nº 9/2022/SOE-ANA, de 25/10/2022 (não objeção)",
+   "efeito": {
+    "curva_seguranca": "2022/2023"
+   }
+  },
+  {
+   "id": "curvas-sf-2023-2024",
+   "tipo": "oficio",
+   "documento": "Ofício nº 12/2023/SOE",
+   "data": "2023-10-23",
+   "sei": null,
+   "regras": [
+    "2081-SFTMAR-max",
+    "2081-SFXING-max"
+   ],
+   "vigencia": {
+    "inicio": "2023-12-01",
+    "fim": "2024-11-30"
+   },
+   "citacao": "Ofício nº 12/2023/SOE, de 23/10/2023 (não objeção)",
+   "efeito": {
+    "curva_seguranca": "2023/2024"
+   }
+  },
+  {
+   "id": "curvas-sf-2024-2025",
+   "tipo": "oficio",
+   "documento": "Ofício nº 87/2024/SOE-ANA",
+   "data": "2024-10-21",
+   "sei": null,
+   "regras": [
+    "2081-SFTMAR-max",
+    "2081-SFXING-max"
+   ],
+   "vigencia": {
+    "inicio": "2024-12-01",
+    "fim": "2025-11-30"
+   },
+   "citacao": "Ofício nº 87/2024/SOE-ANA, de 21/10/2024 (não objeção)",
+   "efeito": {
+    "curva_seguranca": "2024/2025"
+   }
+  },
+  {
+   "id": "curvas-sf-2025-2026",
+   "tipo": "oficio",
+   "documento": "Ofício nº 47/2025/SOE-ANA-SEI",
+   "data": "2025-10-30",
+   "sei": null,
+   "regras": [
+    "2081-SFTMAR-max",
+    "2081-SFXING-max"
+   ],
+   "vigencia": {
+    "inicio": "2025-12-01",
+    "fim": "2026-11-30"
+   },
+   "citacao": "Ofício nº 47/2025/SOE-ANA-SEI, de 30/10/2025 (não objeção)",
+   "efeito": {
+    "curva_seguranca": "2025/2026"
+   }
+  },
+  {
+   "id": "curvas-sf-2026-2027",
+   "tipo": "oficio",
+   "documento": "Ofício nº 39/2026/SOE-ANA-SEI",
+   "data": "2026-10-28",
+   "sei": "0260339",
+   "regras": [
+    "2081-SFTMAR-max",
+    "2081-SFXING-max"
+   ],
+   "vigencia": {
+    "inicio": "2026-12-01",
+    "fim": "2027-11-30"
+   },
+   "citacao": "Ofício nº 39/2026/SOE-ANA-SEI, de 28/10/2026 (aprovação para 01/12/2026 a 30/11/2027: Três Marias sem observações; Sobradinho nos patamares de 800 a 1.500 m³/s)",
+   "efeito": {
+    "curva_seguranca": "2026/2027"
+   }
+  },
+  {
+   "id": "funil-controle-cheias-2026",
+   "tipo": "situacao_declarada",
+   "documento": "E-mail do ONS (Paulo Diniz de Oliveira, Gerência de Recursos Hídricos e Meteorologia) à CORSH, de 05/10/2026, compartilhado no chat da CORSH em 10/11/2026",
+   "data": "2026-10-05",
+   "sei": null,
+   "regras": [
+    "1382-PBSTAC-guandu",
+    "1382-PBSTAC",
+    "1382-RLPPAS",
+    "1382-PBFUNI"
+   ],
+   "vigencia": {
+    "inicio": "2026-10-06",
+    "fim": null
+   },
+   "citacao": "Funil em operação para controle de cheias desde 06/10/2026: defluências de Funil e vazão objetivo em Santa Cecília definidas pelo controle do nível de Funil (e-mail do ONS à CORSH de 05/10/2026, Operação de Funil para atendimento às Regras de Controle de Cheias; Res. 1.382/2015, art. 1º, III, b, e IV, b)",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  }
+ ]
+}

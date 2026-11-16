@@ -46,7 +46,8 @@ src/publicar.py            monta o site (_site/index.html + painel.json)
 src/validar.py             confronta o cálculo com a planilha de auditoria da SOE
 web/painel.html            interface do painel
 config/faixas.json         faixas publicadas (boletim ANA ou Power BI), por reservatório e período
-config/parametros_mensais.json  valores mensais fixados por ato (2.081/2017 e 614/2010)
+config/atos_complementares.json cadastro único dos atos complementares (outorgas, comunicados, ofícios, valores mensais, situações declaradas)
+src/atos.py                lê e confere o cadastro de atos (python src/atos.py lista os atos por regra)
 config/curvas_seguranca_sf.json curvas de segurança de Três Marias e Sobradinho por ciclo (2.081/2017)
 data/manual/historico/     série manual de Santa Inês usada até out/2026 (substituída pela API Sabesp)
 .github/workflows/painel.yml    atualização diária e publicação (cópia em workflow-painel.yml)
@@ -82,12 +83,19 @@ python src/validar.py "Planilha de Auditoria Multitemporal.xlsx" data/painel.jso
 ## Manutenção
 
 - **Faixas**: a cada execução, o workflow lê as faixas nesta ordem: (1) boletim diário oficial da ANA no gov.br (`src/boletins_ana.py`); (2) painéis Power BI da SOE, só para período sem boletim; (3) faixa calculada pela regra da resolução, quando não há publicação. O histórico fica em `config/faixas.json`, e o painel indica a origem de cada faixa. No Paranapanema e no Grande e Paranaíba, o boletim só é aceito a partir de segunda-feira e do dia 4 do mês, respectivamente, porque os boletins do início do período ainda podem trazer a faixa anterior.
-- **Situações declaradas** (`config/eventos_operacao.json`): períodos informados pelo ONS ou pela ANA que não mudam o limite, mas explicam o dia (ex.: Funil em operação para controle de cheias desde 06/10/2026). O painel acrescenta a observação nos dias e regras indicados, sem alterar a situação da avaliação. Registrar o término (`fim`) quando for declarado.
+- **Atos complementares** (`config/atos_complementares.json`): cadastro único de todo documento fora da resolução que fixa ou altera o limite ou o gatilho de uma regra. Cada ato traz documento, data, número SEI, regras afetadas, vigência (`inicio`/`fim`), o texto mostrado no painel (`citacao`) e o `efeito`:
+  - `parametro`/`valor`: limite fixo (outorgas de Furnas, Peixoto, Emborcação e Itumbiara);
+  - `parametro`/`ano`/`valor`: limite anual (volume da transposição Jaguari–Atibainha; sem ato no ano, vale o limite base de 162 hm³);
+  - `revisao_estagio`: revisão temporária do mínimo de um estágio da 1.382/2015 (art. 1º, § 2º), com vigência de início e fim;
+  - `tolerancia`: tolerância admitida por ato (bombeamento para o Guandu, desde 20/08/2021);
+  - `curva_seguranca`: manifestação da ANA sobre as curvas de um ciclo do São Francisco (as tabelas ficam em `config/curvas_seguranca_sf.json`);
+  - `valores_mensais`: `{"parametro": ..., "valores": {"aaaa-mm": valor}}` para `teto_SFTMAR`, `teto_SFXING`, `teto_SFSOBR` (vazões da faixa de Restrição fixadas pelo ONS a partir de recomendação da ANA; prevalecem sobre a curva) e `na_op_<código SAR>` (nível máximo operacional mensal do DAEE, Res. 614/2010);
+  - `situacao`: situação declarada pelo ONS ou pela ANA que não muda o limite, mas explica o dia (ex.: Funil em controle de cheias desde 06/10/2026). Registrar o `fim` quando for declarado.
+
+  Depois de editar o cadastro, rodar `python src/atos.py`: ele confere campos, datas e ids de regra e lista os atos.
 - **Texto das normas**: os textos das resoluções ficam em `normas/textos/r<número>_<ano>.txt`. `src/textos_normas.py` recorta os dispositivos citados no campo `artigos` de cada regra, e o painel os mostra na coluna Norma e no detalhe. Ao cadastrar uma resolução nova, incluir o texto e conferir o recorte com `python src/textos_normas.py`. Citação ambígua vai em `CORRECOES`.
 - **Regras que dependem de ato complementar**: o dicionário `COMPLEMENTAR` em `src/regras.py` indica, por regra, o ato posterior à resolução de que o parâmetro depende. O painel mostra o selo "ato complementar" e o filtro "Só regras com ato complementar" na aba Regras. Ao cadastrar nova regra nessa condição, incluir a entrada no dicionário.
-- **Curvas de segurança do São Francisco** (Res. 2.081/2017, art. 4º): a cada ciclo (dezembro a novembro), acrescentar as tabelas de Três Marias e de Xingó da NT do ONS em `config/curvas_seguranca_sf.json`, com o ofício de não objeção da ANA em `manifestacao_ana`. Sem esse ofício, o teto fica como Parâmetro pendente.
-- **Valores mensais por ato** (`config/parametros_mensais.json`, chave `"<parâmetro>|aaaa-mm"`): `teto_SFTMAR`, `teto_SFXING` e `teto_SFSOBR` (vazões da faixa de Restrição fixadas pelo ONS a partir de recomendação da ANA; um valor informado prevalece sobre a curva) e `na_op_<código SAR>` (nível máximo operacional mensal do DAEE, Res. 614/2010).
-- **Revisões temporárias dos estágios da 1.382/2015** (art. 1º, § 2º): lista `revisoes` da regra `1382-estagios` em `src/regras.py`.
+- **Curvas de segurança do São Francisco** (Res. 2.081/2017, art. 4º): a cada ciclo (dezembro a novembro), acrescentar as tabelas de Três Marias e de Xingó da NT do ONS em `config/curvas_seguranca_sf.json` e cadastrar o ofício da ANA em `config/atos_complementares.json` (efeito `curva_seguranca`). Sem esse ofício, o teto fica como Parâmetro pendente.
 - **Santa Inês**: coletada automaticamente da API Mananciais da Sabesp (`https://mananciais.sabesp.com.br/api/v4`, EEAB 36). O valor do dia D é a média de D-1 07h a D 07h. A planilha manual de out/2026 ficou em `data/manual/historico/` só como registro.
 - **Postos PCJ**: continuam no SAISP, com média diária de 00h a 24h (decisão da SOE em 04/11/2026). A API Sabesp também publica esses postos, mas no dia de 07h a 07h, e por isso não é usada para eles.
 - **Rede**: o ambiente que roda o cálculo precisa acessar `mananciais.sabesp.com.br`.
