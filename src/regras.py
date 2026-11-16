@@ -166,7 +166,7 @@ R.append(dict(id="70-TOUHET", resolucao="Res. ANA 70/2021", artigos="arts. 3º, 
               fonte="ONS:TOUHET:defl", pisos={"todos": 744}))
 R.append(dict(id="70-TOSMES-praias", resolucao="Res. ANA 70/2021", artigos="arts. 6º e 8º", sistema="Tocantins", ponto="Serra da Mesa",
               descricao="Defluente constante na temporada de praias (10/6 a 20/8): ±5% da média do período", tipo="constante", freq="diaria", niveis=2, tol=0.05,
-              fonte="ONS:TOSMES:defl", inicio="06-10", fim="08-20"))
+              fonte="ONS:TOSMES:defl", inicio="06-10", fim="08-20", temporada="TOSMES"))
 for rid, nome, mn, mx in [("TOSMES", "Serra da Mesa", 417.30, 460.00), ("TOUHCB", "Cana Brava", 330.00, 333.00),
                           ("TOUHSA", "São Salvador", 286.50, 287.00), ("TOUHPA", "Peixe Angical", 261.00, 263.00),
                           ("TOLAJ", "Lajeado", 211.50, 212.30), ("TOUHET", "Estreito", 151.00, 156.00), ("TOTUCU", "Tucuruí", 51.60, 74.00)]:
@@ -265,6 +265,7 @@ for cod, nome, cota_rec in [("29001", "Jaguari-Jacareí", None), ("29002", "Cach
 for cod, nome, seco, umido in [("29001", "Jaguari-Jacareí", 40, 100), ("29002", "Cachoeira", 5, 7), ("29003", "Atibainha", 5, 11), ("29004", "Paiva Castro", 1, None)]:
     extra = {}
     if umido is None:
+        extra["param_mensal"] = f"restricao_{cod}"  # vazão de restrição dez–jun fixada pelo DAEE (restricao_mensal no cadastro de atos)
         extra["pendente"] = ("vazão de restrição de dezembro a junho válida só até fev/2011 (1 m³/s); o valor posterior ao desassoreamento do rio Juqueri, "
                              "a ser definido pelo DAEE (Anexo 1, item 4, OBS 3), não foi localizado")
     R.append(dict(id=f"614-restr-{cod}", resolucao="Res. Conj. ANA/DAEE 614/2010", artigos="Anexo 1, item 4", sistema="Cantareira", ponto=nome,
@@ -278,7 +279,7 @@ for cod, nome, seco, umido in [("29001", "Jaguari-Jacareí", 40, 100), ("29002",
 # definição mensal de outro órgão). O painel mostra um marcador e permite filtrar esses casos para acompanhamento.
 COMPLEMENTAR = {
     "49-RIUHFC": "Previsão de afluência sex–dom obtida pelo ONS às quintas-feiras e informe semanal do agente com a programação de defluências (art. 1º, §§ 1º a 3º); sem esses dados, o painel usa a afluência observada como aproximação do gatilho",
-    "70-TOSMES-praias": "Vazão a ser praticada na temporada de praias, informada anualmente pelo ONS até 10 de maio (art. 6º, § 3º); sem esse valor, o painel usa a média do período como referência",
+    "70-TOSMES-praias": "Vazão a ser praticada na temporada de praias, informada anualmente pelo ONS até 10 de maio (art. 6º, § 3º; vazao_temporada no cadastro de atos); sem esse valor, o painel usa a média do período como referência",
     "2081-SFTMAR-max": "Curvas de segurança do ciclo (NT do ONS e não objeção da ANA, art. 4º); na Restrição, vazão fixada pelo ONS por recomendação da ANA",
     "2081-SFXING-max": "Curvas de segurança do ciclo (NT do ONS e não objeção da ANA, art. 4º)",
     "2081-SFSOBR-max": "Teto mensal de Sobradinho (sem critério definido na Atenção); na Restrição, vazões fixadas pelo ONS por recomendação da ANA",
@@ -288,7 +289,7 @@ COMPLEMENTAR = {
     "614-op-29002": "Nível máximo operacional definido mensalmente pelo DAEE (maio e junho; art. 1º, § 2º, e art. 3º)",
     "614-op-29003": "Nível máximo operacional definido mensalmente pelo DAEE (maio e junho; art. 1º, § 2º, e art. 3º)",
     "614-op-29004": "Nível máximo operacional definido mensalmente pelo DAEE (maio e junho; art. 1º, § 2º, e art. 3º)",
-    "614-restr-29004": "Vazão de restrição de dezembro a junho após fev/2011, a definir pelo DAEE (Anexo 1, item 4, OBS 3)",
+    "614-restr-29004": "Vazão de restrição de dezembro a junho após fev/2011, a definir pelo DAEE (Anexo 1, item 4, OBS 3; restricao_mensal no cadastro de atos)",
     "193-GRFURN": "Vazão outorgada de Furnas (limite na faixa Normal do período seco)",
     "193-GRMMOR": "Vazão outorgada de Mascarenhas de Moraes (limite na faixa de Atenção do período seco)",
     "194-PREMBO": "Vazão outorgada de Emborcação (limite na faixa Normal do período seco)",

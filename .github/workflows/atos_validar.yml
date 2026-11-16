@@ -1,0 +1,27 @@
+# Confere o cadastro de atos complementares em todo PR que o altera (inclusive os abertos pelo formulário).
+name: Validar cadastro de atos
+
+on:
+  pull_request:
+    paths:
+      - config/atos_complementares.json
+      - src/atos.py
+      - src/regras.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Cadastro e regras citadas
+        run: python src/atos.py --validar
+      - name: Regras carregam com o cadastro
+        run: python -c "import sys; sys.path.insert(0, 'src'); import regras, atos; print(len(regras.REGRAS), 'regras;', len(atos.todos()), 'atos')"

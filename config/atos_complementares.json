@@ -1,5 +1,5 @@
 {
- "descricao": "Cadastro único dos atos complementares às resoluções: outorgas, comunicados, ofícios e situações declaradas que fixam ou alteram o limite ou o gatilho de uma regra. Cada ato tem: id; tipo (outorga, comunicado, oficio, confirmacao, registro, valor_mensal ou situacao_declarada); documento; data (aaaa-mm-dd); sei; regras afetadas (ids de src/regras.py); vigencia {inicio, fim} (fim nulo = sem término declarado); citacao (texto mostrado no painel); e efeito, com um dos campos: parametro/valor (limite fixo, ex.: outorga), parametro/ano/valor (limite anual), revisao_estagio {reservatorio, estagio 0-2, valor}, tolerancia (fração), curva_seguranca (ciclo de config/curvas_seguranca_sf.json), valores_mensais {parametro, valores {aaaa-mm: valor}} ou situacao (só observação; não muda a avaliação). Lido por src/atos.py.",
+ "descricao": "Cadastro único dos atos complementares às resoluções: outorgas, comunicados, ofícios e situações declaradas que fixam ou alteram o limite ou o gatilho de uma regra. Cada ato tem: id; tipo (outorga, comunicado, oficio, confirmacao, registro, valor_mensal ou situacao_declarada); documento; data (aaaa-mm-dd); sei; regras afetadas (ids de src/regras.py); vigencia {inicio, fim} (fim nulo = sem término declarado); citacao (texto mostrado no painel); e efeito, com um dos campos: parametro/valor (limite fixo, ex.: outorga), parametro/ano/valor (limite anual), revisao_estagio {reservatorio, estagio 0-2, valor}, tolerancia (fração), curva_seguranca (ciclo de config/curvas_seguranca_sf.json), valores_mensais {parametro, valores {aaaa-mm: valor}}, restricao_mensal {parametro, valores {aaaa-mm: m³/s}} (vazão de restrição mensal), vazao_temporada {reservatorio, ano, valor} (vazão da temporada de praias) ou situacao (só observação; não muda a avaliação). Lido por src/atos.py. Na outorga, vigencia.fim é o vencimento da outorga (entra nos alertas do painel). Campos opcionais de rastreio: cadastrado_por, cadastrado_em (aaaa-mm-dd) e revisado_por.",
  "atos": [
   {
    "id": "outorga-GRFURN",
@@ -50,7 +50,7 @@
    ],
    "vigencia": {
     "inicio": null,
-    "fim": null
+    "fim": "2027-05-26"
    },
    "citacao": "Outorga ANA nº 2.559, de 07/10/2024 (DOU 09/10/2024), art. 1º, X: vazão máxima turbinada de 972 m³/s da UHE Emborcação; substitui a Outorga nº 2.727/2019 e vigora até 26/05/2027 (art. 9º)",
    "efeito": {
@@ -69,7 +69,7 @@
    ],
    "vigencia": {
     "inicio": null,
-    "fim": null
+    "fim": "2052-06-17"
    },
    "citacao": "Outorga ANA nº 2.703, de 17/10/2024 (DOU 22/10/2024), art. 1º, VIII: vazão máxima turbinada de 2.928 m³/s da UHE Itumbiara; efeitos desde 05/09/2024, substitui a Outorga nº 919/2023 e vigora até 17/06/2052",
    "efeito": {

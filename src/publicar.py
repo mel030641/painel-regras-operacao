@@ -2,7 +2,7 @@
 publicar.py - Monta o site estático do painel (GitHub Pages) a partir de web/painel.html e do resultado do cálculo.
 
 Uso: python src/publicar.py [painel.json] [pasta_site]
-Padrão: data/painel.json -> _site/index.html, _site/painel.json, _site/manual.html e _site/docs/*.xlsx
+Padrão: data/painel.json -> _site/index.html, _site/painel.json, _site/manual.html, _site/cadastro.html e _site/docs/*.xlsx
 Dependências: biblioteca padrão; openpyxl para as planilhas (sem ele, o site sai sem a pasta docs).
 """
 from __future__ import annotations
@@ -42,6 +42,7 @@ def main():
     manual = (RAIZ / "web" / "manual.html").read_text(encoding="utf-8")
     manual = manual.replace("{{N_REGRAS}}", str(len(regras)))
     (site / "manual.html").write_text(manual, encoding="utf-8")
+    shutil.copyfile(RAIZ / "web" / "cadastro.html", site / "cadastro.html")  # formulário de cadastro de atos complementares
     try:
         sys.path.insert(0, str(Path(__file__).resolve().parent))
         import documentos
