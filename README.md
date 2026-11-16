@@ -51,7 +51,7 @@ config/atos_complementares.json cadastro único dos atos complementares (outorga
 src/atos.py                lê e confere o cadastro de atos (python src/atos.py lista os atos por regra)
 config/curvas_seguranca_sf.json curvas de segurança de Três Marias e Sobradinho por ciclo (2.081/2017)
 data/manual/historico/     série manual de Santa Inês usada até out/2026 (substituída pela API Sabesp)
-.github/workflows/painel.yml    atualização diária e publicação (cópia em workflow-painel.yml)
+.github/workflows/painel.yml    atualização diária e publicação
 ```
 
 ## Executar localmente
@@ -106,7 +106,7 @@ python src/validar.py "Planilha de Auditoria Multitemporal.xlsx" data/painel.jso
 1. **Criar a conta.** Acesse https://github.com/signup, informe o e-mail, crie a senha e o nome de usuário e confirme o código enviado por e-mail. O plano gratuito atende.
 2. **Criar o repositório.** No canto superior direito, clique em **+** e depois em **New repository**. Nome sugerido: `painel-regras-operacao`. Marque **Public** (o GitHub Pages gratuito exige repositório público) e clique em **Create repository**.
 3. **Enviar os arquivos.** Na página do repositório vazio, clique em **uploading an existing file** e arraste as pastas `config`, `data`, `src` e `web` e os arquivos `README.md`, `.gitignore` e `requirements.txt`. Clique em **Commit changes**.
-   - **Workflow:** clique em **Add file > Create new file**, digite o nome `.github/workflows/painel.yml` (as barras criam as pastas), cole o conteúdo de `workflow-painel.yml` e clique em **Commit changes**. O arquivo de workflow precisa ficar exatamente nesse caminho para o GitHub reconhecê-lo.
+   - **Workflow:** clique em **Add file > Create new file**, digite o nome `.github/workflows/painel.yml` (as barras criam as pastas), cole o conteúdo do arquivo `.github/workflows/painel.yml` deste repositório e clique em **Commit changes**. O arquivo de workflow precisa ficar exatamente nesse caminho para o GitHub reconhecê-lo.
 4. **Ativar o GitHub Pages.** Em **Settings > Pages**, em **Build and deployment > Source**, escolha **GitHub Actions**.
 5. **Permitir que o workflow grave o histórico de faixas.** Em **Settings > Actions > General > Workflow permissions**, marque **Read and write permissions** e salve.
 6. **Executar pela primeira vez.** Em **Actions**, selecione **Atualizar painel** e clique em **Run workflow**. Ao final (a 1ª execução leva cerca de 1 hora, pois baixa o histórico desde out/2017; as seguintes, poucos minutos), o endereço do painel aparece no resumo da execução, no formato `https://<usuario>.github.io/painel-regras-operacao/`.
