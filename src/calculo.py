@@ -828,7 +828,7 @@ def executar(inicio: dt.date, fim: dt.date, meses_horarios: int) -> dict:
     saida = {"gerado_em": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
              "periodo": [inicio.isoformat(), fim.isoformat()], "ultimo_dado_ons": ultimo_ons,
              "erros_coleta": dados.erros, "parametros": PARAMETROS, "eventos": EVENTOS,
-             "atos_complementares": atos.resumo(), "regras": []}
+             "atos_complementares": atos.resumo(), "versao_asreg": _ler_json(CONFIG / "versao_asreg.json", None), "regras": []}
     for regra in REGRAS:
         serie = []
         for d in dias(inicio, fim):
