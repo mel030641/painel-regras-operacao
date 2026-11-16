@@ -115,6 +115,7 @@ legend { font: 600 .95rem var(--f-display); margin-bottom: 8px; padding: 0 }
         <label class="campo" data-p="estagio"><b>Estágio</b><select id="estagio"><option value="0">1º estágio</option><option value="1">2º estágio</option><option value="2">3º estágio</option></select></label>
         <label class="campo" data-p="ciclo"><b>Ciclo</b><input id="ciclo" placeholder="aaaa/aaaa"></label>
         <label class="campo" data-p="sistema"><b>Sistema</b><input id="sistema" placeholder="Ex.: Paraíba do Sul"></label>
+        <label class="campo largo" data-p="semanais"><b>Previsão de afluência sex–dom (m³/s)</b><textarea id="semanais" placeholder="Uma semana por linha: data da sexta-feira = valor&#10;2026-11-20 = 850&#10;20/11/2026 = 850"></textarea><span class="dica">Data da sexta-feira do fim de semana a que a previsão se refere. A vigência é preenchida com a primeira sexta e o domingo da última semana, se estiver vazia.</span></label>
         <label class="campo largo" data-p="mensais"><b>Valores mensais <span id="mensais-un"></span></b><textarea id="mensais" placeholder="Um mês por linha, no formato aaaa-mm = valor&#10;2026-12 = 2,5&#10;2027-01 = 2,5"></textarea><span class="dica">Também aceita “dez/2026 = 2,5”. A vigência é preenchida com o primeiro e o último mês, se estiver vazia.</span></label>
       </fieldset>
 
@@ -170,6 +171,8 @@ const EFEITOS = {
                dica: "Vazão de restrição de dezembro a junho definida pelo DAEE (Anexo 1, item 4, OBS 3)." },
   temporada: { rot: "Vazão da temporada de praias (Res. 70/2021)", tipo: "comunicado", un: "m³/s", campos: ["reservatorio", "ano", "valor"], params: { TOSMES: ["70-TOSMES-praias", "Serra da Mesa"] },
                dica: "Vazão informada pelo ONS até 10 de maio (art. 6º, § 3º)." },
+  previsao:  { rot: "Previsão de afluência sex–dom do ONS (Res. 49/2018)", tipo: "registro", un: "m³/s", campos: ["reservatorio", "semanais"], params: { RIUHFC: ["49-RIUHFC", "Foz do Chapecó"] },
+               dica: "Previsão obtida pelo ONS às quintas-feiras (art. 1º, § 1º). Com previsão de até 1.000 m³/s, a defluência de 12h de sexta a 12h de domingo deve ficar em até 1.000 m³/s." },
   estagio:   { rot: "Revisão temporária de estágio (Res. 1.382/2015)", tipo: "comunicado", un: "% VU", campos: ["reservatorio", "estagio", "valor"],
                params: { PBFUNI: ["1382-estagios", "Funil"], PBPARA: ["1382-estagios", "Paraibuna"], PBSBRA: ["1382-estagios", "Santa Branca"], PBJAGU: ["1382-estagios", "Jaguari (PS)"] },
                dica: "Revisão do mínimo do estágio por comunicado da ANA (art. 1º, § 2º); exige vigência com início e fim." },
@@ -248,6 +251,15 @@ function registro() {
     if (meses.length) { vIni = vIni || `${meses[0]}-01`; vFim = vFim || fimDoMes(meses[meses.length - 1]); } }
   else if (k === "temporada") { exigeValor(); if (!/^\d{4}$/.test(ano)) erros.push("informe o ano (aaaa)"); efeito = { vazao_temporada: { reservatorio: $("#reservatorio").value, ano, valor } };
     if (/^\d{4}$/.test(ano)) { vIni = vIni || `${ano}-06-10`; vFim = vFim || `${ano}-08-20`; } }
+  else if (k === "previsao") { const v = {}; String($("#semanais").value || "").split(/\n/).map((l) => l.trim()).filter(Boolean).forEach((l, i) => {
+      const m = l.match(/^(?:(\d{4})-(\d{2})-(\d{2})|(\d{2})\/(\d{2})\/(\d{4}))\s*[=:;\t ]\s*(.+)$/);
+      if (!m) { erros.push(`linha ${i + 1} (“${l}”) fora do formato data = valor`); return; }
+      const dia = m[1] ? `${m[1]}-${m[2]}-${m[3]}` : `${m[6]}-${m[5]}-${m[4]}`, x = num(m[7]);
+      if (new Date(dia + "T12:00:00Z").getUTCDay() !== 5) erros.push(`linha ${i + 1}: ${df(dia)} não é sexta-feira`);
+      if (x == null || Number.isNaN(x)) erros.push(`linha ${i + 1}: valor “${m[7]}” não numérico`); else v[dia] = x; });
+    const dias = Object.keys(v).sort(); if (!dias.length && !erros.length) erros.push("informe ao menos uma semana");
+    efeito = { previsao_semanal: { reservatorio: $("#reservatorio").value, valores: Object.fromEntries(dias.map((x) => [x, v[x]])) } };
+    if (dias.length) { const dom = new Date(dias[dias.length - 1] + "T12:00:00Z"); dom.setUTCDate(dom.getUTCDate() + 2); vIni = vIni || dias[0]; vFim = vFim || dom.toISOString().slice(0, 10); } }
   else if (k === "estagio") { exigeValor(); efeito = { revisao_estagio: { reservatorio: $("#reservatorio").value, estagio: +$("#estagio").value, valor } };
     if (!vIni || !vFim) erros.push("revisão de estágio precisa de vigência com início e fim"); }
   else if (k === "curva") { const c = $("#ciclo").value.trim(); if (!/^\d{4}\/\d{4}$/.test(c)) erros.push("informe o ciclo no formato aaaa/aaaa"); efeito = { curva_seguranca: c };
@@ -277,6 +289,7 @@ function resumoEfeito(k, ef, e) {
   if (k === "vol_anual") return ef.valor != null ? `volume anual de ${ef.ano}: ${br(ef.valor)}${un}` : "";
   if (e.chave) { const v = Object.entries(ef[e.chave].valores); return v.length ? `${e.rot.replace(/ \(.*/, "").toLowerCase()}: ${v.map(([m, x]) => `${MESES[+m.slice(5) - 1]}/${m.slice(0, 4)} ${br(x)}${un}`).join("; ")}` : ""; }
   if (k === "temporada") return ef.vazao_temporada.valor != null ? `vazão da temporada ${ef.vazao_temporada.ano} de ${br(ef.vazao_temporada.valor)}${un}` : "";
+  if (k === "previsao") { const v = Object.entries(ef.previsao_semanal.valores); return v.length ? `previsão de afluência sex–dom do ONS: ${v.map(([d, x]) => `${df(d)} ${br(x)}${un}`).join("; ")}` : ""; }
   if (k === "estagio") return `mínimo do ${ef.revisao_estagio.estagio + 1}º estágio de ${ef.revisao_estagio.reservatorio} revisto para ${br(ef.revisao_estagio.valor)}${un}`;
   if (k === "curva") return `não objeção às curvas de segurança do ciclo ${ef.curva_seguranca}`;
   if (k === "tolerancia") return ef.tolerancia != null ? `tolerância de ${br(ef.tolerancia * 100)}%` : "";

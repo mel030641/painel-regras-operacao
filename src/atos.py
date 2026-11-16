@@ -18,7 +18,7 @@ ARQUIVO = Path(__file__).resolve().parent.parent / "config" / "atos_complementar
 
 TIPOS = {"outorga", "comunicado", "oficio", "confirmacao", "registro", "valor_mensal", "situacao_declarada"}
 EFEITOS = {"parametro", "revisao_estagio", "tolerancia", "curva_seguranca", "valores_mensais", "restricao_mensal",
-           "vazao_temporada", "situacao"}
+           "vazao_temporada", "previsao_semanal", "situacao"}
 MENSAIS = ("valores_mensais", "restricao_mensal")  # mesmo formato: {parametro, valores {aaaa-mm: valor}}
 MES = re.compile(r"^\d{4}-\d{2}$")
 RASTREIO = ("cadastrado_por", "cadastrado_em", "revisado_por")  # opcionais; preenchidos pelo formulário ou à mão
@@ -69,6 +69,17 @@ def _conferir(atos: list[dict]) -> None:
             t = ef["vazao_temporada"]
             if not isinstance(t, dict) or not t.get("reservatorio") or not re.match(r"^\d{4}$", str(t.get("ano", ""))) or not isinstance(t.get("valor"), (int, float)):
                 erros.append(f"{rot}: efeito 'vazao_temporada' precisa de reservatorio, ano (aaaa) e valor numérico")
+        if "previsao_semanal" in ef:
+            pv = ef["previsao_semanal"]
+            if not isinstance(pv, dict) or not pv.get("reservatorio") or not isinstance(pv.get("valores"), dict) or not pv["valores"]:
+                erros.append(f"{rot}: efeito 'previsao_semanal' precisa de reservatorio e valores {{aaaa-mm-dd da sexta: m³/s}}")
+            else:
+                import datetime as _dt
+                for dia, v in pv["valores"].items():
+                    if not DATA.match(str(dia)) or _dt.date.fromisoformat(dia).weekday() != 4:
+                        erros.append(f"{rot}: previsao_semanal: '{dia}' não é uma sexta-feira no formato aaaa-mm-dd")
+                    if not isinstance(v, (int, float)):
+                        erros.append(f"{rot}: previsao_semanal: valor de {dia} não numérico")
         if a.get("cadastrado_em") is not None and not DATA.match(str(a["cadastrado_em"])[:10]):
             erros.append(f"{rot}: cadastrado_em '{a['cadastrado_em']}' fora do formato aaaa-mm-dd")
         if "revisao_estagio" in ef and not a["vigencia"].get("fim"):
@@ -162,6 +173,16 @@ def citacao_mensal(chave: str) -> str | None:
     return None
 
 
+def previsoes() -> dict[str, dict]:
+    """{'<reservatório>|aaaa-mm-dd (sexta)': {'valor', 'citacao'}} da previsão de afluência sex–dom do ONS (Res. ANA 49/2018, art. 1º, § 1º)."""
+    out = {}
+    for a in _com("previsao_semanal"):
+        pv = a["efeito"]["previsao_semanal"]
+        for dia, v in pv["valores"].items():
+            out[f"{pv['reservatorio']}|{dia}"] = {"valor": v, "citacao": a["citacao"]}
+    return out
+
+
 def vazoes_temporada() -> dict[str, dict]:
     """{'<reservatório>|aaaa': {'valor', 'citacao'}} da vazão da temporada informada por ato (Res. ANA 70/2021, art. 6º, § 3º)."""
     out = {}
@@ -215,6 +236,10 @@ def efeito_txt(a: dict) -> str:
                 un = " m³/s" if k == "restricao_mensal" else ""
                 return f"{nome}: {_num(next(iter(v['valores'].values())))}{un} de {_mes(meses[0])} a {_mes(meses[-1])}"
             return f"{nome}: {len(meses)} valores mensais, {_mes(meses[0])} a {_mes(meses[-1])}"
+    if "previsao_semanal" in ef:
+        pv = ef["previsao_semanal"]
+        dias = sorted(pv["valores"])
+        return f"previsão de afluência sex–dom em {pv['reservatorio']}: {len(dias)} semana(s), {dias[0][8:10]}/{dias[0][5:7]}/{dias[0][:4]} a {dias[-1][8:10]}/{dias[-1][5:7]}/{dias[-1][:4]}"
     if "vazao_temporada" in ef:
         t = ef["vazao_temporada"]
         return f"vazão da temporada {t['ano']} em {t['reservatorio']}: {_num(t['valor'])} m³/s"
@@ -235,16 +260,12 @@ def cobre(a: dict, inicio: str, fim: str) -> bool:
     return (v.get("inicio") or "0000-01-01") <= fim and (v.get("fim") or "9999-12-31") >= inicio
 
 
-# Regras em que, sem o ato, o painel usa uma aproximação (o mês é avaliado, mas não com o valor do ato).
-APROXIMACAO = {"49-RIUHFC", "70-TOSMES-praias"}
-
 
 def cobertura(regra_id: str, serie: list[dict], pendente: str = "Parâmetro pendente", nao_aplica: str = "Não se aplica") -> dict[str, str]:
     """Cobertura mensal da regra pelo cadastro de atos, a partir da série diária já avaliada.
 
     'lacuna': algum dia do mês ficou em Parâmetro pendente (falta o ato);
     'ato':    há ato do cadastro vigente no mês para a regra;
-    'aprox':  sem ato, o painel avaliou o mês com aproximação (APROXIMACAO);
     'sem':    o mês não exige ato (regra não se aplica ou o limite vem da própria resolução).
     """
     meses: dict[str, list[str]] = {}
@@ -260,8 +281,6 @@ def cobertura(regra_id: str, serie: list[dict], pendente: str = "Parâmetro pend
             out[m] = "sem"
         elif any(cobre(a, a0, a1) for a in atos_r):
             out[m] = "ato"
-        elif regra_id in APROXIMACAO:
-            out[m] = "aprox"
         else:
             out[m] = "sem"
     return out
