@@ -142,10 +142,82 @@ def situacoes() -> list[dict]:
              "regras": a["regras"], "obs": a["citacao"], "fonte": a["documento"]} for a in _com("situacao")]
 
 
+def _num(v: float, casas: int | None = None) -> str:
+    """Número no padrão brasileiro (vírgula decimal, ponto de milhar)."""
+    t = f"{v:,.{2 if casas is None else casas}f}"
+    if casas is None and "." in t:
+        t = t.rstrip("0").rstrip(".")
+    return t.replace(",", "§").replace(".", ",").replace("§", ".")
+
+
+def efeito_txt(a: dict) -> str:
+    """Efeito do ato em uma frase curta, para a lista de atos do painel."""
+    ef = a["efeito"]
+    if "parametro" in ef:
+        p = ef["parametro"]
+        if p.startswith("outorga_"):
+            return f"vazão outorgada de {_num(ef['valor'])} m³/s"
+        if p == "vol_anual_jaguari":
+            return f"volume anual de {ef.get('ano', '')}: {_num(ef['valor'])} hm³".replace(" :", ":")
+        return f"{p} = {_num(ef['valor'])}" + (f" ({ef['ano']})" if "ano" in ef else "")
+    if "revisao_estagio" in ef:
+        r = ef["revisao_estagio"]
+        return f"mínimo do estágio {r['estagio']} em {r['reservatorio']}: {_num(r['valor'])}% VU"
+    if "tolerancia" in ef:
+        return f"tolerância de {_num(ef['tolerancia'] * 100)}%"
+    if "curva_seguranca" in ef:
+        return f"curvas de segurança do ciclo {ef['curva_seguranca']}"
+    if "valores_mensais" in ef:
+        v = ef["valores_mensais"]
+        meses = sorted(v["valores"])
+        return f"{v['parametro']}: {len(meses)} valor(es) mensal(is), {meses[0]} a {meses[-1]}" if meses else v["parametro"]
+    if "situacao" in ef:
+        return f"situação declarada ({ef['situacao']}); só observação"
+    return ", ".join(sorted(ef))
+
+
 def resumo() -> list[dict]:
     """Lista enxuta dos atos para o painel (aba de atos complementares)."""
     campos = ("id", "tipo", "documento", "data", "sei", "regras", "vigencia", "citacao")
-    return [{k: a.get(k) for k in campos} for a in todos()]
+    return [{**{k: a.get(k) for k in campos}, "efeito_txt": efeito_txt(a)} for a in todos()]
+
+
+def cobre(a: dict, inicio: str, fim: str) -> bool:
+    """O ato está vigente em algum dia de [inicio, fim] (datas aaaa-mm-dd; vigência sem início ou sem fim é aberta)."""
+    v = a.get("vigencia") or {}
+    return (v.get("inicio") or "0000-01-01") <= fim and (v.get("fim") or "9999-12-31") >= inicio
+
+
+# Regras em que, sem o ato, o painel usa uma aproximação (o mês é avaliado, mas não com o valor do ato).
+APROXIMACAO = {"49-RIUHFC", "70-TOSMES-praias"}
+
+
+def cobertura(regra_id: str, serie: list[dict], pendente: str = "Parâmetro pendente", nao_aplica: str = "Não se aplica") -> dict[str, str]:
+    """Cobertura mensal da regra pelo cadastro de atos, a partir da série diária já avaliada.
+
+    'lacuna': algum dia do mês ficou em Parâmetro pendente (falta o ato);
+    'ato':    há ato do cadastro vigente no mês para a regra;
+    'aprox':  sem ato, o painel avaliou o mês com aproximação (APROXIMACAO);
+    'sem':    o mês não exige ato (regra não se aplica ou o limite vem da própria resolução).
+    """
+    meses: dict[str, list[str]] = {}
+    for s in serie:
+        meses.setdefault(s["d"][:7], []).append(s["st"])
+    atos_r = [a for a in todos() if regra_id in a["regras"] and not ({"situacao"} & set(a["efeito"]))]
+    out = {}
+    for m, sts in meses.items():
+        a0, a1 = m + "-01", m + "-31"
+        if pendente in sts:
+            out[m] = "lacuna"
+        elif all(st == nao_aplica for st in sts):
+            out[m] = "sem"
+        elif any(cobre(a, a0, a1) for a in atos_r):
+            out[m] = "ato"
+        elif regra_id in APROXIMACAO:
+            out[m] = "aprox"
+        else:
+            out[m] = "sem"
+    return out
 
 
 if __name__ == "__main__":

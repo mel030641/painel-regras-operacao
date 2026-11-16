@@ -243,6 +243,21 @@ tr.detail td { background: var(--surface); padding: 0 }
 .heat .c.h-pp { background: repeating-linear-gradient(135deg, var(--tol-soft) 0 4px, color-mix(in srgb, var(--tol) 45%, var(--surface)) 4px 6px) }
 .heat .c.h-ec { background: var(--surface); box-shadow: inset 0 0 0 1px var(--fg-3) }
 .heat .c.h-sd { background: transparent; box-shadow: none; outline: 1px dashed var(--fg-3); outline-offset: -2px }
+.atos-cnt { display: inline-flex; gap: 6px; align-items: baseline; margin-top: 12px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--fg-2); font-size: .82rem; text-decoration: none }
+.atos-cnt:hover { background: var(--sunk); color: var(--fg) }
+.atos-cnt b.lac { color: var(--tol) }
+#s-atos h3 { margin: 22px 0 8px; font-size: .95rem }
+.atos-alertas { display: grid; gap: 6px; margin: 10px 0 4px }
+.atos-alertas .al { border-left: 3px solid var(--tol); background: var(--tol-soft); border-radius: 0 6px 6px 0; padding: 6px 10px; font-size: .82rem }
+.atos-alertas .al.ok { border-color: var(--ok); background: var(--ok-soft) }
+.heat .c.ca-ato { background: color-mix(in srgb, var(--ok) 32%, var(--surface)) }
+.heat .c.ca-apr { background: color-mix(in srgb, var(--accent) 22%, var(--surface)) }
+.cob { font-size: .8rem } .cob.lac { color: var(--tol); font-weight: 600 }
+a.compl { text-decoration: none; cursor: pointer } a.compl:hover { background: var(--sunk); color: var(--fg) }
+#t-atos-lista td { vertical-align: top; font-size: .8rem } #t-atos-lista td.cit { max-width: 46ch; color: var(--fg-2) }
+#t-atos-sit tr.rule-ato { cursor: pointer } #t-atos-sit tr.rule-ato:hover td { background: var(--sunk) }
+.st-ato { display: inline-block; padding: 0 7px; border-radius: 999px; font-size: .72rem; font-weight: 600; background: var(--sunk); color: var(--fg-2) }
+.st-ato.vig { background: var(--ok-soft); color: var(--ok) } .st-ato.fut { background: var(--accent-soft); color: var(--accent) }
 .heat-leg { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .78rem; color: var(--fg-2); align-items: center }
 .heat-leg .c { display: inline-block; width: 22px; height: 12px; min-width: 0; border-radius: 2px; vertical-align: -2px; margin-right: 5px }
 .heat td.lbl { white-space: nowrap; font-size: .8rem; padding: 4px 10px }
@@ -300,6 +315,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
       <button role="tab" id="tab-regras" aria-controls="s-regras" data-aba="regras">Regras <span class="badge" id="b-regras"></span></button>
       <button role="tab" id="tab-heat" aria-controls="s-heat" data-aba="heat">Mapa multitemporal</button>
       <button role="tab" id="tab-oc" aria-controls="s-oc" data-aba="oc">Ocorrências <span class="badge" id="b-oc"></span></button>
+      <button role="tab" id="tab-atos" aria-controls="s-atos" data-aba="atos">Atos complementares <span class="badge" id="b-atos"></span></button>
       <button role="tab" id="tab-docs" aria-controls="s-docs" data-aba="docs">Documentos</button>
     </div>
 </div></nav>
@@ -320,6 +336,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
         <div class="lbl" id="icg-lbl"></div>
         <div class="stackbar" id="icg-bar" aria-hidden="true"></div>
         <div class="legend" id="icg-leg"></div>
+        <a class="atos-cnt" href="#atos" id="sint-atos" hidden></a>
       </div>
       <div class="tbl-wrap"><table id="t-escalas"><thead><tr>
         <th>Escala temporal</th><th class="n">Regras</th><th class="n">Avaliações</th><th class="n">Atende</th><th class="n">Tolerância</th><th class="n">Não atende</th><th class="n">Conformidade</th></tr></thead><tbody></tbody></table></div>
@@ -358,6 +375,32 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
     <div class="recorte" id="oc-recorte" hidden></div>
     <div class="tbl-wrap"><table id="t-oc"><thead><tr>
       <th>Data</th><th>Sistema</th><th>Ponto</th><th>Norma</th><th>Regra</th><th>Parâmetro</th><th class="n">Valor</th><th class="n">Limite</th><th class="n">Desvio</th><th>Situação</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section id="s-atos" role="tabpanel" aria-labelledby="h-atos" data-aba="atos">
+    <div class="sec-head"><h2 id="h-atos">Atos complementares</h2><p>Documentos fora da resolução que fixam ou alteram o limite de uma regra: outorga, comunicado, ofício, curva de segurança ou valor mensal. A aba só lê o cadastro (config/atos_complementares.json) e segue o período e os filtros de sistema e busca.</p></div>
+    <div class="atos-alertas" id="atos-alertas" aria-live="polite"></div>
+    <h3>Situação por regra</h3>
+    <p class="muted" style="font-size:.8rem;margin:0 0 6px">Regras cujo limite depende de ato complementar. Clique na linha para abrir a regra na aba Regras.</p>
+    <div class="tbl-wrap"><table id="t-atos-sit"><thead><tr><th>Ponto / regra</th><th>Norma</th><th>Ato vigente em <span id="atos-ref"></span></th><th>Cobertura no período</th><th>Próximo vencimento</th></tr></thead><tbody></tbody></table></div>
+    <h3>Calendário de cobertura</h3>
+    <div class="heat heat-leg" aria-label="Legenda do calendário">
+      <span><span class="c ca-ato"></span>Há ato vigente</span>
+      <span><span class="c h-pp"></span>O mês exige ato e não há (Parâmetro pendente)</span>
+      <span><span class="c ca-apr"></span>Sem ato; o painel usa aproximação</span>
+      <span><span class="c h-na"></span>O mês não exige ato</span>
+    </div>
+    <div class="tbl-wrap heat"><table id="t-atos-cal"><thead></thead><tbody></tbody></table></div>
+    <h3>Lista de atos</h3>
+    <div class="acoes">
+      <label class="field">Tipo <select id="fa-tipo"><option value="">Todos</option></select></label>
+      <label class="field">Regra <select id="fa-regra"><option value="">Todas</option></select></label>
+      <label class="field">Situação <select id="fa-sit"><option value="">Todas</option><option value="vig">Vigente</option><option value="fut">Futuro</option><option value="enc">Encerrado</option></select></label>
+      <label class="field"><input type="search" id="fa-q" placeholder="Buscar documento, citação…" aria-label="Buscar nos atos"></label>
+      <button type="button" class="btn" id="fa-csv">Exportar CSV</button>
+    </div>
+    <div class="tbl-wrap"><table id="t-atos-lista"><thead><tr><th>Documento</th><th>Data</th><th>Nº SEI</th><th>Tipo</th><th>Vigência</th><th>Regras</th><th>Efeito</th><th>Situação em <span class="atos-ref2"></span></th><th>Citação exibida no painel</th></tr></thead><tbody></tbody></table></div>
+    <p class="muted" style="font-size:.78rem;margin-top:8px">O nº SEI aparece como texto, porque o link do SEI exige login. Situação vigente, futuro ou encerrado na data final do período.</p>
   </section>
 
   <section id="s-docs" role="tabpanel" aria-labelledby="h-docs" data-aba="docs">
@@ -627,7 +670,7 @@ function render() {
   $("#b-regras").title = nNao ? `${nNao} regra(s) com último resultado Não atende` : `${regras.length} regras`;
   document.querySelectorAll("tr.detail").forEach((tr) => { const r = D.regras.find((x) => x.id === tr.dataset.id); const z = zoom.get(r.id); ligarTooltip(tr.querySelector(".chart-box"), r, z ? noPeriodo(r).filter((s) => s.d >= z.a && s.d <= z.b) : noPeriodo(r)); });
 
-  renderHeat(regras); renderOc(regras);
+  renderHeat(regras); renderOc(regras); renderAtos(regras);
 }
 
 let iniciado = false;
@@ -658,7 +701,7 @@ function detalhe(r, per, u, z) {
       <div class="chart-box">${grafico(r, per)}</div>
       <dl class="kv">
         <dt>Regra</dt><dd>${esc(r.descricao)}</dd>
-        ${r.complementar ? `<dt>Ato complementar</dt><dd>${esc(r.complementar)}</dd>` : ""}
+        ${r.complementar ? `<dt>Ato complementar</dt><dd>${esc(r.complementar)}</dd><dt>Ato vigente no dia</dt><dd>${(() => { const v = u.d ? atosNoDia(r.id, u.d) : []; return v.length ? v.map((a) => `${esc(a.documento)} <span class="muted">(${esc(a.efeito_txt || "")}; ${df(u.d)})</span>`).join("<br>") : `<span class="muted">nenhum no cadastro em ${df(u.d)}</span>`; })()}</dd>` : ""}
         ${r.alerta ? `<dt>Verificar</dt><dd class="alerta" style="font-size:inherit">${esc(r.alerta)}</dd>` : ""}
         <dt>Norma</dt><dd>${esc(r.resolucao)}, ${esc(r.artigos || "")}</dd>
         <dt>Escala</dt><dd>${ESCALAS[escala(r)] || esc(r.freq)}</dd>
@@ -695,7 +738,7 @@ function linhaRegra(r, sub) {
       const per = noPeriodo(r), u = ultimoValido(per) || {}, c = contar(per), q = conf(c), ab = aberto.has(r.id);
       const folga = u.folga == null ? "—" : `${comU(u.folga, r)}${u.pct != null && r.unid !== "%" ? ` <span class="muted">(${nf(u.pct, 0)}%)</span>` : ""}`;
       let html = `<tr class="rule${sub ? " sub" : ""}" tabindex="0" data-id="${esc(r.id)}" aria-expanded="${ab}">
-        <td><div class="ponto">${esc(r.ponto)}${r.complementar ? `<span class="compl" title="Depende de ato complementar: ${esc(r.complementar)}">ato complementar</span>` : ""}</div><div class="desc">${esc(r.descricao)}</div>${r.alerta ? `<div class="alerta">⚠ ${esc(r.alerta)}</div>` : ""}</td>
+        <td><div class="ponto">${esc(r.ponto)}${r.complementar ? `<a class="compl" href="#atos" data-atos="${esc(r.id)}" title="Depende de ato complementar: ${esc(r.complementar)}. Clique para ver os atos da regra.">ato complementar</a>` : ""}</div><div class="desc">${esc(r.descricao)}</div>${r.alerta ? `<div class="alerta">⚠ ${esc(r.alerta)}</div>` : ""}</td>
         <td class="norma${(r.texto_norma || []).length ? " tx" : ""}">${esc(r.resolucao)}<small>${esc(r.artigos || "")}</small></td>
         <td>${u.faixa ? esc(u.faixa) : '<span class="muted">—</span>'}${u.orig === "Power BI" || u.orig === "Boletim ANA" ? ` <span class="muted" title="Faixa publicada (${esc(u.orig)})">●</span>` : ""}</td>
         <td class="n">${comU(u.v, r)}<span class="param">${esc(paramDia(r, u))}</span></td>
@@ -772,6 +815,100 @@ function renderOc(regras) {
     if (typeof s.v === "number" && l && l.length === 1 && l[0]) dv = nf((s.v - l[0]) / l[0] * 100, 1) + "%";
     return `<tr><td class="num">${df(s.d)}</td><td>${esc(r.sistema)}</td><td><b>${esc(r.ponto)}</b></td><td class="norma">${esc(r.resolucao)}</td><td class="muted">${esc(r.descricao)}</td><td class="muted">${esc(paramDia(r, s))}</td><td class="n">${comU(s.v, r)}</td><td class="n">${comU(s.lim, r)}</td><td class="n">${dv}</td><td>${pill(s.st, s)}</td></tr>`;
   }).join("") + (oc.length > 400 ? `<tr><td colspan="10" class="empty">Mostrando as 400 ocorrências mais recentes de ${oc.length.toLocaleString("pt-BR")}. Reduza o período ou use o extrato de acompanhamento (aba Documentos), que traz todas.</td></tr>` : "") || `<tr><td colspan="10" class="empty">Nenhuma ocorrência no período e filtros selecionados.</td></tr>`;
+}
+
+// ---- atos complementares: aba só de leitura sobre o cadastro (config/atos_complementares.json)
+const TIPO_ATO = { outorga: "Outorga", comunicado: "Comunicado", oficio: "Ofício", confirmacao: "Confirmação", registro: "Registro", valor_mensal: "Valor mensal", situacao_declarada: "Situação declarada" };
+const SIT_ATO = { vig: "Vigente", fut: "Futuro", enc: "Encerrado" };
+const ALERTA_DIAS = 90;
+const fa = { tipo: "", regra: "", sit: "", q: "" };
+const vigA = (a) => a.vigencia || {};
+const cobreAto = (a, x, y) => (vigA(a).inicio || "0000-01-01") <= y && (vigA(a).fim || "9999-12-31") >= x;
+const sitAto = (a, ref) => vigA(a).inicio && vigA(a).inicio > ref ? "fut" : vigA(a).fim && vigA(a).fim < ref ? "enc" : "vig";
+// atos que definem limite da regra (a situação declarada só entra como observação do dia)
+const atosDe = (rid) => (D.atos_complementares || []).filter((a) => (a.regras || []).includes(rid) && a.tipo !== "situacao_declarada");
+const atosNoDia = (rid, d) => atosDe(rid).filter((a) => cobreAto(a, d, d));
+const hojeDados = () => String(D.gerado_em || "").slice(0, 10) || D.periodo[1];
+function mesesPer() { const out = []; let m = ini.slice(0, 7); while (m <= fim.slice(0, 7)) { out.push(m); const d = new Date(m + "-15T12:00:00Z"); d.setUTCMonth(d.getUTCMonth() + 1); m = d.toISOString().slice(0, 7); } return out; }
+const rotMes = (m) => `${MES[+m.slice(5) - 1]}/${m.slice(2, 4)}`;
+function faixasMeses(ms) { // meses consecutivos viram intervalos: "dez/25 a jun/26, out/26"
+  const out = []; let a = null, b = null;
+  const seg = (m) => { const d = new Date(m + "-15T12:00:00Z"); d.setUTCMonth(d.getUTCMonth() + 1); return d.toISOString().slice(0, 7); };
+  for (const m of ms) { if (b && seg(b) === m) { b = m; continue; } if (a) out.push(a === b ? rotMes(a) : `${rotMes(a)} a ${rotMes(b)}`); a = b = m; }
+  if (a) out.push(a === b ? rotMes(a) : `${rotMes(a)} a ${rotMes(b)}`);
+  return out.join(", ");
+}
+const docAto = (a) => `${esc(a.documento)}${a.efeito_txt ? ` <span class="muted">· ${esc(a.efeito_txt)}</span>` : ""}`;
+const vencem = (ref, dias) => { const lim = addDias(ref, dias); return (D.atos_complementares || []).filter((a) => a.tipo !== "situacao_declarada" && vigA(a).fim && vigA(a).fim >= ref && vigA(a).fim <= lim).sort((x, y) => vigA(x).fim.localeCompare(vigA(y).fim)); };
+function lacunasPer(rs, ms) { const out = []; for (const r of rs) { const c = r.cobertura_atos || {}; const l = ms.filter((m) => c[m] === "lacuna"); if (l.length) out.push([r, l]); } return out; }
+function atosFiltrados(rs) {
+  const sa = (t) => String(t || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  const q = sa(fa.q.trim()), ids = new Set(rs.map((r) => r.id)), restringe = !!state.sis;
+  return (D.atos_complementares || []).filter((a) => {
+    if (restringe && !(a.regras || []).some((x) => ids.has(x))) return false;
+    if (fa.tipo && a.tipo !== fa.tipo) return false;
+    if (fa.regra && !(a.regras || []).includes(fa.regra)) return false;
+    if (fa.sit && sitAto(a, fim) !== fa.sit) return false;
+    if (q && !sa(`${a.id} ${a.documento} ${a.sei || ""} ${a.citacao} ${a.efeito_txt || ""} ${(a.regras || []).join(" ")}`).includes(q)) return false;
+    return true;
+  }).sort((x, y) => String(y.data || vigA(y).inicio || "").localeCompare(String(x.data || vigA(x).inicio || "")));
+}
+function renderAtos(regras) {
+  if (!D.atos_complementares) return;
+  const rs = regras.filter((r) => r.complementar), ms = mesesPer(), hoje = hojeDados();
+  const lac = lacunasPer(rs, ms), nLac = lac.reduce((t, [, l]) => t + l.length, 0), venc = vencem(hoje, ALERTA_DIAS);
+  // contador da Síntese e da aba
+  const cnt = $("#sint-atos");
+  cnt.hidden = false;
+  cnt.innerHTML = `Atos: <b class="${nLac ? "lac" : ""}">${nLac} ${nLac === 1 ? "lacuna" : "lacunas"}</b> · ${venc.length} a vencer em ${ALERTA_DIAS} dias <span class="muted">→</span>`;
+  cnt.title = "Meses do período sem o ato exigido (regra × mês) e atos que vencem nos próximos 90 dias. Abre a aba Atos complementares.";
+  $("#b-atos").textContent = nLac || ""; $("#b-atos").className = "badge" + (nLac ? " nao" : ""); $("#b-atos").title = nLac ? `${nLac} mês(es) sem ato no período` : "";
+  document.querySelectorAll("#atos-ref, .atos-ref2").forEach((el) => (el.textContent = df(fim)));
+  // alertas
+  const al = [];
+  for (const a of venc) al.push(`<div class="al"><b>Vence em ${df(vigA(a).fim)}:</b> ${docAto(a)} <span class="muted">(${esc((a.regras || []).join(", "))})</span></div>`);
+  for (const [r, l] of lac) al.push(`<div class="al"><b>Sem ato:</b> ${esc(r.ponto)} <span class="muted">(${esc(r.id)})</span>, ${esc(faixasMeses(l))}</div>`);
+  $("#atos-alertas").innerHTML = al.join("") || `<div class="al ok">Nenhum ato vence nos próximos ${ALERTA_DIAS} dias (a partir de ${df(hoje)}) e não há mês sem ato no período selecionado.</div>`;
+  // a) situação por regra
+  $("#t-atos-sit tbody").innerHTML = rs.map((r) => {
+    const c = r.cobertura_atos || {}, l = ms.filter((m) => c[m] === "lacuna"), ok = ms.filter((m) => c[m] === "ato"), ap = ms.filter((m) => c[m] === "aprox");
+    const vig = atosNoDia(r.id, fim);
+    const vigTxt = vig.length ? vig.map(docAto).join("<br>") : c[fim.slice(0, 7)] === "lacuna" ? '<span class="cob lac">nenhum: falta o ato</span>' : c[fim.slice(0, 7)] === "aprox" ? '<span class="muted">nenhum; o painel usa aproximação</span>' : '<span class="muted">—</span>';
+    let cob;
+    if (l.length) {
+      const pp = noPeriodo(r).filter((x) => x.st === "Parâmetro pendente").pop();
+      cob = `<span class="cob lac">${ok.length || ap.length ? "Parcial" : "Sem ato"}: falta ${esc(faixasMeses(l))}</span>${pp && obsTxt(pp) ? `<div class="muted" style="font-size:.74rem">${esc(obsTxt(pp))}</div>` : ""}`;
+    } else if (ap.length && !ok.length) cob = `<span class="cob">Aproximação (${ap.length} ${ap.length > 1 ? "meses" : "mês"})</span><div class="muted" style="font-size:.74rem">${esc(r.complementar)}</div>`;
+    else if (ok.length) cob = `<span class="cob">Completa</span>${ap.length ? ` <span class="muted">(aproximação em ${ap.length} ${ap.length > 1 ? "meses" : "mês"})</span>` : ""}`;
+    else cob = '<span class="muted">Sem exigência no período</span>';
+    const prox = atosDe(r.id).filter((a) => vigA(a).fim && vigA(a).fim >= fim).sort((x, y) => vigA(x).fim.localeCompare(vigA(y).fim))[0];
+    const semPrazo = atosDe(r.id).some((a) => cobreAto(a, fim, fim) && !vigA(a).fim);
+    const proxTxt = prox ? `${df(vigA(prox).fim)} <span class="muted">· ${esc(prox.documento)}</span>` : semPrazo ? '<span class="muted">sem prazo cadastrado</span>' : '<span class="muted">—</span>';
+    return `<tr class="rule-ato" tabindex="0" data-id="${esc(r.id)}" title="Abrir a regra na aba Regras"><td><b>${esc(r.ponto)}</b> <span class="muted mono" style="font-size:.72rem">${esc(r.id)}</span><div class="desc">${esc(r.descricao)}</div></td><td class="norma">${esc(r.resolucao)}<small>${esc(r.artigos || "")}</small></td><td>${vigTxt}</td><td>${cob}</td><td>${proxTxt}</td></tr>`;
+  }).join("") || `<tr><td colspan="5" class="empty">Nenhuma regra com ato complementar nos filtros atuais.</td></tr>`;
+  // b) calendário regra × mês
+  const CLS = { ato: "ca-ato", lacuna: "h-pp", aprox: "ca-apr", sem: "h-na" }, TXT = { ato: "há ato vigente", lacuna: "o mês exige ato e não há", aprox: "sem ato; usa aproximação", sem: "o mês não exige ato" };
+  $("#t-atos-cal thead").innerHTML = `<tr><th style="text-align:left">Ponto / regra</th>${ms.map((m) => `<th>${rotMes(m)}</th>`).join("")}</tr>`;
+  $("#t-atos-cal tbody").innerHTML = rs.map((r) => {
+    const c = r.cobertura_atos || {};
+    return `<tr><td class="lbl" title="${esc(r.ponto)} · ${esc(r.descricao)}"><b>${esc(r.ponto)}</b><span class="r">${esc(r.id)}</span></td>${ms.map((m) => {
+      const k = c[m], docs = k === "ato" ? atosDe(r.id).filter((a) => cobreAto(a, m + "-01", m + "-31")).map((a) => a.documento).join("; ") : "";
+      return `<td class="cell"><span class="c ${CLS[k] || "h-nd"}" title="${esc(r.ponto)} · ${rotMes(m)}: ${k ? TXT[k] : "sem avaliação"}${docs ? " (" + esc(docs) + ")" : ""}"></span></td>`; }).join("")}</tr>`;
+  }).join("") || `<tr><td class="empty">Nenhuma regra com ato complementar nos filtros atuais.</td></tr>`;
+  // c) lista de atos
+  const lista = atosFiltrados(regras);
+  $("#t-atos-lista tbody").innerHTML = lista.map((a) => { const v = vigA(a), st = sitAto(a, fim);
+    return `<tr><td><b>${esc(a.documento)}</b></td><td class="num">${df(a.data)}</td><td class="mono">${esc(a.sei || "—")}</td><td>${esc(TIPO_ATO[a.tipo] || a.tipo)}</td><td class="num">${v.inicio ? df(v.inicio) : "—"} a ${v.fim ? df(v.fim) : "—"}</td><td class="mono" style="font-size:.72rem">${(a.regras || []).map(esc).join("<br>")}</td><td>${esc(a.efeito_txt || "")}</td><td><span class="st-ato ${st}">${SIT_ATO[st]}</span></td><td class="cit">${esc(a.citacao)}</td></tr>`; }).join("")
+    || `<tr><td colspan="9" class="empty">Nenhum ato com os filtros atuais.</td></tr>`;
+}
+function exportarAtosCsv() {
+  const q = (v) => { const t = String(v ?? ""); return /[;"\n]/.test(t) ? `"${t.replace(/"/g, '""')}"` : t; };
+  const cab = ["id", "documento", "data", "sei", "tipo", "vigencia_inicio", "vigencia_fim", "regras", "efeito", "situacao_em_" + fim, "citacao"];
+  const linhas = atosFiltrados(filtradas()).map((a) => [a.id, a.documento, a.data, a.sei, TIPO_ATO[a.tipo] || a.tipo, vigA(a).inicio, vigA(a).fim, (a.regras || []).join(", "), a.efeito_txt, SIT_ATO[sitAto(a, fim)], a.citacao].map(q).join(";"));
+  const blob = new Blob(["﻿" + [cab.join(";"), ...linhas].join("\r\n")], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob), el = document.createElement("a");
+  el.href = url; el.download = `atos_complementares_${fim}.csv`; document.body.appendChild(el); el.click(); el.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 function renderFaixas() {
@@ -858,6 +995,26 @@ function ligar() {
   };
   $("#t-heat tbody").addEventListener("click", (e) => { const cel = e.target.closest(".c[data-ids]"); if (cel) { irDoMapa(cel); return; } const tp = e.target.closest("tr.ponto-row"); if (tp) togglePonto(tp.dataset.ponto); });
   $("#t-heat tbody").addEventListener("keydown", (e) => { if (e.key !== "Enter" && e.key !== " ") return; const cel = e.target.closest(".c[data-ids]"); if (cel) { e.preventDefault(); irDoMapa(cel); return; } const tp = e.target.closest("tr.ponto-row"); if (tp) { e.preventDefault(); togglePonto(tp.dataset.ponto); } });
+  // aba Atos complementares: filtros da lista, exportação, linha -> regra, selo da aba Regras -> atos da regra
+  const tipos = [...new Set((D.atos_complementares || []).map((a) => a.tipo))];
+  $("#fa-tipo").innerHTML += tipos.map((t) => `<option value="${esc(t)}">${esc(TIPO_ATO[t] || t)}</option>`).join("");
+  const rids = [...new Set((D.atos_complementares || []).flatMap((a) => a.regras || []))].sort();
+  $("#fa-regra").innerHTML += rids.map((id) => { const r = D.regras.find((x) => x.id === id); return `<option value="${esc(id)}">${esc(r ? r.ponto + " · " + id : id)}</option>`; }).join("");
+  $("#fa-tipo").addEventListener("change", (e) => { fa.tipo = e.target.value; render(); });
+  $("#fa-regra").addEventListener("change", (e) => { fa.regra = e.target.value; render(); });
+  $("#fa-sit").addEventListener("change", (e) => { fa.sit = e.target.value; render(); });
+  $("#fa-q").addEventListener("input", (e) => { fa.q = e.target.value; render(); });
+  $("#fa-csv").addEventListener("click", exportarAtosCsv);
+  const abrirRegra = (id) => { const r = D.regras.find((x) => x.id === id); if (!r) return;
+    const abrirTodos = filtrosAtivos();
+    sisAbertos.add(r.sistema); if (abrirTodos) sisFechados.delete(r.sistema); pontosAbertos.add(chavePonto(r)); pontosFechados.delete(chavePonto(r)); aberto.add(r.id);
+    mostrarAba("regras"); render();
+    const alvo = document.querySelector(`#t-regras tr.rule[data-id="${CSS.escape(r.id)}"]`); alvo?.scrollIntoView({ block: "center" }); alvo?.focus({ preventScroll: true }); };
+  $("#t-atos-sit tbody").addEventListener("click", (e) => { const tr = e.target.closest("tr.rule-ato"); if (tr) abrirRegra(tr.dataset.id); });
+  $("#t-atos-sit tbody").addEventListener("keydown", (e) => { if (e.key !== "Enter" && e.key !== " ") return; const tr = e.target.closest("tr.rule-ato"); if (tr) { e.preventDefault(); abrirRegra(tr.dataset.id); } });
+  $("#t-regras tbody").addEventListener("click", (e) => { const a = e.target.closest("[data-atos]"); if (!a) return;
+    e.preventDefault(); e.stopPropagation(); fa.regra = a.dataset.atos; fa.sit = ""; $("#fa-regra").value = fa.regra; $("#fa-sit").value = "";
+    mostrarAba("atos"); render(); $("#t-atos-lista").scrollIntoView({ block: "start" }); }, true);
   $("#oc-recorte").addEventListener("click", (e) => { if (e.target.closest("#oc-limpar")) { ocFiltro = null; render(); } });
   $("#t-regras tbody").addEventListener("click", (e) => { const b = e.target.closest("[data-zoom-off]"); if (b) { e.stopPropagation(); zoom.delete(b.dataset.zoomOff); render(); } }, true);
   // texto da norma ao passar o mouse na coluna Norma

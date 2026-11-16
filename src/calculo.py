@@ -844,12 +844,14 @@ def executar(inicio: dt.date, fim: dt.date, meses_horarios: int) -> dict:
         meta["unid"] = unidade(regra)
         meta["param"] = parametro(regra)
         meta["texto_norma"] = trechos(regra["resolucao"], regra.get("artigos", ""))
-        serie = serie[-DIAS_SERIE:]
+        serie_toda, serie = serie, serie[-DIAS_SERIE:]
         # Dias anteriores à vigência saem da série (o painel os recompõe como "Não se aplica"): reduz o JSON.
         n_pre = 0
         while n_pre < len(serie) and serie[n_pre]["st"] == NA and str(serie[n_pre].get("obs", "")).startswith("antes d"):
             n_pre += 1
         pre = {"ate": serie[n_pre]["d"] if n_pre < len(serie) else None, "obs": serie[0].get("obs")} if n_pre else None
+        if regra.get("complementar"):
+            meta["cobertura_atos"] = atos.cobertura(regra["id"], serie_toda, PP, NA)
         saida["regras"].append({**meta, "ultimo": ult, "mensal": {k: dict(v) for k, v in sorted(mensal.items())},
                                 **({"pre_vigencia": pre} if pre else {}), "serie": serie[n_pre:]})
     saida["faixas"] = []
