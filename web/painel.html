@@ -183,6 +183,16 @@ td.n, th.n { text-align: right; white-space: nowrap }
 /* regras */
 .sys-row td { background: var(--sunk); font: 600 .82rem var(--f-display); letter-spacing: .03em; color: var(--fg-2); text-transform: uppercase }
 tr.rule { cursor: pointer }
+tr.ponto-row { cursor: pointer }
+tr.ponto-row .ponto { font-weight: 600 }
+tr.ponto-row:hover td { background: color-mix(in srgb, var(--accent-soft) 45%, transparent) }
+tr.ponto-row[aria-expanded="true"] td { background: color-mix(in srgb, var(--accent-soft) 60%, transparent) }
+tr.ponto-row .seta { display: inline-block; width: 1em; margin-right: 2px; color: var(--fg-3); transition: transform .12s }
+tr.ponto-row[aria-expanded="true"] .seta { transform: rotate(90deg) }
+tr.rule.sub > td:first-child { padding-left: 26px; box-shadow: inset 3px 0 0 var(--line) }
+#t-heat tr.sub td.lbl { padding-left: 18px }
+#t-heat tr.ponto-row td.lbl b::before { content: "▸ "; color: var(--fg-3) }
+#t-heat tr.ponto-row[aria-expanded="true"] td.lbl b::before { content: "▾ " }
 tr.rule:hover td { background: color-mix(in srgb, var(--accent-soft) 45%, transparent) }
 tr.rule[aria-expanded="true"] td { background: var(--accent-soft) }
 .rule .ponto { font-weight: 600 }
@@ -422,6 +432,16 @@ let D = null, ini = null, fim = null, aberto = new Set();
 })();
 const state = { preset: "30", sis: "", st: "", q: "", aba: "sint", pend: false };
 const sisAbertos = new Set(), sisFechados = new Set();
+// regras do mesmo ponto de controle ficam sob uma linha-resumo (só exibição; cada regra mantém a avaliação própria)
+const pontosAbertos = new Set(), pontosFechados = new Set();
+const nomePonto = (r) => String(r.ponto).replace(/\s*\(.*\)\s*$/, "");
+const chavePonto = (r) => r.sistema + "|" + nomePonto(r);
+function agruparPontos(rs) { const m = new Map(); for (const r of rs) { const k = chavePonto(r); if (!m.has(k)) m.set(k, []); m.get(k).push(r); } return [...m.values()]; }
+const GRAV_ST = { "Não atende": 6, "Tolerância": 5, "Parâmetro pendente": 4, "Em curso": 3, "Atende": 2, "Sem dado": 1, "Não se aplica": 0 };
+const gravidade = (u) => (u.st === "Em curso" && u.exc && !u.fechada ? 5 : GRAV_ST[u.st] ?? 1);
+const somar = (cs) => cs.reduce((t, c) => { for (const k in t) t[k] += c[k]; return t; }, { "Atende": 0, "Tolerância": 0, "Não atende": 0, n: 0 });
+const filtrosAtivos = () => !!state.q.trim() || state.pend || state.compl || !!state.sis || !!state.st;
+const pontoAberto = (k, rs) => (filtrosAtivos() ? !pontosFechados.has(k) : pontosAbertos.has(k)) || rs.some((r) => aberto.has(r.id));
 // janela em curso no fim do período, mas já fechada depois dele: devolve o registro do fechamento
 function fechamento(r, u) {
   if (!u || u.st !== "Em curso" || !u.d) return null;
@@ -577,22 +597,11 @@ function render() {
     const ab_s = abrirTodos ? !sisFechados.has(sis) : sisAbertos.has(sis);
     html += `<tr class="sys-row" data-sis="${esc(sis)}"><td colspan="9"><button type="button" class="sys-btn" aria-expanded="${ab_s}"><span class="seta" aria-hidden="true">▸</span><span class="nome">${esc(sis)}</span><span class="sys-cnt"><span>${rs.length} regra${rs.length > 1 ? "s" : ""}</span>${k.nao ? `<span class="c-nao">${k.nao} não atende</span>` : ""}${k.tol ? `<span class="c-tol">${k.tol} tolerância/parcial acima</span>` : ""}${k.ok ? `<span class="c-ok">${k.ok} atende</span>` : ""}${k.ec ? `<span>${k.ec} em curso</span>` : ""}</span></button></td></tr>`;
     if (!ab_s) continue;
-    for (const r of rs) {
-      const per = noPeriodo(r), u = ultimoValido(per) || {}, c = contar(per), q = conf(c), ab = aberto.has(r.id);
-      const folga = u.folga == null ? "—" : `${comU(u.folga, r)}${u.pct != null && r.unid !== "%" ? ` <span class="muted">(${nf(u.pct, 0)}%)</span>` : ""}`;
-      html += `<tr class="rule" tabindex="0" data-id="${esc(r.id)}" aria-expanded="${ab}">
-        <td><div class="ponto">${esc(r.ponto)}${r.complementar ? `<span class="compl" title="Depende de ato complementar: ${esc(r.complementar)}">ato complementar</span>` : ""}</div><div class="desc">${esc(r.descricao)}</div>${r.alerta ? `<div class="alerta">⚠ ${esc(r.alerta)}</div>` : ""}</td>
-        <td class="norma${(r.texto_norma || []).length ? " tx" : ""}">${esc(r.resolucao)}<small>${esc(r.artigos || "")}</small></td>
-        <td>${u.faixa ? esc(u.faixa) : '<span class="muted">—</span>'}${u.orig === "Power BI" || u.orig === "Boletim ANA" ? ` <span class="muted" title="Faixa publicada (${esc(u.orig)})">●</span>` : ""}</td>
-        <td class="n">${comU(u.v, r)}<span class="param">${esc(paramDia(r, u))}</span></td>
-        <td class="n">${comU(u.lim, r)}</td><td class="n">${folga}</td>
-        <td>${(() => { const f = fechamento(r, u), viol = violacoes(per);
-          const vtxt = viol.length ? `<div class="viol" title="Avaliações em Não atende ou Tolerância dentro do período selecionado">${viol.length} ${viol.length > 1 ? "avaliações" : "avaliação"} em ${resumoViol(viol)} no período · última em ${df(viol[viol.length - 1].d)}</div>` : "";
-          if (!f) return `${pill(u.st || "Sem dado", u)}<div class="muted" style="font-size:.72rem;margin-top:2px">${u.d ? df(u.d) : ""}</div>${vtxt}`;
-          return `<span title="Janela fechada após o período selecionado. Em ${df(u.d)}: Em curso, parcial ${esc(u.parc || "")} (${nf(u.v)} ${esc(U(r))}). Fechamento: ${nf(f.v)} ${esc(U(r))}, limite ${nf(f.lim)}.">${pill(f.st, f)}</span><div class="muted" style="font-size:.72rem;margin-top:2px">fechamento em ${df(f.d)}</div><div class="muted" style="font-size:.7rem">em ${df(u.d)}: parcial</div>${vtxt}`; })()}</td>
-        <td>${sparkline(r, per)}</td>
-        <td class="n"><span class="pct-bar"><span class="num">${q == null ? "—" : nf(q, 0) + "%"}</span><span class="track"><span class="fill" style="display:block;width:${q ?? 0}%;background:${corConf(q)}"></span></span></span><div class="muted" style="font-size:.72rem">${c.n} aval.${c["Não atende"] ? ` · ${c["Não atende"]} NA` : ""}</div></td></tr>`;
-      if (ab) html += detalhe(r, per, u);
+    for (const g of agruparPontos(rs)) {
+      if (g.length === 1) { html += linhaRegra(g[0], false); continue; }
+      const k = chavePonto(g[0]), ab = pontoAberto(k, g);
+      html += linhaPonto(k, g, ab);
+      if (ab) for (const r of g) html += linhaRegra(r, true);
     }
   }
   $("#t-regras tbody").innerHTML = html || `<tr><td colspan="9" class="empty">${state.pend ? "Nenhuma regra pendente no período e filtros selecionados." : "Nenhuma regra com os filtros atuais."}</td></tr>`;
@@ -664,26 +673,67 @@ function colunasHeat() {
 }
 
 const HEAT_VAZIO = { "Não se aplica": "na", "Parâmetro pendente": "pp", "Em curso": "ec", "Sem dado": "sd" };
+function linhaRegra(r, sub) {
+      const per = noPeriodo(r), u = ultimoValido(per) || {}, c = contar(per), q = conf(c), ab = aberto.has(r.id);
+      const folga = u.folga == null ? "—" : `${comU(u.folga, r)}${u.pct != null && r.unid !== "%" ? ` <span class="muted">(${nf(u.pct, 0)}%)</span>` : ""}`;
+      let html = `<tr class="rule${sub ? " sub" : ""}" tabindex="0" data-id="${esc(r.id)}" aria-expanded="${ab}">
+        <td><div class="ponto">${esc(r.ponto)}${r.complementar ? `<span class="compl" title="Depende de ato complementar: ${esc(r.complementar)}">ato complementar</span>` : ""}</div><div class="desc">${esc(r.descricao)}</div>${r.alerta ? `<div class="alerta">⚠ ${esc(r.alerta)}</div>` : ""}</td>
+        <td class="norma${(r.texto_norma || []).length ? " tx" : ""}">${esc(r.resolucao)}<small>${esc(r.artigos || "")}</small></td>
+        <td>${u.faixa ? esc(u.faixa) : '<span class="muted">—</span>'}${u.orig === "Power BI" || u.orig === "Boletim ANA" ? ` <span class="muted" title="Faixa publicada (${esc(u.orig)})">●</span>` : ""}</td>
+        <td class="n">${comU(u.v, r)}<span class="param">${esc(paramDia(r, u))}</span></td>
+        <td class="n">${comU(u.lim, r)}</td><td class="n">${folga}</td>
+        <td>${(() => { const f = fechamento(r, u), viol = violacoes(per);
+          const vtxt = viol.length ? `<div class="viol" title="Avaliações em Não atende ou Tolerância dentro do período selecionado">${viol.length} ${viol.length > 1 ? "avaliações" : "avaliação"} em ${resumoViol(viol)} no período · última em ${df(viol[viol.length - 1].d)}</div>` : "";
+          if (!f) return `${pill(u.st || "Sem dado", u)}<div class="muted" style="font-size:.72rem;margin-top:2px">${u.d ? df(u.d) : ""}</div>${vtxt}`;
+          return `<span title="Janela fechada após o período selecionado. Em ${df(u.d)}: Em curso, parcial ${esc(u.parc || "")} (${nf(u.v)} ${esc(U(r))}). Fechamento: ${nf(f.v)} ${esc(U(r))}, limite ${nf(f.lim)}.">${pill(f.st, f)}</span><div class="muted" style="font-size:.72rem;margin-top:2px">fechamento em ${df(f.d)}</div><div class="muted" style="font-size:.7rem">em ${df(u.d)}: parcial</div>${vtxt}`; })()}</td>
+        <td>${sparkline(r, per)}</td>
+        <td class="n"><span class="pct-bar"><span class="num">${q == null ? "—" : nf(q, 0) + "%"}</span><span class="track"><span class="fill" style="display:block;width:${q ?? 0}%;background:${corConf(q)}"></span></span></span><div class="muted" style="font-size:.72rem">${c.n} aval.${c["Não atende"] ? ` · ${c["Não atende"]} NA` : ""}</div></td></tr>`;
+      if (ab) html += detalhe(r, per, u);
+      return html;
+}
+
+function linhaPonto(k, rs, ab) {
+  const us = rs.map((r) => efetivo(r, noPeriodo(r)));
+  let w = 0; us.forEach((u, i) => { if (gravidade(u) > gravidade(us[w])) w = i; });
+  const pior = us[w] || {}, c = somar(rs.map((r) => contar(noPeriodo(r)))), q = conf(c);
+  const nViol = rs.reduce((t, r) => t + violacoes(noPeriodo(r)).length, 0);
+  const normas = [...new Set(rs.map((r) => r.resolucao))];
+  const compl = rs.filter((r) => r.complementar).length;
+  const fx = us.find((u) => u.faixa) || {};
+  return `<tr class="ponto-row" tabindex="0" data-ponto="${esc(k)}" aria-expanded="${ab}">
+    <td><div class="ponto"><span class="seta" aria-hidden="true">▸</span>${esc(nomePonto(rs[0]))}${compl ? `<span class="compl" title="${compl} critério(s) dependem de ato complementar">ato complementar</span>` : ""}</div><div class="desc">${rs.length} critérios: ${esc([...new Set(rs.map((r) => r.param || r.descricao))].join(" · "))}</div></td>
+    <td class="norma">${esc(normas.join(", "))}</td>
+    <td>${fx.faixa ? esc(fx.faixa) : '<span class="muted">—</span>'}</td>
+    <td class="n muted">—</td><td class="n muted">—</td><td class="n muted">—</td>
+    <td><span title="Pior situação entre os ${rs.length} critérios: ${esc(rs[w].descricao)}">${pill(pior.st || "Sem dado", pior)}</span>${nViol ? `<div class="viol">${nViol} ${nViol > 1 ? "avaliações" : "avaliação"} em Não atende ou Tolerância no período</div>` : ""}</td>
+    <td></td>
+    <td class="n"><span class="pct-bar"><span class="num">${q == null ? "—" : nf(q, 0) + "%"}</span><span class="track"><span class="fill" style="display:block;width:${q ?? 0}%;background:${corConf(q)}"></span></span></span><div class="muted" style="font-size:.72rem">${c.n} aval.${c["Não atende"] ? ` · ${c["Não atende"]} NA` : ""}</div></td></tr>`;
+}
+
 function renderHeat(regras) {
   const cols = colunasHeat();
   const dias = (Date.parse(fim) - Date.parse(ini)) / 864e5 + 1;
   $("#heat-desc").textContent = dias > 45 ? "Conformidade mensal por regra no período selecionado (meses parciais contam só os dias do período)." : dias > 10 ? "Conformidade semanal por regra no período selecionado (semana operativa, de sábado a sexta)." : "Resultado diário por regra no período selecionado.";
   $("#t-heat thead").innerHTML = `<tr><th style="text-align:left">Ponto / regra</th>${cols.map((c) => `<th>${c.rot}</th>`).join("")}</tr>`;
   const ok = cssv("--ok"), tol = cssv("--tol"), nao = cssv("--nao");
-  $("#t-heat tbody").innerHTML = regras.map((r) => {
-    const per = noPeriodo(r);
-    return `<tr><td class="lbl" title="${esc(r.ponto)} · ${esc(r.resolucao)} · ${esc(r.descricao)}"><b>${esc(r.ponto)}</b><span class="r">${esc(r.resolucao.replace("Res. ", ""))} · ${esc(r.descricao)}</span></td>${cols.map((col) => {
-      const c = contar(per.filter((s) => s.d >= col.a && s.d <= col.b));
+  const celulas = (rot, pers) => cols.map((col) => {
+      const c = somar(pers.map((per) => contar(per.filter((s) => s.d >= col.a && s.d <= col.b))));
       if (!c.n) {
-        const k = {}; per.forEach((x) => { if (x.d >= col.a && x.d <= col.b) k[x.st] = (k[x.st] || 0) + 1; });
+        const k = {}; pers.flat().forEach((x) => { if (x.d >= col.a && x.d <= col.b) k[x.st] = (k[x.st] || 0) + 1; });
         const motivo = k["Parâmetro pendente"] ? "Parâmetro pendente" : k["Sem dado"] && !k["Não se aplica"] && !k["Em curso"] ? "Sem dado" : k["Em curso"] ? "Em curso" : k["Não se aplica"] ? "Não se aplica" : k["Sem dado"] ? "Sem dado" : null;
         const det = Object.entries(k).map(([st, n]) => `${st} ${n} dia${n > 1 ? "s" : ""}`).join(", ") || "sem registro";
-        return `<td class="cell"><span class="c h-${motivo ? HEAT_VAZIO[motivo] : "nd"}" title="${esc(r.ponto)} · ${col.rot}: sem avaliação (${esc(det)})"></span></td>`;
+        return `<td class="cell"><span class="c h-${motivo ? HEAT_VAZIO[motivo] : "nd"}" title="${esc(rot)} · ${col.rot}: sem avaliação (${esc(det)})"></span></td>`;
       }
       const q = (c["Atende"] + c["Tolerância"]) / c.n * 100, na = c["Não atende"];
       const bg = na === 0 && q >= 99.95 ? `color-mix(in srgb, ${ok} 32%, var(--surface))` : na === 0 ? `color-mix(in srgb, ${tol} 45%, var(--surface))` : `color-mix(in srgb, ${nao} ${Math.round(40 + (90 - Math.min(90, q)) / 90 * 50)}%, var(--surface))`;
-      return `<td class="cell"><span class="c" style="background:${bg}" title="${esc(r.ponto)} · ${col.rot}: ${nf(q, 1)}% (${c.n} aval., ${na} não atende, ${c["Tolerância"]} tolerância)">${na ? na : ""}</span></td>`;
-    }).join("")}</tr>`;
+      return `<td class="cell"><span class="c" style="background:${bg}" title="${esc(rot)} · ${col.rot}: ${nf(q, 1)}% (${c.n} aval., ${na} não atende, ${c["Tolerância"]} tolerância)">${na ? na : ""}</span></td>`;
+    }).join("");
+  const linha = (r, sub) => `<tr${sub ? ' class="sub"' : ""}><td class="lbl" title="${esc(r.ponto)} · ${esc(r.resolucao)} · ${esc(r.descricao)}"><b>${esc(r.ponto)}</b><span class="r">${esc(r.resolucao.replace("Res. ", ""))} · ${esc(r.descricao)}</span></td>${celulas(r.ponto, [noPeriodo(r)])}</tr>`;
+  $("#t-heat tbody").innerHTML = agruparPontos(regras).map((g) => {
+    if (g.length === 1) return linha(g[0], false);
+    const k = chavePonto(g[0]), ab = pontoAberto(k, g), nome = nomePonto(g[0]);
+    const cab = `<tr class="ponto-row" tabindex="0" data-ponto="${esc(k)}" aria-expanded="${ab}"><td class="lbl" title="${esc(nome)}: ${g.length} critérios (clique para ${ab ? "recolher" : "abrir"})"><b>${esc(nome)}</b><span class="r">${g.length} critérios · ${esc([...new Set(g.map((r) => r.resolucao.replace("Res. ", "")))].join(", "))}</span></td>${celulas(nome, g.map(noPeriodo))}</tr>`;
+    return cab + (ab ? g.map((r) => linha(r, true)).join("") : "");
   }).join("") || `<tr><td class="empty">Nenhuma regra com os filtros atuais.</td></tr>`;
 }
 
@@ -759,13 +809,19 @@ function ligar() {
   $("#f-compl").addEventListener("change", (e) => { state.compl = e.target.checked; salvar(); render(); });
   $("#f-pend").checked = !!state.pend;
   $("#f-pend").addEventListener("change", (e) => { state.pend = e.target.checked; salvar(); render(); });
-  $("#b-abrir").addEventListener("click", () => { sisFechados.clear(); filtradas().forEach((r) => sisAbertos.add(r.sistema)); render(); });
-  $("#b-fechar").addEventListener("click", () => { sisAbertos.clear(); aberto.clear(); filtradas().forEach((r) => sisFechados.add(r.sistema)); render(); });
+  $("#b-abrir").addEventListener("click", () => { sisFechados.clear(); pontosFechados.clear(); filtradas().forEach((r) => { sisAbertos.add(r.sistema); pontosAbertos.add(chavePonto(r)); }); render(); });
+  $("#b-fechar").addEventListener("click", () => { sisAbertos.clear(); pontosAbertos.clear(); aberto.clear(); filtradas().forEach((r) => { sisFechados.add(r.sistema); pontosFechados.add(chavePonto(r)); }); render(); });
+  const togglePonto = (k) => { const fechando = D.regras.some((r) => chavePonto(r) === k && pontoAberto(k, [r]));
+    if (fechando) { if (filtrosAtivos()) pontosFechados.add(k); else pontosAbertos.delete(k); D.regras.forEach((r) => { if (chavePonto(r) === k) aberto.delete(r.id); }); }
+    else { if (filtrosAtivos()) pontosFechados.delete(k); else pontosAbertos.add(k); }
+    render(); };
   const tb = $("#t-regras tbody");
   tb.addEventListener("click", (e) => { const b = e.target.closest(".sys-btn"); if (!b) return; const s = b.closest("tr").dataset.sis; const abrirTodos = !!state.q.trim() || state.pend || state.compl || !!state.sis || !!state.st; const set = abrirTodos ? sisFechados : sisAbertos; set.has(s) ? set.delete(s) : set.add(s); render(); });
   const toggle = (tr) => { const id = tr.dataset.id; aberto.has(id) ? aberto.delete(id) : aberto.add(id); render(); };
-  tb.addEventListener("click", (e) => { const tr = e.target.closest("tr.rule"); if (tr) toggle(tr); });
-  tb.addEventListener("keydown", (e) => { const tr = e.target.closest("tr.rule"); if (tr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); toggle(tr); } });
+  tb.addEventListener("click", (e) => { const tr = e.target.closest("tr.rule"); if (tr) toggle(tr); const tp = e.target.closest("tr.ponto-row"); if (tp) togglePonto(tp.dataset.ponto); });
+  tb.addEventListener("keydown", (e) => { if (e.key !== "Enter" && e.key !== " ") return; const tr = e.target.closest("tr.rule"), tp = e.target.closest("tr.ponto-row"); if (tr) { e.preventDefault(); toggle(tr); } else if (tp) { e.preventDefault(); togglePonto(tp.dataset.ponto); } });
+  $("#t-heat tbody").addEventListener("click", (e) => { const tp = e.target.closest("tr.ponto-row"); if (tp) togglePonto(tp.dataset.ponto); });
+  $("#t-heat tbody").addEventListener("keydown", (e) => { const tp = e.target.closest("tr.ponto-row"); if (tp && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); togglePonto(tp.dataset.ponto); } });
   // texto da norma ao passar o mouse na coluna Norma
   const pop = document.createElement("div"); pop.className = "norma-pop"; pop.hidden = true; pop.setAttribute("role", "tooltip"); document.body.appendChild(pop);
   let tPop = null, celPop = null;
