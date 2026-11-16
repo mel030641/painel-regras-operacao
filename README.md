@@ -37,6 +37,7 @@ A lista completa, com dispositivos, limites e fontes, está em `src/regras.py`.
 src/coleta.py              coletores (ONS, SAR, SAISP, API Mananciais Sabesp, Telemetria ANA, arquivos manuais)
 src/regras.py              faixas, parâmetros e as 62 regras
 src/calculo.py             avaliação diária, status e folga -> data/painel.json
+src/serie_compacta.py      grava a série diária de cada regra em colunas no painel.json (~3x menor) e a recompõe para as planilhas
 src/boletins_ana.py        coleta diária das faixas nos boletins oficiais da ANA (gov.br)
 src/boletins_parsers.py    leitura do texto dos boletins (pdftotext)
 src/powerbi_faixas_soe.py  extração das faixas dos painéis Power BI

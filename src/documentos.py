@@ -21,6 +21,9 @@ from openpyxl import Workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import serie_compacta  # noqa: E402
+
 RAIZ = Path(__file__).resolve().parents[1]
 AVAL = ("Atende", "Tolerância", "Não atende")
 GRAV = {"Não atende": 3, "Tolerância": 2, "Atende": 1}
@@ -314,7 +317,7 @@ def asreg(D, destino: Path):
 def main():
     painel = Path(sys.argv[1]) if len(sys.argv) > 1 else RAIZ / "data" / "painel.json"
     site = Path(sys.argv[2]) if len(sys.argv) > 2 else RAIZ / "_site"
-    D = json.loads(painel.read_text(encoding="utf-8"))
+    D = serie_compacta.ler(painel)  # séries em colunas no arquivo; aqui, um objeto por dia
     docs = site / "docs"
     docs.mkdir(parents=True, exist_ok=True)
     n, o = acompanhamento(D, docs / "acompanhamento_regras.xlsx")

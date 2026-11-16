@@ -793,7 +793,27 @@ function ligar() {
   }
 }
 
+// séries gravadas em colunas no painel.json (src/serie_compacta.py): recompõe um objeto por dia
+const TEXTO = ["st", "faixa", "orig", "obs", "parc", "ag", "lado"];
+function expandirSeries(dados) {
+  if (dados.formato_serie !== "colunas") return;
+  const tx = dados.textos;
+  for (const r of dados.regras) {
+    const c = r.serie; if (!c || Array.isArray(c)) continue;
+    const campos = Object.keys(c).filter((k) => k !== "d0" && k !== "n"), serie = new Array(c.n);
+    const t = new Date(c.d0 + "T00:00:00Z");
+    for (let i = 0; i < c.n; i++) {
+      const p = { d: t.toISOString().slice(0, 10) };
+      for (const k of campos) { const v = c[k][i]; if (v !== null) p[k] = TEXTO.includes(k) ? tx[v] : v; }
+      serie[i] = p; t.setUTCDate(t.getUTCDate() + 1);
+    }
+    r.serie = serie;
+  }
+  delete dados.textos; delete dados.formato_serie;
+}
+
 function iniciar(dados) {
+  expandirSeries(dados);
   D = dados;
   // dias anteriores à vigência da norma vêm compactados no JSON: recompõe como "Não se aplica"
   for (const r of D.regras) {
