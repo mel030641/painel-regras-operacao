@@ -134,6 +134,15 @@ code { font-family: var(--f-mono); font-size: .85em; background: var(--sunk); pa
 <p><b>Clique na célula.</b> Se a célula tem avaliações em Não atende ou Tolerância, o painel abre a aba Ocorrências só com as ocorrências daquela regra (ou ponto) naquele mês, semana ou dia; o botão "Mostrar todas" desfaz o recorte. Se não tem, abre a regra na aba Regras com o gráfico e a tabela diária daquele intervalo ("Ver o período todo" volta ao período selecionado); na linha-resumo de um ponto, abre os critérios do ponto.</p>
 <h3>Ocorrências</h3>
 <p>Lista as avaliações em Não atende ou Tolerância no período, da mais recente para a mais antiga, com valor, limite e desvio.</p>
+<h3>Atos complementares</h3>
+<p>Mostra o cadastro dos atos que ficam fora da resolução e fixam ou alteram o limite de uma regra (outorga, comunicado, ofício de manifestação sobre curvas de segurança, valor mensal definido por outro órgão). A aba só lê o cadastro (<code>config/atos_complementares.json</code>) e segue o período e os filtros de sistema e de busca. Tem quatro blocos:</p>
+<ul>
+  <li><b>Alertas:</b> atos que vencem nos próximos 90 dias, contados da data da última atualização, e meses do período em que a regra exigia ato e não havia.</li>
+  <li><b>Situação por regra:</b> para cada regra com ato complementar, o ato vigente na data final do período, a cobertura no período (completa, parcial com os meses em falta, aproximação ou sem exigência) e o próximo vencimento. Clique na linha para abrir a regra na aba Regras.</li>
+  <li><b>Calendário de cobertura:</b> grade regra × mês. Verde indica ato vigente; amarelo hachurado, mês em que faltou o ato (dias em Parâmetro pendente); azul-claro, mês avaliado com aproximação por falta do ato (Foz do Chapecó e temporada de praias de Serra da Mesa); cinza, mês que não exige ato.</li>
+  <li><b>Lista de atos:</b> todos os atos, com documento, data, nº SEI, tipo, vigência, regras afetadas, efeito e a citação exibida no painel; filtros por tipo, regra, situação (vigente, futuro ou encerrado na data final do período) e texto; exportação em CSV. O nº SEI aparece como texto, porque o link do SEI exige login.</li>
+</ul>
+<p>Na Síntese, o contador "Atos: N lacunas · M a vencer" leva à aba. Na aba Regras, o selo "ato complementar" abre a lista de atos da regra, e o detalhe da regra mostra o ato vigente no dia.</p>
 <h3>Documentos</h3>
 <p>Reúne este manual e as planilhas para download (ver <a href="#documentos">seção 10</a>).</p>
 
