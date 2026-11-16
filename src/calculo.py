@@ -21,6 +21,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import coleta  # noqa: E402
+import serie_compacta  # noqa: E402
 from regras import FAIXAS, PARAMETROS, REGRAS, VIGENCIA, VIGENCIA_A_CONFERIR  # noqa: E402
 import atos  # noqa: E402
 from textos_normas import trechos  # noqa: E402
@@ -872,7 +873,7 @@ def main():
     a = ap.parse_args()
     res = executar(dt.date.fromisoformat(a.inicio), dt.date.fromisoformat(a.fim), a.meses_horarios)
     Path(a.saida).parent.mkdir(parents=True, exist_ok=True)
-    Path(a.saida).write_text(json.dumps(res, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    Path(a.saida).write_text(json.dumps(serie_compacta.compactar(res), ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     cont = defaultdict(int)
     for r in res["regras"]:
         cont[r["ultimo"]["st"]] += 1

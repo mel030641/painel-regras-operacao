@@ -20,6 +20,9 @@ from pathlib import Path
 
 import openpyxl
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import serie_compacta  # noqa: E402
+
 MAPA = {
     "Intradiária": {"Paraibuna": "1382-PBPARA", "Santa Branca": "1382-PBSTAB", "Jaguari": "1382-PBJAGU", "Funil": "1382-PBFUNI",
                     "Santa Cecília (Jusante)": "1382-PBSTAC", "Pereira Passos": "1382-RLPPAS",
@@ -69,7 +72,7 @@ def status_base(txt):
 
 def main():
     xlsx = Path(sys.argv[1])
-    painel = json.loads(Path(sys.argv[2] if len(sys.argv) > 2 else "data/painel.json").read_text(encoding="utf-8"))
+    painel = serie_compacta.ler(Path(sys.argv[2] if len(sys.argv) > 2 else "data/painel.json"))
     saida = Path(sys.argv[3] if len(sys.argv) > 3 else "data/validacao.csv")
     idx = {r["id"]: {s["d"]: s for s in r["serie"]} for r in painel["regras"]}
     wb = openpyxl.load_workbook(xlsx, data_only=True)
