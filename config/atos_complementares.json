@@ -42,8 +42,8 @@
   {
    "id": "outorga-PREMBO",
    "tipo": "outorga",
-   "documento": "Outorga (número a conferir)",
-   "data": null,
+   "documento": "Outorga ANA nº 2.559/2024",
+   "data": "2024-10-07",
    "sei": null,
    "regras": [
     "194-PREMBO"
@@ -52,7 +52,7 @@
     "inicio": null,
     "fim": null
    },
-   "citacao": "Outorga (planilha de auditoria SOE, out/2026)",
+   "citacao": "Outorga ANA nº 2.559, de 07/10/2024 (DOU 09/10/2024), art. 1º, X: vazão máxima turbinada de 972 m³/s da UHE Emborcação; substitui a Outorga nº 2.727/2019 e vigora até 26/05/2027 (art. 9º)",
    "efeito": {
     "parametro": "outorga_PREMBO",
     "valor": 972.0
@@ -61,8 +61,8 @@
   {
    "id": "outorga-PRITUM",
    "tipo": "outorga",
-   "documento": "Outorga (número a conferir)",
-   "data": null,
+   "documento": "Outorga ANA nº 2.703/2024",
+   "data": "2024-10-17",
    "sei": null,
    "regras": [
     "194-PRITUM"
@@ -71,7 +71,7 @@
     "inicio": null,
     "fim": null
    },
-   "citacao": "Outorga (planilha de auditoria SOE, out/2026)",
+   "citacao": "Outorga ANA nº 2.703, de 17/10/2024 (DOU 22/10/2024), art. 1º, VIII: vazão máxima turbinada de 2.928 m³/s da UHE Itumbiara; efeitos desde 05/09/2024, substitui a Outorga nº 919/2023 e vigora até 17/06/2052",
    "efeito": {
     "parametro": "outorga_PRITUM",
     "valor": 2928.0
