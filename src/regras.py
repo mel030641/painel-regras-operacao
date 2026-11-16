@@ -172,7 +172,7 @@ R.append(dict(id="70-TOSMES-praias", resolucao="Res. ANA 70/2021", artigos="arts
 for rid, nome, mn, mx in [("TOSMES", "Serra da Mesa", 417.30, 460.00), ("TOUHCB", "Cana Brava", 330.00, 333.00),
                           ("TOUHSA", "São Salvador", 286.50, 287.00), ("TOUHPA", "Peixe Angical", 261.00, 263.00),
                           ("TOLAJ", "Lajeado", 211.50, 212.30), ("TOUHET", "Estreito", 151.00, 156.00), ("TOTUCU", "Tucuruí", 51.60, 74.00)]:
-    R.append(dict(id=f"70-nivel-{rid}", resolucao="Res. ANA 70/2021", artigos="art. 1º", sistema="Tocantins", ponto=nome,
+    R.append(dict(id=f"70-nivel-{rid}", resolucao="Res. ANA 70/2021", artigos="art. 1º", sistema="Tocantins", ponto=nome, grupo="Níveis d'água (art. 1º)",
                   descricao=f"Nível entre {mn:.2f} e {mx:.2f} m", tipo="intervalo", freq="diaria", niveis=2, tol=None,
                   fonte=f"ONS:{rid}:nivel", minimo=mn, maximo=mx))
 
