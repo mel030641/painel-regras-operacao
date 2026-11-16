@@ -252,7 +252,6 @@ tr.detail td { background: var(--surface); padding: 0 }
 .atos-alertas .al { border-left: 3px solid var(--tol); background: var(--tol-soft); border-radius: 0 6px 6px 0; padding: 6px 10px; font-size: .82rem }
 .atos-alertas .al.ok { border-color: var(--ok); background: var(--ok-soft) }
 .heat .c.ca-ato { background: color-mix(in srgb, var(--ok) 32%, var(--surface)) }
-.heat .c.ca-apr { background: color-mix(in srgb, var(--accent) 22%, var(--surface)) }
 .cob { font-size: .8rem } .cob.lac { color: var(--tol); font-weight: 600 }
 a.compl { text-decoration: none; cursor: pointer } a.compl:hover { background: var(--sunk); color: var(--fg) }
 #t-atos-lista td { vertical-align: top; font-size: .8rem } #t-atos-lista td.cit { max-width: 46ch; color: var(--fg-2) }
@@ -388,7 +387,6 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
     <div class="heat heat-leg" aria-label="Legenda do calendário">
       <span><span class="c ca-ato"></span>Há ato vigente</span>
       <span><span class="c h-pp"></span>O mês exige ato e não há (Parâmetro pendente)</span>
-      <span><span class="c ca-apr"></span>Sem ato; o painel usa aproximação</span>
       <span><span class="c h-na"></span>O mês não exige ato</span>
     </div>
     <div class="tbl-wrap heat"><table id="t-atos-cal"><thead></thead><tbody></tbody></table></div>
@@ -872,15 +870,14 @@ function renderAtos(regras) {
   $("#atos-alertas").innerHTML = al.join("") || `<div class="al ok">Nenhum ato vence nos próximos ${ALERTA_DIAS} dias (a partir de ${df(hoje)}) e não há mês sem ato no período selecionado.</div>`;
   // a) situação por regra
   $("#t-atos-sit tbody").innerHTML = rs.map((r) => {
-    const c = r.cobertura_atos || {}, l = ms.filter((m) => c[m] === "lacuna"), ok = ms.filter((m) => c[m] === "ato"), ap = ms.filter((m) => c[m] === "aprox");
+    const c = r.cobertura_atos || {}, l = ms.filter((m) => c[m] === "lacuna"), ok = ms.filter((m) => c[m] === "ato");
     const vig = atosNoDia(r.id, fim);
-    const vigTxt = vig.length ? vig.map(docAto).join("<br>") : c[fim.slice(0, 7)] === "lacuna" ? '<span class="cob lac">nenhum: falta o ato</span>' : c[fim.slice(0, 7)] === "aprox" ? '<span class="muted">nenhum; o painel usa aproximação</span>' : '<span class="muted">—</span>';
+    const vigTxt = vig.length ? vig.map(docAto).join("<br>") : c[fim.slice(0, 7)] === "lacuna" ? '<span class="cob lac">nenhum: falta o ato</span>' : '<span class="muted">—</span>';
     let cob;
     if (l.length) {
       const pp = noPeriodo(r).filter((x) => x.st === "Parâmetro pendente").pop();
-      cob = `<span class="cob lac">${ok.length || ap.length ? "Parcial" : "Sem ato"}: falta ${esc(faixasMeses(l))}</span>${pp && obsTxt(pp) ? `<div class="muted" style="font-size:.74rem">${esc(obsTxt(pp))}</div>` : ""}`;
-    } else if (ap.length && !ok.length) cob = `<span class="cob">Aproximação (${ap.length} ${ap.length > 1 ? "meses" : "mês"})</span><div class="muted" style="font-size:.74rem">${esc(r.complementar)}</div>`;
-    else if (ok.length) cob = `<span class="cob">Completa</span>${ap.length ? ` <span class="muted">(aproximação em ${ap.length} ${ap.length > 1 ? "meses" : "mês"})</span>` : ""}`;
+      cob = `<span class="cob lac">${ok.length ? "Parcial" : "Sem ato"}: falta ${esc(faixasMeses(l))}</span>${pp && obsTxt(pp) ? `<div class="muted" style="font-size:.74rem">${esc(obsTxt(pp))}</div>` : ""}`;
+    } else if (ok.length) cob = '<span class="cob">Completa</span>';
     else cob = '<span class="muted">Sem exigência no período</span>';
     const prox = atosDe(r.id).filter((a) => vigA(a).fim && vigA(a).fim >= fim).sort((x, y) => vigA(x).fim.localeCompare(vigA(y).fim))[0];
     const semPrazo = atosDe(r.id).some((a) => cobreAto(a, fim, fim) && !vigA(a).fim);
@@ -888,7 +885,7 @@ function renderAtos(regras) {
     return `<tr class="rule-ato" tabindex="0" data-id="${esc(r.id)}" title="Abrir a regra na aba Regras"><td><b>${esc(r.ponto)}</b> <span class="muted mono" style="font-size:.72rem">${esc(r.id)}</span><div class="desc">${esc(r.descricao)}</div></td><td class="norma">${esc(r.resolucao)}<small>${esc(r.artigos || "")}</small></td><td>${vigTxt}</td><td>${cob}</td><td>${proxTxt}</td></tr>`;
   }).join("") || `<tr><td colspan="5" class="empty">Nenhuma regra com ato complementar nos filtros atuais.</td></tr>`;
   // b) calendário regra × mês
-  const CLS = { ato: "ca-ato", lacuna: "h-pp", aprox: "ca-apr", sem: "h-na" }, TXT = { ato: "há ato vigente", lacuna: "o mês exige ato e não há", aprox: "sem ato; usa aproximação", sem: "o mês não exige ato" };
+  const CLS = { ato: "ca-ato", lacuna: "h-pp", sem: "h-na" }, TXT = { ato: "há ato vigente", lacuna: "o mês exige ato e não há", sem: "o mês não exige ato" };
   $("#t-atos-cal thead").innerHTML = `<tr><th style="text-align:left">Ponto / regra</th>${ms.map((m) => `<th>${rotMes(m)}</th>`).join("")}</tr>`;
   $("#t-atos-cal tbody").innerHTML = rs.map((r) => {
     const c = r.cobertura_atos || {};

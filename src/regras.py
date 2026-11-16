@@ -139,7 +139,7 @@ R.append(dict(id="2081-SFSOBR-max", alerta=ALERTA_2081, resolucao="Res. ANA 2.08
               fonte="ONS:SFSOBR:defl", faixa="SFSOBR", janela="mes", umido=UMIDO_DEZ_ABR,
               tetos={"umido": [None, {"param_mensal": "teto_SFSOBR", "pendente": PEND_SOBR_ATENCAO, "ref_curva": "SFXING", "vu": "SFSOBR"},
                                {"param_mensal": "teto_SFSOBR", "pendente": PEND_SOBR_RESTR}],
-                     "seco": [None, {"param_mensal": "teto_SFSOBR", "limite": 1000, "pendente": "teto abaixo de 1.000 m³/s pela curva de segurança não convertido para Sobradinho (ver Xingó)"},
+                     "seco": [None, {"param_mensal": "teto_SFSOBR", "teto_legal": 1000, "pendente": PEND_SOBR_ATENCAO},
                               {"param_mensal": "teto_SFSOBR", "pendente": PEND_SOBR_RESTR}]}))
 R.append(dict(id="2081-SFXING-min", resolucao="Res. ANA 2.081/2017", artigos="arts. 3º, III e § 3º; 9º; 12", sistema="São Francisco", ponto="Xingó",
               descricao="Defluente média diária ≥ mínima da faixa de Sobradinho", tipo="piso", freq="diaria", niveis=3, tol=0.05,
@@ -148,7 +148,7 @@ R.append(dict(id="2081-SFXING-max", alerta=ALERTA_2081, resolucao="Res. ANA 2.08
               descricao="Defluente média mensal ≤ máxima pela curva de segurança (Atenção) ou ≤ 900 m³/s (Restrição)", tipo="teto", freq="mensal", niveis=3, tol=0.05,
               fonte="ONS:SFXING:defl", faixa="SFSOBR", janela="mes", umido=UMIDO_DEZ_ABR,
               tetos={"umido": [None, {"param_mensal": "teto_SFXING", "curva": "SFXING", "vu": "SFSOBR"}, 900],
-                     "seco": [None, {"param_mensal": "teto_SFXING", "curva": "SFXING", "vu": "SFSOBR", "limite": 1000}, 900]}))
+                     "seco": [None, {"param_mensal": "teto_SFXING", "curva": "SFXING", "vu": "SFSOBR", "limite": 1000, "teto_legal": 1000}, 900]}))
 R.append(dict(id="2081-SFLGON", resolucao="Res. ANA 2.081/2017", artigos="art. 10, § 1º", sistema="São Francisco", ponto="Itaparica (Luiz Gonzaga)",
               descricao="VU ≥ 30% quando Sobradinho em Normal ou Atenção", tipo="vu_min", freq="diaria", niveis=2, tol=None,
               fonte="ONS:SFLGON:vu", minimo=30.0, condicao={"faixa": "SFSOBR", "em": ["Normal", "Atenção"]}))
@@ -165,8 +165,9 @@ R.append(dict(id="70-TOUHET", resolucao="Res. ANA 70/2021", artigos="arts. 3º, 
               descricao="Defluente média diária ≥ 744 m³/s", tipo="piso", freq="diaria", niveis=3, tol=0.05,
               fonte="ONS:TOUHET:defl", pisos={"todos": 744}))
 R.append(dict(id="70-TOSMES-praias", resolucao="Res. ANA 70/2021", artigos="arts. 6º e 8º", sistema="Tocantins", ponto="Serra da Mesa",
-              descricao="Defluente constante na temporada de praias (10/6 a 20/8): ±5% da média do período", tipo="constante", freq="diaria", niveis=2, tol=0.05,
-              fonte="ONS:TOSMES:defl", inicio="06-10", fim="08-20", temporada="TOSMES"))
+              descricao="Defluente constante na temporada de praias (10/6 a 20/8): ±5% da vazão informada pelo ONS até 10/5", tipo="constante", freq="diaria", niveis=2, tol=0.05,
+              fonte="ONS:TOSMES:defl", inicio="06-10", fim="08-20", temporada="TOSMES",
+              pendente="vazão da temporada de praias informada pelo ONS até 10 de maio (art. 6º, § 3º) não cadastrada em config/atos_complementares.json (vazao_temporada, TOSMES)"))
 for rid, nome, mn, mx in [("TOSMES", "Serra da Mesa", 417.30, 460.00), ("TOUHCB", "Cana Brava", 330.00, 333.00),
                           ("TOUHSA", "São Salvador", 286.50, 287.00), ("TOUHPA", "Peixe Angical", 261.00, 263.00),
                           ("TOLAJ", "Lajeado", 211.50, 212.30), ("TOUHET", "Estreito", 151.00, 156.00), ("TOTUCU", "Tucuruí", 51.60, 74.00)]:
@@ -176,8 +177,9 @@ for rid, nome, mn, mx in [("TOSMES", "Serra da Mesa", 417.30, 460.00), ("TOUHCB"
 
 # --------------------------------------------------------------------------- 49/2018 Foz do Chapecó
 R.append(dict(id="49-RIUHFC", resolucao="Res. ANA 49/2018", artigos="art. 1º, caput e § 1º", sistema="Uruguai", ponto="Foz do Chapecó",
-              descricao="Se afluência sex–dom ≤ 1.000 m³/s, defluente ≤ 1.000 m³/s de 12h de sexta a 12h de domingo (gatilho: afluência observada, proxy da previsão do ONS)",
-              tipo="fds", freq="semanal", niveis=2, tol=None, fonte="ONSH:RIUHFC", limite=1000.0))
+              descricao="Se a afluência prevista pelo ONS para sex–dom ≤ 1.000 m³/s, defluente ≤ 1.000 m³/s de 12h de sexta a 12h de domingo",
+              tipo="fds", freq="semanal", niveis=2, tol=None, fonte="ONSH:RIUHFC", limite=1000.0, previsao="RIUHFC",
+              pendente="previsão de afluência sex–dom obtida pelo ONS às quintas-feiras (art. 1º, § 1º) não cadastrada em config/atos_complementares.json (previsao_semanal, RIUHFC)"))
 
 # --------------------------------------------------------------------------- 147/2015 Queimado
 R.append(dict(id="147-SFQMDO-min", resolucao="Res. ANA 147/2015", artigos="art. 1º, I e II", sistema="Rio Preto", ponto="Queimado",
@@ -248,18 +250,16 @@ for cod, nome, maxnormal in [("29001", "Jaguari-Jacareí", 844.00), ("29002", "C
                   descricao=f"Out–jun: cota ≤ NA máximo normal ({maxnormal:.2f} m)".replace(".", ","), tipo="teto_cota", freq="diaria", niveis=2, tol=None,
                   fonte=f"SAR:{cod}:cota", maximo=maxnormal, meses=[10, 11, 12, 1, 2, 3, 4, 5, 6]))
 
-# Nível máximo operacional (arts. 1º, §§ 2º e 3º, 3º e 4º): definido mensalmente pelo DAEE. Sem esse ato, usa-se a cota máxima
-# recomendada pelo DAEE e pela ANA no Anexo 1, item 3 (out–abr; não há valor para Jaguari-Jacareí nem para maio e junho).
+# Nível máximo operacional (arts. 1º, §§ 2º e 3º, 3º e 4º): definido mensalmente pelo DAEE. Sem esse ato, o mês fica em
+# Parâmetro pendente (a cota máxima recomendada no Anexo 1, item 3, não substitui o nível definido pelo DAEE).
 PEND_NA_OP = ("nível máximo operacional do mês, definido pelo DAEE a partir dos volumes de espera (art. 1º, §§ 1º e 2º, e art. 3º), "
               "não disponível; cadastrar em config/atos_complementares.json ({chave})")
-for cod, nome, cota_rec in [("29001", "Jaguari-Jacareí", None), ("29002", "Cachoeira", 820.00), ("29003", "Atibainha", 786.00), ("29004", "Paiva Castro", 745.00)]:
-    meses_rec = {str(m): cota_rec for m in (10, 11, 12, 1, 2, 3, 4)} if cota_rec else {}
-    desc = (f"Out–jun: cota ≤ nível máximo operacional (out–abr: {cota_rec:.2f} m, cota máxima recomendada no Anexo 1)".replace(".", ",")
-            if cota_rec else "Out–jun: cota ≤ nível máximo operacional definido pelo DAEE")
+for cod, nome in [("29001", "Jaguari-Jacareí"), ("29002", "Cachoeira"), ("29003", "Atibainha"), ("29004", "Paiva Castro")]:
+    meses_rec = {}
+    desc = "Out–jun: cota ≤ nível máximo operacional definido mensalmente pelo DAEE"
     R.append(dict(id=f"614-op-{cod}", resolucao="Res. Conj. ANA/DAEE 614/2010", artigos="arts. 1º, §§ 2º e 3º, 3º e 4º; Anexo 1, item 3", sistema="Cantareira", ponto=nome,
                   descricao=desc, tipo="teto_cota", freq="diaria", niveis=2, tol=None, fonte=f"SAR:{cod}:cota", meses=[10, 11, 12, 1, 2, 3, 4, 5, 6],
                   maximo_meses=meses_rec, param_mensal=f"na_op_{cod}", pendente=PEND_NA_OP.format(chave=f"na_op_{cod}|aaaa-mm"),
-                  obs_maximo="cota máxima recomendada pelo DAEE e pela ANA (Anexo 1, item 3); o nível operacional mensal do DAEE não está cadastrado",
                   alerta="Acima deste nível e abaixo do NA máximo normal, o sistema está em Situação de Atenção (art. 4º): a Sabesp deve retornar ao nível operacional sem violar as vazões de restrição."))
 
 for cod, nome, seco, umido in [("29001", "Jaguari-Jacareí", 40, 100), ("29002", "Cachoeira", 5, 7), ("29003", "Atibainha", 5, 11), ("29004", "Paiva Castro", 1, None)]:
@@ -278,17 +278,17 @@ for cod, nome, seco, umido in [("29001", "Jaguari-Jacareí", 40, 100), ("29002",
 # Regras cujo limite depende, no todo ou em parte, de ato que não está na resolução (comunicado, curva, outorga,
 # definição mensal de outro órgão). O painel mostra um marcador e permite filtrar esses casos para acompanhamento.
 COMPLEMENTAR = {
-    "49-RIUHFC": "Previsão de afluência sex–dom obtida pelo ONS às quintas-feiras e informe semanal do agente com a programação de defluências (art. 1º, §§ 1º a 3º); sem esses dados, o painel usa a afluência observada como aproximação do gatilho",
-    "70-TOSMES-praias": "Vazão a ser praticada na temporada de praias, informada anualmente pelo ONS até 10 de maio (art. 6º, § 3º; vazao_temporada no cadastro de atos); sem esse valor, o painel usa a média do período como referência",
+    "49-RIUHFC": "Previsão de afluência sex–dom obtida pelo ONS às quintas-feiras (art. 1º, § 1º; previsao_semanal no cadastro de atos); sem a previsão, a semana fica em Parâmetro pendente",
+    "70-TOSMES-praias": "Vazão a ser praticada na temporada de praias, informada anualmente pelo ONS até 10 de maio (art. 6º, § 3º; vazao_temporada no cadastro de atos); sem esse valor, a regra fica em Parâmetro pendente",
     "2081-SFTMAR-max": "Curvas de segurança do ciclo (NT do ONS e não objeção da ANA, art. 4º); na Restrição, vazão fixada pelo ONS por recomendação da ANA",
     "2081-SFXING-max": "Curvas de segurança do ciclo (NT do ONS e não objeção da ANA, art. 4º)",
-    "2081-SFSOBR-max": "Teto mensal de Sobradinho (sem critério definido na Atenção); na Restrição, vazões fixadas pelo ONS por recomendação da ANA",
+    "2081-SFSOBR-max": "Teto mensal de Sobradinho (sem critério definido na Atenção; no período seco, a média acima de 1.000 m³/s já é Não atende); na Restrição, vazões fixadas pelo ONS por recomendação da ANA",
     "1382-estagios": "Revisões temporárias dos limites dos estágios por comunicado da ANA (art. 1º, § 2º)",
     "1931-volume": "Comunicado conjunto anual de volume suplementar (art. 1º, III)",
     "614-op-29001": "Nível máximo operacional definido mensalmente pelo DAEE (art. 1º, § 2º, e art. 3º)",
-    "614-op-29002": "Nível máximo operacional definido mensalmente pelo DAEE (maio e junho; art. 1º, § 2º, e art. 3º)",
-    "614-op-29003": "Nível máximo operacional definido mensalmente pelo DAEE (maio e junho; art. 1º, § 2º, e art. 3º)",
-    "614-op-29004": "Nível máximo operacional definido mensalmente pelo DAEE (maio e junho; art. 1º, § 2º, e art. 3º)",
+    "614-op-29002": "Nível máximo operacional definido mensalmente pelo DAEE (art. 1º, § 2º, e art. 3º)",
+    "614-op-29003": "Nível máximo operacional definido mensalmente pelo DAEE (art. 1º, § 2º, e art. 3º)",
+    "614-op-29004": "Nível máximo operacional definido mensalmente pelo DAEE (art. 1º, § 2º, e art. 3º)",
     "614-restr-29004": "Vazão de restrição de dezembro a junho após fev/2011, a definir pelo DAEE (Anexo 1, item 4, OBS 3; restricao_mensal no cadastro de atos)",
     "193-GRFURN": "Vazão outorgada de Furnas (limite na faixa Normal do período seco)",
     "193-GRMMOR": "Vazão outorgada de Mascarenhas de Moraes (limite na faixa de Atenção do período seco)",

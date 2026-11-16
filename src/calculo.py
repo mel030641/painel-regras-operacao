@@ -436,10 +436,7 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
                     out["obs"] = f"teto fixado por ato: {atos.citacao_mensal(pm + '|' + d.strftime('%Y-%m'))}"
                 elif "curva" in tet:
                     lim, out["obs"] = teto_curva(dados, tet["curva"], tet.get("vu", regra["faixa"]), d)
-                if lim is None and "limite" in tet:
-                    falta = out["obs"] or tet.get("pendente") or "valor mensal não informado"
-                    lim, out["obs"] = tet["limite"], f"limite legal de {_fmt(tet['limite'], 0)} m³/s aplicado; {falta}"
-                elif lim is not None and "limite" in tet and tet["limite"] < lim:
+                if lim is not None and "limite" in tet and tet["limite"] < lim:
                     lim = tet["limite"]
                     out["obs"] = f"{out['obs']}; limitado a {_fmt(tet['limite'], 0)} m³/s no período seco"
             if lim is None:
@@ -449,8 +446,14 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
                     ref_lim, ref_obs = teto_curva(dados, tet["ref_curva"], tet.get("vu", regra["faixa"]), d)
                     if ref_lim is not None:
                         out["obs"] += f" (referência: {ref_obs.replace('máx.', 'máx. de Xingó')})"
-                out["v"] = media(dados.diaria(regra["fonte"]), inicio_janela(d, janela), d)[0]
-                return out
+                vm = media(dados.diaria(regra["fonte"]), inicio_janela(d, janela), d)[0]
+                legal, tol = tet.get("teto_legal"), (regra["tol"] or 0) if regra["niveis"] == 3 else 0
+                # Sem o teto do mês, só há conclusão quando a média passa do limite legal do período (o teto real é menor ou igual).
+                if not (legal and vm is not None and vm > legal * (1 + tol)):
+                    out["v"] = vm
+                    return out
+                lim = legal
+                out["obs"] = f"teto do mês não definido; média acima do limite legal de {_fmt(legal, 0)} m³/s ({out['obs']})"
         elif tet is not None:
             lim = float(tet)
         serie = dados.diaria(regra["fonte"])
@@ -601,17 +604,19 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
             out["st"] = NA
             return out
         sexta = d - dt.timedelta(days=2)
-        afl_d = dados.diaria("ONS:RIUHFC:afl")
-        afl, n = media(afl_d, sexta, d)
-        if n < 3:
-            return out
         horas = dados.onsh.get("RIUHFC", {})
         janela = [v["defl"] for h, v in horas.items()
                   if f"{sexta.isoformat()} 12:00" <= h <= f"{d.isoformat()} 12:00" and v.get("defl") is not None]
-        out["obs"] = f"afluência média sex–dom {afl:.0f} m³/s"
-        if afl > regra["limite"]:
+        # gatilho: previsão de afluência sex–dom do ONS (art. 1º, § 1º), cadastrada como previsao_semanal
+        prev = atos.previsoes().get(f"{regra.get('previsao')}|{sexta.isoformat()}")
+        if prev is None:
+            out["st"], out["obs"] = PP, regra["pendente"]
+            out["v"] = max(janela) if janela else None
+            return out
+        out["obs"] = f"afluência prevista sex–dom {_fmt(prev['valor'], 0)} m³/s ({prev['citacao']})"
+        if prev["valor"] > regra["limite"]:
             out["st"] = NA
-            out["obs"] += " (> 1.000: sem restrição)"
+            out["obs"] += "; acima de 1.000 m³/s: sem restrição"
             return out
         if not janela:
             out["obs"] += "; sem dado horário"
@@ -629,12 +634,12 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
             return out
         serie = dados.diaria(regra["fonte"])
         ato = atos.vazoes_temporada().get(f"{regra.get('temporada')}|{d.year}") if regra.get("temporada") else None
-        if ato:  # vazão da temporada informada por ato (Res. ANA 70/2021, art. 6º, § 3º)
-            m = ato["valor"]
-            out["obs"] = f"vazão da temporada fixada por ato: {ato['citacao']}"
-        else:
-            m, _ = media(serie, a, d)
         v = serie.get(iso)
+        if not ato:  # sem a vazão informada pelo ONS (Res. ANA 70/2021, art. 6º, § 3º), não há referência
+            out["v"], out["st"], out["obs"] = v, PP, regra["pendente"]
+            return out
+        m = ato["valor"]
+        out["obs"] = f"vazão da temporada fixada por ato: {ato['citacao']}"
         if v is None or m is None:
             return out
         out["v"], out["lim"] = v, f"{m * (1 - regra['tol']):.0f}–{m * (1 + regra['tol']):.0f}"
