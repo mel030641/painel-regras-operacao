@@ -15,6 +15,11 @@ do período, a faixa é calculada pela regra do ato e marcada como "calculada".
 
 Unidades: vazão m³/s, cota m, volume % do volume útil (VU) ou hm³.
 """
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import atos  # noqa: E402  (cadastro único de atos complementares)
 
 # Períodos hidrológicos (meses do período úmido)
 UMIDO_DEZ_ABR = [12, 1, 2, 3, 4]          # 193/2024, 194/2024, 2.081/2017
@@ -43,19 +48,12 @@ FAIXAS = {
     "CANTAREIRA": {"var": "vu", "limiares": [60, 40, 30, 20], "nomes": ["Faixa 1 - Normal", "Faixa 2 - Atenção", "Faixa 3 - Alerta", "Faixa 4 - Restrição", "Faixa 5 - Especial"], "definicao": "mes_dia_anterior"},
 }
 
-# Parâmetros externos à resolução (outorgas, comunicados). Fonte registrada para auditoria.
-PARAMETROS = {
-    "outorga_GRFURN": {"valor": 1440.0, "fonte": "Outorga nº 1033/2019 (planilha de auditoria SOE, out/2026)"},
-    "outorga_PREMBO": {"valor": 972.0, "fonte": "Outorga (planilha de auditoria SOE, out/2026)"},
-    "outorga_PRITUM": {"valor": 2928.0, "fonte": "Outorga (planilha de auditoria SOE, out/2026)"},
-    "outorga_GRMMOR": {"valor": 1188.64, "fonte": "Outorga ANA nº 2.704/2024, art. 1º, IX: vazão máxima turbinada de M. Mascarenhas de Moraes (efeitos desde 01/10/2024)"},
-    "vol_anual_jaguari": {"valor": 268.28, "base": 162.0, "por_ano": {"2021": 202.0, "2024": 162.0, "2025": 186.7, "2026": 268.28},
-                          "fonte_por_ano": {"2021": "Comunicado Conjunto ANA/DAEE/IGAM/INEA de 2021 (transposição excepcional até 31/12/2021), item I.b: até 202 hm³ em 2021",
-                                            "2024": "Res. ANA 1.931/2017, art. 1º, III (sem comunicado em 2024, confirmado pela SOE em 04/11/2026)",
-                                            "2025": "Comunicado Conjunto ANA/SP-Águas/IGAM/INEA de 2025, item I.a (162 + 24,7 hm³ suplementares, até 31/12/2025)",
-                                            "2026": "Comunicado Conjunto nº 3/2026 (planilha de auditoria SOE)"},
+# Parâmetros externos à resolução. Os valores que vêm de atos (outorgas, comunicados anuais) estão no cadastro
+# único config/atos_complementares.json; aqui fica só o que está na própria resolução.
+PARAMETROS = atos.parametros({
+    "vol_anual_jaguari": {"base": 162.0,
                           "fonte": "Res. ANA 1.931/2017, art. 1º, III: limite base de 162 hm³ (sem comunicado cadastrado para o ano)"},
-}
+})
 
 # Início de vigência de cada resolução (texto oficial em normas/textos). Antes dessas datas a regra é
 # registrada como "Não se aplica". O painel cobre desde out/2017 (início do histórico de faixas dos boletins).
@@ -122,8 +120,8 @@ R.append(dict(id="194-PRSSIM", resolucao="Res. ANA 194/2024", artigos="art. 9º"
 ALERTA_2081 = ("Na faixa de Atenção, o teto mensal de Três Marias e de Xingó sai das curvas de segurança do ciclo (config/curvas_seguranca_sf.json), "
                "consultadas com o VU do dia anterior ao 1º dia útil do mês. Na Restrição, as vazões são fixadas pelo ONS a partir de recomendação da ANA: "
                "sem esse ato cadastrado, o painel indica \"Parâmetro pendente\" e diz o que falta.")
-PEND_TM_RESTR = "vazão defluente média mensal fixada pelo ONS a partir de recomendação da ANA (art. 5º, § 3º) não cadastrada em config/parametros_mensais.json (teto_SFTMAR)"
-PEND_SOBR_RESTR = "vazões de Sobradinho fixadas pelo ONS a partir de recomendação da ANA (art. 9º, § 4º) não cadastradas em config/parametros_mensais.json (teto_SFSOBR)"
+PEND_TM_RESTR = "vazão defluente média mensal fixada pelo ONS a partir de recomendação da ANA (art. 5º, § 3º) não cadastrada em config/atos_complementares.json (valores_mensais, teto_SFTMAR)"
+PEND_SOBR_RESTR = "vazões de Sobradinho fixadas pelo ONS a partir de recomendação da ANA (art. 9º, § 4º) não cadastradas em config/atos_complementares.json (valores_mensais, teto_SFSOBR)"
 PEND_SOBR_ATENCAO = ("a curva de segurança fixa o máximo de Xingó; para Sobradinho a NT do ONS só estima o acréscimo de perdas e usos entre Sobradinho e Xingó, "
                       "e não há ato que converta esse máximo em limite de Sobradinho (critério a definir pela SOE; valor manual em teto_SFSOBR)")
 R.append(dict(id="2081-SFTMAR-min", resolucao="Res. ANA 2.081/2017", artigos="arts. 3º, I e § 1º; 5º; 12", sistema="São Francisco", ponto="Três Marias",
@@ -172,7 +170,7 @@ R.append(dict(id="70-TOSMES-praias", resolucao="Res. ANA 70/2021", artigos="arts
 for rid, nome, mn, mx in [("TOSMES", "Serra da Mesa", 417.30, 460.00), ("TOUHCB", "Cana Brava", 330.00, 333.00),
                           ("TOUHSA", "São Salvador", 286.50, 287.00), ("TOUHPA", "Peixe Angical", 261.00, 263.00),
                           ("TOLAJ", "Lajeado", 211.50, 212.30), ("TOUHET", "Estreito", 151.00, 156.00), ("TOTUCU", "Tucuruí", 51.60, 74.00)]:
-    R.append(dict(id=f"70-nivel-{rid}", resolucao="Res. ANA 70/2021", artigos="art. 1º", sistema="Tocantins", ponto=nome,
+    R.append(dict(id=f"70-nivel-{rid}", resolucao="Res. ANA 70/2021", artigos="art. 1º", sistema="Tocantins", ponto=nome, grupo="Níveis d'água (art. 1º)",
                   descricao=f"Nível entre {mn:.2f} e {mx:.2f} m", tipo="intervalo", freq="diaria", niveis=2, tol=None,
                   fonte=f"ONS:{rid}:nivel", minimo=mn, maximo=mx))
 
@@ -196,22 +194,15 @@ for rid, nome, alinea, piso in [("PBPARA", "Paraibuna", "a", 10), ("PBSTAB", "Sa
                   descricao=f"Vazão a jusante ≥ {piso} m³/s (instantânea; menor valor horário do dia)", tipo="piso_horario", freq="diaria", niveis=2, tol=None,
                   fonte=f"ONSH:{rid}:defl", minimo=float(piso)))
 R.append(dict(id="1382-PBSTAC-guandu", resolucao="Res. Conj. ANA/DAEE/IGAM/INEA 1.382/2015", artigos="art. 1º, I, f", sistema="Paraíba do Sul", ponto="Santa Cecília (bombeamento Guandu)",
-              descricao="Vazão bombeada para o Guandu ≥ 119 m³/s (média diária); tolerância de 5% (113,05 m³/s) desde 20/08/2021", tipo="piso", freq="diaria", niveis=3, tol=0.05,
-              tol_desde="2021-08-20", tol_ato="Ofício Circular nº 1/2021/JG/ANA, de 20/08/2021 (aprovação do GAOPS na 52ª reunião, de 17/08/2021)",
+              descricao="Vazão bombeada para o Guandu ≥ 119 m³/s (média diária); tolerância de 5% (113,05 m³/s) desde 20/08/2021", tipo="piso", freq="diaria", niveis=3,
+              **(atos.tolerancia("1382-PBSTAC-guandu") or {"tol": None}),  # tolerância de 5% desde 20/08/2021 (cadastro de atos)
               fonte="ONS:PBSTAC:transf", pisos={"todos": 119},
-              alerta="A resolução não prevê exceção. Nos dias em \"Não atende\", verificar se a redução foi justificada (cheia, manutenção ou falha de equipamento). Situações declaradas pelo ONS, como a operação de Funil para controle de cheias, aparecem na observação do dia (config/eventos_operacao.json)."))
+              alerta="A resolução não prevê exceção. Nos dias em \"Não atende\", verificar se a redução foi justificada (cheia, manutenção ou falha de equipamento). Situações declaradas pelo ONS, como a operação de Funil para controle de cheias, aparecem na observação do dia (config/atos_complementares.json)."))
 R.append(dict(id="1382-estagios", resolucao="Res. Conj. ANA/DAEE/IGAM/INEA 1.382/2015", artigos="art. 1º, V e § 1º", sistema="Paraíba do Sul", ponto="Funil, Santa Branca, Paraibuna, Jaguari",
               descricao="VU ≥ mínimo do estágio de deplecionamento vigente (variação absoluta de 5 p.p. do valor de referência)", tipo="estagios", freq="diaria", niveis=3, tol=None, tol_pp=5.0,
               fontes={"PBFUNI": [30, 30, 30], "PBSTAB": [70, 40, 10], "PBPARA": [80, 40, 5], "PBJAGU": [80, 50, 20]},
-              # Revisões temporárias por comunicado da ANA (art. 1º, § 2º). estagio: 0 = 1º, 1 = 2º, 2 = 3º.
-              revisoes=[
-                  dict(fonte="PBFUNI", estagio=2, valor=20, inicio="2021-09-22", fim="2021-11-30",
-                       ato="Ofício Circular nº 2/2021/JG/ANA, de 22/09/2021"),
-                  dict(fonte="PBFUNI", estagio=2, valor=20, inicio="2021-12-01", fim="2021-12-31",
-                       ato="Ofício Circular nº 5/2021/JG/ANA, de 30/11/2021"),
-                  dict(fonte="PBFUNI", estagio=2, valor=20, inicio="2026-01-20", fim="2026-03-31",
-                       ato="Ofício Circular nº 1/2026/DP-ANA-SEI, de 20/01/2026"),
-              ]))
+              # Revisões temporárias por comunicado da ANA (art. 1º, § 2º), do cadastro de atos. estagio: 0 = 1º, 1 = 2º, 2 = 3º.
+              revisoes=atos.revisoes_estagio("1382-estagios")))
 
 # --------------------------------------------------------------------------- 1.931/2017 Jaguari → Atibainha
 R.append(dict(id="1931-max", resolucao="Res. ANA 1.931/2017", artigos="art. 1º, II", sistema="Transposição Jaguari–Atibainha", ponto="Captação no Jaguari",
@@ -234,13 +225,13 @@ R.append(dict(id="925-santaines", resolucao="Res. Conj. ANA/DAEE 925/2017", arti
 for chave, nome, movel, minimo in [("valinhos", "Valinhos (rio Atibaia)", [12.0, 12.0, 11.0, 11.0, None], 10.0),
                                    ("atibaia", "Atibaia (rio Atibaia)", [3.0, 3.0, 2.0, 2.0, None], 2.0),
                                    ("buenopolis", "Buenópolis (rio Jaguari)", [2.5, 2.5, 2.0, 2.0, None], 2.0)]:
-    R.append(dict(id=f"925-{chave}-dia", resolucao="Res. Conj. ANA/DAEE 925/2017", artigos="art. 5º, §§ 3º, 6º e 10", sistema="Cantareira (PCJ)", ponto=nome,
+    R.append(dict(id=f"925-{chave}-dia", resolucao="Res. Conj. ANA/DAEE 925/2017", artigos="art. 5º, §§ 3º, 6º e 10", sistema="Cantareira", ponto=nome,
                   descricao=f"Vazão média diária ≥ {minimo:.1f} m³/s".replace(".", ","), tipo="piso", freq="diaria", niveis=2, tol=None,
                   fonte=f"SAISP:{chave}", pisos={"todos": minimo}, sem_faixa5=(chave == "atibaia"), faixa="CANTAREIRA"))
-    R.append(dict(id=f"925-{chave}-movel", resolucao="Res. Conj. ANA/DAEE 925/2017", artigos="art. 5º, § 2º", sistema="Cantareira (PCJ)", ponto=nome,
+    R.append(dict(id=f"925-{chave}-movel", resolucao="Res. Conj. ANA/DAEE 925/2017", artigos="art. 5º, § 2º", sistema="Cantareira", ponto=nome,
                   descricao="Média móvel de 15 dias ≥ meta da faixa (só no período úmido)", tipo="movel", freq="diaria", niveis=2, tol=None,
                   fonte=f"SAISP:{chave}", faixa="CANTAREIRA", metas=movel, umido=UMIDO_DEZ_MAI, dias=15))
-R.append(dict(id="925-seco", resolucao="Res. Conj. ANA/DAEE 925/2017", artigos="art. 5º, § 5º", sistema="Cantareira (PCJ)", ponto="Sistema Cantareira → PCJ",
+R.append(dict(id="925-seco", resolucao="Res. Conj. ANA/DAEE 925/2017", artigos="art. 5º, § 5º", sistema="Cantareira", ponto="Sistema Cantareira → PCJ",
               descricao="Informativa: volume garantido ao PCJ de 1º/6 a 30/11 (média de 10 m³/s, 158,1 hm³) e volume liberado", tipo="media_periodo", freq="periodo", niveis=2, tol=None, informativa=True,
               fontes=["SAR:29001:defl", "SAR:29002:defl", "SAR:29003:defl"], inicio="06-01", fim="11-30", minimo=10.0))
 for cod, nome, mn in [("29004", "Paiva Castro", 0.10), ("29001", "Jaguari-Jacareí", 0.25)]:
@@ -253,19 +244,19 @@ R.append(dict(id="925-art2-atibaia", resolucao="Res. Conj. ANA/DAEE 925/2017", a
 
 # --------------------------------------------------------------------------- 614/2010 Cantareira (cheias, out–jun)
 for cod, nome, maxnormal in [("29001", "Jaguari-Jacareí", 844.00), ("29002", "Cachoeira", 821.88), ("29003", "Atibainha", 786.72), ("29004", "Paiva Castro", 745.61)]:
-    R.append(dict(id=f"614-{cod}", resolucao="Res. Conj. ANA/DAEE 614/2010", artigos="arts. 1º, 3º a 5º; Anexo 1", sistema="Cantareira (cheias)", ponto=nome,
+    R.append(dict(id=f"614-{cod}", resolucao="Res. Conj. ANA/DAEE 614/2010", artigos="arts. 1º, 3º a 5º; Anexo 1", sistema="Cantareira", ponto=nome,
                   descricao=f"Out–jun: cota ≤ NA máximo normal ({maxnormal:.2f} m)".replace(".", ","), tipo="teto_cota", freq="diaria", niveis=2, tol=None,
                   fonte=f"SAR:{cod}:cota", maximo=maxnormal, meses=[10, 11, 12, 1, 2, 3, 4, 5, 6]))
 
 # Nível máximo operacional (arts. 1º, §§ 2º e 3º, 3º e 4º): definido mensalmente pelo DAEE. Sem esse ato, usa-se a cota máxima
 # recomendada pelo DAEE e pela ANA no Anexo 1, item 3 (out–abr; não há valor para Jaguari-Jacareí nem para maio e junho).
 PEND_NA_OP = ("nível máximo operacional do mês, definido pelo DAEE a partir dos volumes de espera (art. 1º, §§ 1º e 2º, e art. 3º), "
-              "não disponível; informar em config/parametros_mensais.json ({chave})")
+              "não disponível; cadastrar em config/atos_complementares.json ({chave})")
 for cod, nome, cota_rec in [("29001", "Jaguari-Jacareí", None), ("29002", "Cachoeira", 820.00), ("29003", "Atibainha", 786.00), ("29004", "Paiva Castro", 745.00)]:
     meses_rec = {str(m): cota_rec for m in (10, 11, 12, 1, 2, 3, 4)} if cota_rec else {}
     desc = (f"Out–jun: cota ≤ nível máximo operacional (out–abr: {cota_rec:.2f} m, cota máxima recomendada no Anexo 1)".replace(".", ",")
             if cota_rec else "Out–jun: cota ≤ nível máximo operacional definido pelo DAEE")
-    R.append(dict(id=f"614-op-{cod}", resolucao="Res. Conj. ANA/DAEE 614/2010", artigos="arts. 1º, §§ 2º e 3º, 3º e 4º; Anexo 1, item 3", sistema="Cantareira (cheias)", ponto=nome,
+    R.append(dict(id=f"614-op-{cod}", resolucao="Res. Conj. ANA/DAEE 614/2010", artigos="arts. 1º, §§ 2º e 3º, 3º e 4º; Anexo 1, item 3", sistema="Cantareira", ponto=nome,
                   descricao=desc, tipo="teto_cota", freq="diaria", niveis=2, tol=None, fonte=f"SAR:{cod}:cota", meses=[10, 11, 12, 1, 2, 3, 4, 5, 6],
                   maximo_meses=meses_rec, param_mensal=f"na_op_{cod}", pendente=PEND_NA_OP.format(chave=f"na_op_{cod}|aaaa-mm"),
                   obs_maximo="cota máxima recomendada pelo DAEE e pela ANA (Anexo 1, item 3); o nível operacional mensal do DAEE não está cadastrado",
@@ -276,7 +267,7 @@ for cod, nome, seco, umido in [("29001", "Jaguari-Jacareí", 40, 100), ("29002",
     if umido is None:
         extra["pendente"] = ("vazão de restrição de dezembro a junho válida só até fev/2011 (1 m³/s); o valor posterior ao desassoreamento do rio Juqueri, "
                              "a ser definido pelo DAEE (Anexo 1, item 4, OBS 3), não foi localizado")
-    R.append(dict(id=f"614-restr-{cod}", resolucao="Res. Conj. ANA/DAEE 614/2010", artigos="Anexo 1, item 4", sistema="Cantareira (cheias)", ponto=nome,
+    R.append(dict(id=f"614-restr-{cod}", resolucao="Res. Conj. ANA/DAEE 614/2010", artigos="Anexo 1, item 4", sistema="Cantareira", ponto=nome,
                   descricao=(f"Descarga ≤ vazão de restrição ({seco} m³/s jul–nov; {umido} m³/s dez–jun)" if umido is not None else
                              f"Descarga ≤ vazão de restrição ({seco} m³/s jul–nov; dez–jun: valor posterior a fev/2011 pendente)"),
                   tipo="teto_diario", freq="diaria", niveis=2, tol=None,

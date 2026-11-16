@@ -44,8 +44,7 @@ jobs:
       - name: Faixas publicadas nos painéis Power BI (2ª fonte)
         continue-on-error: true   # não sobrescreve período com boletim; sem Power BI, vale a faixa calculada
         run: |
-          python src/powerbi_faixas_soe.py data/powerbi
-          python src/faixas_powerbi.py data/powerbi/faixas_operativas_vigentes.csv
+          python src/faixas_powerbi.py --csv data/powerbi
 
       - name: Coleta e cálculo
         run: python src/calculo.py   # out/2017 até hoje (dado horário do ONS fica no cache entre execuções)

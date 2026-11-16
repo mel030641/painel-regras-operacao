@@ -23,14 +23,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import coleta  # noqa: E402
 import serie_compacta  # noqa: E402
 from regras import FAIXAS, PARAMETROS, REGRAS, VIGENCIA, VIGENCIA_A_CONFERIR  # noqa: E402
+import atos  # noqa: E402
 from textos_normas import trechos  # noqa: E402
 
-_EV = Path(__file__).resolve().parent.parent / "config" / "eventos_operacao.json"
-EVENTOS = json.loads(_EV.read_text(encoding="utf-8"))["eventos"] if _EV.exists() else []
+EVENTOS = atos.situacoes()  # situações declaradas (config/atos_complementares.json)
 
 
 def obs_eventos(regra_id: str, iso: str) -> str | None:
-    """Observação das situações declaradas (config/eventos_operacao.json) que cobrem o dia da regra."""
+    """Observação das situações declaradas (config/atos_complementares.json) que cobrem o dia da regra."""
     txt = [e["obs"] for e in EVENTOS if regra_id in e["regras"] and e["inicio"] <= iso <= (e.get("fim") or "9999-12-31")]
     return "; ".join(txt) or None
 
@@ -134,8 +134,8 @@ class Dados:
                 self.saisp_d[chave] = {}
 
         self.faixas_pbi = _ler_json(CONFIG / "faixas.json", {}).get("faixas", {})
-        self.param_mensal = _ler_json(CONFIG / "parametros_mensais.json", {}).get("valores", {})
-        self.curvas_sf = _ler_json(CONFIG / "curvas_seguranca_sf.json", {}).get("ciclos", [])
+        self.param_mensal = atos.valores_mensais()
+        self.curvas_sf = carregar_curvas_sf()
 
     # ---- séries diárias {data_iso: valor}
     def diaria(self, fonte: str) -> dict[str, float]:
@@ -235,6 +235,15 @@ MIN_ATENCAO_2081 = {"SFTMAR": 150, "SFXING": 800}  # defluência mínima na faix
 
 def _fmt(x: float, casas: int = 1) -> str:
     return f"{x:,.{casas}f}".replace(",", "X").replace(".", ",").replace("X", ".")
+
+
+def carregar_curvas_sf() -> list[dict]:
+    """Ciclos de config/curvas_seguranca_sf.json com a manifestação da ANA do cadastro de atos (2.081/2017, art. 4º)."""
+    ciclos = _ler_json(CONFIG / "curvas_seguranca_sf.json", {}).get("ciclos", [])
+    manif = atos.manifestacoes_curvas()
+    for c in ciclos:
+        c["manifestacao_ana"] = manif.get(c["ciclo"])
+    return ciclos
 
 
 def teto_curva(dados, curva: str, vu_id: str, d: dt.date):
@@ -424,7 +433,7 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
                 pm = tet.get("param_mensal")
                 lim = dados.param_mensal.get(f"{pm}|{d.strftime('%Y-%m')}") if pm else None
                 if lim is not None:
-                    out["obs"] = f"teto informado em config/parametros_mensais.json ({pm})"
+                    out["obs"] = f"teto fixado por ato: {atos.citacao_mensal(pm + '|' + d.strftime('%Y-%m'))}"
                 elif "curva" in tet:
                     lim, out["obs"] = teto_curva(dados, tet["curva"], tet.get("vu", regra["faixa"]), d)
                 if lim is None and "limite" in tet:
@@ -435,7 +444,7 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
                     out["obs"] = f"{out['obs']}; limitado a {_fmt(tet['limite'], 0)} m³/s no período seco"
             if lim is None:
                 out["st"] = PP
-                out["obs"] = out["obs"] or tet.get("pendente") or "teto mensal não informado em config/parametros_mensais.json"
+                out["obs"] = out["obs"] or tet.get("pendente") or "teto mensal não cadastrado em config/atos_complementares.json"
                 if tet.get("ref_curva"):
                     ref_lim, ref_obs = teto_curva(dados, tet["ref_curva"], tet.get("vu", regra["faixa"]), d)
                     if ref_lim is not None:
@@ -537,7 +546,7 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
             pm = regra.get("param_mensal")
             lim = dados.param_mensal.get(f"{pm}|{d.strftime('%Y-%m')}") if pm else None
             if lim is not None:
-                out["obs"] = f"nível informado em config/parametros_mensais.json ({pm})"
+                out["obs"] = f"nível fixado por ato: {atos.citacao_mensal(pm + '|' + d.strftime('%Y-%m'))}"
             else:
                 lim = regra["maximo_meses"].get(str(d.month))
                 if lim is not None and regra.get("obs_maximo"):
@@ -711,6 +720,7 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
         if regra.get("informativa"):
             garantido = regra["minimo"] * ((b - a).days + 1) * 86400 / 1e6
             out["obs"] += f" de {garantido:.1f} hm³ garantidos; saldo disponível ao PCJ {garantido - v * n * 86400 / 1e6:.1f} hm³"
+            out["lib"], out["gar"] = round(v * n * 86400 / 1e6, 1), round(garantido, 1)
         elif resta > 0:
             total = (b - a).days + 1
             nec = (regra["minimo"] * total - v * n) / resta
@@ -807,7 +817,8 @@ def executar(inicio: dt.date, fim: dt.date, meses_horarios: int) -> dict:
     ultimo_ons = max((max(v) for v in dados.ons.values() if v), default=None)
     saida = {"gerado_em": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
              "periodo": [inicio.isoformat(), fim.isoformat()], "ultimo_dado_ons": ultimo_ons,
-             "erros_coleta": dados.erros, "parametros": PARAMETROS, "eventos": EVENTOS, "regras": []}
+             "erros_coleta": dados.erros, "parametros": PARAMETROS, "eventos": EVENTOS,
+             "atos_complementares": atos.resumo(), "regras": []}
     for regra in REGRAS:
         serie = []
         for d in dias(inicio, fim):
@@ -829,7 +840,7 @@ def executar(inicio: dt.date, fim: dt.date, meses_horarios: int) -> dict:
             if s["st"] in (OK, TOL, NAO):
                 mensal[s["d"][:7]][s["st"]] += 1
                 mensal[s["d"][:7]]["n"] += 1
-        meta = {k: v for k, v in regra.items() if k in ("id", "resolucao", "artigos", "sistema", "ponto", "descricao", "freq", "niveis", "tol", "tol_pp", "fonte", "tipo", "alerta", "complementar")}
+        meta = {k: v for k, v in regra.items() if k in ("id", "resolucao", "artigos", "sistema", "ponto", "grupo", "descricao", "freq", "niveis", "tol", "tol_pp", "fonte", "tipo", "alerta", "complementar", "informativa")}
         meta["unid"] = unidade(regra)
         meta["param"] = parametro(regra)
         meta["texto_norma"] = trechos(regra["resolucao"], regra.get("artigos", ""))
