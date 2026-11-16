@@ -181,6 +181,7 @@ td.n, th.n { text-align: right; white-space: nowrap }
 .band .src { font-size: .74rem; color: var(--fg-3); display: flex; justify-content: space-between; gap: 6px; flex-wrap: wrap }
 
 /* regras */
+.sys-btn .acomp { margin-left: 12px; padding: 1px 8px; border: 1px solid var(--line); border-radius: 999px; font: 500 .74rem var(--f-body); text-transform: none; letter-spacing: 0; color: var(--fg-2); background: var(--surface) }
 .sys-row td { background: var(--sunk); font: 600 .82rem var(--f-display); letter-spacing: .03em; color: var(--fg-2); text-transform: uppercase }
 tr.rule { cursor: pointer }
 tr.ponto-row { cursor: pointer }
@@ -478,6 +479,14 @@ function aplicarPreset(p) {
   document.querySelectorAll("#presets button").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.p === p)));
 }
 
+function acompanhamento(sis) {
+  return (D.acomp || []).filter((r) => r.sistema === sis).map((r) => {
+    let s = null; for (const p of r.serie) { if (p.d > fim) break; if (p.lib != null) s = p; }
+    if (!s) return "";
+    const saldo = s.gar - s.lib;
+    return `<span class="acomp" title="${esc(r.resolucao)}, ${esc(r.artigos)}: acompanhamento, sem avaliação de cumprimento. Liberados ${nf(s.lib, 1)} hm³ até ${df(s.d)}; média de ${nf(s.v, 2)} m³/s no período seco.">Saldo garantido ao PCJ: ${nf(saldo, 1)} hm³ de ${nf(s.gar, 1)} hm³ <span class="muted">· até ${df(s.d)}</span></span>`;
+  }).join("");
+}
 function noPeriodo(r) { return r.serie.filter((s) => s.d >= ini && s.d <= fim); }
 function ultimoValido(serie) { for (let i = serie.length - 1; i >= 0; i--) if (serie[i].st !== "Sem dado") return serie[i]; return serie[serie.length - 1] || null; }
 function contar(serie) { const c = { "Atende": 0, "Tolerância": 0, "Não atende": 0, n: 0 }; for (const s of serie) if (AVAL.includes(s.st)) { c[s.st]++; c.n++; } return c; }
@@ -596,7 +605,7 @@ function render() {
     for (const r of rs) { const u = efetivo(r, noPeriodo(r)); if (u.st === "Não atende") k.nao++; else if (u.st === "Tolerância" || (u.st === "Em curso" && u.exc)) k.tol++; else if (u.st === "Atende") k.ok++; else if (u.st === "Em curso") k.ec++; }
     nNao += k.nao;
     const ab_s = abrirTodos ? !sisFechados.has(sis) : sisAbertos.has(sis);
-    html += `<tr class="sys-row" data-sis="${esc(sis)}"><td colspan="9"><button type="button" class="sys-btn" aria-expanded="${ab_s}"><span class="seta" aria-hidden="true">▸</span><span class="nome">${esc(sis)}</span><span class="sys-cnt"><span>${rs.length} regra${rs.length > 1 ? "s" : ""}</span>${k.nao ? `<span class="c-nao">${k.nao} não atende</span>` : ""}${k.tol ? `<span class="c-tol">${k.tol} tolerância/parcial acima</span>` : ""}${k.ok ? `<span class="c-ok">${k.ok} atende</span>` : ""}${k.ec ? `<span>${k.ec} em curso</span>` : ""}</span></button></td></tr>`;
+    html += `<tr class="sys-row" data-sis="${esc(sis)}"><td colspan="9"><button type="button" class="sys-btn" aria-expanded="${ab_s}"><span class="seta" aria-hidden="true">▸</span><span class="nome">${esc(sis)}</span>${acompanhamento(sis)}<span class="sys-cnt"><span>${rs.length} regra${rs.length > 1 ? "s" : ""}</span>${k.nao ? `<span class="c-nao">${k.nao} não atende</span>` : ""}${k.tol ? `<span class="c-tol">${k.tol} tolerância/parcial acima</span>` : ""}${k.ok ? `<span class="c-ok">${k.ok} atende</span>` : ""}${k.ec ? `<span>${k.ec} em curso</span>` : ""}</span></button></td></tr>`;
     if (!ab_s) continue;
     for (const g of agruparPontos(rs)) {
       if (g.length === 1) { html += linhaRegra(g[0], false); continue; }
@@ -872,6 +881,10 @@ function expandirSeries(dados) {
 function iniciar(dados) {
   expandirSeries(dados);
   D = dados;
+  // regras informativas (ex.: 925-seco, garantia de volume ao PCJ) não entram na contagem nem no mapa:
+  // aparecem como indicador de acompanhamento no cabeçalho do sistema
+  D.acomp = D.regras.filter((r) => r.informativa);
+  D.regras = D.regras.filter((r) => !r.informativa);
   // dias anteriores à vigência da norma vêm compactados no JSON: recompõe como "Não se aplica"
   for (const r of D.regras) {
     const pv = r.pre_vigencia; if (!pv) continue;
