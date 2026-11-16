@@ -234,13 +234,13 @@ R.append(dict(id="925-santaines", resolucao="Res. Conj. ANA/DAEE 925/2017", arti
 for chave, nome, movel, minimo in [("valinhos", "Valinhos (rio Atibaia)", [12.0, 12.0, 11.0, 11.0, None], 10.0),
                                    ("atibaia", "Atibaia (rio Atibaia)", [3.0, 3.0, 2.0, 2.0, None], 2.0),
                                    ("buenopolis", "Buenópolis (rio Jaguari)", [2.5, 2.5, 2.0, 2.0, None], 2.0)]:
-    R.append(dict(id=f"925-{chave}-dia", resolucao="Res. Conj. ANA/DAEE 925/2017", artigos="art. 5º, §§ 3º, 6º e 10", sistema="Cantareira (PCJ)", ponto=nome,
+    R.append(dict(id=f"925-{chave}-dia", resolucao="Res. Conj. ANA/DAEE 925/2017", artigos="art. 5º, §§ 3º, 6º e 10", sistema="Cantareira", ponto=nome,
                   descricao=f"Vazão média diária ≥ {minimo:.1f} m³/s".replace(".", ","), tipo="piso", freq="diaria", niveis=2, tol=None,
                   fonte=f"SAISP:{chave}", pisos={"todos": minimo}, sem_faixa5=(chave == "atibaia"), faixa="CANTAREIRA"))
-    R.append(dict(id=f"925-{chave}-movel", resolucao="Res. Conj. ANA/DAEE 925/2017", artigos="art. 5º, § 2º", sistema="Cantareira (PCJ)", ponto=nome,
+    R.append(dict(id=f"925-{chave}-movel", resolucao="Res. Conj. ANA/DAEE 925/2017", artigos="art. 5º, § 2º", sistema="Cantareira", ponto=nome,
                   descricao="Média móvel de 15 dias ≥ meta da faixa (só no período úmido)", tipo="movel", freq="diaria", niveis=2, tol=None,
                   fonte=f"SAISP:{chave}", faixa="CANTAREIRA", metas=movel, umido=UMIDO_DEZ_MAI, dias=15))
-R.append(dict(id="925-seco", resolucao="Res. Conj. ANA/DAEE 925/2017", artigos="art. 5º, § 5º", sistema="Cantareira (PCJ)", ponto="Sistema Cantareira → PCJ",
+R.append(dict(id="925-seco", resolucao="Res. Conj. ANA/DAEE 925/2017", artigos="art. 5º, § 5º", sistema="Cantareira", ponto="Sistema Cantareira → PCJ",
               descricao="Informativa: volume garantido ao PCJ de 1º/6 a 30/11 (média de 10 m³/s, 158,1 hm³) e volume liberado", tipo="media_periodo", freq="periodo", niveis=2, tol=None, informativa=True,
               fontes=["SAR:29001:defl", "SAR:29002:defl", "SAR:29003:defl"], inicio="06-01", fim="11-30", minimo=10.0))
 for cod, nome, mn in [("29004", "Paiva Castro", 0.10), ("29001", "Jaguari-Jacareí", 0.25)]:
@@ -253,7 +253,7 @@ R.append(dict(id="925-art2-atibaia", resolucao="Res. Conj. ANA/DAEE 925/2017", a
 
 # --------------------------------------------------------------------------- 614/2010 Cantareira (cheias, out–jun)
 for cod, nome, maxnormal in [("29001", "Jaguari-Jacareí", 844.00), ("29002", "Cachoeira", 821.88), ("29003", "Atibainha", 786.72), ("29004", "Paiva Castro", 745.61)]:
-    R.append(dict(id=f"614-{cod}", resolucao="Res. Conj. ANA/DAEE 614/2010", artigos="arts. 1º, 3º a 5º; Anexo 1", sistema="Cantareira (cheias)", ponto=nome,
+    R.append(dict(id=f"614-{cod}", resolucao="Res. Conj. ANA/DAEE 614/2010", artigos="arts. 1º, 3º a 5º; Anexo 1", sistema="Cantareira", ponto=nome,
                   descricao=f"Out–jun: cota ≤ NA máximo normal ({maxnormal:.2f} m)".replace(".", ","), tipo="teto_cota", freq="diaria", niveis=2, tol=None,
                   fonte=f"SAR:{cod}:cota", maximo=maxnormal, meses=[10, 11, 12, 1, 2, 3, 4, 5, 6]))
 
@@ -265,7 +265,7 @@ for cod, nome, cota_rec in [("29001", "Jaguari-Jacareí", None), ("29002", "Cach
     meses_rec = {str(m): cota_rec for m in (10, 11, 12, 1, 2, 3, 4)} if cota_rec else {}
     desc = (f"Out–jun: cota ≤ nível máximo operacional (out–abr: {cota_rec:.2f} m, cota máxima recomendada no Anexo 1)".replace(".", ",")
             if cota_rec else "Out–jun: cota ≤ nível máximo operacional definido pelo DAEE")
-    R.append(dict(id=f"614-op-{cod}", resolucao="Res. Conj. ANA/DAEE 614/2010", artigos="arts. 1º, §§ 2º e 3º, 3º e 4º; Anexo 1, item 3", sistema="Cantareira (cheias)", ponto=nome,
+    R.append(dict(id=f"614-op-{cod}", resolucao="Res. Conj. ANA/DAEE 614/2010", artigos="arts. 1º, §§ 2º e 3º, 3º e 4º; Anexo 1, item 3", sistema="Cantareira", ponto=nome,
                   descricao=desc, tipo="teto_cota", freq="diaria", niveis=2, tol=None, fonte=f"SAR:{cod}:cota", meses=[10, 11, 12, 1, 2, 3, 4, 5, 6],
                   maximo_meses=meses_rec, param_mensal=f"na_op_{cod}", pendente=PEND_NA_OP.format(chave=f"na_op_{cod}|aaaa-mm"),
                   obs_maximo="cota máxima recomendada pelo DAEE e pela ANA (Anexo 1, item 3); o nível operacional mensal do DAEE não está cadastrado",
@@ -276,7 +276,7 @@ for cod, nome, seco, umido in [("29001", "Jaguari-Jacareí", 40, 100), ("29002",
     if umido is None:
         extra["pendente"] = ("vazão de restrição de dezembro a junho válida só até fev/2011 (1 m³/s); o valor posterior ao desassoreamento do rio Juqueri, "
                              "a ser definido pelo DAEE (Anexo 1, item 4, OBS 3), não foi localizado")
-    R.append(dict(id=f"614-restr-{cod}", resolucao="Res. Conj. ANA/DAEE 614/2010", artigos="Anexo 1, item 4", sistema="Cantareira (cheias)", ponto=nome,
+    R.append(dict(id=f"614-restr-{cod}", resolucao="Res. Conj. ANA/DAEE 614/2010", artigos="Anexo 1, item 4", sistema="Cantareira", ponto=nome,
                   descricao=(f"Descarga ≤ vazão de restrição ({seco} m³/s jul–nov; {umido} m³/s dez–jun)" if umido is not None else
                              f"Descarga ≤ vazão de restrição ({seco} m³/s jul–nov; dez–jun: valor posterior a fev/2011 pendente)"),
                   tipo="teto_diario", freq="diaria", niveis=2, tol=None,
