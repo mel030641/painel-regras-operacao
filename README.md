@@ -4,7 +4,7 @@ Painel estático que audita diariamente o cumprimento das resoluções e marcos 
 
 ## O que é auditado
 
-62 regras, em 12 sistemas hídricos, com base nas resoluções validadas pela SOE em 03/11/2026:
+Regras de operação dos sistemas abaixo, com base nas resoluções validadas pela SOE em 03/11/2026. O número de regras não é escrito à mão: o painel o mostra na aba Síntese e o manual publicado o calcula a partir do catálogo (`src/regras.py`) a cada atualização.
 
 | Sistema | Normas |
 |---|---|
@@ -35,23 +35,34 @@ A lista completa, com dispositivos, limites e fontes, está em `src/regras.py`.
 
 ```
 src/coleta.py              coletores (ONS, SAR, SAISP, API Mananciais Sabesp, Telemetria ANA, arquivos manuais)
-src/regras.py              faixas, parâmetros e as 62 regras
+src/regras.py              faixas, parâmetros e o catálogo de regras
 src/calculo.py             avaliação diária, status e folga -> data/painel.json
 src/serie_compacta.py      grava a série diária de cada regra em colunas no painel.json (~3x menor) e a recompõe para as planilhas
 src/boletins_ana.py        coleta diária das faixas nos boletins oficiais da ANA (gov.br)
 src/boletins_parsers.py    leitura do texto dos boletins (pdftotext)
 src/faixas_powerbi.py      lê as faixas dos painéis Power BI e grava config/faixas.json (histórico); CSV de conferência opcional (--csv)
-src/faixas_boletins.py     grava em config/faixas.json o histórico de faixas dos boletins diários (desde out/2017)
 src/publicar.py            monta o site (_site/index.html + painel.json)
-src/validar.py             confronta o cálculo com a planilha de auditoria da SOE
 web/painel.html            interface do painel
 config/faixas.json         faixas publicadas (boletim ANA ou Power BI), por reservatório e período
 config/atos_complementares.json cadastro único dos atos complementares (outorgas, comunicados, ofícios, valores mensais, situações declaradas)
 src/atos.py                lê e confere o cadastro de atos (python src/atos.py lista os atos por regra)
 config/curvas_seguranca_sf.json curvas de segurança de Três Marias e Sobradinho por ciclo (2.081/2017)
-data/manual/historico/     série manual de Santa Inês usada até out/2026 (substituída pela API Sabesp)
+ferramentas/               scripts de uso único (carga inicial e validação); não rodam no fluxo diário
+data/historico/            arquivos de registro da carga inicial e da validação
 .github/workflows/painel.yml    atualização diária e publicação
 ```
+
+### Ferramentas de uso único
+
+Ficam fora de `src/` porque não fazem parte da atualização diária. Foram usadas uma vez e estão guardadas para consulta ou nova carga.
+
+| Arquivo | Para que serviu |
+|---|---|
+| `ferramentas/validar.py` | Comparou o cálculo com a "Planilha de Auditoria Multitemporal de Eventos SOE" (out/2026). |
+| `data/historico/validacao_out2026.csv` | Resultado dessa comparação. |
+| `ferramentas/faixas_boletins.py` | Importou para `config/faixas.json` o histórico de faixas dos boletins diários desde out/2017. |
+| `data/historico/santa_ines_planilha_out2026.csv` | Planilha manual de Santa Inês usada na carga inicial, antes da coleta pela API Sabesp. |
+| `data/historico/santa_ines.csv` | Série manual de Santa Inês (out/2026) que o cálculo lia antes da coleta pela API Sabesp; nenhuma regra a usa mais. |
 
 ## Executar localmente
 
@@ -69,7 +80,7 @@ python -m http.server -d _site 8000      # abrir http://localhost:8000
 Validação contra a planilha de auditoria (requer `pip install openpyxl`):
 
 ```bash
-python src/validar.py "Planilha de Auditoria Multitemporal.xlsx" data/painel.json data/validacao.csv
+python ferramentas/validar.py "Planilha de Auditoria Multitemporal.xlsx" data/painel.json data/validacao.csv
 ```
 
 ## Status e métrica
@@ -95,7 +106,7 @@ python src/validar.py "Planilha de Auditoria Multitemporal.xlsx" data/painel.jso
 - **Texto das normas**: os textos das resoluções ficam em `normas/textos/r<número>_<ano>.txt`. `src/textos_normas.py` recorta os dispositivos citados no campo `artigos` de cada regra, e o painel os mostra na coluna Norma e no detalhe. Ao cadastrar uma resolução nova, incluir o texto e conferir o recorte com `python src/textos_normas.py`. Citação ambígua vai em `CORRECOES`.
 - **Regras que dependem de ato complementar**: o dicionário `COMPLEMENTAR` em `src/regras.py` indica, por regra, o ato posterior à resolução de que o parâmetro depende. O painel mostra o selo "ato complementar" e o filtro "Só regras com ato complementar" na aba Regras. Ao cadastrar nova regra nessa condição, incluir a entrada no dicionário.
 - **Curvas de segurança do São Francisco** (Res. 2.081/2017, art. 4º): a cada ciclo (dezembro a novembro), acrescentar as tabelas de Três Marias e de Xingó da NT do ONS em `config/curvas_seguranca_sf.json` e cadastrar o ofício da ANA em `config/atos_complementares.json` (efeito `curva_seguranca`). Sem esse ofício, o teto fica como Parâmetro pendente.
-- **Santa Inês**: coletada automaticamente da API Mananciais da Sabesp (`https://mananciais.sabesp.com.br/api/v4`, EEAB 36). O valor do dia D é a média de D-1 07h a D 07h. A planilha manual de out/2026 ficou em `data/manual/historico/` só como registro.
+- **Santa Inês**: coletada automaticamente da API Mananciais da Sabesp (`https://mananciais.sabesp.com.br/api/v4`, EEAB 36). O valor do dia D é a média de D-1 07h a D 07h. A planilha manual de out/2026 ficou em `data/historico/` só como registro.
 - **Postos PCJ**: continuam no SAISP, com média diária de 00h a 24h (decisão da SOE em 04/11/2026). A API Sabesp também publica esses postos, mas no dia de 07h a 07h, e por isso não é usada para eles.
 - **Rede**: o ambiente que roda o cálculo precisa acessar `mananciais.sabesp.com.br`.
 

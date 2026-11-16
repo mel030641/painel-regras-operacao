@@ -2,7 +2,7 @@
 validar.py - Confere o cálculo (data/painel.json) com a "Planilha de Auditoria Multitemporal de Eventos SOE".
 
 Uso:
-    python src/validar.py <planilha.xlsx> [painel.json] [saida.csv]
+    python ferramentas/validar.py <planilha.xlsx> [painel.json] [saida.csv]
 
 Para cada linha da planilha (data × ponto de controle), compara o valor auditado e o status com o resultado do
 painel. Resultado: CSV linha a linha e resumo por aba e ponto (valores iguais com diferença ≤ 2% e status iguais).
@@ -20,7 +20,7 @@ from pathlib import Path
 
 import openpyxl
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 import serie_compacta  # noqa: E402
 
 MAPA = {

@@ -7,6 +7,7 @@ Dependências: biblioteca padrão; openpyxl para as planilhas (sem ele, o site s
 """
 from __future__ import annotations
 
+import json
 import shutil
 import sys
 from pathlib import Path
@@ -36,7 +37,11 @@ def main():
     (site / "index.html").write_text(html, encoding="utf-8")
     shutil.copyfile(painel, site / "painel.json")
     (site / ".nojekyll").write_text("", encoding="utf-8")
-    shutil.copyfile(RAIZ / "web" / "manual.html", site / "manual.html")
+    # contagens do manual calculadas a partir do catálogo publicado (regras de acompanhamento não contam)
+    regras = [r for r in json.loads(painel.read_text(encoding="utf-8"))["regras"] if not r.get("informativa")]
+    manual = (RAIZ / "web" / "manual.html").read_text(encoding="utf-8")
+    manual = manual.replace("{{N_REGRAS}}", str(len(regras)))
+    (site / "manual.html").write_text(manual, encoding="utf-8")
     try:
         sys.path.insert(0, str(Path(__file__).resolve().parent))
         import documentos
