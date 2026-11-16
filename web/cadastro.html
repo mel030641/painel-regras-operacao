@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cadastro de atos complementares</title>
+<script>try { const t = localStorage.getItem("painel-soe-tema"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #f5f7f8; --surface: #ffffff; --sunk: #eceff1; --line: #d9dee2;
+  --fg: #142027; --fg-2: #46565f; --fg-3: #6f7d85; --accent: #0b6e7f; --accent-soft: #d8ecef; --accent-ink: #ffffff;
+  --ok: #0c8a2e; --ok-soft: #dff2e3; --tol: #b97800; --tol-soft: #fbefd2; --nao: #c62f2f; --nao-soft: #f8dede;
+  --f-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace; --r: 6px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1619; --surface: #162026; --sunk: #1c282f; --line: #2a3a42; --fg: #e4ecef; --fg-2: #a9b8bf; --fg-3: #7f9099;
+  --accent: #4fb8c9; --accent-soft: #173a42; --accent-ink: #06181c; --ok: #3cc35f; --ok-soft: #15331d; --tol: #f0b23a; --tol-soft: #3a2d10;
+  --nao: #f06a6a; --nao-soft: #3d1a1a; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1619; --surface: #162026; --sunk: #1c282f; --line: #2a3a42; --fg: #e4ecef; --fg-2: #a9b8bf; --fg-3: #7f9099;
+  --accent: #4fb8c9; --accent-soft: #173a42; --accent-ink: #06181c; --ok: #3cc35f; --ok-soft: #15331d; --tol: #f0b23a; --tol-soft: #3a2d10;
+  --nao: #f06a6a; --nao-soft: #3d1a1a; color-scheme: dark }
+* { box-sizing: border-box }
+[hidden] { display: none !important }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.55 var(--f-body) }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px }
+header { background: var(--surface); border-bottom: 1px solid var(--line); padding: 20px 0 16px }
+header a { color: var(--accent); text-decoration: none; font-size: .9rem }
+h1, h2 { font-family: var(--f-display); margin: 0; text-wrap: balance }
+h1 { font-size: 1.75rem; line-height: 1.15; margin-top: 6px }
+h2 { font-size: 1.15rem; margin: 0 0 10px }
+.lead { color: var(--fg-2); max-width: 78ch; margin: 6px 0 0 }
+main { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 20px; padding: 20px 16px 60px }
+@media (max-width: 900px) { main { grid-template-columns: 1fr } }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px }
+.card + .card { margin-top: 16px }
+.campos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 14px; align-items: start }
+@media (max-width: 560px) { .campos { grid-template-columns: 1fr } }
+.campo { display: grid; gap: 4px; font-size: .85rem; color: var(--fg-2) }
+.campo.largo { grid-column: 1 / -1 }
+.campo b { color: var(--fg); font-weight: 600 }
+input, select, textarea { font: inherit; font-size: .9rem; color: var(--fg); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 6px 8px; width: 100%; min-width: 0 }
+textarea { min-height: 70px; resize: vertical }
+select[multiple] { min-height: 110px }
+input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px }
+.lido { border-color: var(--accent); background: var(--accent-soft) }
+.dica { font-size: .76rem; color: var(--fg-3) }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 7px 12px; cursor: pointer; font: 500 .88rem var(--f-body); color: var(--fg-2) }
+.btn:hover { background: var(--sunk); color: var(--fg) }
+.btn.pri { background: var(--accent); border-color: var(--accent); color: var(--accent-ink) }
+.btn.pri:hover { filter: brightness(1.08) }
+.btn[disabled] { opacity: .5; cursor: not-allowed }
+.acoes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px }
+.pdf { border: 1px dashed var(--line); border-radius: var(--r); padding: 12px; display: grid; gap: 8px }
+.pdf.arrastando { border-color: var(--accent); background: var(--accent-soft) }
+.achados { font-size: .82rem; display: grid; gap: 2px }
+.achados .ok { color: var(--ok) } .achados .nao { color: var(--fg-3) }
+details.texto summary { cursor: pointer; font-size: .82rem; color: var(--fg-2) }
+details.texto pre { max-height: 260px; overflow: auto; white-space: pre-wrap; font: .75rem/1.45 var(--f-mono); background: var(--sunk); padding: 8px; border-radius: var(--r) }
+pre#previa { margin: 0; max-height: 420px; overflow: auto; white-space: pre-wrap; word-break: break-word; font: .78rem/1.5 var(--f-mono); background: var(--sunk); padding: 10px; border-radius: var(--r) }
+.erros { margin: 10px 0 0; padding: 8px 12px 8px 28px; border-radius: var(--r); background: var(--nao-soft); color: var(--nao); font-size: .84rem }
+.valido { margin: 10px 0 0; padding: 8px 12px; border-radius: var(--r); background: var(--ok-soft); color: var(--ok); font-size: .84rem }
+.nota { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 8px 12px; border-radius: 0 var(--r) var(--r) 0; font-size: .84rem; margin: 0 0 12px }
+.msg { font-size: .82rem; color: var(--fg-2); min-height: 1.2em; margin-top: 8px }
+fieldset { border: 0; padding: 0; margin: 0 }
+legend { font: 600 .95rem var(--f-display); margin-bottom: 8px; padding: 0 }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a href="index.html#atos">← Voltar à aba Atos complementares</a>
+  <h1>Cadastro de atos complementares</h1>
+  <p class="lead">Preencha os dados do ato, ou leia-os de um PDF, confira a prévia e envie o pedido pelo GitHub. O pedido vira um PR validado automaticamente e só entra no painel depois do merge. Quem não usa o GitHub pode copiar ou baixar o registro e enviá-lo à equipe.</p>
+</div></header>
+
+<main>
+  <div>
+    <section class="card" aria-labelledby="h-pdf">
+      <h2 id="h-pdf">1. Ler dados de um PDF (opcional)</h2>
+      <p class="nota">O arquivo é lido só no seu navegador: não é enviado nem gravado no repositório, que é público. A leitura depende do PDF ter texto; PDF digitalizado (imagem) não é lido. Os campos preenchidos pela leitura ficam destacados e devem ser conferidos.</p>
+      <div class="pdf" id="pdf-zona">
+        <label class="campo"><b>Arquivo PDF do ato</b><input type="file" id="pdf" accept="application/pdf,.pdf"></label>
+        <div class="achados" id="pdf-achados" aria-live="polite"></div>
+        <details class="texto" id="pdf-texto-box" hidden><summary>Ver o texto extraído</summary><pre id="pdf-texto"></pre></details>
+      </div>
+    </section>
+
+    <form class="card" id="form" novalidate aria-labelledby="h-form">
+      <h2 id="h-form">2. Dados do ato</h2>
+      <fieldset class="campos">
+        <label class="campo largo"><b>O que o ato define</b>
+          <select id="efeito" required></select>
+          <span class="dica" id="efeito-dica"></span></label>
+        <label class="campo"><b>Tipo de documento</b><select id="tipo" required></select></label>
+        <label class="campo"><b>Documento</b><input id="documento" placeholder="Ex.: Ofício nº 39/2026/SOE/ANA" required></label>
+        <label class="campo"><b>Data do documento</b><input id="data" type="date"></label>
+        <label class="campo"><b>Nº SEI</b><input id="sei" inputmode="numeric" placeholder="Ex.: 0258113"></label>
+        <label class="campo"><b>Vigência: início</b><input id="v-ini" type="date"></label>
+        <label class="campo"><b>Vigência: fim</b><input id="v-fim" type="date"><span class="dica">Vazio = sem término declarado. Na outorga, é o vencimento.</span></label>
+        <label class="campo largo"><b>Regras afetadas</b><select id="regras" multiple></select><span class="dica">Preenchido pelo tipo de efeito; ajuste se o ato alcançar outras regras (Ctrl/Cmd + clique).</span></label>
+      </fieldset>
+
+      <fieldset class="campos" id="ef-campos" style="margin-top:14px">
+        <legend>Efeito</legend>
+        <label class="campo" data-p="param"><b>Parâmetro</b><select id="param"></select></label>
+        <label class="campo" data-p="valor"><b>Valor <span id="valor-un"></span></b><input id="valor" inputmode="decimal" placeholder="Ex.: 972"></label>
+        <label class="campo" data-p="ano"><b>Ano</b><input id="ano" inputmode="numeric" placeholder="aaaa" maxlength="4"></label>
+        <label class="campo" data-p="reservatorio"><b>Reservatório</b><select id="reservatorio"></select></label>
+        <label class="campo" data-p="estagio"><b>Estágio</b><select id="estagio"><option value="0">1º estágio</option><option value="1">2º estágio</option><option value="2">3º estágio</option></select></label>
+        <label class="campo" data-p="ciclo"><b>Ciclo</b><input id="ciclo" placeholder="aaaa/aaaa"></label>
+        <label class="campo" data-p="sistema"><b>Sistema</b><input id="sistema" placeholder="Ex.: Paraíba do Sul"></label>
+        <label class="campo largo" data-p="mensais"><b>Valores mensais <span id="mensais-un"></span></b><textarea id="mensais" placeholder="Um mês por linha, no formato aaaa-mm = valor&#10;2026-12 = 2,5&#10;2027-01 = 2,5"></textarea><span class="dica">Também aceita “dez/2026 = 2,5”. A vigência é preenchida com o primeiro e o último mês, se estiver vazia.</span></label>
+      </fieldset>
+
+      <fieldset class="campos" style="margin-top:14px">
+        <label class="campo largo"><b>Citação exibida no painel</b><textarea id="citacao" placeholder="Documento, data, dispositivo e o que fixa. Ex.: Ofício nº 39/2026/SOE/ANA, de 10/11/2026: ..."></textarea><span class="dica">Deixe vazio para gerar a partir dos campos acima.</span></label>
+        <label class="campo"><b>Identificador</b><input id="id" placeholder="gerado automaticamente"><span class="dica">Um id já cadastrado substitui o registro existente.</span></label>
+        <label class="campo"><b>Cadastrado por</b><input id="cadastrado_por" placeholder="Nome ou matrícula"></label>
+      </fieldset>
+    </form>
+  </div>
+
+  <div>
+    <section class="card" aria-labelledby="h-previa" style="position:sticky;top:16px">
+      <h2 id="h-previa">3. Prévia e envio</h2>
+      <pre id="previa" aria-live="polite"></pre>
+      <div id="validacao"></div>
+      <div class="acoes">
+        <button type="button" class="btn pri" id="b-github">Enviar pedido pelo GitHub</button>
+        <button type="button" class="btn" id="b-copiar">Copiar registro</button>
+        <button type="button" class="btn" id="b-baixar">Baixar registro (.json)</button>
+        <button type="button" class="btn" id="b-limpar">Limpar</button>
+      </div>
+      <p class="msg" id="msg" role="status"></p>
+      <p class="dica">“Enviar pelo GitHub” abre um pedido (issue) já preenchido no repositório; é preciso estar conectado ao GitHub com permissão no repositório. A automação valida o registro e abre um PR, que alguém da equipe revisa e aprova. Atos com informação restrita não devem ser cadastrados, porque o repositório é público.</p>
+    </section>
+  </div>
+</main>
+
+<script>
+(() => {
+"use strict";
+const REPO = "mel030641/painel-regras-operacao";
+const PDFJS = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
+const $ = (s) => document.querySelector(s);
+const TIPOS = { outorga: "Outorga", comunicado: "Comunicado", oficio: "Ofício", confirmacao: "Confirmação", registro: "Registro", valor_mensal: "Valor mensal", situacao_declarada: "Situação declarada" };
+const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
+const MESES_LONGOS = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+// Catálogo de efeitos aceitos pelo cadastro (src/atos.py). 'campos' diz o que o formulário pede; 'regras' por parâmetro.
+const EFEITOS = {
+  outorga:   { rot: "Vazão outorgada (limite fixo)", tipo: "outorga", un: "m³/s", campos: ["param", "valor"],
+               params: { outorga_GRFURN: ["193-GRFURN", "Furnas"], outorga_GRMMOR: ["193-GRMMOR", "Mascarenhas de Moraes"], outorga_PREMBO: ["194-PREMBO", "Emborcação"], outorga_PRITUM: ["194-PRITUM", "Itumbiara"] },
+               dica: "Res. ANA 193/2024 e 194/2024: vazão máxima turbinada da outorga. Informe o vencimento em Vigência: fim." },
+  vol_anual: { rot: "Volume anual da transposição (Res. 1.931/2017)", tipo: "comunicado", un: "hm³", campos: ["valor", "ano"], params: { vol_anual_jaguari: ["1931-volume", "Jaguari (transposição)"] },
+               dica: "Comunicado conjunto anual de volume suplementar; a vigência é o ano civil." },
+  teto_mensal: { rot: "Teto mensal de vazão (Res. 2.081/2017)", tipo: "valor_mensal", un: "m³/s", campos: ["param", "mensais"], chave: "valores_mensais",
+               params: { teto_SFTMAR: ["2081-SFTMAR-max", "Três Marias"], teto_SFSOBR: ["2081-SFSOBR-max", "Sobradinho"], teto_SFXING: ["2081-SFXING-max", "Xingó"] },
+               dica: "Vazão defluente média mensal fixada pelo ONS a partir de recomendação da ANA." },
+  na_op:     { rot: "Nível máximo operacional mensal (Res. 614/2010)", tipo: "valor_mensal", un: "m", campos: ["param", "mensais"], chave: "valores_mensais",
+               params: { na_op_29001: ["614-op-29001", "Jaguari-Jacareí"], na_op_29002: ["614-op-29002", "Cachoeira"], na_op_29003: ["614-op-29003", "Atibainha"], na_op_29004: ["614-op-29004", "Paiva Castro"] },
+               dica: "Nível definido mensalmente pelo DAEE a partir dos volumes de espera (art. 1º, § 2º, e art. 3º)." },
+  restricao: { rot: "Vazão de restrição mensal (Res. 614/2010)", tipo: "valor_mensal", un: "m³/s", campos: ["param", "mensais"], chave: "restricao_mensal",
+               params: { restricao_29004: ["614-restr-29004", "Paiva Castro"] },
+               dica: "Vazão de restrição de dezembro a junho definida pelo DAEE (Anexo 1, item 4, OBS 3)." },
+  temporada: { rot: "Vazão da temporada de praias (Res. 70/2021)", tipo: "comunicado", un: "m³/s", campos: ["reservatorio", "ano", "valor"], params: { TOSMES: ["70-TOSMES-praias", "Serra da Mesa"] },
+               dica: "Vazão informada pelo ONS até 10 de maio (art. 6º, § 3º)." },
+  estagio:   { rot: "Revisão temporária de estágio (Res. 1.382/2015)", tipo: "comunicado", un: "% VU", campos: ["reservatorio", "estagio", "valor"],
+               params: { PBFUNI: ["1382-estagios", "Funil"], PBPARA: ["1382-estagios", "Paraibuna"], PBSBRA: ["1382-estagios", "Santa Branca"], PBJAGU: ["1382-estagios", "Jaguari (PS)"] },
+               dica: "Revisão do mínimo do estágio por comunicado da ANA (art. 1º, § 2º); exige vigência com início e fim." },
+  curva:     { rot: "Curvas de segurança do ciclo (Res. 2.081/2017)", tipo: "oficio", campos: ["ciclo"], regras: ["2081-SFTMAR-max", "2081-SFXING-max"],
+               dica: "Manifestação da ANA sobre a NT do ONS (art. 4º). As curvas em si ficam em config/curvas_seguranca_sf.json." },
+  tolerancia:{ rot: "Tolerância admitida por ato", tipo: "oficio", un: "%", campos: ["valor"], regras: [],
+               dica: "Fração admitida em torno do limite; informe em % (ex.: 5)." },
+  situacao:  { rot: "Situação declarada (só observação)", tipo: "situacao_declarada", campos: ["sistema"], regras: [],
+               dica: "Ex.: operação para controle de cheias declarada pelo ONS. Não muda a avaliação; aparece na observação do dia." },
+};
+let REGRAS = [], ATOS = [], lidos = new Set();
+
+// ---------- utilidades
+const num = (t) => { if (t == null) return null; const s = String(t).trim().replace(/\s/g, ""); if (!s) return null;
+  const n = /,\d+$/.test(s) ? s.replace(/\./g, "").replace(",", ".") : s.replace(/,/g, ""); const v = Number(n); return Number.isFinite(v) ? v : NaN; };
+const br = (v) => typeof v === "number" ? v.toLocaleString("pt-BR", { maximumFractionDigits: 4 }) : v;
+const df = (iso) => iso ? `${iso.slice(8, 10)}/${iso.slice(5, 7)}/${iso.slice(0, 4)}` : "";
+const slug = (t) => String(t || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40);
+const fimDoMes = (m) => { const [a, b] = m.split("-").map(Number); return `${m}-${String(new Date(Date.UTC(a, b, 0)).getUTCDate()).padStart(2, "0")}`; };
+function lerMensais(txt) {
+  const out = {}, erros = [];
+  String(txt || "").split(/\n/).map((l) => l.trim()).filter(Boolean).forEach((l, i) => {
+    const m = l.match(/^(\d{4})-(\d{2})\s*[=:;\t ]\s*(.+)$/) || l.match(/^([a-zç]{3})[a-zç]*\/(\d{4})\s*[=:;\t ]\s*(.+)$/i);
+    if (!m) { erros.push(`linha ${i + 1} (“${l}”) fora do formato aaaa-mm = valor`); return; }
+    let mes;
+    if (/^\d{4}$/.test(m[1])) mes = `${m[1]}-${m[2]}`;
+    else { const k = MESES.indexOf(m[1].toLowerCase().slice(0, 3)); if (k < 0) { erros.push(`linha ${i + 1}: mês “${m[1]}” não reconhecido`); return; } mes = `${m[2]}-${String(k + 1).padStart(2, "0")}`; }
+    const v = num(m[3]);
+    if (v == null || Number.isNaN(v)) { erros.push(`linha ${i + 1}: valor “${m[3]}” não numérico`); return; }
+    if (+mes.slice(5) < 1 || +mes.slice(5) > 12) { erros.push(`linha ${i + 1}: mês ${mes} inválido`); return; }
+    out[mes] = v;
+  });
+  return { valores: Object.fromEntries(Object.entries(out).sort()), erros };
+}
+
+// ---------- montagem do formulário
+function preencherSelects() {
+  $("#efeito").innerHTML = Object.entries(EFEITOS).map(([k, e]) => `<option value="${k}">${e.rot}</option>`).join("");
+  $("#tipo").innerHTML = Object.entries(TIPOS).map(([k, t]) => `<option value="${k}">${t}</option>`).join("");
+  const comp = REGRAS.filter((r) => r.complementar || r.id.startsWith("1382-"));
+  $("#regras").innerHTML = (comp.length ? comp : REGRAS).map((r) => `<option value="${r.id}">${r.id} · ${r.ponto}</option>`).join("");
+}
+function aplicarEfeito(manterTipo) {
+  const e = EFEITOS[$("#efeito").value];
+  document.querySelectorAll("#ef-campos [data-p]").forEach((el) => { el.hidden = !e.campos.includes(el.dataset.p); });
+  $("#ef-campos").hidden = !e.campos.length;
+  const ps = Object.entries(e.params || {});
+  $("#param").innerHTML = ps.map(([k, [rid, nome]]) => `<option value="${k}">${nome} (${k})</option>`).join("");
+  $("#reservatorio").innerHTML = ps.map(([k, [rid, nome]]) => `<option value="${k}">${nome} (${k})</option>`).join("");
+  $("#valor-un").textContent = e.un ? `(${e.un})` : ""; $("#mensais-un").textContent = e.un ? `(${e.un})` : "";
+  $("#efeito-dica").textContent = e.dica || "";
+  if (!manterTipo) $("#tipo").value = e.tipo;
+  marcarRegras();
+}
+function marcarRegras() {
+  const e = EFEITOS[$("#efeito").value];
+  let ids = e.regras;
+  if (!ids) { const k = e.campos.includes("reservatorio") ? $("#reservatorio").value : $("#param").value; const p = (e.params || {})[k]; ids = p ? [p[0]] : []; }
+  if (e.regras && !e.regras.length) return;   // tolerância e situação: o usuário escolhe
+  [...$("#regras").options].forEach((o) => { o.selected = ids.includes(o.value); });
+}
+
+// ---------- registro
+function registro() {
+  const e = EFEITOS[$("#efeito").value], k = $("#efeito").value, erros = [];
+  const regras = [...$("#regras").selectedOptions].map((o) => o.value);
+  let efeito = {}, vIni = $("#v-ini").value || null, vFim = $("#v-fim").value || null;
+  const valor = num($("#valor").value), ano = $("#ano").value.trim();
+  const exigeValor = () => { if (valor == null) erros.push("informe o valor"); else if (Number.isNaN(valor)) erros.push("valor não numérico"); };
+  if (k === "outorga") { exigeValor(); efeito = { parametro: $("#param").value, valor }; }
+  else if (k === "vol_anual") { exigeValor(); if (!/^\d{4}$/.test(ano)) erros.push("informe o ano (aaaa)"); efeito = { parametro: "vol_anual_jaguari", ano, valor };
+    if (/^\d{4}$/.test(ano)) { vIni = vIni || `${ano}-01-01`; vFim = vFim || `${ano}-12-31`; } }
+  else if (e.chave) { const m = lerMensais($("#mensais").value); erros.push(...m.erros); const meses = Object.keys(m.valores);
+    if (!meses.length && !m.erros.length) erros.push("informe ao menos um valor mensal");
+    efeito = { [e.chave]: { parametro: $("#param").value, valores: m.valores } };
+    if (meses.length) { vIni = vIni || `${meses[0]}-01`; vFim = vFim || fimDoMes(meses[meses.length - 1]); } }
+  else if (k === "temporada") { exigeValor(); if (!/^\d{4}$/.test(ano)) erros.push("informe o ano (aaaa)"); efeito = { vazao_temporada: { reservatorio: $("#reservatorio").value, ano, valor } };
+    if (/^\d{4}$/.test(ano)) { vIni = vIni || `${ano}-06-10`; vFim = vFim || `${ano}-08-20`; } }
+  else if (k === "estagio") { exigeValor(); efeito = { revisao_estagio: { reservatorio: $("#reservatorio").value, estagio: +$("#estagio").value, valor } };
+    if (!vIni || !vFim) erros.push("revisão de estágio precisa de vigência com início e fim"); }
+  else if (k === "curva") { const c = $("#ciclo").value.trim(); if (!/^\d{4}\/\d{4}$/.test(c)) erros.push("informe o ciclo no formato aaaa/aaaa"); efeito = { curva_seguranca: c };
+    if (/^\d{4}\/\d{4}$/.test(c)) { vIni = vIni || `${c.slice(0, 4)}-12-01`; vFim = vFim || `${c.slice(5)}-11-30`; } }
+  else if (k === "tolerancia") { exigeValor(); efeito = { tolerancia: valor == null || Number.isNaN(valor) ? null : +(valor / 100).toFixed(6) }; }
+  else if (k === "situacao") { const s = $("#sistema").value.trim(); if (!s) erros.push("informe o sistema"); efeito = { situacao: s }; }
+  const documento = $("#documento").value.trim(), data = $("#data").value || null, sei = $("#sei").value.trim() || null;
+  if (!documento) erros.push("informe o documento");
+  if (!regras.length) erros.push("escolha ao menos uma regra afetada");
+  if (vIni && vFim && vFim < vIni) erros.push("a vigência termina antes de começar");
+  if (sei && !/^\d{6,9}$/.test(sei)) erros.push("nº SEI deve ter só dígitos (6 a 9)");
+  const resumo = resumoEfeito(k, efeito, e);
+  const citAuto = `${documento}${data ? `, de ${df(data)}` : ""}${resumo ? `: ${resumo}` : ""}`;
+  const citacao = $("#citacao").value.trim() || citAuto;
+  const idAuto = slug(`${k === "outorga" ? "outorga-" + ($("#param").value || "").replace("outorga_", "") : k}-${documento}`) || "ato";
+  const id = ($("#id").value.trim() || idAuto).replace(/[^A-Za-z0-9_.-]/g, "-");
+  const r = { id, tipo: $("#tipo").value, documento, data, sei, regras, vigencia: { inicio: vIni, fim: vFim }, citacao, efeito };
+  const por = $("#cadastrado_por").value.trim();
+  if (por) r.cadastrado_por = por;
+  r.cadastrado_em = new Date().toISOString().slice(0, 10);
+  const existente = ATOS.find((a) => a.id === id);
+  return { r, erros, existente };
+}
+function resumoEfeito(k, ef, e) {
+  const un = e.un ? " " + e.un : "";
+  if (k === "outorga") return ef.valor != null ? `vazão máxima turbinada de ${br(ef.valor)}${un}` : "";
+  if (k === "vol_anual") return ef.valor != null ? `volume anual de ${ef.ano}: ${br(ef.valor)}${un}` : "";
+  if (e.chave) { const v = Object.entries(ef[e.chave].valores); return v.length ? `${e.rot.replace(/ \(.*/, "").toLowerCase()}: ${v.map(([m, x]) => `${MESES[+m.slice(5) - 1]}/${m.slice(0, 4)} ${br(x)}${un}`).join("; ")}` : ""; }
+  if (k === "temporada") return ef.vazao_temporada.valor != null ? `vazão da temporada ${ef.vazao_temporada.ano} de ${br(ef.vazao_temporada.valor)}${un}` : "";
+  if (k === "estagio") return `mínimo do ${ef.revisao_estagio.estagio + 1}º estágio de ${ef.revisao_estagio.reservatorio} revisto para ${br(ef.revisao_estagio.valor)}${un}`;
+  if (k === "curva") return `não objeção às curvas de segurança do ciclo ${ef.curva_seguranca}`;
+  if (k === "tolerancia") return ef.tolerancia != null ? `tolerância de ${br(ef.tolerancia * 100)}%` : "";
+  if (k === "situacao") return `situação declarada (${ef.situacao})`;
+  return "";
+}
+function atualizar() {
+  const { r, erros, existente } = registro();
+  $("#previa").textContent = JSON.stringify(r, null, 1);
+  $("#validacao").innerHTML = erros.length ? `<ul class="erros">${erros.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`
+    : `<p class="valido">Registro válido.${existente ? ` O id “${esc(r.id)}” já existe: o pedido substitui o registro atual (${esc(existente.documento)}).` : ""}</p>`;
+  $("#b-github").disabled = !!erros.length;
+  return { r, erros };
+}
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+// ---------- envio
+function corpoPedido(r) {
+  return ["Pedido de cadastro de ato complementar gerado pelo formulário do painel (web/cadastro.html).",
+    "A automação valida o registro e abre um PR que altera config/atos_complementares.json; o ato só entra no painel depois do merge.", "",
+    "```json", JSON.stringify(r, null, 1), "```"].join("\n");
+}
+$("#b-github").addEventListener("click", () => {
+  const { r, erros } = atualizar(); if (erros.length) return;
+  const url = `https://github.com/${REPO}/issues/new?` + new URLSearchParams({ title: `[cadastro de ato] ${r.id}`, labels: "cadastro-ato", body: corpoPedido(r) });
+  if (url.length > 7800) { $("#msg").textContent = "O registro ficou grande demais para o link do GitHub. Use “Baixar registro” e anexe o arquivo a um pedido no repositório."; return; }
+  window.open(url, "_blank", "noopener");
+  $("#msg").textContent = "Pedido aberto em outra aba do GitHub. Confira e clique em “Submit new issue” para enviar.";
+});
+$("#b-copiar").addEventListener("click", async () => {
+  const { r } = atualizar(); const t = JSON.stringify(r, null, 1);
+  try { await navigator.clipboard.writeText(t); $("#msg").textContent = "Registro copiado. Cole-o no pedido ou envie à equipe por Teams ou e-mail."; }
+  catch (e) { $("#msg").textContent = "Não foi possível copiar automaticamente; selecione o texto da prévia e copie."; }
+});
+$("#b-baixar").addEventListener("click", () => {
+  const { r } = atualizar();
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([JSON.stringify(r, null, 1) + "\n"], { type: "application/json" }));
+  a.download = `ato_${r.id}.json`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  $("#msg").textContent = `Arquivo ato_${r.id}.json gerado.`;
+});
+$("#b-limpar").addEventListener("click", () => { $("#form").reset(); lidos.forEach((id) => $("#" + id).classList.remove("lido")); lidos.clear(); $("#pdf").value = ""; $("#pdf-achados").innerHTML = ""; $("#pdf-texto-box").hidden = true; aplicarEfeito(); atualizar(); $("#msg").textContent = ""; });
+
+// ---------- leitura de PDF (pdf.js, no navegador)
+let pdfjsPronto = null;
+function carregarPdfjs() {
+  if (pdfjsPronto) return pdfjsPronto;
+  pdfjsPronto = new Promise((ok, falha) => {
+    const s = document.createElement("script"); s.src = PDFJS + "pdf.min.js";
+    s.onload = () => { window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS + "pdf.worker.min.js"; ok(window.pdfjsLib); };
+    s.onerror = () => { pdfjsPronto = null; falha(new Error("não foi possível carregar o leitor de PDF (cdnjs)")); };
+    document.head.appendChild(s);
+  });
+  return pdfjsPronto;
+}
+async function textoDoPdf(buf) {
+  const lib = await carregarPdfjs();
+  const doc = await lib.getDocument({ data: buf }).promise, partes = [];
+  for (let i = 1; i <= Math.min(doc.numPages, 30); i++) {
+    const c = await (await doc.getPage(i)).getTextContent();
+    let linha = "", y = null;
+    for (const it of c.items) { const yy = it.transform ? Math.round(it.transform[5]) : y; if (y !== null && yy !== y) { partes.push(linha); linha = ""; } linha += it.str + (it.hasEOL ? "\n" : ""); y = yy; }
+    partes.push(linha, "");
+  }
+  return partes.join("\n").replace(/[ \t]+/g, " ").replace(/\n{3,}/g, "\n\n").trim();
+}
+const dataExtenso = (d, m, a) => { const k = MESES_LONGOS.indexOf(m.toLowerCase().replace("marco", "março")); return k < 0 ? null : `${a}-${String(k + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`; };
+const dataBr = (t) => { let m = t.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/); if (m) return `${m[3]}-${m[2].padStart(2, "0")}-${m[1].padStart(2, "0")}`;
+  m = t.match(/(\d{1,2})º?\s+de\s+([a-zç]+)\s+de\s+(\d{4})/i); return m ? dataExtenso(m[1], m[2], m[3]) : null; };
+// Padrões de leitura. Cada um devolve o valor sugerido para um campo; o que não for encontrado fica em branco.
+function interpretar(tx) {
+  const t = tx.replace(/\s+/g, " "), achou = {};
+  const doc = t.match(/\b(OUTORGA|OF[IÍ]CIO(?:-CIRCULAR)?|COMUNICADO(?: CONJUNTO)?|NOTA T[ÉE]CNICA|CARTA|DESPACHO)\b[^.;]{0,60}?\bN[º°o.]\s*([\d.]+\/\d{4}(?:\/[A-Z0-9-]+)*(?:-R\d)?)/i);
+  if (doc) { const tipo = doc[1].toLowerCase(); achou.documento = `${doc[1][0].toUpperCase()}${doc[1].slice(1).toLowerCase()} nº ${doc[2]}`.replace("Ofício", "Ofício");
+    achou.tipo = /^outorga/.test(tipo) ? "outorga" : /^of/.test(tipo) ? "oficio" : /^comunicado/.test(tipo) ? "comunicado" : null; }
+  const dt = t.match(/,\s*de\s+(\d{1,2})º?\s+de\s+([a-zç]+)\s+de\s+(\d{4})/i) || t.match(/\bem\s+(\d{1,2})º?\s+de\s+([a-zç]+)\s+de\s+(\d{4})/i) || t.match(/(\d{1,2})º?\s+de\s+([a-zç]+)\s+de\s+(\d{4})/i);
+  if (dt) achou.data = dataExtenso(dt[1], dt[2], dt[3]);
+  const sei = t.match(/\bSEI\s*(?:n[º°o.]?\s*)?[:\s]*(\d{7,8})\b/i) || t.match(/documento\s+(?:SEI\s+)?n[º°o.]?\s*(\d{7,8})/i);
+  if (sei) achou.sei = sei[1];
+  const vig = t.match(/(?:vigorar[áa]|vigora|v[áa]lid[ao]s?|prazo de vig[êe]ncia|vig[êe]ncia)[^.]{0,120}?\bat[ée]\s+((?:\d{1,2}\/\d{1,2}\/\d{4})|(?:\d{1,2}º?\s+de\s+[a-zç]+\s+de\s+\d{4}))/i);
+  if (vig) achou["v-fim"] = dataBr(vig[1]);
+  const desde = t.match(/(?:a partir de|com efeitos? (?:a partir|desde) de?|efeitos desde)\s+((?:\d{1,2}\/\d{1,2}\/\d{4})|(?:\d{1,2}º?\s+de\s+[a-zç]+\s+de\s+\d{4}))/i);
+  if (desde) achou["v-ini"] = dataBr(desde[1]);
+  const vazao = t.match(/(\d{1,3}(?:\.\d{3})*(?:,\d+)?|\d+(?:,\d+)?)\s*m\s*[³3]\s*\/\s*s/i);
+  const hm3 = t.match(/(\d{1,3}(?:\.\d{3})*(?:,\d+)?|\d+(?:,\d+)?)\s*hm\s*[³3]/i);
+  const pct = t.match(/(\d+(?:,\d+)?)\s*%/);
+  const ciclo = t.match(/per[íi]odo hidrol[óo]gico\s*(?:de\s*)?(\d{4})\s*[-–\/]\s*(\d{4})/i);
+  if (ciclo) achou.ciclo = `${ciclo[1]}/${ciclo[2]}`;
+  const ano = t.match(/\b(?:ano de|exerc[íi]cio de|para o ano de|temporada de)\s*(\d{4})\b/i);
+  if (ano) achou.ano = ano[1];
+  const k = $("#efeito").value;
+  if (k === "vol_anual" && hm3) achou.valor = hm3[1];
+  else if (k === "estagio" && pct) achou.valor = pct[1];
+  else if (vazao && ["outorga", "temporada"].includes(k)) achou.valor = vazao[1];
+  // tabela mensal: "dezembro/2026 ... 2,5 m³/s" ou "dez/26 2,5"
+  if (EFEITOS[k].chave) {
+    const linhas = [], re = /\b(jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez)[a-zç]*\.?\s*[\/\-de ]+\s*(\d{4}|\d{2})\b\D{0,25}?(\d{1,4}(?:[.,]\d+)?)\s*(?:m\s*[³3]\s*\/\s*s|m\b)/gi;
+    let m; while ((m = re.exec(t))) { const a = m[2].length === 2 ? "20" + m[2] : m[2]; linhas.push(`${a}-${String(MESES.indexOf(m[1].toLowerCase()) + 1).padStart(2, "0")} = ${m[3]}`); }
+    if (linhas.length) achou.mensais = [...new Set(linhas)].join("\n");
+  }
+  return achou;
+}
+const ROTULOS = { documento: "Documento", tipo: "Tipo", data: "Data", sei: "Nº SEI", "v-ini": "Vigência: início", "v-fim": "Vigência: fim", valor: "Valor", ano: "Ano", ciclo: "Ciclo", mensais: "Valores mensais" };
+async function lerPdf(arq) {
+  const box = $("#pdf-achados");
+  if (!arq) return;
+  if (!/pdf$/i.test(arq.type) && !/\.pdf$/i.test(arq.name)) { box.innerHTML = `<span class="nao">O arquivo não é PDF.</span>`; return; }
+  box.innerHTML = "Lendo o PDF…";
+  try {
+    const tx = await textoDoPdf(await arq.arrayBuffer());
+    $("#pdf-texto").textContent = tx || "(sem texto)"; $("#pdf-texto-box").hidden = false;
+    if (tx.replace(/\s/g, "").length < 40) { box.innerHTML = `<span class="nao">O PDF não tem texto selecionável (provavelmente digitalizado). Preencha os campos à mão.</span>`; return; }
+    const a = interpretar(tx);
+    lidos.forEach((id) => $("#" + id).classList.remove("lido")); lidos.clear();
+    for (const [id, v] of Object.entries(a)) { if (v == null || v === "") continue; const el = $("#" + id); if (!el) continue; el.value = v; el.classList.add("lido"); lidos.add(id); }
+    box.innerHTML = Object.keys(ROTULOS).map((id) => a[id] ? `<span class="ok">✓ ${ROTULOS[id]}: ${esc(String(a[id]).replace(/\n/g, "; "))}</span>` : `<span class="nao">— ${ROTULOS[id]}: não encontrado</span>`).join("")
+      + `<span class="dica">Escolha antes o tipo de efeito para que o valor certo (m³/s, hm³, %) seja procurado. Confira cada campo destacado.</span>`;
+    atualizar();
+  } catch (e) { box.innerHTML = `<span class="nao">Não foi possível ler o PDF: ${esc(e.message)}. Preencha os campos à mão.</span>`; }
+}
+$("#pdf").addEventListener("change", (e) => lerPdf(e.target.files[0]));
+const zona = $("#pdf-zona");
+zona.addEventListener("dragover", (e) => { e.preventDefault(); zona.classList.add("arrastando"); });
+zona.addEventListener("dragleave", () => zona.classList.remove("arrastando"));
+zona.addEventListener("drop", (e) => { e.preventDefault(); zona.classList.remove("arrastando"); lerPdf(e.dataTransfer.files[0]); });
+
+// ---------- início
+$("#efeito").addEventListener("change", () => { aplicarEfeito(); atualizar(); });
+$("#param").addEventListener("change", () => { marcarRegras(); atualizar(); });
+$("#reservatorio").addEventListener("change", () => { marcarRegras(); atualizar(); });
+$("#form").addEventListener("input", (e) => { if (e.target.classList) e.target.classList.remove("lido"); atualizar(); });
+$("#form").addEventListener("change", atualizar);
+fetch("painel.json", { cache: "no-cache" }).then((r) => r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status))).then((d) => {
+  REGRAS = (d.regras || []).filter((r) => !r.informativa).map((r) => ({ id: r.id, ponto: r.ponto, complementar: r.complementar }));
+  ATOS = d.atos_complementares || [];
+}).catch(() => {
+  // sem o painel.json, a lista de regras vem do catálogo de efeitos
+  const ids = new Set(); Object.values(EFEITOS).forEach((e) => { (e.regras || []).forEach((x) => ids.add(x)); Object.values(e.params || {}).forEach(([x]) => ids.add(x)); });
+  REGRAS = [...ids].sort().map((id) => ({ id, ponto: "", complementar: true }));
+}).finally(() => { preencherSelects(); aplicarEfeito(); atualizar(); });
+})();
+</script>
+</body>
+</html>

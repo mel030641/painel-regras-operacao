@@ -142,6 +142,12 @@ code { font-family: var(--f-mono); font-size: .85em; background: var(--sunk); pa
   <li><b>Calendário de cobertura:</b> grade regra × mês. Verde indica ato vigente; amarelo hachurado, mês em que faltou o ato (dias em Parâmetro pendente); azul-claro, mês avaliado com aproximação por falta do ato (Foz do Chapecó e temporada de praias de Serra da Mesa); cinza, mês que não exige ato.</li>
   <li><b>Lista de atos:</b> todos os atos, com documento, data, nº SEI, tipo, vigência, regras afetadas, efeito e a citação exibida no painel; filtros por tipo, regra, situação (vigente, futuro ou encerrado na data final do período) e texto; exportação em CSV. O nº SEI aparece como texto, porque o link do SEI exige login.</li>
 </ul>
+<p><b>Cadastrar ato.</b> O botão "+ Cadastrar ato" abre um formulário (<a href="cadastro.html">cadastro.html</a>) em três passos:</p>
+<ol>
+  <li><b>Ler dados de um PDF (opcional).</b> O PDF é lido só no navegador e não é enviado nem gravado no repositório, que é público. O formulário procura número e tipo do documento, data, nº SEI, início e fim de vigência, valor (m³/s, hm³ ou %, conforme o tipo de efeito escolhido), ano, ciclo das curvas e tabela de valores mensais. Os campos lidos ficam destacados e devem ser conferidos. PDF digitalizado, sem texto selecionável, não é lido.</li>
+  <li><b>Dados do ato.</b> O tipo de efeito define os campos pedidos e as regras afetadas: vazão outorgada, volume anual da transposição, teto mensal (2.081/2017), nível máximo operacional e vazão de restrição mensais (614/2010), vazão da temporada de praias (70/2021), revisão de estágio (1.382/2015), curvas de segurança, tolerância ou situação declarada.</li>
+  <li><b>Prévia e envio.</b> O formulário mostra o registro e confere os mesmos pontos que o cadastro (campos obrigatórios, datas, vigência, valores). "Enviar pedido pelo GitHub" abre um pedido (issue) já preenchido; a automação valida o registro e abre um PR que só entra no painel depois do merge por alguém da equipe. Quem não usa o GitHub pode copiar ou baixar o registro e enviá-lo à equipe. Um id já cadastrado substitui o registro existente.</li>
+</ol>
 <p>Na Síntese, o contador "Atos: N lacunas · M a vencer" leva à aba. Na aba Regras, o selo "ato complementar" abre a lista de atos da regra, e o detalhe da regra mostra o ato vigente no dia.</p>
 <h3>Documentos</h3>
 <p>Reúne este manual e as planilhas para download (ver <a href="#documentos">seção 10</a>).</p>
