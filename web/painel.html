@@ -819,7 +819,7 @@ function iniciar(dados) {
   $("#f-sis").innerHTML += sis.map((s) => `<option>${esc(s)}</option>`).join("");
   if (state.sis && sis.includes(state.sis)) $("#f-sis").value = state.sis; else state.sis = "";
   aplicarPreset(state.preset || "30");
-  const pend = Object.entries(D.parametros || {}).filter(([, v]) => v && v.valor == null).map(([, v]) => v.fonte);
+  const pend = Object.entries(D.parametros || {}).filter(([, v]) => v && v.valor == null && v.base == null).map(([, v]) => v.fonte);
   const erros = D.erros_coleta || [];
   $("#n-pend").textContent = [pend.length ? `Parâmetros pendentes: ${pend.join("; ")}.` : "", erros.length ? `Falhas de coleta nesta execução: ${erros.join("; ")}.` : ""].filter(Boolean).join(" ") || "Sem parâmetros pendentes ou falhas de coleta nesta execução.";
   renderFaixas(); ligar(); render(); mostrarAba(location.hash.slice(1) || state.aba || "sint");
