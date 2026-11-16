@@ -55,6 +55,9 @@ header.top .wrap { padding-block: 20px 16px; display: flex; flex-wrap: wrap; gap
 .meta b { display: block; font: 500 .95rem var(--f-mono); color: var(--fg) }
 .tema { display: flex; flex-direction: column; gap: 3px }
 .tema .seg button { padding: 3px 9px; font-size: .8rem }
+.aviso-asreg { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 var(--r) var(--r) 0; padding: 8px 12px; margin: 0 0 14px; font-size: .84rem }
+.aviso-asreg summary { cursor: pointer } .aviso-asreg ul { margin: 6px 0 0; padding-left: 18px } .aviso-asreg li { margin: 2px 0 }
+#versao button[aria-pressed="true"][data-v="asreg"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent) }
 
 /* filtros */
 .filters { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line) }
@@ -289,6 +292,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
       <div>Dados até<b id="m-dados">—</b></div>
       <div>Processado em<b id="m-gerado">—</b></div>
       <div>Regras auditadas<b id="m-regras">—</b></div>
+      <div class="tema" id="versao-box" hidden>Versão<span class="seg" id="versao" role="group" aria-label="Versão do painel"><button type="button" data-v="completa" title="Todas as regras">Completa</button><button type="button" data-v="asreg" title="Prévia da versão para a ASREG: sem as regras que dependem de ato complementar">Prévia ASREG</button></span></div>
       <div class="tema">Tema<span class="seg" id="tema" role="group" aria-label="Tema"><button type="button" data-t="auto" title="Segue o tema do sistema">Automático</button><button type="button" data-t="light">Claro</button><button type="button" data-t="dark">Escuro</button></span></div>
     </div>
   </div>
@@ -322,6 +326,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
 
 <main><div class="wrap">
   <div id="erro" hidden></div>
+  <details class="aviso-asreg" id="aviso-asreg" hidden></details>
 
   <section id="s-sint" role="tabpanel" aria-labelledby="h-sint" data-aba="sint">
     <div class="fx-quadro" aria-labelledby="h-faixas">
@@ -491,7 +496,7 @@ function agruparPontos(rs) { const m = new Map(); for (const r of rs) { const k 
 const GRAV_ST = { "Não atende": 6, "Tolerância": 5, "Parâmetro pendente": 4, "Em curso": 3, "Atende": 2, "Sem dado": 1, "Não se aplica": 0 };
 const gravidade = (u) => (u.st === "Em curso" && u.exc && !u.fechada ? 5 : GRAV_ST[u.st] ?? 1);
 const somar = (cs) => cs.reduce((t, c) => { for (const k in t) t[k] += c[k]; return t; }, { "Atende": 0, "Tolerância": 0, "Não atende": 0, n: 0 });
-const filtrosAtivos = () => !!state.q.trim() || state.pend || state.compl || !!state.sis || !!state.st;
+const filtrosAtivos = () => !!state.q.trim() || state.pend || (state.compl && !asreg()) || !!state.sis || !!state.st;
 const pontoAberto = (k, rs) => (filtrosAtivos() ? !pontosFechados.has(k) : pontosAbertos.has(k)) || rs.some((r) => aberto.has(r.id));
 // janela em curso no fim do período, mas já fechada depois dele: devolve o registro do fechamento
 function fechamento(r, u) {
@@ -550,7 +555,7 @@ function filtradas() {
     if (q && !sa(`${r.ponto} ${r.grupo || ""} ${r.resolucao} ${r.artigos || ""} ${r.descricao} ${r.sistema} ${r.id}`).includes(q)) return false;
     const per = noPeriodo(r);
     if (state.pend && !pendente(r, per)) return false;
-    if (state.compl && !r.complementar) return false;
+    if (state.compl && !asreg() && !r.complementar) return false;
     if (state.st === "viol") { const c = contar(per); if (!c["Não atende"] && !c["Tolerância"]) return false; }
     else if (state.st) { const u = ultimoValido(per); if (!u || u.st !== state.st) return false; }
     return true;
@@ -675,7 +680,7 @@ function render() {
 let iniciado = false;
 function mostrarAba(a, foco) {
   if (a === "faixas") a = "sint";
-  if (!document.getElementById("s-" + a)) a = "sint";
+  if (!document.getElementById("s-" + a) || (a === "atos" && asreg())) a = "sint";
   state.aba = a;
   document.querySelectorAll(".abas [role=tab]").forEach((b) => { const on = b.dataset.aba === a; b.setAttribute("aria-selected", String(on)); b.tabIndex = on ? 0 : -1; if (on && foco) b.focus(); });
   document.querySelectorAll("main section[data-aba]").forEach((sec) => { sec.hidden = sec.dataset.aba !== a; });
@@ -737,7 +742,7 @@ function linhaRegra(r, sub) {
       const per = noPeriodo(r), u = ultimoValido(per) || {}, c = contar(per), q = conf(c), ab = aberto.has(r.id);
       const folga = u.folga == null ? "—" : `${comU(u.folga, r)}${u.pct != null && r.unid !== "%" ? ` <span class="muted">(${nf(u.pct, 0)}%)</span>` : ""}`;
       let html = `<tr class="rule${sub ? " sub" : ""}" tabindex="0" data-id="${esc(r.id)}" aria-expanded="${ab}">
-        <td><div class="ponto">${esc(r.ponto)}${r.complementar ? `<a class="compl" href="#atos" data-atos="${esc(r.id)}" title="Depende de ato complementar: ${esc(r.complementar)}. Clique para ver os atos da regra.">ato complementar</a>` : ""}</div><div class="desc">${esc(r.descricao)}</div>${r.alerta ? `<div class="alerta">⚠ ${esc(r.alerta)}</div>` : ""}</td>
+        <td><div class="ponto">${esc(r.ponto)}${r.complementar ? (asreg() ? `<span class="compl" title="Limite depende da outorga: ${esc(r.complementar)}">depende de outorga</span>` : `<a class="compl" href="#atos" data-atos="${esc(r.id)}" title="Depende de ato complementar: ${esc(r.complementar)}. Clique para ver os atos da regra.">ato complementar</a>`) : ""}</div><div class="desc">${esc(r.descricao)}</div>${r.alerta ? `<div class="alerta">⚠ ${esc(r.alerta)}</div>` : ""}</td>
         <td class="norma${(r.texto_norma || []).length ? " tx" : ""}">${esc(r.resolucao)}<small>${esc(r.artigos || "")}</small></td>
         <td>${u.faixa ? esc(u.faixa) : '<span class="muted">—</span>'}${u.orig === "Power BI" || u.orig === "Boletim ANA" ? ` <span class="muted" title="Faixa publicada (${esc(u.orig)})">●</span>` : ""}</td>
         <td class="n">${comU(u.v, r)}<span class="param">${esc(paramDia(r, u))}</span></td>
@@ -762,7 +767,7 @@ function linhaPonto(k, rs, ab) {
   const compl = rs.filter((r) => r.complementar).length;
   const fx = us.find((u) => u.faixa) || {};
   return `<tr class="ponto-row" tabindex="0" data-ponto="${esc(k)}" aria-expanded="${ab}">
-    <td><div class="ponto"><span class="seta" aria-hidden="true">▸</span>${esc(nomePonto(rs[0]))}${compl ? `<span class="compl" title="${compl} critério(s) dependem de ato complementar">ato complementar</span>` : ""}</div><div class="desc">${esc(descGrupo(rs))}</div></td>
+    <td><div class="ponto"><span class="seta" aria-hidden="true">▸</span>${esc(nomePonto(rs[0]))}${compl ? `<span class="compl" title="${compl} critério(s) dependem de ${asreg() ? "outorga" : "ato complementar"}">${asreg() ? "depende de outorga" : "ato complementar"}</span>` : ""}</div><div class="desc">${esc(descGrupo(rs))}</div></td>
     <td class="norma">${esc(normas.join(", "))}</td>
     <td>${fx.faixa ? esc(fx.faixa) : '<span class="muted">—</span>'}</td>
     <td class="n muted">—</td><td class="n muted">—</td><td class="n muted">—</td>
@@ -853,7 +858,7 @@ function atosFiltrados(rs) {
   }).sort((x, y) => String(y.data || vigA(y).inicio || "").localeCompare(String(x.data || vigA(x).inicio || "")));
 }
 function renderAtos(regras) {
-  if (!D.atos_complementares) return;
+  if (!D.atos_complementares || asreg()) { $("#sint-atos").hidden = true; return; }
   const rs = regras.filter((r) => r.complementar), ms = mesesPer(), hoje = hojeDados();
   const lac = lacunasPer(rs, ms), nLac = lac.reduce((t, [, l]) => t + l.length, 0), venc = vencem(hoje, ALERTA_DIAS);
   // contador da Síntese e da aba
@@ -1062,6 +1067,34 @@ function expandirSeries(dados) {
   delete dados.textos; delete dados.formato_serie;
 }
 
+// ---- prévia da versão para a ASREG (config/versao_asreg.json): sem as regras que dependem de ato complementar
+const asreg = () => state.versao === "asreg" && !!(D && D.versao_asreg);
+function preencherSistemas() {
+  const sis = [...new Set(D.regras.map((r) => r.sistema))];
+  $("#f-sis").innerHTML = `<option value="">Todos</option>` + sis.map((s) => `<option>${esc(s)}</option>`).join("");
+  if (state.sis && sis.includes(state.sis)) $("#f-sis").value = state.sis; else state.sis = "";
+}
+function aplicarVersao() {
+  const VA = D.versao_asreg, on = asreg(), fora = new Set(on ? VA.suprimidas.map((x) => x.id) : []);
+  D.regras = D.regrasTodas.filter((r) => !fora.has(r.id));
+  document.querySelectorAll("#versao button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.v === (on ? "asreg" : "completa"))));
+  $("#tab-atos").hidden = on; $("#f-compl").closest("label").hidden = on;
+  $("#m-regras").textContent = D.regras.length;
+  const doc = document.querySelector('a.doc[href^="docs/indicadores_ASREG"]');
+  if (doc) { doc.href = on ? "docs/indicadores_ASREG_previa.xlsx" : "docs/indicadores_ASREG.xlsx"; doc.querySelector("b").textContent = on ? "Indicadores ASREG (prévia)" : "Indicadores ASREG"; }
+  const av = $("#aviso-asreg"); av.hidden = !on;
+  if (on) av.innerHTML = `<summary><b>Prévia da versão ASREG:</b> ${D.regras.length} de ${D.regrasTodas.length} regras. ${fora.size} regras que dependem de ato complementar não são apresentadas; as ${VA.selo_outorga.length} que dependem de outorga continuam. Clique para ver a lista.</summary><ul>${VA.suprimidas.map((x) => { const r = D.regrasTodas.find((y) => y.id === x.id); return `<li><b>${esc(r ? r.ponto : x.id)}</b> <span class="muted">(${esc(x.id)}${r ? ", " + esc(r.resolucao) : ""})</span>: ${esc(x.motivo)}</li>`; }).join("")}</ul>`;
+  preencherSistemas();
+  for (const id of [...aberto]) if (fora.has(id)) aberto.delete(id);
+  if (on && state.aba === "atos") mostrarAba("sint");
+}
+function mudarVersao(v) {
+  state.versao = v === "asreg" ? "asreg" : "completa";
+  const u = new URL(location.href); if (state.versao === "asreg") u.searchParams.set("versao", "asreg"); else u.searchParams.delete("versao");
+  history.replaceState(null, "", u);
+  ocFiltro = null; aplicarVersao(); render();
+}
+
 function iniciar(dados) {
   expandirSeries(dados);
   D = dados;
@@ -1081,6 +1114,9 @@ function iniciar(dados) {
     let ult = ""; for (const x of r.serie) if (AVAL.includes(x.st)) ult = x.d;
     for (const x of r.serie) if (x.st === "Em curso" && x.d < ult) x.fechada = true;
   }
+  D.regrasTodas = D.regras;
+  state.versao = new URLSearchParams(location.search).get("versao") === "asreg" ? "asreg" : "completa";
+  if (D.versao_asreg) { $("#versao-box").hidden = false; $("#versao").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) mudarVersao(b.dataset.v); }); }
   $("#m-dados").textContent = df(D.ultimo_dado_ons);
   const g = new Date(D.gerado_em);
   $("#m-gerado").textContent = isNaN(g) ? D.gerado_em : g.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short", timeZone: "America/Sao_Paulo" });
@@ -1089,9 +1125,7 @@ function iniciar(dados) {
     if (b) { b.textContent = `Desde ${m}/${D.periodo[0].slice(0, 4)}`; b.title = `Todo o histórico disponível (desde ${df(D.periodo[0])})`; } }
   if ($("#docs-gerado")) $("#docs-gerado").textContent = `Arquivos gerados com os dados de ${df(D.periodo[0])} a ${df(D.periodo[1])}.`;
   $("#f-ini").min = $("#f-fim").min = D.periodo[0]; $("#f-ini").max = $("#f-fim").max = D.periodo[1];
-  const sis = [...new Set(D.regras.map((r) => r.sistema))];
-  $("#f-sis").innerHTML += sis.map((s) => `<option>${esc(s)}</option>`).join("");
-  if (state.sis && sis.includes(state.sis)) $("#f-sis").value = state.sis; else state.sis = "";
+  aplicarVersao();
   aplicarPreset(state.preset || "30");
   const pend = Object.entries(D.parametros || {}).filter(([, v]) => v && v.valor == null && v.base == null).map(([, v]) => v.fonte);
   const erros = D.erros_coleta || [];

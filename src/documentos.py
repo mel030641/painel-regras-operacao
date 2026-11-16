@@ -168,10 +168,10 @@ def historico_faixas(destino: Path):
 ASREG_ORIGINAL = RAIZ / "config" / "asreg" / "Indicadores SOE - aval_CORSH.xlsx"
 
 
-def _apurado(regs, ano):
+def _apurado(regs, ano, sem_regra=None):
     """Situação (pior entre as regras), último dia avaliado, conformidade e contagens do ano, última ocorrência."""
     if not regs:
-        return ["—", "Não monitorada", None, None, None, None, None, None]
+        return ["—", sem_regra or "Não monitorada", None, None, None, None, None, None]
     sts = [(r.get("ultimo") or {}).get("st") for r in regs]
     pior = max(sts, key=lambda s: GRAV.get(s, 0))
     if GRAV.get(pior, 0) == 0:
@@ -209,9 +209,17 @@ def _status_mensal(wb, A, R, hoje):
     ws.freeze_panes = "C2"
 
 
-def asreg(D, destino: Path):
+def versao_asreg() -> dict | None:
+    p = RAIZ / "config" / "versao_asreg.json"
+    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
+
+
+def asreg(D, destino: Path, previa: dict | None = None):
+    """Planilha da ASREG com a apuração do painel. Com 'previa' (config/versao_asreg.json), sem as regras suprimidas."""
     A = json.loads((RAIZ / "config" / "asreg_indicadores.json").read_text(encoding="utf-8"))
-    R = {r["id"]: r for r in D["regras"]}
+    fora = {x["id"] for x in previa["suprimidas"]} if previa else set()
+    sem_regra = (previa or {}).get("linhas_sem_regra", {})
+    R = {r["id"]: r for r in D["regras"] if r["id"] not in fora}
     hoje = _d(D["periodo"][1])
     ano = str(hoje.year)
     if ASREG_ORIGINAL.exists():  # planilha original da ASREG + colunas apuradas pelo painel
@@ -227,7 +235,7 @@ def asreg(D, destino: Path):
             cel.alignment = Alignment(wrap_text=True, vertical="center")
             ws.column_dimensions[get_column_letter(c0 + j)].width = 28 if j == 0 else 14
         for l in A["linhas"]:
-            vals = _apurado([R[i] for i in l["regras_painel"] if i in R], ano)
+            vals = _apurado([R[i] for i in l["regras_painel"] if i in R], ano, sem_regra.get(str(l["linha"])))
             for j, v in enumerate(vals):
                 cel = ws.cell(row=l["linha"], column=c0 + j, value=v)
                 if isinstance(v, dt.date):
@@ -236,12 +244,14 @@ def asreg(D, destino: Path):
                     cel.fill = PatternFill("solid", fgColor=COR[v])
         lm = wb.create_sheet("Leia-me", 0)
         lm.column_dimensions["A"].width = 120
-        for t in ["Indicadores das regras de operação de reservatórios (SOE) - planilha da ASREG com a apuração do painel",
+        for t in (["Indicadores das regras de operação de reservatórios (SOE) - planilha da ASREG com a apuração do painel",
                   "Base: 'Indicadores SOE - aval_CORSH.xlsx' (SharePoint GGESeASMEA), cópia salva em 09/11/2026; abas 'Table 1' e 'Planilha1' preservadas como no original.",
                   f"Colunas acrescentadas à direita da 'Table 1' (cabeçalho verde-água): apuração do painel em {hoje:%d/%m/%Y}, situação do último dia avaliado e conformidade em {ano}.",
                   "Quando uma linha corresponde a mais de uma regra do painel (ex.: mínima diária e máxima mensal), vale a pior situação entre elas, e as contagens somam as regras.",
                   "Conformidade = (Atende + Tolerância) ÷ avaliações com resultado, mesmo critério do painel.",
-                  f"Aba 'Status mensal {ano}': pior situação apurada em cada mês, por linha da ASREG."]:
+                  f"Aba 'Status mensal {ano}': pior situação apurada em cada mês, por linha da ASREG."]
+                  + ([f"Prévia da versão ASREG: sem as {len(fora)} regras que dependem de ato complementar ({', '.join(sorted(fora))}); "
+                      "as regras de outorga continuam. Lista e motivos em config/versao_asreg.json."] if previa else [])):
             lm.append([t])
             lm.cell(row=lm.max_row, column=1).alignment = Alignment(wrap_text=True, vertical="top")
         lm["A1"].font = Font(bold=True, size=13)
@@ -285,7 +295,7 @@ def asreg(D, destino: Path):
             linhas.append(base + [", ".join(l["regras_painel"]), pior, _d(min(datas)) if datas else None, p, n, c["Não atende"],
                                   c["Tolerância"], _d(max(viol)) if viol else None])
         else:
-            linhas.append(base + ["—", "Não monitorada", None, None, None, None, None, None])
+            linhas.append(base + ["—", sem_regra.get(str(l["linha"]), "Não monitorada"), None, None, None, None, None, None])
     w = {"Resolução": 22, "Sistema Hídrico": 16, "Reservatório / Ponto de Controle": 24, "Detalhamento da métrica (Como é calculado)": 44,
          "Forma de monitoramento": 34, "Artigo(s) da Resolução de Referência": 20, "Sistema": 26, "Regras do painel": 28}
     ws = aba(wb, "Table 1", [(c, w.get(c, 13)) for c in cols + extra], linhas, "Situação (painel)")
@@ -323,7 +333,11 @@ def main():
     n, o = acompanhamento(D, docs / "acompanhamento_regras.xlsx")
     f = historico_faixas(docs / "historico_faixas.xlsx")
     a = asreg(D, docs / "indicadores_ASREG.xlsx")
-    print(f"[ok] documentos em {docs}: acompanhamento ({n} regras, {o} ocorrências), faixas ({f} períodos), ASREG ({a} linhas)")
+    va = versao_asreg()
+    if va:  # prévia da versão ASREG (botão no painel): mesma planilha sem as regras que dependem de ato complementar
+        asreg(D, docs / "indicadores_ASREG_previa.xlsx", va)
+    print(f"[ok] documentos em {docs}: acompanhamento ({n} regras, {o} ocorrências), faixas ({f} períodos), ASREG ({a} linhas)"
+          + (" e prévia ASREG" if va else ""))
 
 
 if __name__ == "__main__":

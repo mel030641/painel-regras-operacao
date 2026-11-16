@@ -1,0 +1,21 @@
+{
+ "descricao": "Versão do painel para a ASREG: regras omitidas por dependerem de ato complementar (documento fora da resolução). As regras que dependem de outorga ficam, com o selo 'depende de outorga'. Lido por src/calculo.py (vai para o painel.json), pelo botão 'Prévia ASREG' de web/painel.html e por src/documentos.py (indicadores_ASREG_previa.xlsx). Proposta aprovada em 16/11/2026 (planos/2026-11-16_versao_asreg.md).",
+ "suprimidas": [
+  {"id": "49-RIUHFC", "motivo": "gatilho depende da previsão de afluência do ONS e do informe semanal do agente"},
+  {"id": "70-TOSMES-praias", "motivo": "vazão da temporada de praias informada anualmente pelo ONS"},
+  {"id": "2081-SFTMAR-max", "motivo": "curvas de segurança do ciclo e vazão fixada pelo ONS na Restrição"},
+  {"id": "2081-SFXING-max", "motivo": "curvas de segurança do ciclo"},
+  {"id": "2081-SFSOBR-max", "motivo": "teto mensal sem critério na Atenção; vazões fixadas pelo ONS na Restrição"},
+  {"id": "1382-estagios", "motivo": "revisões temporárias dos estágios por comunicado da ANA"},
+  {"id": "1931-volume", "motivo": "comunicado conjunto anual de volume suplementar"},
+  {"id": "614-op-29001", "motivo": "nível máximo operacional definido mensalmente pelo DAEE"},
+  {"id": "614-op-29002", "motivo": "nível máximo operacional definido mensalmente pelo DAEE"},
+  {"id": "614-op-29003", "motivo": "nível máximo operacional definido mensalmente pelo DAEE"},
+  {"id": "614-op-29004", "motivo": "nível máximo operacional definido mensalmente pelo DAEE"},
+  {"id": "614-restr-29004", "motivo": "vazão de restrição de dezembro a junho a definir pelo DAEE"}
+ ],
+ "selo_outorga": ["193-GRFURN", "193-GRMMOR", "194-PREMBO", "194-PRITUM"],
+ "linhas_sem_regra": {
+  "18": "Não avaliada no painel: o gatilho depende da previsão de afluência do ONS (ato complementar)"
+ }
+}

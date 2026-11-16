@@ -122,6 +122,8 @@ code { font-family: var(--f-mono); font-size: .85em; background: var(--sunk); pa
 </ul>
 
 <h2 id="abas">4. Abas do painel</h2>
+<h3>Prévia da versão ASREG</h3>
+<p>O seletor "Versão", no cabeçalho, alterna entre a versão completa e a <b>Prévia ASREG</b>, que serve para a equipe avaliar o painel que será apresentado à ASREG. A prévia omite as 12 regras cujo limite depende de ato complementar, como comunicado, curva de segurança, informe do ONS ou valor mensal do DAEE. As quatro regras que dependem de outorga continuam e levam o selo "depende de outorga". Síntese, Regras, Mapa e Ocorrências passam a considerar só as regras apresentadas, e a aba Atos complementares fica oculta. Na aba Documentos, a planilha da ASREG passa a ser a da prévia, em que a linha de Foz do Chapecó aparece como não avaliada. A faixa no topo da página lista as regras omitidas e o motivo de cada uma, e a lista fica em <code>config/versao_asreg.json</code>. O link com <code>?versao=asreg</code> abre o painel direto na prévia.</p>
 <h3>Síntese</h3>
 <p>Mostra as faixas operativas vigentes de cada reservatório (com a origem da informação), o índice de conformidade do período e a conformidade por escala de apuração (diária, semanal, mensal, anual).</p>
 <h3>Regras</h3>
