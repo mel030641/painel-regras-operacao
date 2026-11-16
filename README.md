@@ -4,7 +4,7 @@ Painel estático que audita diariamente o cumprimento das resoluções e marcos 
 
 ## O que é auditado
 
-62 regras, em 12 sistemas hídricos, com base nas resoluções validadas pela SOE em 03/11/2026:
+Regras de operação dos sistemas abaixo, com base nas resoluções validadas pela SOE em 03/11/2026. O número de regras não é escrito à mão: o painel o mostra na aba Síntese e o manual publicado o calcula a partir do catálogo (`src/regras.py`) a cada atualização.
 
 | Sistema | Normas |
 |---|---|
@@ -35,7 +35,7 @@ A lista completa, com dispositivos, limites e fontes, está em `src/regras.py`.
 
 ```
 src/coleta.py              coletores (ONS, SAR, SAISP, API Mananciais Sabesp, Telemetria ANA, arquivos manuais)
-src/regras.py              faixas, parâmetros e as 62 regras
+src/regras.py              faixas, parâmetros e o catálogo de regras
 src/calculo.py             avaliação diária, status e folga -> data/painel.json
 src/serie_compacta.py      grava a série diária de cada regra em colunas no painel.json (~3x menor) e a recompõe para as planilhas
 src/boletins_ana.py        coleta diária das faixas nos boletins oficiais da ANA (gov.br)
@@ -62,6 +62,7 @@ Ficam fora de `src/` porque não fazem parte da atualização diária. Foram usa
 | `data/historico/validacao_out2026.csv` | Resultado dessa comparação. |
 | `ferramentas/faixas_boletins.py` | Importou para `config/faixas.json` o histórico de faixas dos boletins diários desde out/2017. |
 | `data/historico/santa_ines_planilha_out2026.csv` | Planilha manual de Santa Inês usada na carga inicial, antes da coleta pela API Sabesp. |
+| `data/historico/santa_ines.csv` | Série manual de Santa Inês (out/2026) que o cálculo lia antes da coleta pela API Sabesp; nenhuma regra a usa mais. |
 
 ## Executar localmente
 
