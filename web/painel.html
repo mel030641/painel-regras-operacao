@@ -434,7 +434,8 @@ const state = { preset: "30", sis: "", st: "", q: "", aba: "sint", pend: false }
 const sisAbertos = new Set(), sisFechados = new Set();
 // regras do mesmo ponto de controle ficam sob uma linha-resumo (só exibição; cada regra mantém a avaliação própria)
 const pontosAbertos = new Set(), pontosFechados = new Set();
-const nomePonto = (r) => String(r.ponto).replace(/\s*\(.*\)\s*$/, "");
+const nomePonto = (r) => r.grupo || String(r.ponto).replace(/\s*\(.*\)\s*$/, "");
+const descGrupo = (rs) => rs[0].grupo ? `${rs.length} pontos: ${[...new Set(rs.map((r) => r.ponto))].join(" · ")}` : `${rs.length} critérios: ${[...new Set(rs.map((r) => r.param || r.descricao))].join(" · ")}`;
 const chavePonto = (r) => r.sistema + "|" + nomePonto(r);
 function agruparPontos(rs) { const m = new Map(); for (const r of rs) { const k = chavePonto(r); if (!m.has(k)) m.set(k, []); m.get(k).push(r); } return [...m.values()]; }
 const GRAV_ST = { "Não atende": 6, "Tolerância": 5, "Parâmetro pendente": 4, "Em curso": 3, "Atende": 2, "Sem dado": 1, "Não se aplica": 0 };
@@ -488,7 +489,7 @@ function filtradas() {
   const q = sa(state.q.trim());
   return D.regras.filter((r) => {
     if (state.sis && r.sistema !== state.sis) return false;
-    if (q && !sa(`${r.ponto} ${r.resolucao} ${r.artigos || ""} ${r.descricao} ${r.sistema} ${r.id}`).includes(q)) return false;
+    if (q && !sa(`${r.ponto} ${r.grupo || ""} ${r.resolucao} ${r.artigos || ""} ${r.descricao} ${r.sistema} ${r.id}`).includes(q)) return false;
     const per = noPeriodo(r);
     if (state.pend && !pendente(r, per)) return false;
     if (state.compl && !r.complementar) return false;
@@ -701,11 +702,11 @@ function linhaPonto(k, rs, ab) {
   const compl = rs.filter((r) => r.complementar).length;
   const fx = us.find((u) => u.faixa) || {};
   return `<tr class="ponto-row" tabindex="0" data-ponto="${esc(k)}" aria-expanded="${ab}">
-    <td><div class="ponto"><span class="seta" aria-hidden="true">▸</span>${esc(nomePonto(rs[0]))}${compl ? `<span class="compl" title="${compl} critério(s) dependem de ato complementar">ato complementar</span>` : ""}</div><div class="desc">${rs.length} critérios: ${esc([...new Set(rs.map((r) => r.param || r.descricao))].join(" · "))}</div></td>
+    <td><div class="ponto"><span class="seta" aria-hidden="true">▸</span>${esc(nomePonto(rs[0]))}${compl ? `<span class="compl" title="${compl} critério(s) dependem de ato complementar">ato complementar</span>` : ""}</div><div class="desc">${esc(descGrupo(rs))}</div></td>
     <td class="norma">${esc(normas.join(", "))}</td>
     <td>${fx.faixa ? esc(fx.faixa) : '<span class="muted">—</span>'}</td>
     <td class="n muted">—</td><td class="n muted">—</td><td class="n muted">—</td>
-    <td><span title="Pior situação entre os ${rs.length} critérios: ${esc(rs[w].descricao)}">${pill(pior.st || "Sem dado", pior)}</span>${nViol ? `<div class="viol">${nViol} ${nViol > 1 ? "avaliações" : "avaliação"} em Não atende ou Tolerância no período</div>` : ""}</td>
+    <td><span title="Pior situação entre os ${rs.length} ${rs[0].grupo ? "pontos" : "critérios"}: ${esc(rs[0].grupo ? rs[w].ponto + " (" + rs[w].descricao + ")" : rs[w].descricao)}">${pill(pior.st || "Sem dado", pior)}</span>${nViol ? `<div class="viol">${nViol} ${nViol > 1 ? "avaliações" : "avaliação"} em Não atende ou Tolerância no período</div>` : ""}</td>
     <td></td>
     <td class="n"><span class="pct-bar"><span class="num">${q == null ? "—" : nf(q, 0) + "%"}</span><span class="track"><span class="fill" style="display:block;width:${q ?? 0}%;background:${corConf(q)}"></span></span></span><div class="muted" style="font-size:.72rem">${c.n} aval.${c["Não atende"] ? ` · ${c["Não atende"]} NA` : ""}</div></td></tr>`;
 }
@@ -732,7 +733,7 @@ function renderHeat(regras) {
   $("#t-heat tbody").innerHTML = agruparPontos(regras).map((g) => {
     if (g.length === 1) return linha(g[0], false);
     const k = chavePonto(g[0]), ab = pontoAberto(k, g), nome = nomePonto(g[0]);
-    const cab = `<tr class="ponto-row" tabindex="0" data-ponto="${esc(k)}" aria-expanded="${ab}"><td class="lbl" title="${esc(nome)}: ${g.length} critérios (clique para ${ab ? "recolher" : "abrir"})"><b>${esc(nome)}</b><span class="r">${g.length} critérios · ${esc([...new Set(g.map((r) => r.resolucao.replace("Res. ", "")))].join(", "))}</span></td>${celulas(nome, g.map(noPeriodo))}</tr>`;
+    const cab = `<tr class="ponto-row" tabindex="0" data-ponto="${esc(k)}" aria-expanded="${ab}"><td class="lbl" title="${esc(nome)}: ${g.length} ${g[0].grupo ? "pontos" : "critérios"} (clique para ${ab ? "recolher" : "abrir"})"><b>${esc(nome)}</b><span class="r">${g.length} ${g[0].grupo ? "pontos" : "critérios"} · ${esc([...new Set(g.map((r) => r.resolucao.replace("Res. ", "")))].join(", "))}</span></td>${celulas(nome, g.map(noPeriodo))}</tr>`;
     return cab + (ab ? g.map((r) => linha(r, true)).join("") : "");
   }).join("") || `<tr><td class="empty">Nenhuma regra com os filtros atuais.</td></tr>`;
 }
