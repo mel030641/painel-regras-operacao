@@ -234,6 +234,10 @@ tr.detail td { background: var(--surface); padding: 0 }
 
 /* mapa multitemporal */
 .heat td.cell { padding: 3px; text-align: center; vertical-align: middle }
+.heat .c[data-ids] { cursor: pointer }
+.heat .c[data-ids]:hover, .heat .c[data-ids]:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px }
+.recorte { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: .8rem; color: var(--fg-2); background: var(--accent-soft); border-radius: 6px; padding: 6px 10px; margin: 0 0 10px }
+.recorte button { font: inherit; color: var(--accent); background: none; border: 1px solid currentColor; border-radius: 999px; padding: 1px 10px; cursor: pointer }
 .heat .c { display: block; min-width: 34px; height: 24px; line-height: 24px; border-radius: 3px; font: 500 .7rem var(--f-mono); color: var(--fg) }
 .heat .c.h-na, .heat .c.h-nd { background: var(--sunk) }
 .heat .c.h-pp { background: repeating-linear-gradient(135deg, var(--tol-soft) 0 4px, color-mix(in srgb, var(--tol) 45%, var(--surface)) 4px 6px) }
@@ -351,6 +355,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
 
   <section id="s-oc" role="tabpanel" aria-labelledby="h-oc" data-aba="oc">
     <div class="sec-head"><h2 id="h-oc">Ocorrências no período</h2><p>Avaliações em “Não atende” ou “Tolerância”, da mais recente para a mais antiga.</p></div>
+    <div class="recorte" id="oc-recorte" hidden></div>
     <div class="tbl-wrap"><table id="t-oc"><thead><tr>
       <th>Data</th><th>Sistema</th><th>Ponto</th><th>Norma</th><th>Regra</th><th>Parâmetro</th><th class="n">Valor</th><th class="n">Limite</th><th class="n">Desvio</th><th>Situação</th></tr></thead><tbody></tbody></table></div>
   </section>
@@ -417,6 +422,8 @@ const limNum = (lim) => {
 };
 
 let D = null, ini = null, fim = null, aberto = new Set();
+// ligação mapa -> outras abas: série recortada na regra aberta pelo mapa e filtro de ocorrências
+const zoom = new Map(); let ocFiltro = null;
 // tema: automático (segue o sistema), claro ou escuro; a escolha vale também para o manual
 (() => {
   const K = "painel-soe-tema", raiz = document.documentElement;
@@ -618,7 +625,7 @@ function render() {
   $("#b-regras").textContent = nNao ? `${nNao} NA` : regras.length;
   $("#b-regras").className = "badge" + (nNao ? " nao" : "");
   $("#b-regras").title = nNao ? `${nNao} regra(s) com último resultado Não atende` : `${regras.length} regras`;
-  document.querySelectorAll("tr.detail").forEach((tr) => { const r = D.regras.find((x) => x.id === tr.dataset.id); ligarTooltip(tr.querySelector(".chart-box"), r, noPeriodo(r)); });
+  document.querySelectorAll("tr.detail").forEach((tr) => { const r = D.regras.find((x) => x.id === tr.dataset.id); const z = zoom.get(r.id); ligarTooltip(tr.querySelector(".chart-box"), r, z ? noPeriodo(r).filter((s) => s.d >= z.a && s.d <= z.b) : noPeriodo(r)); });
 
   renderHeat(regras); renderOc(regras);
 }
@@ -641,11 +648,12 @@ function mostrarAba(a, foco) {
 const obsTxt = (x) => String(x.obs || "").split("; ").filter((t) => t && t !== "janela em curso").join("; ");
 const AVISO_TX = "Transcrição dos dispositivos citados na regra. Não substitui o texto publicado no DOU nem incorpora alterações posteriores.";
 const htmlTrechos = (r) => (r.texto_norma || []).map((t) => `<div class="trecho"><b>${esc(t.ref)}</b><p>${esc(t.texto)}</p></div>`).join("") + `<p class="aviso">${AVISO_TX}</p>`;
-function detalhe(r, per, u) {
+function detalhe(r, per, u, z) {
   const viol = violacoes(per), soViol = state.pend && viol.length > 0, mostra = soViol ? viol : per;
   const temObs = mostra.some((x) => obsTxt(x));
   const linhas = mostra.slice().reverse().map((s) => `<tr><td>${df(s.d)}</td><td class="n">${nf(s.v)}</td><td class="n">${nf(s.lim)}</td><td class="n">${nf(s.folga)}</td><td>${pill(s.st, s)}</td><td class="muted">${esc(s.faixa || "")}</td>${temObs ? `<td class="muted">${esc(obsTxt(s))}</td>` : ""}</tr>`).join("");
   return `<tr class="detail" data-id="${esc(r.id)}"><td colspan="9"><div class="detail-box">
+    ${z ? `<div class="recorte">Série de ${esc(z.rot)}, aberta pelo mapa multitemporal <button type="button" data-zoom-off="${esc(r.id)}">Ver o período todo</button></div>` : ""}
     <div class="detail-grid">
       <div class="chart-box">${grafico(r, per)}</div>
       <dl class="kv">
@@ -698,7 +706,8 @@ function linhaRegra(r, sub) {
           return `<span title="Janela fechada após o período selecionado. Em ${df(u.d)}: Em curso, parcial ${esc(u.parc || "")} (${nf(u.v)} ${esc(U(r))}). Fechamento: ${nf(f.v)} ${esc(U(r))}, limite ${nf(f.lim)}.">${pill(f.st, f)}</span><div class="muted" style="font-size:.72rem;margin-top:2px">fechamento em ${df(f.d)}</div><div class="muted" style="font-size:.7rem">em ${df(u.d)}: parcial</div>${vtxt}`; })()}</td>
         <td>${sparkline(r, per)}</td>
         <td class="n"><span class="pct-bar"><span class="num">${q == null ? "—" : nf(q, 0) + "%"}</span><span class="track"><span class="fill" style="display:block;width:${q ?? 0}%;background:${corConf(q)}"></span></span></span><div class="muted" style="font-size:.72rem">${c.n} aval.${c["Não atende"] ? ` · ${c["Não atende"]} NA` : ""}</div></td></tr>`;
-      if (ab) html += detalhe(r, per, u);
+      if (ab) { const z0 = zoom.get(r.id), z = z0 && z0.a <= fim && z0.b >= ini ? z0 : null, pz = z ? per.filter((s) => s.d >= z.a && s.d <= z.b) : per;
+        html += detalhe(r, pz, u, z); }
       return html;
 }
 
@@ -726,7 +735,8 @@ function renderHeat(regras) {
   $("#heat-desc").textContent = dias > 45 ? "Conformidade mensal por regra no período selecionado (meses parciais contam só os dias do período)." : dias > 10 ? "Conformidade semanal por regra no período selecionado (semana operativa, de sábado a sexta)." : "Resultado diário por regra no período selecionado.";
   $("#t-heat thead").innerHTML = `<tr><th style="text-align:left">Ponto / regra</th>${cols.map((c) => `<th>${c.rot}</th>`).join("")}</tr>`;
   const ok = cssv("--ok"), tol = cssv("--tol"), nao = cssv("--nao");
-  const celulas = (rot, pers) => cols.map((col) => {
+  const celulas = (rot, rs) => cols.map((col) => {
+      const pers = rs.map(noPeriodo), ids = esc(rs.map((r) => r.id).join(","));
       const c = somar(pers.map((per) => contar(per.filter((s) => s.d >= col.a && s.d <= col.b))));
       if (!c.n) {
         const k = {}; pers.flat().forEach((x) => { if (x.d >= col.a && x.d <= col.b) k[x.st] = (k[x.st] || 0) + 1; });
@@ -736,13 +746,14 @@ function renderHeat(regras) {
       }
       const q = (c["Atende"] + c["Tolerância"]) / c.n * 100, na = c["Não atende"];
       const bg = na === 0 && q >= 99.95 ? `color-mix(in srgb, ${ok} 32%, var(--surface))` : na === 0 ? `color-mix(in srgb, ${tol} 45%, var(--surface))` : `color-mix(in srgb, ${nao} ${Math.round(40 + (90 - Math.min(90, q)) / 90 * 50)}%, var(--surface))`;
-      return `<td class="cell"><span class="c" style="background:${bg}" title="${esc(rot)} · ${col.rot}: ${nf(q, 1)}% (${c.n} aval., ${na} não atende, ${c["Tolerância"]} tolerância)">${na ? na : ""}</span></td>`;
+      const oc = na + c["Tolerância"], acao = oc ? `ver ${oc} ocorrência${oc > 1 ? "s" : ""}` : rs.length > 1 ? "abrir os critérios na aba Regras" : "abrir a regra na aba Regras";
+      return `<td class="cell"><span class="c" role="button" tabindex="0" data-ids="${ids}" data-a="${col.a}" data-b="${col.b}" data-rot="${esc(rot + " · " + col.rot)}" data-oc="${oc}" style="background:${bg}" title="${esc(rot)} · ${col.rot}: ${nf(q, 1)}% (${c.n} aval., ${na} não atende, ${c["Tolerância"]} tolerância). Clique para ${acao}.">${na ? na : ""}</span></td>`;
     }).join("");
-  const linha = (r, sub) => `<tr${sub ? ' class="sub"' : ""}><td class="lbl" title="${esc(r.ponto)} · ${esc(r.resolucao)} · ${esc(r.descricao)}"><b>${esc(r.ponto)}</b><span class="r">${esc(r.resolucao.replace("Res. ", ""))} · ${esc(r.descricao)}</span></td>${celulas(r.ponto, [noPeriodo(r)])}</tr>`;
+  const linha = (r, sub) => `<tr${sub ? ' class="sub"' : ""}><td class="lbl" title="${esc(r.ponto)} · ${esc(r.resolucao)} · ${esc(r.descricao)}"><b>${esc(r.ponto)}</b><span class="r">${esc(r.resolucao.replace("Res. ", ""))} · ${esc(r.descricao)}</span></td>${celulas(r.ponto, [r])}</tr>`;
   $("#t-heat tbody").innerHTML = agruparPontos(regras).map((g) => {
     if (g.length === 1) return linha(g[0], false);
     const k = chavePonto(g[0]), ab = pontoAberto(k, g), nome = nomePonto(g[0]);
-    const cab = `<tr class="ponto-row" tabindex="0" data-ponto="${esc(k)}" aria-expanded="${ab}"><td class="lbl" title="${esc(nome)}: ${g.length} ${g[0].grupo ? "pontos" : "critérios"} (clique para ${ab ? "recolher" : "abrir"})"><b>${esc(nome)}</b><span class="r">${g.length} ${g[0].grupo ? "pontos" : "critérios"} · ${esc([...new Set(g.map((r) => r.resolucao.replace("Res. ", "")))].join(", "))}</span></td>${celulas(nome, g.map(noPeriodo))}</tr>`;
+    const cab = `<tr class="ponto-row" tabindex="0" data-ponto="${esc(k)}" aria-expanded="${ab}"><td class="lbl" title="${esc(nome)}: ${g.length} ${g[0].grupo ? "pontos" : "critérios"} (clique para ${ab ? "recolher" : "abrir"})"><b>${esc(nome)}</b><span class="r">${g.length} ${g[0].grupo ? "pontos" : "critérios"} · ${esc([...new Set(g.map((r) => r.resolucao.replace("Res. ", "")))].join(", "))}</span></td>${celulas(nome, g)}</tr>`;
     return cab + (ab ? g.map((r) => linha(r, true)).join("") : "");
   }).join("") || `<tr><td class="empty">Nenhuma regra com os filtros atuais.</td></tr>`;
 }
@@ -752,6 +763,10 @@ function renderOc(regras) {
   for (const r of regras) for (const s of noPeriodo(r)) if (s.st === "Não atende" || s.st === "Tolerância") oc.push([r, s]);
   oc.sort((a, b) => b[1].d.localeCompare(a[1].d));
   $("#b-oc").textContent = oc.length ? oc.length.toLocaleString("pt-BR") : "";
+  const f = ocFiltro, total = oc.length;
+  if (f) { const fil = oc.filter(([r, s]) => f.ids.has(r.id) && s.d >= f.a && s.d <= f.b); oc.length = 0; oc.push(...fil); }
+  $("#oc-recorte").hidden = !f;
+  if (f) $("#oc-recorte").innerHTML = `Recorte do mapa: ${esc(f.rot)} · ${oc.length} de ${total.toLocaleString("pt-BR")} ocorrências do período <button type="button" id="oc-limpar">Mostrar todas</button>`;
   $("#t-oc tbody").innerHTML = oc.slice(0, 400).map(([r, s]) => {
     const l = limNum(s.lim); let dv = "—";
     if (typeof s.v === "number" && l && l.length === 1 && l[0]) dv = nf((s.v - l[0]) / l[0] * 100, 1) + "%";
@@ -827,11 +842,24 @@ function ligar() {
     render(); };
   const tb = $("#t-regras tbody");
   tb.addEventListener("click", (e) => { const b = e.target.closest(".sys-btn"); if (!b) return; const s = b.closest("tr").dataset.sis; const abrirTodos = !!state.q.trim() || state.pend || state.compl || !!state.sis || !!state.st; const set = abrirTodos ? sisFechados : sisAbertos; set.has(s) ? set.delete(s) : set.add(s); render(); });
-  const toggle = (tr) => { const id = tr.dataset.id; aberto.has(id) ? aberto.delete(id) : aberto.add(id); render(); };
+  const toggle = (tr) => { const id = tr.dataset.id; if (aberto.has(id)) { aberto.delete(id); zoom.delete(id); } else aberto.add(id); render(); };
   tb.addEventListener("click", (e) => { const tr = e.target.closest("tr.rule"); if (tr) toggle(tr); const tp = e.target.closest("tr.ponto-row"); if (tp) togglePonto(tp.dataset.ponto); });
   tb.addEventListener("keydown", (e) => { if (e.key !== "Enter" && e.key !== " ") return; const tr = e.target.closest("tr.rule"), tp = e.target.closest("tr.ponto-row"); if (tr) { e.preventDefault(); toggle(tr); } else if (tp) { e.preventDefault(); togglePonto(tp.dataset.ponto); } });
-  $("#t-heat tbody").addEventListener("click", (e) => { const tp = e.target.closest("tr.ponto-row"); if (tp) togglePonto(tp.dataset.ponto); });
-  $("#t-heat tbody").addEventListener("keydown", (e) => { const tp = e.target.closest("tr.ponto-row"); if (tp && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); togglePonto(tp.dataset.ponto); } });
+  // célula do mapa: com ocorrências, abre a aba Ocorrências recortada; sem ocorrências, abre a regra (ou o ponto) na aba Regras
+  const irDoMapa = (cel) => {
+    const ids = cel.dataset.ids.split(","), a = cel.dataset.a, b = cel.dataset.b < fim ? cel.dataset.b : fim, rot = cel.dataset.rot;
+    if (+cel.dataset.oc > 0) { ocFiltro = { ids: new Set(ids), a, b, rot }; mostrarAba("oc"); render(); return; }
+    const rs = D.regras.filter((r) => ids.includes(r.id)), abrirTodos = !!state.q.trim() || state.pend || state.compl || !!state.sis || !!state.st;
+    for (const r of rs) { sisAbertos.add(r.sistema); if (abrirTodos) sisFechados.delete(r.sistema); pontosAbertos.add(chavePonto(r)); pontosFechados.delete(chavePonto(r)); }
+    if (rs.length === 1) { aberto.add(rs[0].id); zoom.set(rs[0].id, { a, b, rot }); }
+    mostrarAba("regras"); render();
+    const alvo = document.querySelector(`#t-regras tr.rule[data-id="${CSS.escape(rs[0].id)}"]`), cab = rs.length > 1 ? alvo && alvo.previousElementSibling : alvo;
+    (cab || alvo)?.scrollIntoView({ block: "center" }); (cab || alvo)?.focus({ preventScroll: true });
+  };
+  $("#t-heat tbody").addEventListener("click", (e) => { const cel = e.target.closest(".c[data-ids]"); if (cel) { irDoMapa(cel); return; } const tp = e.target.closest("tr.ponto-row"); if (tp) togglePonto(tp.dataset.ponto); });
+  $("#t-heat tbody").addEventListener("keydown", (e) => { if (e.key !== "Enter" && e.key !== " ") return; const cel = e.target.closest(".c[data-ids]"); if (cel) { e.preventDefault(); irDoMapa(cel); return; } const tp = e.target.closest("tr.ponto-row"); if (tp) { e.preventDefault(); togglePonto(tp.dataset.ponto); } });
+  $("#oc-recorte").addEventListener("click", (e) => { if (e.target.closest("#oc-limpar")) { ocFiltro = null; render(); } });
+  $("#t-regras tbody").addEventListener("click", (e) => { const b = e.target.closest("[data-zoom-off]"); if (b) { e.stopPropagation(); zoom.delete(b.dataset.zoomOff); render(); } }, true);
   // texto da norma ao passar o mouse na coluna Norma
   const pop = document.createElement("div"); pop.className = "norma-pop"; pop.hidden = true; pop.setAttribute("role", "tooltip"); document.body.appendChild(pop);
   let tPop = null, celPop = null;
