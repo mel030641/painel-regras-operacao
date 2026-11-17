@@ -4,17 +4,55 @@
   {
    "id": "outorga-GRFURN",
    "tipo": "outorga",
-   "documento": "Outorga nº 1033/2019",
-   "data": null,
+   "documento": "Outorga ANA nº 1.033/2019",
+   "data": "2019-05-24",
    "sei": null,
    "regras": [
     "193-GRFURN"
    ],
    "vigencia": {
-    "inicio": null,
-    "fim": null
+    "inicio": "2019-05-30",
+    "fim": "2025-11-12"
    },
-   "citacao": "Outorga nº 1033/2019 (planilha de auditoria SOE, out/2026)",
+   "citacao": "Outorga ANA nº 1.033, de 24/05/2019 (DOU de 30/05/2019): vazão máxima turbinada de Furnas; revogada pela Outorga nº 2.949/2025 (ANAlegis)",
+   "efeito": {
+    "parametro": "outorga_GRFURN",
+    "valor": 1440.0
+   }
+  },
+  {
+   "id": "outorga-GRFURN-2949-2025",
+   "tipo": "outorga",
+   "documento": "Outorga ANA nº 2.949/2025",
+   "data": "2025-11-10",
+   "sei": null,
+   "regras": [
+    "193-GRFURN"
+   ],
+   "vigencia": {
+    "inicio": "2025-11-13",
+    "fim": "2025-12-03"
+   },
+   "citacao": "Outorga ANA nº 2.949, de 10/11/2025 (DOU de 13/11/2025), art. 1º, IX: vazão máxima turbinada de Furnas de 1.440,00 m³/s; nova outorga à Eletrobras, revogada pela Outorga nº 3.128/2025 (ANAlegis)",
+   "efeito": {
+    "parametro": "outorga_GRFURN",
+    "valor": 1440.0
+   }
+  },
+  {
+   "id": "outorga-GRFURN-3128-2025",
+   "tipo": "outorga",
+   "documento": "Outorga ANA nº 3.128/2025",
+   "data": "2025-11-28",
+   "sei": null,
+   "regras": [
+    "193-GRFURN"
+   ],
+   "vigencia": {
+    "inicio": "2025-12-04",
+    "fim": "2052-06-17"
+   },
+   "citacao": "Outorga ANA nº 3.128, de 28/11/2025 (DOU de 04/12/2025), art. 1º, IX: vazão máxima turbinada de Furnas de 1.440,00 m³/s; vigora até 17/06/2052 (art. 9º) (ANAlegis)",
    "efeito": {
     "parametro": "outorga_GRFURN",
     "valor": 1440.0
@@ -24,16 +62,16 @@
    "id": "outorga-GRMMOR",
    "tipo": "outorga",
    "documento": "Outorga ANA nº 2.704/2024",
-   "data": null,
+   "data": "2024-10-17",
    "sei": null,
    "regras": [
     "193-GRMMOR"
    ],
    "vigencia": {
     "inicio": "2024-10-01",
-    "fim": null
+    "fim": "2052-06-17"
    },
-   "citacao": "Outorga ANA nº 2.704/2024, art. 1º, IX: vazão máxima turbinada de M. Mascarenhas de Moraes (efeitos desde 01/10/2024)",
+   "citacao": "Outorga ANA nº 2.704, de 17/10/2024 (DOU de 22/10/2024), art. 1º, IX: vazão máxima turbinada de M. Mascarenhas de Moraes de 1.188,64 m³/s; efeitos desde 01/10/2024 (art. 11) e vigência até 17/06/2052 (art. 9º) (ANAlegis)",
    "efeito": {
     "parametro": "outorga_GRMMOR",
     "valor": 1188.64
