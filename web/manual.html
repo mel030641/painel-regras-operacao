@@ -12,7 +12,7 @@
 :root {
   --bg: #f5f7f8; --surface: #ffffff; --sunk: #eceff1; --line: #d9dee2;
   --fg: #142027; --fg-2: #46565f; --fg-3: #6f7d85; --accent: #0b6e7f; --accent-soft: #d8ecef;
-  --ok: #0c8a2e; --ok-soft: #dff2e3; --tol: #b97800; --tol-soft: #fbefd2; --nao: #c62f2f; --nao-soft: #f8dede; --na: #8a969d; --na-soft: #e9edef;
+  --ok: #0c8a2e; --ok-soft: #dff2e3; --tol: #b97800; --tol-soft: #fbefd2; --nao: #c62f2f; --nao-soft: #f8dede; --na: #8a969d; --na-soft: #e9edef; --cc: #1f5fa8; --cc-soft: #dde9f7;
   --f-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
   --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace; --r: 6px;
@@ -20,11 +20,11 @@
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --bg: #0f1619; --surface: #162026; --sunk: #1c282f; --line: #2a3a42; --fg: #e4ecef; --fg-2: #a9b8bf; --fg-3: #7f9099;
   --accent: #4fb8c9; --accent-soft: #173a42; --ok: #3cc35f; --ok-soft: #15331d; --tol: #f0b23a; --tol-soft: #3a2d10;
-  --nao: #f06a6a; --nao-soft: #3d1a1a; --na: #7f9099; --na-soft: #1f2b31; color-scheme: dark } }
+  --nao: #f06a6a; --nao-soft: #3d1a1a; --na: #7f9099; --na-soft: #1f2b31; --cc: #6fa8e8; --cc-soft: #172a40; color-scheme: dark } }
 :root[data-theme="dark"] {
   --bg: #0f1619; --surface: #162026; --sunk: #1c282f; --line: #2a3a42; --fg: #e4ecef; --fg-2: #a9b8bf; --fg-3: #7f9099;
   --accent: #4fb8c9; --accent-soft: #173a42; --ok: #3cc35f; --ok-soft: #15331d; --tol: #f0b23a; --tol-soft: #3a2d10;
-  --nao: #f06a6a; --nao-soft: #3d1a1a; --na: #7f9099; --na-soft: #1f2b31; color-scheme: dark }
+  --nao: #f06a6a; --nao-soft: #3d1a1a; --na: #7f9099; --na-soft: #1f2b31; --cc: #6fa8e8; --cc-soft: #172a40; color-scheme: dark }
 * { box-sizing: border-box }
 body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.6 var(--f-body) }
 .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px }
@@ -47,7 +47,7 @@ th { background: var(--sunk); font-family: var(--f-display); font-weight: 600; l
 .tbl { overflow-x: auto }
 .pill { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: .8rem; font-weight: 600; white-space: nowrap }
 .ok { background: var(--ok-soft); color: var(--ok) } .tol { background: var(--tol-soft); color: var(--tol) } .nao { background: var(--nao-soft); color: var(--nao) }
-.na { background: var(--na-soft); color: var(--fg-2) } .ec { border: 1px solid var(--tol); color: var(--tol) }
+.na { background: var(--na-soft); color: var(--fg-2) } .ec { border: 1px solid var(--tol); color: var(--tol) } .cc { background: var(--cc-soft); color: var(--cc) }
 .nota { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 10px 14px; border-radius: 0 var(--r) var(--r) 0; margin: 12px 0 }
 code { font-family: var(--f-mono); font-size: .85em; background: var(--sunk); padding: 1px 4px; border-radius: 3px }
 @media (max-width: 820px) { .grid { grid-template-columns: 1fr; gap: 8px } nav.toc { position: static } }
@@ -161,12 +161,36 @@ code { font-family: var(--f-mono); font-size: .85em; background: var(--sunk); pa
     <tr><td><span class="pill ok">Atende</span></td><td>O valor apurado respeita o limite da regra.</td></tr>
     <tr><td><span class="pill tol">Tolerância</span></td><td>O valor passou do limite, mas está dentro da tolerância prevista na norma (por exemplo, 5% nas Res. 132/2022, 193/2024, 194/2024, 2.081/2017 e 70/2021, e no bombeamento ao Guandu desde 20/08/2021). Só existe onde a resolução prevê tolerância.</td></tr>
     <tr><td><span class="pill nao">Não atende</span></td><td>O valor passou do limite e da tolerância, quando houver.</td></tr>
+    <tr><td><span class="pill cc">Controle de Cheias</span></td><td>O dia está coberto por situação de controle de cheias declarada pelo ONS ou pelo agente responsável. A avaliação que o dia teria (Atende, Tolerância ou Não atende) aparece na observação. Não entra no índice de conformidade. Ver a <a href="#cheias">seção 5.1</a>.</td></tr>
     <tr><td><span class="pill ec">Em curso</span></td><td>Regra de janela (semana, mês ou ano) cuja janela atual ainda não fechou. Mostra a média parcial.</td></tr>
     <tr><td><span class="pill na">Parcial</span></td><td>Dia de uma janela já encerrada, antes do fechamento. O resultado da janela aparece no dia de fechamento.</td></tr>
     <tr><td><span class="pill na">Não se aplica</span></td><td>A regra não vale naquele dia: fora do período, da faixa ou da condição de aplicação, faixa em que a norma não fixa limite (por exemplo, faixa Normal nas Res. 132/2022, 193/2024 e 194/2024), ou antes da entrada em vigor da norma. Não entra no índice de conformidade.</td></tr>
     <tr><td><span class="pill na">Sem dado</span></td><td>A fonte não publicou o dado do dia.</td></tr>
     <tr><td><span class="pill na">Parâmetro pendente</span></td><td>O limite depende de um ato que não está cadastrado no painel (comunicado, recomendação ou definição mensal de outro órgão). A observação do dia diz qual ato ou informação falta. Difere de “Sem dado”, que indica falta da medição.</td></tr>
   </tbody></table></div>
+
+<h3 id="cheias">5.1 Controle de cheias: situação declarada e situação identificada</h3>
+<p>Quando os reservatórios operam para controle de cheias, as regras de operação deixam de valer no que couber, e passam a valer as regras de controle de cheias do ONS. A Res. ANA 2.081/2017 (art. 19) prevê a suspensão automática das condições do Sistema Hídrico do Rio São Francisco quando um ou mais reservatórios do sistema operam para controle de cheia. As Res. ANA 132/2022 (art. 14), 193/2024 (art. 15), 194/2024 (art. 15) e 70/2021 (art. 14) suspendem as condições “no que couber”, com declaração do ONS ou do agente. A Res. ANA 1.382/2015 não tem cláusula geral de suspensão: o art. 1º, III, b, e IV, b, só admite vazões maiores em Santa Cecília e em Pereira Passos quando Funil opera para atender às regras de controle de cheia.</p>
+<p>O painel distingue dois tipos de registro, cadastrados como atos complementares:</p>
+<div class="tbl"><table>
+  <thead><tr><th></th><th>Situação declarada</th><th>Situação identificada</th></tr></thead>
+  <tbody>
+    <tr><td>O que é</td><td>Estado de operação atribuído pelo ONS (ou pelo agente) ao reservatório ou ao ponto de controle, segundo as regras de controle de cheias: Normal, Atenção, Alerta ou Emergência. Conta como declarada a situação Atenção, Alerta ou Emergência, ou a comunicação formal de que o reservatório opera para controle de cheias.</td><td>Indício de operação para controle de cheias encontrado pela SOE nos dados, sem declaração formal localizada. O principal é a marca <b>OVE</b> (ocupação do volume de espera) do RDH: o nível do reservatório passou do limite reservado para amortecer cheias.</td></tr>
+    <tr><td>Natureza</td><td>Ato do operador: declara o estado de operação.</td><td>Constatação hidráulica do armazenamento ou da vazão: não informa o estado de operação.</td></tr>
+    <tr><td>Fontes</td><td>Informe diário da Situação de Controle de Cheias (ONS, SINTEGRE), disponível de 13/02/2020 a 23/11/2024 e só nos períodos chuvosos; e-mail ou carta do ONS.</td><td>RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), diário desde dez/2016; dados diários do ONS (por exemplo, a redução do bombeamento em Santa Cecília com cheia na incremental de Santana).</td></tr>
+    <tr><td>Efeito no painel</td><td>O status do dia passa a <span class="pill cc">Controle de Cheias</span>, e a avaliação original fica na observação. O dia sai do índice de conformidade.</td><td>Só observação: o status do dia não muda.</td></tr>
+  </tbody></table></div>
+<p><b>Por que tratar de forma diferente.</b> As resoluções condicionam a suspensão à operação para controle de cheias declarada pelo ONS ou pelo agente. O OVE é um indício forte, porque, pelas regras do ONS, o reservatório que ocupa o volume de espera opera para esvaziá-lo, mas não substitui a declaração. As duas fontes nem sempre coincidem:</p>
+<ul>
+  <li>há dias com OVE no RDH em que o informe diário já voltara a Normal, ou em que não houve informe;</li>
+  <li>há operação de cheia sem OVE. Por exemplo, Funil está em controle de cheias desde 06/10/2026, conforme e-mail do ONS, com o volume de espera de 100% e sem OVE no RDH.</li>
+</ul>
+<p><b>Regras alcançadas.</b> O registro vale só para as regras afetadas pelo reservatório em controle de cheias:</p>
+<ul>
+  <li><b>São Francisco:</b> qualquer reservatório do sistema (Três Marias, Sobradinho, Itaparica ou Xingó) alcança todas as regras da Res. 2.081/2017 (art. 19).</li>
+  <li><b>Paraíba do Sul:</b> Funil (ou o ponto de controle de Barra Mansa) alcança as regras a jusante (Funil, Santa Cecília, bombeamento ao Guandu e Pereira Passos) e a dos estágios de deplecionamento. Um registro em Funil não alcança Paraibuna, Santa Branca e Jaguari, que ficam a montante; para essas regras vale o registro no próprio reservatório ou em Guararema.</li>
+</ul>
+<p>Os documentos do ONS no SINTEGRE são de acesso restrito. O painel traz só a referência e o resumo do estado declarado; os arquivos ficam na pasta de trabalho da SOE.</p>
 
 <h2 id="janelas">6. Regras de janela</h2>
 <p>Regras apuradas por média semanal (semana operativa de sábado a sexta), mensal ou por acumulado anual só recebem Atende, Tolerância ou Não atende no fechamento da janela. Até lá:</p>
@@ -187,7 +211,7 @@ code { font-family: var(--f-mono); font-size: .85em; background: var(--sunk); pa
 <p>No painel, o símbolo ● ao lado da faixa indica faixa publicada (boletim ou Power BI). O histórico completo, com o link de cada boletim, está na planilha “Histórico das faixas operativas”.</p>
 
 <h2 id="conformidade">8. Índice de conformidade</h2>
-<p>Índice de conformidade = (Atende + Tolerância) ÷ avaliações com resultado (Atende + Tolerância + Não atende), no período e nos filtros selecionados. Os dias Em curso, Parcial, Não se aplica, Sem dado e Parâmetro pendente ficam fora do cálculo.</p>
+<p>Índice de conformidade = (Atende + Tolerância) ÷ avaliações com resultado (Atende + Tolerância + Não atende), no período e nos filtros selecionados. Os dias Controle de Cheias, Em curso, Parcial, Não se aplica, Sem dado e Parâmetro pendente ficam fora do cálculo.</p>
 
 <h2 id="vigencia">9. Vigência das normas</h2>
 <p>Cada regra só é avaliada a partir da entrada em vigor da sua norma, conforme o texto oficial:</p>
@@ -243,6 +267,9 @@ code { font-family: var(--f-mono); font-size: .85em; background: var(--sunk); pa
 <ul>
   <li><b>Folga:</b> distância entre o valor apurado e o limite, na unidade da regra. Positiva quando há margem; negativa quando o limite foi ultrapassado.</li>
   <li><b>VU:</b> volume útil, em % ou hm³.</li>
+  <li><b>VE:</b> volume de espera, parcela do volume útil mantida vazia para amortecer cheias, definida pelo ONS por reservatório e semana.</li>
+  <li><b>OVE:</b> ocupação do volume de espera, marca do RDH do ONS que indica reservatório com nível acima do limite do volume de espera.</li>
+  <li><b>RDH:</b> Relatório Diário da Situação Hidráulico-Hidrológica do ONS (SINTEGRE).</li>
   <li><b>Semana operativa:</b> de sábado a sexta-feira (Res. ANA 132/2022, art. 8º).</li>
   <li><b>Janela:</b> intervalo de apuração da regra (dia, semana operativa, mês ou ano).</li>
   <li><b>Faixa operativa:</b> estado de armazenamento do reservatório ou sistema que define os limites aplicáveis.</li>

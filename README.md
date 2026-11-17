@@ -87,6 +87,7 @@ python ferramentas/validar.py "Planilha de Auditoria Multitemporal.xlsx" data/pa
 
 - Três níveis (Atende, Tolerância, Não atende) somente onde a resolução prevê tolerância (132/2022, 193/2024, 194/2024, 2.081/2017, 70/2021 e estágios da 1.382/2015, com variação absoluta de 5 p.p. de VU) e no bombeamento ao Guandu (5% de 119 m³/s desde 20/08/2021, Ofício Circular nº 1/2021/JG/ANA); dois níveis nos demais casos.
 - "Não se aplica": regra fora da sua condição de aplicação (período, faixa ou gatilho).
+- "Controle de Cheias": dia coberto por situação de controle de cheias declarada pelo ONS ou pelo agente (cadastro de atos, tipo `situacao_declarada`). A avaliação que o dia teria fica na observação, e o dia não entra no índice de conformidade. A situação identificada nos dados (`situacao_identificada`, por exemplo a marca OVE do RDH) é só observação e não muda o status.
 - "Sem dado": a fonte não publicou o dado do dia.
 - "Parâmetro pendente": o limite depende de ato que não está cadastrado; a observação do dia diz qual ato ou informação falta.
 

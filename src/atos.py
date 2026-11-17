@@ -193,9 +193,10 @@ def vazoes_temporada() -> dict[str, dict]:
 
 
 def situacoes() -> list[dict]:
-    """Situações declaradas ou identificadas (só observação; não mudam a avaliação), no formato usado por calculo.obs_eventos."""
+    """Situações declaradas ou identificadas, no formato usado por calculo.obs_eventos. A declarada muda o status do dia para
+    Controle de Cheias (src/calculo.py); a identificada é só observação."""
     return [{"id": a["id"], "sistema": a["efeito"]["situacao"], "inicio": a["vigencia"]["inicio"], "fim": a["vigencia"].get("fim"),
-             "regras": a["regras"], "obs": a["citacao"], "fonte": a["documento"]} for a in _com("situacao")]
+             "regras": a["regras"], "obs": a["citacao"], "fonte": a["documento"], "tipo": a["tipo"]} for a in _com("situacao")]
 
 
 def _num(v: float, casas: int | None = None) -> str:
@@ -244,8 +245,9 @@ def efeito_txt(a: dict) -> str:
         t = ef["vazao_temporada"]
         return f"vazão da temporada {t['ano']} em {t['reservatorio']}: {_num(t['valor'])} m³/s"
     if "situacao" in ef:
-        quem = "identificada nos dados" if a.get("tipo") == "situacao_identificada" else "declarada"
-        return f"situação {quem} ({ef['situacao']}); só observação"
+        if a.get("tipo") == "situacao_identificada":
+            return f"situação identificada nos dados ({ef['situacao']}); só observação"
+        return f"situação declarada ({ef['situacao']}); status Controle de Cheias"
     return ", ".join(sorted(ef))
 
 

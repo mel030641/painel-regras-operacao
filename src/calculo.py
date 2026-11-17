@@ -6,7 +6,7 @@ Uso:
     python src/calculo.py --inicio 2026-10-01 --fim 2026-10-31
     python src/calculo.py --meses-horarios 36   # quantos meses de dado horário do ONS baixar (padrão 36)
 
-Status: Atende | Tolerância | Não atende | Em curso | Não se aplica | Sem dado | Parâmetro pendente.
+Status: Atende | Tolerância | Não atende | Controle de Cheias | Em curso | Não se aplica | Sem dado | Parâmetro pendente.
 Folga: margem até o limite, na unidade da regra (positiva = dentro do limite) e em % do limite.
 Dia mais recente do ONS/SAR (D-1) costuma vir incompleto: é marcado como provisório.
 """
@@ -34,6 +34,12 @@ def obs_eventos(regra_id: str, iso: str) -> str | None:
     txt = [e["obs"] for e in EVENTOS if regra_id in e["regras"] and e["inicio"] <= iso <= (e.get("fim") or "9999-12-31")]
     return "; ".join(txt) or None
 
+
+def controle_cheias(regra_id: str, iso: str) -> bool:
+    """O dia da regra está coberto por situação de controle de cheias declarada (situacao_declarada)."""
+    return any(e["tipo"] == "situacao_declarada" and regra_id in e["regras"] and e["inicio"] <= iso <= (e.get("fim") or "9999-12-31")
+               for e in EVENTOS)
+
 RAIZ = Path(__file__).resolve().parents[1]
 CONFIG = RAIZ / "config"
 SAIDA = RAIZ / "data" / "painel.json"
@@ -43,6 +49,7 @@ CANTAREIRA_SAR = ["29001", "29002", "29003", "29004"]
 
 OK, TOL, NAO, NA, SD, PP = "Atende", "Tolerância", "Não atende", "Não se aplica", "Sem dado", "Parâmetro pendente"
 EC = "Em curso"  # janela (semana operativa ou mês) ainda aberta: o status definitivo só sai no fechamento
+CC = "Controle de Cheias"  # dia coberto por situação declarada de controle de cheias: avaliação fora do índice
 
 
 def em_curso(out: dict, d: dt.date, janela: str) -> dict:
@@ -875,6 +882,10 @@ def executar(inicio: dt.date, fim: dt.date, meses_horarios: int) -> dict:
             ev = obs_eventos(regra["id"], a["d"])
             if ev and a.get("st") not in (SD,):
                 a["obs"] = "; ".join(x for x in (a.get("obs"), ev) if x)
+            if a.get("st") in (OK, TOL, NAO) and controle_cheias(regra["id"], a["d"]):
+                resto = [x for x in (a.get("obs") or "").split("; ") if x and x != "verificar se a redução foi justificada"]
+                a["obs"] = "; ".join([f"avaliação sem o controle de cheias: {a['st']}"] + resto)
+                a["st"] = CC
             serie.append({k: _r(v) for k, v in a.items() if v is not None or k in ("d", "st")})
         # último registro avaliado (ignora dias sem dado no fim da série)
         validos = [s for s in serie if s["st"] not in (SD,)]

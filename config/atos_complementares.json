@@ -565,6 +565,636 @@
    "efeito": {
     "situacao": "Paraíba do Sul"
    }
+  },
+  {
+   "id": "sf-cheia-decl-2022-01-03",
+   "tipo": "situacao_declarada",
+   "documento": "Informe diário da Situação de Controle de Cheias (ONS, SINTEGRE, Produtos/261); documento restrito, não publicado no painel",
+   "data": "2022-02-25",
+   "sei": null,
+   "regras": [
+    "2081-SFTMAR-min",
+    "2081-SFTMAR-max",
+    "2081-SFSOBR-min",
+    "2081-SFSOBR-max",
+    "2081-SFXING-min",
+    "2081-SFXING-max",
+    "2081-SFLGON"
+   ],
+   "vigencia": {
+    "inicio": "2022-01-03",
+    "fim": "2022-02-25"
+   },
+   "citacao": "Situação de operação declarada pelo ONS no informe diário de controle de cheias de 03/01/2022 a 25/02/2022: ITAPARICA: Controle de Cheias – Atenção; TRÊS MARIAS: Controle de Cheias – Alerta; TRÊS MARIAS: Controle de Cheias – Atenção. Res. ANA 2.081/2017, art. 19: as condições de operação ficam automaticamente suspensas quando um ou mais reservatórios do Sistema Hídrico do Rio São Francisco operam para controle de cheia.",
+   "efeito": {
+    "situacao": "São Francisco"
+   }
+  },
+  {
+   "id": "sf-cheia-decl-2022-03-06",
+   "tipo": "situacao_declarada",
+   "documento": "Informe diário da Situação de Controle de Cheias (ONS, SINTEGRE, Produtos/261); documento restrito, não publicado no painel",
+   "data": "2022-05-23",
+   "sei": null,
+   "regras": [
+    "2081-SFTMAR-min",
+    "2081-SFTMAR-max",
+    "2081-SFSOBR-min",
+    "2081-SFSOBR-max",
+    "2081-SFXING-min",
+    "2081-SFXING-max",
+    "2081-SFLGON"
+   ],
+   "vigencia": {
+    "inicio": "2022-03-06",
+    "fim": "2022-05-23"
+   },
+   "citacao": "Situação de operação declarada pelo ONS no informe diário de controle de cheias de 06/03/2022 a 23/05/2022: ITAPARICA: Controle de Cheias – Atenção; SOBRADINHO: Controle de Cheias – Atenção; TRÊS MARIAS: Controle de Cheias – Atenção. Res. ANA 2.081/2017, art. 19: as condições de operação ficam automaticamente suspensas quando um ou mais reservatórios do Sistema Hídrico do Rio São Francisco operam para controle de cheia.",
+   "efeito": {
+    "situacao": "São Francisco"
+   }
+  },
+  {
+   "id": "sf-cheia-ove-2021-12-28",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2022-02-04",
+   "sei": null,
+   "regras": [
+    "2081-SFTMAR-min",
+    "2081-SFTMAR-max",
+    "2081-SFSOBR-min",
+    "2081-SFSOBR-max",
+    "2081-SFXING-min",
+    "2081-SFXING-max",
+    "2081-SFLGON"
+   ],
+   "vigencia": {
+    "inicio": "2021-12-28",
+    "fim": "2022-02-04"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em ITAPARICA, TRÊS MARIAS de 28/12/2021 a 04/02/2022, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 2.081/2017, art. 19: as condições de operação ficam automaticamente suspensas quando um ou mais reservatórios do Sistema Hídrico do Rio São Francisco operam para controle de cheia.",
+   "efeito": {
+    "situacao": "São Francisco"
+   }
+  },
+  {
+   "id": "sf-cheia-ove-2022-12-31",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2023-01-05",
+   "sei": null,
+   "regras": [
+    "2081-SFTMAR-min",
+    "2081-SFTMAR-max",
+    "2081-SFSOBR-min",
+    "2081-SFSOBR-max",
+    "2081-SFXING-min",
+    "2081-SFXING-max",
+    "2081-SFLGON"
+   ],
+   "vigencia": {
+    "inicio": "2022-12-31",
+    "fim": "2023-01-05"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em ITAPARICA de 31/12/2022 a 05/01/2023, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 2.081/2017, art. 19: as condições de operação ficam automaticamente suspensas quando um ou mais reservatórios do Sistema Hídrico do Rio São Francisco operam para controle de cheia.",
+   "efeito": {
+    "situacao": "São Francisco"
+   }
+  },
+  {
+   "id": "sf-cheia-ove-2025-01-31",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2025-02-14",
+   "sei": null,
+   "regras": [
+    "2081-SFTMAR-min",
+    "2081-SFTMAR-max",
+    "2081-SFSOBR-min",
+    "2081-SFSOBR-max",
+    "2081-SFXING-min",
+    "2081-SFXING-max",
+    "2081-SFLGON"
+   ],
+   "vigencia": {
+    "inicio": "2025-01-31",
+    "fim": "2025-02-14"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em LUIZ GONZAGA, TRÊS MARIAS de 31/01/2025 a 14/02/2025, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 2.081/2017, art. 19: as condições de operação ficam automaticamente suspensas quando um ou mais reservatórios do Sistema Hídrico do Rio São Francisco operam para controle de cheia.",
+   "efeito": {
+    "situacao": "São Francisco"
+   }
+  },
+  {
+   "id": "sf-cheia-ove-2026-03-01",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2026-03-06",
+   "sei": null,
+   "regras": [
+    "2081-SFTMAR-min",
+    "2081-SFTMAR-max",
+    "2081-SFSOBR-min",
+    "2081-SFSOBR-max",
+    "2081-SFXING-min",
+    "2081-SFXING-max",
+    "2081-SFLGON"
+   ],
+   "vigencia": {
+    "inicio": "2026-03-01",
+    "fim": "2026-03-06"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em TRÊS MARIAS de 01/03/2026 a 06/03/2026, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 2.081/2017, art. 19: as condições de operação ficam automaticamente suspensas quando um ou mais reservatórios do Sistema Hídrico do Rio São Francisco operam para controle de cheia.",
+   "efeito": {
+    "situacao": "São Francisco"
+   }
+  },
+  {
+   "id": "sf-cheia-ove-2026-03-24",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2026-05-10",
+   "sei": null,
+   "regras": [
+    "2081-SFTMAR-min",
+    "2081-SFTMAR-max",
+    "2081-SFSOBR-min",
+    "2081-SFSOBR-max",
+    "2081-SFXING-min",
+    "2081-SFXING-max",
+    "2081-SFLGON"
+   ],
+   "vigencia": {
+    "inicio": "2026-03-24",
+    "fim": "2026-05-10"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em SOBRADINHO, TRÊS MARIAS de 24/03/2026 a 10/05/2026, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 2.081/2017, art. 19: as condições de operação ficam automaticamente suspensas quando um ou mais reservatórios do Sistema Hídrico do Rio São Francisco operam para controle de cheia.",
+   "efeito": {
+    "situacao": "São Francisco"
+   }
+  },
+  {
+   "id": "funil-cheia-decl-2021-03-14",
+   "tipo": "situacao_declarada",
+   "documento": "Informe diário da Situação de Controle de Cheias (ONS, SINTEGRE, Produtos/261); documento restrito, não publicado no painel",
+   "data": "2021-03-25",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2021-03-14",
+    "fim": "2021-03-25"
+   },
+   "citacao": "Situação de operação declarada pelo ONS no informe diário de controle de cheias de 14/03/2021 a 25/03/2021: FUNIL: Controle de Cheias – Atenção (C). Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação. Notas do informe: (B) VE ocupado com previsão de esvaziamento; (C) VE ocupado sem cheia atual nem prevista.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "funil-cheia-decl-2024-01-13",
+   "tipo": "situacao_declarada",
+   "documento": "Informe diário da Situação de Controle de Cheias (ONS, SINTEGRE, Produtos/261); documento restrito, não publicado no painel",
+   "data": "2024-01-24",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2024-01-13",
+    "fim": "2024-01-24"
+   },
+   "citacao": "Situação de operação declarada pelo ONS no informe diário de controle de cheias de 13/01/2024 a 24/01/2024: FUNIL: Controle de Cheias – Alerta (B). Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação. Notas do informe: (B) VE ocupado com previsão de esvaziamento; (C) VE ocupado sem cheia atual nem prevista.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "funil-cheia-decl-2024-02-18",
+   "tipo": "situacao_declarada",
+   "documento": "Informe diário da Situação de Controle de Cheias (ONS, SINTEGRE, Produtos/261); documento restrito, não publicado no painel",
+   "data": "2024-02-19",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2024-02-18",
+    "fim": "2024-02-19"
+   },
+   "citacao": "Situação de operação declarada pelo ONS no informe diário de controle de cheias de 18/02/2024 a 19/02/2024: FUNIL: Controle de Cheias – Alerta; FUNIL: Controle de Cheias – Alerta (B). Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação. Notas do informe: (B) VE ocupado com previsão de esvaziamento; (C) VE ocupado sem cheia atual nem prevista.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "funil-cheia-decl-2024-02-22",
+   "tipo": "situacao_declarada",
+   "documento": "Informe diário da Situação de Controle de Cheias (ONS, SINTEGRE, Produtos/261); documento restrito, não publicado no painel",
+   "data": "2024-02-24",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2024-02-22",
+    "fim": "2024-02-24"
+   },
+   "citacao": "Situação de operação declarada pelo ONS no informe diário de controle de cheias de 22/02/2024 a 24/02/2024: FUNIL: Controle de Cheias – Alerta; FUNIL: Controle de Cheias – Atenção. Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "funil-cheia-ove-2018-01-28",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2018-02-10",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2018-01-28",
+    "fim": "2018-02-10"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em FUNIL de 28/01/2018 a 10/02/2018, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "funil-cheia-ove-2018-02-15",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2018-03-24",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2018-02-15",
+    "fim": "2018-03-24"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em FUNIL de 15/02/2018 a 24/03/2018, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "funil-cheia-ove-2018-03-27",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2018-03-30",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2018-03-27",
+    "fim": "2018-03-30"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em FUNIL de 27/03/2018 a 30/03/2018, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "funil-cheia-ove-2019-03-08",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2019-03-08",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2019-03-08",
+    "fim": "2019-03-08"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em FUNIL em 08/03/2019, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "funil-cheia-ove-2019-03-12",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2019-03-29",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2019-03-12",
+    "fim": "2019-03-29"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em FUNIL de 12/03/2019 a 29/03/2019, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "funil-cheia-ove-2020-03-10",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2020-03-20",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2020-03-10",
+    "fim": "2020-03-20"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em FUNIL de 10/03/2020 a 20/03/2020, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "funil-cheia-ove-2020-03-23",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2020-03-26",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2020-03-23",
+    "fim": "2020-03-26"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em FUNIL de 23/03/2020 a 26/03/2020, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "funil-cheia-ove-2020-12-19",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2020-12-31",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2020-12-19",
+    "fim": "2020-12-31"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em FUNIL de 19/12/2020 a 31/12/2020, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "funil-cheia-ove-2021-01-03",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2021-01-04",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2021-01-03",
+    "fim": "2021-01-04"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em FUNIL de 03/01/2021 a 04/01/2021, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "funil-cheia-ove-2021-03-08",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2021-03-26",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2021-03-08",
+    "fim": "2021-03-26"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em FUNIL de 08/03/2021 a 26/03/2021, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "funil-cheia-ove-2023-03-13",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2023-03-15",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2023-03-13",
+    "fim": "2023-03-15"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em FUNIL de 13/03/2023 a 15/03/2023, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "funil-cheia-ove-2024-02-16",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2024-02-18",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2024-02-16",
+    "fim": "2024-02-18"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em FUNIL de 16/02/2024 a 18/02/2024, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "funil-cheia-ove-2024-02-22",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2024-04-05",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2024-02-22",
+    "fim": "2024-04-05"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em FUNIL de 22/02/2024 a 05/04/2024, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "funil-cheia-ove-2024-12-16",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2024-12-16",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2024-12-16",
+    "fim": "2024-12-16"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em FUNIL em 16/12/2024, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "funil-cheia-ove-2024-12-27",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2025-01-12",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2024-12-27",
+    "fim": "2025-01-12"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em FUNIL de 27/12/2024 a 12/01/2025, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "funil-cheia-ove-2025-02-05",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2025-02-22",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2025-02-05",
+    "fim": "2025-02-22"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em FUNIL de 05/02/2025 a 22/02/2025, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "funil-cheia-ove-2026-01-27",
+   "tipo": "situacao_identificada",
+   "documento": "RDH, Relatório Diário da Situação Hidráulico-Hidrológica (ONS, SINTEGRE), marca OVE (ocupação do volume de espera); documento restrito, não publicado no painel",
+   "data": "2026-03-27",
+   "sei": null,
+   "regras": [
+    "1382-PBFUNI",
+    "1382-PBSTAC",
+    "1382-PBSTAC-guandu",
+    "1382-RLPPAS",
+    "1382-estagios"
+   ],
+   "vigencia": {
+    "inicio": "2026-01-27",
+    "fim": "2026-03-27"
+   },
+   "citacao": "O RDH do ONS registra ocupação do volume de espera (OVE) em FUNIL de 27/01/2026 a 27/03/2026, isto é, operação para controle de cheias. Situação identificada pela SOE no RDH; sem situação de Atenção, Alerta ou Emergência declarada no informe diário nesses dias. Res. ANA 1.382/2015, art. 1º, III, b, e IV, b: Funil operando para atender às regras de controle de cheia. a resolução não tem cláusula geral de suspensão; registro só como observação.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
   }
  ]
 }
