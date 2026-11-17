@@ -287,6 +287,100 @@ def cobertura(regra_id: str, serie: list[dict], pendente: str = "Parâmetro pend
     return out
 
 
+# --------------------------------------------------------------------------- próximo ato esperado
+STATUS_PROXIMO = ("em_dia", "aguardando", "atrasado", "eventual", "sem")
+JANELA_AGUARDANDO = 30  # dias antes da data-limite em que o ato passa a "aguardando"
+
+
+def _d(s):
+    import datetime as _dt
+    return _dt.date.fromisoformat(s)
+
+
+def _status(prazo, hoje, atendido: bool, janela: int = JANELA_AGUARDANDO) -> str:
+    import datetime as _dt
+    if atendido:
+        return "em_dia"
+    if prazo < hoje:
+        return "atrasado"
+    return "aguardando" if prazo <= hoje + _dt.timedelta(days=janela) else "em_dia"
+
+
+def _atos_limite(regra_id: str) -> list[dict]:
+    return [a for a in todos() if regra_id in a["regras"] and "situacao" not in a["efeito"]]
+
+
+def proximo(regra_id: str, spec: dict, hoje) -> dict:
+    """Próximo ato esperado da regra, na data de referência 'hoje' (datetime.date).
+
+    spec (src/regras.py, PROXIMO_ATO):
+      tipo 'ciclo':      ato que vale de 'inicio' a 'fim' (aaaa omitido, MM-DD) a cada ano, com data-limite 'prazo' (MM-DD)
+                         no mesmo ano do início; o ciclo está atendido quando há ato da regra vigente no início do ciclo
+                         ou ato com o ano do ciclo (vazao_temporada.ano ou efeito.ano);
+      tipo 'semanal':    previsão sex–dom do ONS, obtida na quinta (previsao_semanal);
+      tipo 'vencimento': renovação do ato vigente (outorga), esperada até o fim da vigência; 'antecedencia' em dias;
+      tipo 'eventual':   só quando ocorre o fato descrito em 'quando';
+      tipo 'sem':        não há ato a esperar ('motivo').
+    Devolve {tipo, periodicidade, fonte, base, alvo, prazo (aaaa-mm-dd ou None), status, ato}.
+    """
+    import datetime as _dt
+    base = {k: spec.get(k) for k in ("periodicidade", "fonte", "base")}
+    tipo = spec["tipo"]
+    atos_r = _atos_limite(regra_id)
+    if tipo in ("eventual", "sem"):
+        return {**base, "tipo": tipo, "alvo": spec.get("quando") or spec.get("motivo"), "prazo": None, "status": tipo, "ato": None}
+    if tipo == "semanal":
+        sexta = hoje + _dt.timedelta(days=(4 - hoje.weekday()) % 7) if hoje.weekday() <= 4 else hoje - _dt.timedelta(days=hoje.weekday() - 4)
+        reg = previsoes()
+        res = spec["reservatorio"]
+        while True:
+            chave = f"{res}|{sexta.isoformat()}"
+            prazo = sexta - _dt.timedelta(days=1)
+            if chave in reg and prazo <= hoje + _dt.timedelta(days=7):
+                sexta += _dt.timedelta(days=7)
+                continue
+            st = _status(prazo, hoje, chave in reg, janela=7)
+            return {**base, "tipo": tipo, "alvo": f"previsão para sex–dom de {sexta.strftime('%d/%m/%Y')}", "prazo": prazo.isoformat(),
+                    "status": st, "ato": None}
+    if tipo == "vencimento":
+        vig = [a for a in atos_r if cobre(a, hoje.isoformat(), hoje.isoformat())]
+        if not vig:
+            return {**base, "tipo": tipo, "alvo": "ato vigente (nenhum no cadastro)", "prazo": hoje.isoformat(), "status": "atrasado", "ato": None}
+        a = max(vig, key=lambda x: x["vigencia"].get("fim") or "9999-12-31")
+        fim = a["vigencia"].get("fim")
+        if not fim:
+            return {**base, "tipo": tipo, "alvo": "renovação (vigência sem prazo no cadastro)", "prazo": None, "status": "em_dia", "ato": a["documento"]}
+        prazo = _d(fim)
+        renov = [b for b in atos_r if b is not a and cobre(b, (prazo + _dt.timedelta(days=1)).isoformat(), (prazo + _dt.timedelta(days=1)).isoformat())]
+        st = _status(prazo, hoje, bool(renov), janela=spec.get("antecedencia", 180))
+        return {**base, "tipo": tipo, "alvo": f"renovação de {a['documento']}", "prazo": fim, "status": st, "ato": a["documento"]}
+    if tipo == "ciclo":
+        def janela(ano):
+            ini = _d(f"{ano}-{spec['inicio']}")
+            fim = _d(f"{ano + (1 if spec['fim'] < spec['inicio'] else 0)}-{spec['fim']}")
+            return ini, fim, _d(f"{ano}-{spec['prazo']}")
+
+        def atendido(ini):
+            for a in atos_r:
+                ef = a["efeito"]
+                ano = (ef.get("vazao_temporada") or {}).get("ano", ef.get("ano"))
+                if cobre(a, ini.isoformat(), ini.isoformat()) or (ano is not None and str(ano) == str(ini.year)):
+                    return a
+            return None
+
+        ano = hoje.year - 1
+        while True:
+            ini, fim, prazo = janela(ano)
+            if fim >= hoje:
+                a = atendido(ini)
+                if not a or prazo > hoje + _dt.timedelta(days=JANELA_AGUARDANDO) or ano > hoje.year + 1:
+                    alvo = f"{spec.get('rotulo', 'ciclo')} {ini.strftime('%d/%m/%Y')} a {fim.strftime('%d/%m/%Y')}"
+                    return {**base, "tipo": tipo, "alvo": alvo, "prazo": prazo.isoformat(), "status": _status(prazo, hoje, bool(a)),
+                            "ato": a["documento"] if a else None}
+            ano += 1
+    raise ValueError(f"{regra_id}: tipo de próximo ato desconhecido: {tipo}")
+
+
 if __name__ == "__main__":
     import sys
     # --validar: só confere o cadastro e as regras citadas (usado na validação dos pedidos de cadastro); sai com 1 se houver erro
