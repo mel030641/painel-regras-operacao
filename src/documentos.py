@@ -92,7 +92,7 @@ def acompanhamento(D, destino: Path):
     leia_me(wb, "Acompanhamento das regras de operação - SOE/ANA", [
         f"Período apurado: {_d(D['periodo'][0]):%d/%m/%Y} a {hoje:%d/%m/%Y}. Gerado em {D['gerado_em'][:16].replace('T', ' ')} UTC a partir de painel.json.",
         "Regras: situação no último dia avaliado, conformidade no ano corrente, nos últimos 12 meses e em todo o histórico.",
-        "Conformidade = (Atende + Tolerância) ÷ avaliações com resultado (Atende + Tolerância + Não atende), mesmo critério do painel. Dias Em curso, Sem dado, Não se aplica e Parâmetro pendente não entram na conta.",
+        "Conformidade = (Atende + Tolerância) ÷ avaliações com resultado (Atende + Tolerância + Não atende), mesmo critério do painel. Dias Controle de Cheias, Em curso, Sem dado, Não se aplica e Parâmetro pendente não entram na conta.",
         "Mensal: contagem de avaliações por regra e mês. Ocorrências: cada avaliação em Não atende ou Tolerância, com valor, limite e folga.",
         "Antes da entrada em vigor de cada resolução a regra é 'Não se aplica'. As Res. 1.382/2015 e 2.081/2017 entram em vigor após comunicado da ANA: 01/12/2016 e 01/05/2019, respectivamente.",
     ])
