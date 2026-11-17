@@ -102,6 +102,7 @@ CAMPOS_ONS = {
     "turb": "val_vazaoturbinada",
     "vert": "val_vazaovertida",
     "outras": "val_vazaooutrasestruturas",
+    "incr": "val_vazaoincremental",
 }
 
 
