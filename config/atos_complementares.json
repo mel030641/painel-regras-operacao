@@ -1,5 +1,5 @@
 {
- "descricao": "Cadastro único dos atos complementares às resoluções: outorgas, comunicados, ofícios e situações declaradas que fixam ou alteram o limite ou o gatilho de uma regra. Cada ato tem: id; tipo (outorga, comunicado, oficio, confirmacao, registro, valor_mensal ou situacao_declarada); documento; data (aaaa-mm-dd); sei; regras afetadas (ids de src/regras.py); vigencia {inicio, fim} (fim nulo = sem término declarado); citacao (texto mostrado no painel); e efeito, com um dos campos: parametro/valor (limite fixo, ex.: outorga), parametro/ano/valor (limite anual), revisao_estagio {reservatorio, estagio 0-2, valor}, tolerancia (fração), curva_seguranca (ciclo de config/curvas_seguranca_sf.json), valores_mensais {parametro, valores {aaaa-mm: valor}}, restricao_mensal {parametro, valores {aaaa-mm: m³/s}} (vazão de restrição mensal), vazao_temporada {reservatorio, ano, valor} (vazão da temporada de praias) ou situacao (só observação; não muda a avaliação). Lido por src/atos.py. Na outorga, vigencia.fim é o vencimento da outorga (entra nos alertas do painel). Campos opcionais de rastreio: cadastrado_por, cadastrado_em (aaaa-mm-dd) e revisado_por.",
+ "descricao": "Cadastro único dos atos complementares às resoluções: outorgas, comunicados, ofícios e situações declaradas que fixam ou alteram o limite ou o gatilho de uma regra. Cada ato tem: id; tipo (outorga, comunicado, oficio, confirmacao, registro, valor_mensal, situacao_declarada ou situacao_identificada); documento; data (aaaa-mm-dd); sei; regras afetadas (ids de src/regras.py); vigencia {inicio, fim} (fim nulo = sem término declarado); citacao (texto mostrado no painel); e efeito, com um dos campos: parametro/valor (limite fixo, ex.: outorga), parametro/ano/valor (limite anual), revisao_estagio {reservatorio, estagio 0-2, valor}, tolerancia (fração), curva_seguranca (ciclo de config/curvas_seguranca_sf.json), valores_mensais {parametro, valores {aaaa-mm: valor}}, restricao_mensal {parametro, valores {aaaa-mm: m³/s}} (vazão de restrição mensal), vazao_temporada {reservatorio, ano, valor} (vazão da temporada de praias) ou situacao (só observação; não muda a avaliação). O tipo situacao_identificada marca situação inferida pela SOE a partir de dados e regras publicadas, sem declaração formal localizada. Lido por src/atos.py. Na outorga, vigencia.fim é o vencimento da outorga (entra nos alertas do painel). Campos opcionais de rastreio: cadastrado_por, cadastrado_em (aaaa-mm-dd) e revisado_por.",
  "atos": [
   {
    "id": "outorga-GRFURN",
@@ -429,6 +429,101 @@
     "fim": null
    },
    "citacao": "Funil em operação para controle de cheias desde 06/10/2026: defluências de Funil e vazão objetivo em Santa Cecília definidas pelo controle do nível de Funil (e-mail do ONS à CORSH de 05/10/2026, Operação de Funil para atendimento às Regras de Controle de Cheias; Res. 1.382/2015, art. 1º, III, b, e IV, b)",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "santa-cecilia-cheia-2025-04-05",
+   "tipo": "situacao_identificada",
+   "documento": "Regras de operação de controle de cheias da bacia do Paraíba do Sul, ciclo 2025/2026 (ONS, SINTEGRE), itens 3.2.4 e 3.3.5; dados diários do ONS (vazão incremental de Santana e vazão transferida em Santa Cecília)",
+   "data": "2025-04-06",
+   "sei": null,
+   "regras": [
+    "1382-PBSTAC-guandu",
+    "1382-PBSTAC"
+   ],
+   "vigencia": {
+    "inicio": "2025-04-05",
+    "fim": "2025-04-06"
+   },
+   "citacao": "Redução do bombeamento de Santa Cecília em 05 a 06/04/2025, coincidente com cheia na incremental de Santana (incremental de Santana de até 93,6 m³/s; transferência em Santa Cecília de 45 e 11 m³/s), compatível com o procedimento de controle de cheias das regras do Paraíba do Sul 2025/2026 (desligamento de bombas em Santa Cecília nos estados de Atenção/Alerta ou Emergência em Santana). Situação identificada pela SOE a partir dos dados; não foi localizada declaração formal do ONS para o período. Conferir o número do relatório de regras e a declaração do estado em Santana.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "santa-cecilia-cheia-2025-12-17",
+   "tipo": "situacao_identificada",
+   "documento": "Regras de operação de controle de cheias da bacia do Paraíba do Sul, ciclo 2025/2026 (ONS, SINTEGRE), itens 3.2.4 e 3.3.5; dados diários do ONS (vazão incremental de Santana e vazão transferida em Santa Cecília)",
+   "data": "2025-12-18",
+   "sei": null,
+   "regras": [
+    "1382-PBSTAC-guandu",
+    "1382-PBSTAC"
+   ],
+   "vigencia": {
+    "inicio": "2025-12-17",
+    "fim": "2025-12-18"
+   },
+   "citacao": "Redução do bombeamento de Santa Cecília em 17 a 18/12/2025, coincidente com cheia na incremental de Santana (incremental de Santana de até 37,2 m³/s; transferência em Santa Cecília de 94 m³/s), compatível com o procedimento de controle de cheias das regras do Paraíba do Sul 2025/2026 (desligamento de bombas em Santa Cecília nos estados de Atenção/Alerta ou Emergência em Santana). Situação identificada pela SOE a partir dos dados; não foi localizada declaração formal do ONS para o período. Conferir o número do relatório de regras e a declaração do estado em Santana.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "santa-cecilia-cheia-2026-01-20",
+   "tipo": "situacao_identificada",
+   "documento": "Regras de operação de controle de cheias da bacia do Paraíba do Sul, ciclo 2025/2026 (ONS, SINTEGRE), itens 3.2.4 e 3.3.5; dados diários do ONS (vazão incremental de Santana e vazão transferida em Santa Cecília)",
+   "data": "2026-01-21",
+   "sei": null,
+   "regras": [
+    "1382-PBSTAC-guandu",
+    "1382-PBSTAC"
+   ],
+   "vigencia": {
+    "inicio": "2026-01-20",
+    "fim": "2026-01-21"
+   },
+   "citacao": "Redução do bombeamento de Santa Cecília em 20 a 21/01/2026, coincidente com cheia na incremental de Santana (incremental de Santana de até 49 m³/s; transferência em Santa Cecília de 63 e 110 m³/s), compatível com o procedimento de controle de cheias das regras do Paraíba do Sul 2025/2026 (desligamento de bombas em Santa Cecília nos estados de Atenção/Alerta ou Emergência em Santana). Situação identificada pela SOE a partir dos dados; não foi localizada declaração formal do ONS para o período. Conferir o número do relatório de regras e a declaração do estado em Santana.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "santa-cecilia-cheia-2026-01-23",
+   "tipo": "situacao_identificada",
+   "documento": "Regras de operação de controle de cheias da bacia do Paraíba do Sul, ciclo 2025/2026 (ONS, SINTEGRE), itens 3.2.4 e 3.3.5; dados diários do ONS (vazão incremental de Santana e vazão transferida em Santa Cecília)",
+   "data": "2026-01-27",
+   "sei": null,
+   "regras": [
+    "1382-PBSTAC-guandu",
+    "1382-PBSTAC"
+   ],
+   "vigencia": {
+    "inicio": "2026-01-23",
+    "fim": "2026-01-27"
+   },
+   "citacao": "Redução do bombeamento de Santa Cecília em 23 a 27/01/2026, coincidente com cheia na incremental de Santana (incremental de Santana de 23,3 m³/s (23/01) a 55,4 m³/s (25/01); transferência em Santa Cecília entre 42 e 112 m³/s), compatível com o procedimento de controle de cheias das regras do Paraíba do Sul 2025/2026 (desligamento de bombas em Santa Cecília nos estados de Atenção/Alerta ou Emergência em Santana). Situação identificada pela SOE a partir dos dados; não foi localizada declaração formal do ONS para o período. Conferir o número do relatório de regras e a declaração do estado em Santana.",
+   "efeito": {
+    "situacao": "Paraíba do Sul"
+   }
+  },
+  {
+   "id": "santa-cecilia-cheia-2026-02-27",
+   "tipo": "situacao_identificada",
+   "documento": "Regras de operação de controle de cheias da bacia do Paraíba do Sul, ciclo 2025/2026 (ONS, SINTEGRE), itens 3.2.4 e 3.3.5; dados diários do ONS (vazão incremental de Santana e vazão transferida em Santa Cecília)",
+   "data": "2026-02-28",
+   "sei": null,
+   "regras": [
+    "1382-PBSTAC-guandu",
+    "1382-PBSTAC"
+   ],
+   "vigencia": {
+    "inicio": "2026-02-27",
+    "fim": "2026-02-28"
+   },
+   "citacao": "Redução do bombeamento de Santa Cecília em 27 a 28/02/2026, coincidente com cheia na incremental de Santana (incremental de Santana de 77,7 e 29,1 m³/s; transferência em Santa Cecília de 24 e 78 m³/s), compatível com o procedimento de controle de cheias das regras do Paraíba do Sul 2025/2026 (desligamento de bombas em Santa Cecília nos estados de Atenção/Alerta ou Emergência em Santana). Situação identificada pela SOE a partir dos dados; não foi localizada declaração formal do ONS para o período. Conferir o número do relatório de regras e a declaração do estado em Santana.",
    "efeito": {
     "situacao": "Paraíba do Sul"
    }

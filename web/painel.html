@@ -822,7 +822,7 @@ function renderOc(regras) {
 }
 
 // ---- atos complementares: aba só de leitura sobre o cadastro (config/atos_complementares.json)
-const TIPO_ATO = { outorga: "Outorga", comunicado: "Comunicado", oficio: "Ofício", confirmacao: "Confirmação", registro: "Registro", valor_mensal: "Valor mensal", situacao_declarada: "Situação declarada" };
+const TIPO_ATO = { outorga: "Outorga", comunicado: "Comunicado", oficio: "Ofício", confirmacao: "Confirmação", registro: "Registro", valor_mensal: "Valor mensal", situacao_declarada: "Situação declarada", situacao_identificada: "Situação identificada" };
 const SIT_ATO = { vig: "Vigente", fut: "Futuro", enc: "Encerrado" };
 const ALERTA_DIAS = 90;
 const fa = { tipo: "", regra: "", sit: "", q: "" };
@@ -830,7 +830,8 @@ const vigA = (a) => a.vigencia || {};
 const cobreAto = (a, x, y) => (vigA(a).inicio || "0000-01-01") <= y && (vigA(a).fim || "9999-12-31") >= x;
 const sitAto = (a, ref) => vigA(a).inicio && vigA(a).inicio > ref ? "fut" : vigA(a).fim && vigA(a).fim < ref ? "enc" : "vig";
 // atos que definem limite da regra (a situação declarada só entra como observação do dia)
-const atosDe = (rid) => (D.atos_complementares || []).filter((a) => (a.regras || []).includes(rid) && a.tipo !== "situacao_declarada");
+const ehSituacao = (a) => !!(a.efeito && a.efeito.situacao);  // situação declarada ou identificada: só observação
+const atosDe = (rid) => (D.atos_complementares || []).filter((a) => (a.regras || []).includes(rid) && !ehSituacao(a));
 const atosNoDia = (rid, d) => atosDe(rid).filter((a) => cobreAto(a, d, d));
 const hojeDados = () => String(D.gerado_em || "").slice(0, 10) || D.periodo[1];
 function mesesPer() { const out = []; let m = ini.slice(0, 7); while (m <= fim.slice(0, 7)) { out.push(m); const d = new Date(m + "-15T12:00:00Z"); d.setUTCMonth(d.getUTCMonth() + 1); m = d.toISOString().slice(0, 7); } return out; }
@@ -843,7 +844,7 @@ function faixasMeses(ms) { // meses consecutivos viram intervalos: "dez/25 a jun
   return out.join(", ");
 }
 const docAto = (a) => `${esc(a.documento)}${a.efeito_txt ? ` <span class="muted">· ${esc(a.efeito_txt)}</span>` : ""}`;
-const vencem = (ref, dias) => { const lim = addDias(ref, dias); return (D.atos_complementares || []).filter((a) => a.tipo !== "situacao_declarada" && vigA(a).fim && vigA(a).fim >= ref && vigA(a).fim <= lim).sort((x, y) => vigA(x).fim.localeCompare(vigA(y).fim)); };
+const vencem = (ref, dias) => { const lim = addDias(ref, dias); return (D.atos_complementares || []).filter((a) => !ehSituacao(a) && vigA(a).fim && vigA(a).fim >= ref && vigA(a).fim <= lim).sort((x, y) => vigA(x).fim.localeCompare(vigA(y).fim)); };
 function lacunasPer(rs, ms) { const out = []; for (const r of rs) { const c = r.cobertura_atos || {}; const l = ms.filter((m) => c[m] === "lacuna"); if (l.length) out.push([r, l]); } return out; }
 function atosFiltrados(rs) {
   const sa = (t) => String(t || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
