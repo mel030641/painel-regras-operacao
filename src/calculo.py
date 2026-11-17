@@ -22,7 +22,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import coleta  # noqa: E402
 import serie_compacta  # noqa: E402
-from regras import FAIXAS, PARAMETROS, REGRAS, VIGENCIA, VIGENCIA_A_CONFERIR  # noqa: E402
+from regras import FAIXAS, PARAMETROS, REGRAS, REVOGACAO, VIGENCIA, VIGENCIA_A_CONFERIR  # noqa: E402
 import atos  # noqa: E402
 from textos_normas import trechos  # noqa: E402
 
@@ -404,6 +404,10 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
     vig = VIGENCIA.get(regra["resolucao"])
     if vig and iso < vig:
         out["st"], out["obs"] = NA, f"antes da entrada em vigor ({vig[8:]}/{vig[5:7]}/{vig[:4]})"
+        return out
+    rev = REVOGACAO.get(regra["resolucao"])
+    if rev and iso >= rev[0]:
+        out["st"], out["obs"] = NA, f"norma revogada pela {rev[1]}"
         return out
     vac = VIGENCIA_A_CONFERIR.get(regra["resolucao"])
     if vac and iso < vac:
