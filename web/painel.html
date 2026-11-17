@@ -255,7 +255,7 @@ tr.detail td { background: var(--surface); padding: 0 }
 .atos-alertas .al { border-left: 3px solid var(--tol); background: var(--tol-soft); border-radius: 0 6px 6px 0; padding: 6px 10px; font-size: .82rem }
 .atos-alertas .al.ok { border-color: var(--ok); background: var(--ok-soft) }
 .heat .c.ca-ato { background: color-mix(in srgb, var(--ok) 32%, var(--surface)) }
-.cob { font-size: .8rem } .cob.lac { color: var(--tol); font-weight: 600 }
+.cob { font-size: .8rem } .cob.lac { color: var(--tol); font-weight: 600 } .cob.pend { font-weight: 600 }
 a.compl { text-decoration: none; cursor: pointer } a.compl:hover { background: var(--sunk); color: var(--fg) }
 #t-atos-lista td { vertical-align: top; font-size: .8rem } #t-atos-lista td.cit { max-width: 46ch; color: var(--fg-2) }
 #t-atos-sit tr.rule-ato { cursor: pointer } #t-atos-sit tr.rule-ato:hover td { background: var(--sunk) }
@@ -387,7 +387,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
     <div class="atos-alertas" id="atos-alertas" aria-live="polite"></div>
     <h3>Situação por regra</h3>
     <p class="muted" style="font-size:.8rem;margin:0 0 6px">Regras cujo limite depende de ato complementar. Clique na linha para abrir a regra na aba Regras.</p>
-    <div class="tbl-wrap"><table id="t-atos-sit"><thead><tr><th>Ponto / regra</th><th>Norma</th><th>Ato vigente em <span id="atos-ref"></span></th><th>Cobertura no período</th><th>Próximo vencimento</th></tr></thead><tbody></tbody></table></div>
+    <div class="tbl-wrap"><table id="t-atos-sit"><thead><tr><th>Ponto / regra</th><th>Norma</th><th>Ato vigente em <span id="atos-ref"></span></th><th>Cobertura no período</th><th>Próximo ato esperado</th></tr></thead><tbody></tbody></table></div>
     <h3>Calendário de cobertura</h3>
     <div class="heat heat-leg" aria-label="Legenda do calendário">
       <span><span class="c ca-ato"></span>Há ato vigente</span>
@@ -843,6 +843,14 @@ function faixasMeses(ms) { // meses consecutivos viram intervalos: "dez/25 a jun
   if (a) out.push(a === b ? rotMes(a) : `${rotMes(a)} a ${rotMes(b)}`);
   return out.join(", ");
 }
+// próximo ato esperado (src/regras.py PROXIMO_ATO, calculado em src/atos.py na data final do cálculo)
+const ST_PROX = { em_dia: ["Em dia", "cob"], aguardando: ["Aguardando", "cob pend"], atrasado: ["Atrasado", "cob lac"], eventual: ["Eventual", "muted"], sem: ["Sem ato esperado", "muted"] };
+function proxTxt(r) {
+  const p = r.proximo_ato; if (!p) return '<span class="muted">—</span>';
+  const [rot, cls] = ST_PROX[p.status] || [p.status, "muted"];
+  const tit = `Periodicidade: ${p.periodicidade || "—"}. Fonte: ${p.fonte || "—"}. Base da data-limite: ${p.base || "—"}.`;
+  return `<span class="${cls}" title="${esc(tit)}">${esc(rot)}</span>${p.prazo ? ` <span class="num">até ${df(p.prazo)}</span>` : ""}<div class="muted" style="font-size:.74rem">${esc(p.alvo || "")}${p.fonte && p.status !== "sem" ? ` · ${esc(p.fonte)}` : ""}</div>`;
+}
 const docAto = (a) => `${esc(a.documento)}${a.efeito_txt ? ` <span class="muted">· ${esc(a.efeito_txt)}</span>` : ""}`;
 const vencem = (ref, dias) => { const lim = addDias(ref, dias); return (D.atos_complementares || []).filter((a) => !ehSituacao(a) && vigA(a).fim && vigA(a).fim >= ref && vigA(a).fim <= lim).sort((x, y) => vigA(x).fim.localeCompare(vigA(y).fim)); };
 function lacunasPer(rs, ms) { const out = []; for (const r of rs) { const c = r.cobertura_atos || {}; const l = ms.filter((m) => c[m] === "lacuna"); if (l.length) out.push([r, l]); } return out; }
@@ -872,6 +880,10 @@ function renderAtos(regras) {
   // alertas
   const al = [];
   for (const a of venc) al.push(`<div class="al"><b>Vence em ${df(vigA(a).fim)}:</b> ${docAto(a)} <span class="muted">(${esc((a.regras || []).join(", "))})</span></div>`);
+  for (const r of rs.filter((x) => x.proximo_ato && ["atrasado", "aguardando"].includes(x.proximo_ato.status)).sort((x, y) => String(x.proximo_ato.prazo).localeCompare(String(y.proximo_ato.prazo)))) {
+    const p = r.proximo_ato;
+    al.push(`<div class="al"><b>${p.status === "atrasado" ? "Ato esperado não cadastrado" : "Ato esperado em breve"} (até ${df(p.prazo)}):</b> ${esc(r.ponto)} <span class="muted">(${esc(r.id)})</span>, ${esc(p.alvo)} <span class="muted">· ${esc(p.fonte || "")}</span></div>`);
+  }
   for (const [r, l] of lac) al.push(`<div class="al"><b>Sem ato:</b> ${esc(r.ponto)} <span class="muted">(${esc(r.id)})</span>, ${esc(faixasMeses(l))}</div>`);
   $("#atos-alertas").innerHTML = al.join("") || `<div class="al ok">Nenhum ato vence nos próximos ${ALERTA_DIAS} dias (a partir de ${df(hoje)}) e não há mês sem ato no período selecionado.</div>`;
   // a) situação por regra
@@ -885,10 +897,7 @@ function renderAtos(regras) {
       cob = `<span class="cob lac">${ok.length ? "Parcial" : "Sem ato"}: falta ${esc(faixasMeses(l))}</span>${pp && obsTxt(pp) ? `<div class="muted" style="font-size:.74rem">${esc(obsTxt(pp))}</div>` : ""}`;
     } else if (ok.length) cob = '<span class="cob">Completa</span>';
     else cob = '<span class="muted">Sem exigência no período</span>';
-    const prox = atosDe(r.id).filter((a) => vigA(a).fim && vigA(a).fim >= fim).sort((x, y) => vigA(x).fim.localeCompare(vigA(y).fim))[0];
-    const semPrazo = atosDe(r.id).some((a) => cobreAto(a, fim, fim) && !vigA(a).fim);
-    const proxTxt = prox ? `${df(vigA(prox).fim)} <span class="muted">· ${esc(prox.documento)}</span>` : semPrazo ? '<span class="muted">sem prazo cadastrado</span>' : '<span class="muted">—</span>';
-    return `<tr class="rule-ato" tabindex="0" data-id="${esc(r.id)}" title="Abrir a regra na aba Regras"><td><b>${esc(r.ponto)}</b> <span class="muted mono" style="font-size:.72rem">${esc(r.id)}</span><div class="desc">${esc(r.descricao)}</div></td><td class="norma">${esc(r.resolucao)}<small>${esc(r.artigos || "")}</small></td><td>${vigTxt}</td><td>${cob}</td><td>${proxTxt}</td></tr>`;
+    return `<tr class="rule-ato" tabindex="0" data-id="${esc(r.id)}" title="Abrir a regra na aba Regras"><td><b>${esc(r.ponto)}</b> <span class="muted mono" style="font-size:.72rem">${esc(r.id)}</span><div class="desc">${esc(r.descricao)}</div></td><td class="norma">${esc(r.resolucao)}<small>${esc(r.artigos || "")}</small></td><td>${vigTxt}</td><td>${cob}</td><td>${proxTxt(r)}</td></tr>`;
   }).join("") || `<tr><td colspan="5" class="empty">Nenhuma regra com ato complementar nos filtros atuais.</td></tr>`;
   // b) calendário regra × mês
   const CLS = { ato: "ca-ato", lacuna: "h-pp", sem: "h-na" }, TXT = { ato: "há ato vigente", lacuna: "o mês exige ato e não há", sem: "o mês não exige ato" };

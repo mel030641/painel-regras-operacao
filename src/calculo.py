@@ -867,6 +867,7 @@ def executar(inicio: dt.date, fim: dt.date, meses_horarios: int) -> dict:
         pre = {"ate": serie[n_pre]["d"] if n_pre < len(serie) else None, "obs": serie[0].get("obs")} if n_pre else None
         if regra.get("complementar"):
             meta["cobertura_atos"] = atos.cobertura(regra["id"], serie_toda, PP, NA)
+            meta["proximo_ato"] = atos.proximo(regra["id"], regra["proximo_ato"], fim)
         saida["regras"].append({**meta, "ultimo": ult, "mensal": {k: dict(v) for k, v in sorted(mensal.items())},
                                 **({"pre_vigencia": pre} if pre else {}), "serie": serie[n_pre:]})
     saida["faixas"] = []

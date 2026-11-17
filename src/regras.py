@@ -295,9 +295,38 @@ COMPLEMENTAR = {
     "194-PREMBO": "Vazão outorgada de Emborcação (limite na faixa Normal do período seco)",
     "194-PRITUM": "Vazão outorgada de Itumbiara (limite na faixa Normal do período seco)",
 }
+
+# Próximo ato esperado de cada regra complementar (periodicidade, fonte e data-limite); calculado em atos.proximo.
+# "base" diz de onde vem a data-limite: dispositivo da norma ou agenda da SOE (quando a norma não fixa data).
+_OUTORGA = dict(tipo="vencimento", periodicidade="na renovação", fonte="ANA (outorga; ANAlegis e DOU)",
+                base="fim da vigência da outorga cadastrada", antecedencia=180)
+_CURVAS = dict(tipo="ciclo", inicio="12-01", fim="11-30", prazo="09-01", rotulo="ciclo", periodicidade="anual",
+               fonte="ONS (nota técnica) e não objeção da ANA", base="agenda da SOE: 1º de setembro (conferir prazo no art. 4º da Res. 2.081/2017)")
+_REVOGADA_614 = dict(tipo="sem", periodicidade="—", fonte="—", base="ANAlegis",
+                     motivo="Res. Conj. 614/2010 revogada pela Res. Conj. 910/2014 (ANAlegis); encerramento da regra em análise")
+PROXIMO_ATO = {
+    "49-RIUHFC": dict(tipo="semanal", reservatorio="RIUHFC", periodicidade="semanal (quinta-feira)", fonte="ONS",
+                      base="Res. ANA 49/2018, art. 1º, § 1º"),
+    "70-TOSMES-praias": dict(tipo="ciclo", inicio="06-10", fim="08-20", prazo="05-10", rotulo="temporada", periodicidade="anual",
+                             fonte="ONS (ofício à ANA)", base="Res. ANA 70/2021, art. 6º, § 3º (até 10 de maio)"),
+    "2081-SFTMAR-max": _CURVAS,
+    "2081-SFXING-max": _CURVAS,
+    "2081-SFSOBR-max": dict(tipo="eventual", periodicidade="eventual", fonte="ONS, por recomendação da ANA",
+                            base="Res. ANA 2.081/2017, art. 9º, § 4º",
+                            quando="na faixa de Restrição; o critério da Atenção depende de decisão da SOE"),
+    "1382-estagios": dict(tipo="eventual", periodicidade="eventual", fonte="ANA (comunicado)",
+                          base="Res. Conj. 1.382/2015, art. 1º, § 2º", quando="revisão temporária dos limites dos estágios"),
+    "1931-volume": dict(tipo="ciclo", inicio="01-01", fim="12-31", prazo="01-01", rotulo="ano", periodicidade="anual",
+                        fonte="comunicado conjunto", base="agenda da SOE: vigência a partir de 1º de janeiro (a resolução não fixa data)"),
+    **{f"614-op-{c}": _REVOGADA_614 for c in ("29001", "29002", "29003", "29004")},
+    "614-restr-29004": _REVOGADA_614,
+    **{rid: _OUTORGA for rid in ("193-GRFURN", "193-GRMMOR", "194-PREMBO", "194-PRITUM")},
+}
+assert set(PROXIMO_ATO) == set(COMPLEMENTAR), set(PROXIMO_ATO) ^ set(COMPLEMENTAR)
 for _r in R:
     if _r["id"] in COMPLEMENTAR:
         _r["complementar"] = COMPLEMENTAR[_r["id"]]
+        _r["proximo_ato"] = PROXIMO_ATO[_r["id"]]
 assert set(COMPLEMENTAR) <= {_r["id"] for _r in R}, set(COMPLEMENTAR) - {_r["id"] for _r in R}
 
 REGRAS = R
