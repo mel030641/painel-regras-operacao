@@ -16,7 +16,7 @@ from pathlib import Path
 
 ARQUIVO = Path(__file__).resolve().parent.parent / "config" / "atos_complementares.json"
 
-TIPOS = {"outorga", "comunicado", "oficio", "confirmacao", "registro", "valor_mensal", "situacao_declarada"}
+TIPOS = {"outorga", "comunicado", "oficio", "confirmacao", "registro", "valor_mensal", "situacao_declarada", "situacao_identificada"}
 EFEITOS = {"parametro", "revisao_estagio", "tolerancia", "curva_seguranca", "valores_mensais", "restricao_mensal",
            "vazao_temporada", "previsao_semanal", "situacao"}
 MENSAIS = ("valores_mensais", "restricao_mensal")  # mesmo formato: {parametro, valores {aaaa-mm: valor}}
@@ -193,7 +193,7 @@ def vazoes_temporada() -> dict[str, dict]:
 
 
 def situacoes() -> list[dict]:
-    """Situações declaradas (só observação; não mudam a avaliação), no formato usado por calculo.obs_eventos."""
+    """Situações declaradas ou identificadas (só observação; não mudam a avaliação), no formato usado por calculo.obs_eventos."""
     return [{"id": a["id"], "sistema": a["efeito"]["situacao"], "inicio": a["vigencia"]["inicio"], "fim": a["vigencia"].get("fim"),
              "regras": a["regras"], "obs": a["citacao"], "fonte": a["documento"]} for a in _com("situacao")]
 
@@ -244,7 +244,8 @@ def efeito_txt(a: dict) -> str:
         t = ef["vazao_temporada"]
         return f"vazão da temporada {t['ano']} em {t['reservatorio']}: {_num(t['valor'])} m³/s"
     if "situacao" in ef:
-        return f"situação declarada ({ef['situacao']}); só observação"
+        quem = "identificada nos dados" if a.get("tipo") == "situacao_identificada" else "declarada"
+        return f"situação {quem} ({ef['situacao']}); só observação"
     return ", ".join(sorted(ef))
 
 
