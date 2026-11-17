@@ -74,7 +74,7 @@ class Dados:
                 expand.update(f[5:].split("+"))
             else:
                 expand.add(f)
-        ids_d = {f.split(":")[1] for f in expand if f.startswith("ONS:")} | {k for k in FAIXAS if k != "CANTAREIRA"} | {"RIUHFC"}
+        ids_d = {f.split(":")[1] for f in expand if f.startswith("ONS:")} | {k for k in FAIXAS if k != "CANTAREIRA"} | {"RIUHFC", "RPSANT"}
         ids_h = {f.split(":")[1] for f in expand if f.startswith("ONSH:")}
         self.sar_cod = {f.split(":")[1] for f in expand if f.startswith("SAR:")} | set(CANTAREIRA_SAR)
         self.saisp = {f.split(":")[1] for f in expand if f.startswith("SAISP:")}
@@ -826,6 +826,31 @@ def unidade(regra) -> str:
     return "m³/s"
 
 
+# Triagem de dias candidatos a controle de cheias (só sinaliza; não altera status). Critério empírico a partir dos
+# episódios de 2025/2026: bombeamento em Santa Cecília abaixo do piso com tolerância (113,05 m³/s) e vazão incremental
+# de Santana acima de 25 m³/s no dia, na véspera ou no dia seguinte (regras de cheias do Paraíba do Sul, itens 3.2.4/3.3.5).
+TRIAGEM_CHEIAS = {"regra": "1382-PBSTAC-guandu", "transf_max": 113.05, "incr_min": 25.0}
+
+
+def candidatos_cheias(ons: dict, inicio: dt.date, fim: dt.date) -> list[dict]:
+    """Dias com indício de controle de cheias em Santa Cecília, com a situação cadastrada que os cobre, se houver."""
+    sc, sant, cfg = ons.get("PBSTAC", {}), ons.get("RPSANT", {}), TRIAGEM_CHEIAS
+    out = []
+    for d in dias(inicio, fim):
+        iso = d.isoformat()
+        tr = (sc.get(iso) or {}).get("transf")
+        if tr is None or tr >= cfg["transf_max"]:
+            continue
+        inc = [(sant.get((d + dt.timedelta(k)).isoformat()) or {}).get("incr") for k in (-1, 0, 1)]
+        inc = [x for x in inc if x is not None]
+        if not inc or max(inc) <= cfg["incr_min"]:
+            continue
+        cob = [e["id"] for e in EVENTOS if cfg["regra"] in e["regras"] and e["inicio"] <= iso <= (e.get("fim") or "9999-12-31")]
+        out.append({"d": iso, "sistema": "Paraíba do Sul", "regra": cfg["regra"], "transf": round(tr, 2),
+                    "incr_max": round(max(inc), 2), "situacao": cob[0] if cob else None})
+    return out
+
+
 def executar(inicio: dt.date, fim: dt.date, meses_horarios: int) -> dict:
     dados = Dados(inicio, fim, meses_horarios)
     faixas = Faixas(dados)
@@ -877,6 +902,7 @@ def executar(inicio: dt.date, fim: dt.date, meses_horarios: int) -> dict:
         saida["faixas"].append({"rid": rid, "periodo": per, "faixa": nome, "idx": idx, "origem": orig, "vu_ref": ref,
                                 "limites": pbi.get("limites") if isinstance(pbi, dict) else None,
                                 "url": pbi.get("url") if isinstance(pbi, dict) else None})
+    saida["candidatos_cheias"] = {"criterio": TRIAGEM_CHEIAS, "dias": candidatos_cheias(dados.ons, inicio, fim)}
     saida["divergencias_faixa"] = [{"chave": f"{k[0]}|{k[1]}", **v} for k, v in faixas.divergencias.items()]
     return saida
 
