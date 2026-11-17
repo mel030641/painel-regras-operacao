@@ -72,6 +72,11 @@ VIGENCIA = {
     "Res. ANA 2.081/2017": "2019-05-01",                       # art. 22; Ofício Circular nº 1/2019/AA-CD-ANA, de 30/04/2019
 }
 
+# Resoluções revogadas: a partir da data, a regra é registrada como "Não se aplica" (norma revogada).
+REVOGACAO = {
+    "Res. Conj. ANA/DAEE 614/2010": ("2014-07-11", "Res. Conj. ANA/DAEE 910/2014, publicada no DOU de 11/07/2014 (ANAlegis)"),
+}
+
 # Resoluções cuja data de entrada em vigor ainda não foi conferida no comunicado da ANA.
 # Até a data ser conferida, a avaliação começa na data indicada.
 VIGENCIA_A_CONFERIR = {
@@ -245,6 +250,8 @@ R.append(dict(id="925-art2-atibaia", resolucao="Res. Conj. ANA/DAEE 925/2017", a
               fonte="SOMA:SAR:29002:defl+SAR:29003:defl", pisos={"todos": 0.25}))
 
 # --------------------------------------------------------------------------- 614/2010 Cantareira (cheias, out–jun)
+# Revogada pela Res. Conj. 910/2014 (REVOGACAO): as regras ficam no painel como "Não se aplica" para manter o histórico
+# e os indicadores da ASREG que as citam.
 for cod, nome, maxnormal in [("29001", "Jaguari-Jacareí", 844.00), ("29002", "Cachoeira", 821.88), ("29003", "Atibainha", 786.72), ("29004", "Paiva Castro", 745.61)]:
     R.append(dict(id=f"614-{cod}", resolucao="Res. Conj. ANA/DAEE 614/2010", artigos="arts. 1º, 3º a 5º; Anexo 1", sistema="Cantareira", ponto=nome,
                   descricao=f"Out–jun: cota ≤ NA máximo normal ({maxnormal:.2f} m)".replace(".", ","), tipo="teto_cota", freq="diaria", niveis=2, tol=None,
@@ -285,11 +292,6 @@ COMPLEMENTAR = {
     "2081-SFSOBR-max": "Teto mensal de Sobradinho (sem critério definido na Atenção; no período seco, a média acima de 1.000 m³/s já é Não atende); na Restrição, vazões fixadas pelo ONS por recomendação da ANA",
     "1382-estagios": "Revisões temporárias dos limites dos estágios por comunicado da ANA (art. 1º, § 2º)",
     "1931-volume": "Comunicado conjunto anual de volume suplementar (art. 1º, III)",
-    "614-op-29001": "Nível máximo operacional definido mensalmente pelo DAEE (art. 1º, § 2º, e art. 3º)",
-    "614-op-29002": "Nível máximo operacional definido mensalmente pelo DAEE (art. 1º, § 2º, e art. 3º)",
-    "614-op-29003": "Nível máximo operacional definido mensalmente pelo DAEE (art. 1º, § 2º, e art. 3º)",
-    "614-op-29004": "Nível máximo operacional definido mensalmente pelo DAEE (art. 1º, § 2º, e art. 3º)",
-    "614-restr-29004": "Vazão de restrição de dezembro a junho após fev/2011, a definir pelo DAEE (Anexo 1, item 4, OBS 3; restricao_mensal no cadastro de atos)",
     "193-GRFURN": "Vazão outorgada de Furnas (limite na faixa Normal do período seco)",
     "193-GRMMOR": "Vazão outorgada de Mascarenhas de Moraes (limite na faixa de Atenção do período seco)",
     "194-PREMBO": "Vazão outorgada de Emborcação (limite na faixa Normal do período seco)",
@@ -302,8 +304,6 @@ _OUTORGA = dict(tipo="vencimento", periodicidade="na renovação", fonte="ANA (o
                 base="fim da vigência da outorga cadastrada", antecedencia=180)
 _CURVAS = dict(tipo="ciclo", inicio="12-01", fim="11-30", prazo="09-01", rotulo="ciclo", periodicidade="anual",
                fonte="ONS (nota técnica) e não objeção da ANA", base="agenda da SOE: 1º de setembro (conferir prazo no art. 4º da Res. 2.081/2017)")
-_REVOGADA_614 = dict(tipo="sem", periodicidade="—", fonte="—", base="ANAlegis",
-                     motivo="Res. Conj. 614/2010 revogada pela Res. Conj. 910/2014 (ANAlegis); encerramento da regra em análise")
 PROXIMO_ATO = {
     "49-RIUHFC": dict(tipo="semanal", reservatorio="RIUHFC", periodicidade="semanal (quinta-feira)", fonte="ONS",
                       base="Res. ANA 49/2018, art. 1º, § 1º"),
@@ -318,8 +318,6 @@ PROXIMO_ATO = {
                           base="Res. Conj. 1.382/2015, art. 1º, § 2º", quando="revisão temporária dos limites dos estágios"),
     "1931-volume": dict(tipo="ciclo", inicio="01-01", fim="12-31", prazo="01-01", rotulo="ano", periodicidade="anual",
                         fonte="comunicado conjunto", base="agenda da SOE: vigência a partir de 1º de janeiro (a resolução não fixa data)"),
-    **{f"614-op-{c}": _REVOGADA_614 for c in ("29001", "29002", "29003", "29004")},
-    "614-restr-29004": _REVOGADA_614,
     **{rid: _OUTORGA for rid in ("193-GRFURN", "193-GRMMOR", "194-PREMBO", "194-PRITUM")},
 }
 assert set(PROXIMO_ATO) == set(COMPLEMENTAR), set(PROXIMO_ATO) ^ set(COMPLEMENTAR)
