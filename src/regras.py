@@ -126,9 +126,14 @@ ALERTA_2081 = ("Na faixa de Atenção, o teto mensal de Três Marias e de Xingó
                "consultadas com o VU do dia anterior ao 1º dia útil do mês. Na Restrição, as vazões são fixadas pelo ONS a partir de recomendação da ANA: "
                "sem esse ato cadastrado, o painel indica \"Parâmetro pendente\" e diz o que falta.")
 PEND_TM_RESTR = "vazão defluente média mensal fixada pelo ONS a partir de recomendação da ANA (art. 5º, § 3º) não cadastrada em config/atos_complementares.json (valores_mensais, teto_SFTMAR)"
-PEND_SOBR_RESTR = "vazões de Sobradinho fixadas pelo ONS a partir de recomendação da ANA (art. 9º, § 4º) não cadastradas em config/atos_complementares.json (valores_mensais, teto_SFSOBR)"
-PEND_SOBR_ATENCAO = ("a curva de segurança fixa o máximo de Xingó; para Sobradinho a NT do ONS só estima o acréscimo de perdas e usos entre Sobradinho e Xingó, "
-                      "e não há ato que converta esse máximo em limite de Sobradinho (critério a definir pela SOE; valor manual em teto_SFSOBR)")
+PEND_SOBR_RESTR = ("vazões de Sobradinho fixadas pelo ONS a partir de recomendação da ANA (art. 9º, § 4º) não cadastradas em config/atos_complementares.json "
+                   "(valores_mensais, teto_SFSOBR); nenhum caso de Restrição em Sobradinho desde a vigência (01/05/2019), conforme a SOE (18/11/2026)")
+# Atenção: a curva de segurança fixa o máximo de Xingó, e a SOE não tem critério, ato ou entendimento que o converta em limite de Sobradinho
+# (resposta da SOE de 18/11/2026). No período úmido não há teto próprio de Sobradinho; no seco vale o limite legal de 1.000 m³/s (art. 9º, § 3º).
+SOBR_ATENCAO_UMIDO = ("sem teto próprio de Sobradinho na Atenção do período úmido: a curva de segurança fixa o máximo de Xingó, e a SOE não tem critério, "
+                      "ato ou entendimento que converta esse máximo em limite de Sobradinho (SOE, 18/11/2026); o teto é verificado em Xingó (2081-SFXING-max)")
+SOBR_ATENCAO_SECO = ("limite legal de 1.000 m³/s no período seco (art. 9º, § 3º); a SOE não tem critério para converter o máximo de Xingó pela curva "
+                     "de segurança em limite de Sobradinho (SOE, 18/11/2026)")
 R.append(dict(id="2081-SFTMAR-min", resolucao="Res. ANA 2.081/2017", artigos="arts. 3º, I e § 1º; 5º; 12", sistema="São Francisco", ponto="Três Marias",
               descricao="Defluente média diária ≥ mínima da faixa", tipo="piso", freq="diaria", niveis=3, tol=0.05,
               fonte="ONS:SFTMAR:defl", faixa="SFTMAR", pisos={"todos": [150, 150, 100]}))
@@ -140,11 +145,11 @@ R.append(dict(id="2081-SFSOBR-min", resolucao="Res. ANA 2.081/2017", artigos="ar
               descricao="Defluente média diária ≥ mínima da faixa", tipo="piso", freq="diaria", niveis=3, tol=0.05,
               fonte="ONS:SFSOBR:defl", faixa="SFSOBR", pisos={"todos": [800, 800, 700]}))
 R.append(dict(id="2081-SFSOBR-max", alerta=ALERTA_2081, resolucao="Res. ANA 2.081/2017", artigos="art. 9º, §§ 2º a 4º; 12", sistema="São Francisco", ponto="Sobradinho",
-              descricao="Defluente média mensal ≤ máxima fixada (seco: ≤ 1.000 m³/s em Atenção)", tipo="teto", freq="mensal", niveis=3, tol=0.05,
+              descricao="Defluente média mensal ≤ 1.000 m³/s na Atenção do período seco; na Restrição, ≤ vazão fixada pelo ONS", tipo="teto", freq="mensal", niveis=3, tol=0.05,
               fonte="ONS:SFSOBR:defl", faixa="SFSOBR", janela="mes", umido=UMIDO_DEZ_ABR,
-              tetos={"umido": [None, {"param_mensal": "teto_SFSOBR", "pendente": PEND_SOBR_ATENCAO, "ref_curva": "SFXING", "vu": "SFSOBR"},
+              tetos={"umido": [None, {"param_mensal": "teto_SFSOBR", "nao_se_aplica": SOBR_ATENCAO_UMIDO, "ref_curva": "SFXING", "vu": "SFSOBR"},
                                {"param_mensal": "teto_SFSOBR", "pendente": PEND_SOBR_RESTR}],
-                     "seco": [None, {"param_mensal": "teto_SFSOBR", "teto_legal": 1000, "pendente": PEND_SOBR_ATENCAO},
+                     "seco": [None, {"param_mensal": "teto_SFSOBR", "padrao": 1000, "obs_padrao": SOBR_ATENCAO_SECO},
                               {"param_mensal": "teto_SFSOBR", "pendente": PEND_SOBR_RESTR}]}))
 R.append(dict(id="2081-SFXING-min", resolucao="Res. ANA 2.081/2017", artigos="arts. 3º, III e § 3º; 9º; 12", sistema="São Francisco", ponto="Xingó",
               descricao="Defluente média diária ≥ mínima da faixa de Sobradinho", tipo="piso", freq="diaria", niveis=3, tol=0.05,
@@ -289,7 +294,7 @@ COMPLEMENTAR = {
     "70-TOSMES-praias": "Vazão a ser praticada na temporada de praias, informada anualmente pelo ONS até 10 de maio (art. 6º, § 3º; vazao_temporada no cadastro de atos); sem esse valor, a regra fica em Parâmetro pendente",
     "2081-SFTMAR-max": "Curvas de segurança do ciclo (NT do ONS e não objeção da ANA, art. 4º); na Restrição, vazão fixada pelo ONS por recomendação da ANA",
     "2081-SFXING-max": "Curvas de segurança do ciclo (NT do ONS e não objeção da ANA, art. 4º)",
-    "2081-SFSOBR-max": "Teto mensal de Sobradinho (sem critério definido na Atenção; no período seco, a média acima de 1.000 m³/s já é Não atende); na Restrição, vazões fixadas pelo ONS por recomendação da ANA",
+    "2081-SFSOBR-max": "Na Restrição, vazões de Sobradinho fixadas pelo ONS por recomendação da ANA (nenhum caso desde 2019); um teto mensal cadastrado (teto_SFSOBR) prevalece também na Atenção",
     "1382-estagios": "Revisões temporárias dos limites dos estágios por comunicado da ANA (art. 1º, § 2º)",
     "1931-volume": "Comunicado conjunto anual de volume suplementar (art. 1º, III)",
     "193-GRFURN": "Vazão outorgada de Furnas (limite na faixa Normal do período seco)",
@@ -313,7 +318,7 @@ PROXIMO_ATO = {
     "2081-SFXING-max": _CURVAS,
     "2081-SFSOBR-max": dict(tipo="eventual", periodicidade="eventual", fonte="ONS, por recomendação da ANA",
                             base="Res. ANA 2.081/2017, art. 9º, § 4º",
-                            quando="na faixa de Restrição; o critério da Atenção depende de decisão da SOE"),
+                            quando="na faixa de Restrição (nenhum caso desde 2019)"),
     "1382-estagios": dict(tipo="eventual", periodicidade="eventual", fonte="ANA (comunicado)",
                           base="Res. Conj. 1.382/2015, art. 1º, § 2º", quando="revisão temporária dos limites dos estágios"),
     "1931-volume": dict(tipo="ciclo", inicio="01-01", fim="12-31", prazo="01-01", rotulo="ano", periodicidade="anual",
