@@ -1,6 +1,6 @@
 {
  "fonte": "Boletins diários ANA (gov.br) e painéis Power BI SOE/ANA",
- "atualizado_em": "2026-11-17T20:02:46",
+ "atualizado_em": "2026-11-18T20:04:50",
  "faixas": {
   "CANTAREIRA|2017-10": {
    "faixa": "Faixa 2 - Atenção",
@@ -5893,8 +5893,8 @@
    "vu_ref": null,
    "limites": "Vazão defluente máxima média semanal: Sem restrição",
    "condicao": null,
-   "boletim": "2026-11-16",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/boletim_08_paranapanema_publica-1794910756.63.pdf",
+   "boletim": "2026-11-17",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/boletim_08_paranapanema_publica_2026-11-17.pdf",
    "status": "coleta diária",
    "vigencia": [
     "2026-11-14",
@@ -9123,8 +9123,8 @@
    "vu_ref": null,
    "limites": "Vazão defluente máxima média semanal: Sem restrição",
    "condicao": null,
-   "boletim": "2026-11-16",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/boletim_08_paranapanema_publica-1794910756.63.pdf",
+   "boletim": "2026-11-17",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/boletim_08_paranapanema_publica_2026-11-17.pdf",
    "status": "coleta diária",
    "vigencia": [
     "2026-11-14",
@@ -12353,8 +12353,8 @@
    "vu_ref": null,
    "limites": "Vazão defluente máxima média semanal: Sem restrição",
    "condicao": null,
-   "boletim": "2026-11-16",
-   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/boletim_08_paranapanema_publica-1794910756.63.pdf",
+   "boletim": "2026-11-17",
+   "url": "https://www.gov.br/ana/pt-br/sala-de-situacao/paranapanema/boletins/diario/boletim_08_paranapanema_publica_2026-11-17.pdf",
    "status": "coleta diária",
    "vigencia": [
     "2026-11-14",
