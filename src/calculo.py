@@ -447,9 +447,19 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
                     out["obs"] = f"teto fixado por ato: {atos.citacao_mensal(pm + '|' + d.strftime('%Y-%m'))}"
                 elif "curva" in tet:
                     lim, out["obs"] = teto_curva(dados, tet["curva"], tet.get("vu", regra["faixa"]), d)
+                elif "padrao" in tet:  # limite da própria norma quando não há ato do mês
+                    lim, out["obs"] = tet["padrao"], tet.get("obs_padrao")
                 if lim is not None and "limite" in tet and tet["limite"] < lim:
                     lim = tet["limite"]
                     out["obs"] = f"{out['obs']}; limitado a {_fmt(tet['limite'], 0)} m³/s no período seco"
+            if lim is None and tet.get("nao_se_aplica"):  # a norma não fixa teto próprio nesta faixa e período
+                out["st"], out["obs"] = NA, tet["nao_se_aplica"]
+                if tet.get("ref_curva"):
+                    ref_lim, ref_obs = teto_curva(dados, tet["ref_curva"], tet.get("vu", regra["faixa"]), d)
+                    if ref_lim is not None:
+                        out["obs"] += f" (referência: {ref_obs.replace('máx.', 'máx. de Xingó')})"
+                out["v"] = media(dados.diaria(regra["fonte"]), inicio_janela(d, janela), d)[0]
+                return out
             if lim is None:
                 out["st"] = PP
                 out["obs"] = out["obs"] or tet.get("pendente") or "teto mensal não cadastrado em config/atos_complementares.json"
