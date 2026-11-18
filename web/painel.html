@@ -293,7 +293,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 1
     <div class="meta">
       <div>Dados até<b id="m-dados">—</b></div>
       <div>Processado em<b id="m-gerado">—</b></div>
-      <div>Regras auditadas<b id="m-regras">—</b></div>
+      <div>Regras vigentes<b id="m-regras">—</b></div>
       <div class="tema" id="versao-box" hidden>Versão<span class="seg" id="versao" role="group" aria-label="Versão do painel"><button type="button" data-v="completa" title="Todas as regras">Completa</button><button type="button" data-v="asreg" title="Prévia da versão para a ASREG: sem as regras que dependem de ato complementar">Prévia ASREG</button></span></div>
       <div class="tema">Tema<span class="seg" id="tema" role="group" aria-label="Tema"><button type="button" data-t="auto" title="Segue o tema do sistema">Automático</button><button type="button" data-t="light">Claro</button><button type="button" data-t="dark">Escuro</button></span></div>
     </div>
@@ -550,6 +550,11 @@ function acompanhamento(sis) {
   }).join("");
 }
 function noPeriodo(r) { return r.serie.filter((s) => s.d >= ini && s.d <= fim); }
+// regra vigente em algum dia do período (vigencia_fim = data da revogação: vale até a véspera)
+const vigenteNoPeriodo = (r) => (!r.vigencia_inicio || r.vigencia_inicio <= fim) && (!r.vigencia_fim || r.vigencia_fim > ini);
+// rótulo legível (ponto · o que a regra exige · ato); o código fica como chave interna
+const rotId = (id) => { const r = (D.regrasTodas || D.regras).find((x) => x.id === id); return r && r.rotulo ? r.rotulo : id; };
+const exige = (r) => (r.rotulo ? r.rotulo.split(" · ").slice(1).join(" · ") : r.id);
 function ultimoValido(serie) { for (let i = serie.length - 1; i >= 0; i--) if (serie[i].st !== "Sem dado") return serie[i]; return serie[serie.length - 1] || null; }
 function contar(serie) { const c = { "Atende": 0, "Tolerância": 0, "Não atende": 0, n: 0 }; for (const s of serie) if (AVAL.includes(s.st)) { c[s.st]++; c.n++; } return c; }
 function conf(c) { return c.n ? (c["Atende"] + c["Tolerância"]) / c.n * 100 : null; }
@@ -559,8 +564,9 @@ function filtradas() {
   const sa = (t) => String(t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   const q = sa(state.q.trim());
   return D.regras.filter((r) => {
+    if (!vigenteNoPeriodo(r)) return false;
     if (state.sis && r.sistema !== state.sis) return false;
-    if (q && !sa(`${r.ponto} ${r.grupo || ""} ${r.resolucao} ${r.artigos || ""} ${r.descricao} ${r.sistema} ${r.id}`).includes(q)) return false;
+    if (q && !sa(`${r.ponto} ${r.grupo || ""} ${r.resolucao} ${r.artigos || ""} ${r.descricao} ${r.sistema} ${r.rotulo || ""} ${r.id}`).includes(q)) return false;
     const per = noPeriodo(r);
     if (state.pend && !pendente(r, per)) return false;
     if (state.compl && !asreg() && !r.complementar) return false;
@@ -638,7 +644,7 @@ function ligarTooltip(box, r, per) {
 
 function render() {
   const regras = filtradas();
-  $("#p-periodo").textContent = `${df(ini)} a ${df(fim)} · ${regras.length} de ${D.regras.length} regras`;
+  $("#p-periodo").textContent = `${df(ini)} a ${df(fim)} · ${regras.length} de ${D.regras.filter(vigenteNoPeriodo).length} regras vigentes no período`;
   // síntese
   const tot = { "Atende": 0, "Tolerância": 0, "Não atende": 0, n: 0 }, porEsc = {};
   for (const r of regras) {
@@ -717,12 +723,13 @@ function detalhe(r, per, u, z) {
         ${r.alerta ? `<dt>Verificar</dt><dd class="alerta" style="font-size:inherit">${esc(r.alerta)}</dd>` : ""}
         <dt>Norma</dt><dd>${esc(r.resolucao)}, ${esc(r.artigos || "")}</dd>
         <dt>Escala</dt><dd>${ESCALAS[escala(r)] || esc(r.freq)}</dd>
+        <dt>Regra</dt><dd>${esc(r.rotulo || r.id)}</dd>
         <dt>Métrica</dt><dd>${r.niveis === 3 ? (r.tol_pp != null ? `três níveis, tolerância absoluta de ${nf(r.tol_pp, 0)} p.p. de VU (para cima ou para baixo do valor de referência)` : `três níveis, tolerância de ${nf((r.tol || 0) * 100, 0)}%`) : "dois níveis"}</dd>
         <dt>Fonte</dt><dd class="mono">${esc(r.fonte || "")}</dd>
         <dt>Parâmetro</dt><dd>${esc(r.param || "")} (${esc(U(r))})</dd>
         <dt>Faixa</dt><dd>${esc(u.faixa || "—")}${u.orig ? ` (${esc(u.orig)})` : ""}</dd>
         ${obsTxt(u) ? `<dt>Observação</dt><dd>${esc(obsTxt(u))}</dd>` : ""}
-        <dt>Código</dt><dd class="mono">${esc(r.id)}</dd>
+        <dt>Código interno</dt><dd class="mono">${esc(r.id)}</dd>
       </dl>
     </div>
     ${(r.texto_norma || []).length ? `<details class="texto-norma"><summary>Texto da norma (${esc(r.resolucao)}, ${esc(r.artigos || "")})</summary><div class="corpo">${htmlTrechos(r)}</div></details>` : ""}
@@ -887,12 +894,12 @@ function renderAtos(regras) {
   document.querySelectorAll("#atos-ref, .atos-ref2").forEach((el) => (el.textContent = df(fim)));
   // alertas
   const al = [];
-  for (const a of venc) al.push(`<div class="al"><b>Vence em ${df(vigA(a).fim)}:</b> ${docAto(a)} <span class="muted">(${esc((a.regras || []).join(", "))})</span></div>`);
+  for (const a of venc) al.push(`<div class="al"><b>Vence em ${df(vigA(a).fim)}:</b> ${docAto(a)} <span class="muted">(${esc((a.regras || []).map(rotId).join("; "))})</span></div>`);
   for (const r of rs.filter((x) => x.proximo_ato && ["atrasado", "aguardando"].includes(x.proximo_ato.status)).sort((x, y) => String(x.proximo_ato.prazo).localeCompare(String(y.proximo_ato.prazo)))) {
     const p = r.proximo_ato;
-    al.push(`<div class="al"><b>${p.status === "atrasado" ? "Ato esperado não cadastrado" : "Ato esperado em breve"} (até ${df(p.prazo)}):</b> ${esc(r.ponto)} <span class="muted">(${esc(r.id)})</span>, ${esc(p.alvo)} <span class="muted">· ${esc(p.fonte || "")}</span></div>`);
+    al.push(`<div class="al"><b>${p.status === "atrasado" ? "Ato esperado não cadastrado" : "Ato esperado em breve"} (até ${df(p.prazo)}):</b> ${esc(r.rotulo || r.ponto)}, ${esc(p.alvo)} <span class="muted">· ${esc(p.fonte || "")}</span></div>`);
   }
-  for (const [r, l] of lac) al.push(`<div class="al"><b>Sem ato:</b> ${esc(r.ponto)} <span class="muted">(${esc(r.id)})</span>, ${esc(faixasMeses(l))}</div>`);
+  for (const [r, l] of lac) al.push(`<div class="al"><b>Sem ato:</b> ${esc(r.rotulo || r.ponto)}, ${esc(faixasMeses(l))}</div>`);
   // a) situação por regra
   $("#t-atos-sit tbody").innerHTML = rs.map((r) => {
     const c = r.cobertura_atos || {}, l = ms.filter((m) => c[m] === "lacuna"), ok = ms.filter((m) => c[m] === "ato");
@@ -904,14 +911,14 @@ function renderAtos(regras) {
       cob = `<span class="cob lac">${ok.length ? "Parcial" : "Sem ato"}: falta ${esc(faixasMeses(l))}</span>${pp && obsTxt(pp) ? `<div class="muted" style="font-size:.74rem">${esc(obsTxt(pp))}</div>` : ""}`;
     } else if (ok.length) cob = '<span class="cob">Completa</span>';
     else cob = '<span class="muted">Sem exigência no período</span>';
-    return `<tr class="rule-ato" tabindex="0" data-id="${esc(r.id)}" title="Abrir a regra na aba Regras"><td><b>${esc(r.ponto)}</b> <span class="muted mono" style="font-size:.72rem">${esc(r.id)}</span><div class="desc">${esc(r.descricao)}</div></td><td class="norma">${esc(r.resolucao)}<small>${esc(r.artigos || "")}</small></td><td>${vigTxt}</td><td>${cob}</td><td>${proxTxt(r)}</td></tr>`;
+    return `<tr class="rule-ato" tabindex="0" data-id="${esc(r.id)}" title="Abrir a regra na aba Regras"><td><b>${esc(r.ponto)}</b> <span class="muted" style="font-size:.72rem">${esc(exige(r))}</span><div class="desc">${esc(r.descricao)}</div></td><td class="norma">${esc(r.resolucao)}<small>${esc(r.artigos || "")}</small></td><td>${vigTxt}</td><td>${cob}</td><td>${proxTxt(r)}</td></tr>`;
   }).join("") || `<tr><td colspan="5" class="empty">Nenhuma regra com ato complementar nos filtros atuais.</td></tr>`;
   // b) calendário regra × mês
   const CLS = { ato: "ca-ato", lacuna: "h-pp", sem: "h-na" }, TXT = { ato: "há ato vigente", lacuna: "o mês exige ato e não há", sem: "o mês não exige ato" };
   $("#t-atos-cal thead").innerHTML = `<tr><th style="text-align:left">Ponto / regra</th>${ms.map((m) => `<th>${rotMes(m)}</th>`).join("")}</tr>`;
   $("#t-atos-cal tbody").innerHTML = rs.map((r) => {
     const c = r.cobertura_atos || {};
-    return `<tr><td class="lbl" title="${esc(r.ponto)} · ${esc(r.descricao)}"><b>${esc(r.ponto)}</b><span class="r">${esc(r.id)}</span></td>${ms.map((m) => {
+    return `<tr><td class="lbl" title="${esc(r.ponto)} · ${esc(r.descricao)}"><b>${esc(r.ponto)}</b><span class="r">${esc(exige(r))}</span></td>${ms.map((m) => {
       const k = c[m], docs = k === "ato" ? atosDe(r.id).filter((a) => cobreAto(a, m + "-01", m + "-31")).map((a) => a.documento).join("; ") : "";
       return `<td class="cell"><span class="c ${CLS[k] || "h-nd"}" title="${esc(r.ponto)} · ${rotMes(m)}: ${k ? TXT[k] : "sem avaliação"}${docs ? " (" + esc(docs) + ")" : ""}"></span></td>`; }).join("")}</tr>`;
   }).join("") || `<tr><td class="empty">Nenhuma regra com ato complementar nos filtros atuais.</td></tr>`;
@@ -920,18 +927,18 @@ function renderAtos(regras) {
   if (semSit.length) al.unshift(`<div class="al"><b>Controle de cheias a conferir:</b> ${semSit.length} dia(s) candidato(s) sem situação cadastrada (${semSit.map((c) => df(c.d)).join(", ")}). Ver a tabela de candidatos.</div>`);
   $("#atos-alertas").innerHTML = al.join("") || `<div class="al ok">Nenhum ato vence nos próximos ${ALERTA_DIAS} dias (a partir de ${df(hoje)}) e não há mês sem ato no período selecionado.</div>`;
   $("#t-cheias tbody").innerHTML = cand.map((c) => { const s = c.situacao && (D.atos_complementares || []).find((a) => a.id === c.situacao);
-    return `<tr><td class="num">${df(c.d)}</td><td>${esc(c.sistema)} <span class="muted mono" style="font-size:.72rem">${esc(c.regra)}</span></td><td class="num">${nf(c.transf, 1)}</td><td class="num">${nf(c.incr_max, 1)}</td><td>${s ? `${esc(TIPO_ATO[s.tipo] || s.tipo)} <span class="muted mono" style="font-size:.72rem">${esc(s.id)}</span>` : '<span class="cob lac">não cadastrada: conferir no SINTEGRE</span>'}</td></tr>`; }).join("")
+    return `<tr><td class="num">${df(c.d)}</td><td>${esc(c.sistema)} <span class="muted" style="font-size:.72rem">${esc(rotId(c.regra))}</span></td><td class="num">${nf(c.transf, 1)}</td><td class="num">${nf(c.incr_max, 1)}</td><td>${s ? `${esc(TIPO_ATO[s.tipo] || s.tipo)} <span class="muted mono" style="font-size:.72rem">${esc(s.id)}</span>` : '<span class="cob lac">não cadastrada: conferir no SINTEGRE</span>'}</td></tr>`; }).join("")
     || `<tr><td colspan="5" class="empty">Nenhum dia candidato no período selecionado.</td></tr>`;
   // d) lista de atos
   const lista = atosFiltrados(regras);
   $("#t-atos-lista tbody").innerHTML = lista.map((a) => { const v = vigA(a), st = sitAto(a, fim);
-    return `<tr><td><b>${esc(a.documento)}</b></td><td class="num">${df(a.data)}</td><td class="mono">${esc(a.sei || "—")}</td><td>${esc(TIPO_ATO[a.tipo] || a.tipo)}</td><td class="num">${v.inicio ? df(v.inicio) : "—"} a ${v.fim ? df(v.fim) : "—"}</td><td class="mono" style="font-size:.72rem">${(a.regras || []).map(esc).join("<br>")}</td><td>${esc(a.efeito_txt || "")}</td><td><span class="st-ato ${st}">${SIT_ATO[st]}</span></td><td class="cit">${esc(a.citacao)}</td></tr>`; }).join("")
+    return `<tr><td><b>${esc(a.documento)}</b></td><td class="num">${df(a.data)}</td><td class="mono">${esc(a.sei || "—")}</td><td>${esc(TIPO_ATO[a.tipo] || a.tipo)}</td><td class="num">${v.inicio ? df(v.inicio) : "—"} a ${v.fim ? df(v.fim) : "—"}</td><td style="font-size:.72rem">${(a.regras || []).map((id) => `<span title="${esc(id)}">${esc(rotId(id))}</span>`).join("<br>")}</td><td>${esc(a.efeito_txt || "")}</td><td><span class="st-ato ${st}">${SIT_ATO[st]}</span></td><td class="cit">${esc(a.citacao)}</td></tr>`; }).join("")
     || `<tr><td colspan="9" class="empty">Nenhum ato com os filtros atuais.</td></tr>`;
 }
 function exportarAtosCsv() {
   const q = (v) => { const t = String(v ?? ""); return /[;"\n]/.test(t) ? `"${t.replace(/"/g, '""')}"` : t; };
-  const cab = ["id", "documento", "data", "sei", "tipo", "vigencia_inicio", "vigencia_fim", "regras", "efeito", "situacao_em_" + fim, "citacao"];
-  const linhas = atosFiltrados(filtradas()).map((a) => [a.id, a.documento, a.data, a.sei, TIPO_ATO[a.tipo] || a.tipo, vigA(a).inicio, vigA(a).fim, (a.regras || []).join(", "), a.efeito_txt, SIT_ATO[sitAto(a, fim)], a.citacao].map(q).join(";"));
+  const cab = ["id", "documento", "data", "sei", "tipo", "vigencia_inicio", "vigencia_fim", "regras", "regras_rotulo", "efeito", "situacao_em_" + fim, "citacao"];
+  const linhas = atosFiltrados(filtradas()).map((a) => [a.id, a.documento, a.data, a.sei, TIPO_ATO[a.tipo] || a.tipo, vigA(a).inicio, vigA(a).fim, (a.regras || []).join(", "), (a.regras || []).map(rotId).join("; "), a.efeito_txt, SIT_ATO[sitAto(a, fim)], a.citacao].map(q).join(";"));
   const blob = new Blob(["﻿" + [cab.join(";"), ...linhas].join("\r\n")], { type: "text/csv;charset=utf-8" });
   const url = URL.createObjectURL(blob), el = document.createElement("a");
   el.href = url; el.download = `atos_complementares_${fim}.csv`; document.body.appendChild(el); el.click(); el.remove();
@@ -1027,7 +1034,7 @@ function ligar() {
   $("#fa-tipo").innerHTML += tipos.map((t) => `<option value="${esc(t)}">${esc(TIPO_ATO[t] || t)}</option>`).join("");
   // regras com ato no cadastro e regras que dependem de ato (mesmo sem nenhum cadastrado)
   const rids = [...new Set([...(D.atos_complementares || []).flatMap((a) => a.regras || []), ...D.regras.filter((r) => r.complementar).map((r) => r.id)])].sort();
-  $("#fa-regra").innerHTML += rids.map((id) => { const r = D.regras.find((x) => x.id === id); return `<option value="${esc(id)}">${esc(r ? r.ponto + " · " + id : id)}</option>`; }).join("");
+  $("#fa-regra").innerHTML += rids.map((id) => { const r = D.regras.find((x) => x.id === id); return `<option value="${esc(id)}">${esc(r && r.rotulo ? r.rotulo : id)}</option>`; }).join("");
   $("#fa-tipo").addEventListener("change", (e) => { fa.tipo = e.target.value; render(); });
   $("#fa-regra").addEventListener("change", (e) => { fa.regra = e.target.value; render(); });
   $("#fa-sit").addEventListener("change", (e) => { fa.sit = e.target.value; render(); });
@@ -1103,7 +1110,7 @@ function aplicarVersao() {
   D.regras = D.regrasTodas.filter((r) => !fora.has(r.id));
   document.querySelectorAll("#versao button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.v === (on ? "asreg" : "completa"))));
   $("#tab-atos").hidden = on; $("#f-compl").closest("label").hidden = on;
-  $("#m-regras").textContent = D.regras.length;
+  $("#m-regras").textContent = D.regras.filter((r) => !r.vigencia_fim).length;  // regras vigentes hoje
   const doc = document.querySelector('a.doc[href^="docs/indicadores_ASREG"]');
   if (doc) { doc.href = on ? "docs/indicadores_ASREG_previa.xlsx" : "docs/indicadores_ASREG.xlsx"; doc.querySelector("b").textContent = on ? "Indicadores ASREG (prévia)" : "Indicadores ASREG"; }
   const av = $("#aviso-asreg"); av.hidden = !on;
@@ -1144,7 +1151,7 @@ function iniciar(dados) {
   $("#m-dados").textContent = df(D.ultimo_dado_ons);
   const g = new Date(D.gerado_em);
   $("#m-gerado").textContent = isNaN(g) ? D.gerado_em : g.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short", timeZone: "America/Sao_Paulo" });
-  $("#m-regras").textContent = D.regras.length;
+  $("#m-regras").textContent = D.regras.filter((r) => !r.vigencia_fim).length;  // regras vigentes hoje
   { const b = document.querySelector('#presets button[data-p="tudo"]'), m = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"][+D.periodo[0].slice(5, 7) - 1];
     if (b) { b.textContent = `Desde ${m}/${D.periodo[0].slice(0, 4)}`; b.title = `Todo o histórico disponível (desde ${df(D.periodo[0])})`; } }
   if ($("#docs-gerado")) $("#docs-gerado").textContent = `Arquivos gerados com os dados de ${df(D.periodo[0])} a ${df(D.periodo[1])}.`;

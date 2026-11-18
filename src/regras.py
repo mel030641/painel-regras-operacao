@@ -332,4 +332,81 @@ for _r in R:
         _r["proximo_ato"] = PROXIMO_ATO[_r["id"]]
 assert set(COMPLEMENTAR) <= {_r["id"] for _r in R}, set(COMPLEMENTAR) - {_r["id"] for _r in R}
 
+# Rótulo legível de cada regra (ponto · o que a regra exige · ato), mostrado no painel e nas planilhas no lugar do código.
+# O código (id) continua como chave interna: liga a regra aos atos complementares, à planilha da ASREG e aos históricos.
+ROTULOS = {
+    "132-PPJURU": "Jurumirim · vazão máxima semanal · Res. 132/2022",
+    "132-PPCHAV": "Chavantes · vazão máxima semanal · Res. 132/2022",
+    "132-PPCAPI": "Capivara · vazão máxima semanal · Res. 132/2022",
+    "193-GRFURN": "Furnas · vazão máxima mensal · Res. 193/2024",
+    "193-GRMMOR": "Mascarenhas de Moraes · vazão máxima mensal · Res. 193/2024",
+    "193-GRMARI": "Marimbondo · volume útil mínimo · Res. 193/2024",
+    "193-GRAGVL": "Água Vermelha · volume útil mínimo · Res. 193/2024",
+    "194-PREMBO": "Emborcação · vazão máxima mensal · Res. 194/2024",
+    "194-PRITUM": "Itumbiara · vazão máxima mensal · Res. 194/2024",
+    "194-PRSSIM": "São Simão · volume útil mínimo · Res. 194/2024",
+    "2081-SFTMAR-min": "Três Marias · vazão mínima diária · Res. 2.081/2017",
+    "2081-SFTMAR-max": "Três Marias · vazão máxima mensal · Res. 2.081/2017",
+    "2081-SFSOBR-min": "Sobradinho · vazão mínima diária · Res. 2.081/2017",
+    "2081-SFSOBR-max": "Sobradinho · vazão máxima mensal · Res. 2.081/2017",
+    "2081-SFXING-min": "Xingó · vazão mínima diária · Res. 2.081/2017",
+    "2081-SFXING-max": "Xingó · vazão máxima mensal · Res. 2.081/2017",
+    "2081-SFLGON": "Itaparica · volume útil mínimo · Res. 2.081/2017",
+    "70-TOSMES-min": "Serra da Mesa · vazão mínima diária · Res. 70/2021",
+    "70-TOSMES-max": "Serra da Mesa · vazão máxima mensal · Res. 70/2021",
+    "70-TOUHET": "Estreito · vazão mínima diária · Res. 70/2021",
+    "70-TOSMES-praias": "Serra da Mesa · vazão constante na temporada de praias · Res. 70/2021",
+    "70-nivel-TOSMES": "Serra da Mesa · faixa de nível · Res. 70/2021",
+    "70-nivel-TOUHCB": "Cana Brava · faixa de nível · Res. 70/2021",
+    "70-nivel-TOUHSA": "São Salvador · faixa de nível · Res. 70/2021",
+    "70-nivel-TOUHPA": "Peixe Angical · faixa de nível · Res. 70/2021",
+    "70-nivel-TOLAJ": "Lajeado · faixa de nível · Res. 70/2021",
+    "70-nivel-TOUHET": "Estreito · faixa de nível · Res. 70/2021",
+    "70-nivel-TOTUCU": "Tucuruí · faixa de nível · Res. 70/2021",
+    "49-RIUHFC": "Foz do Chapecó · vazão máxima no fim de semana · Res. 49/2018",
+    "147-SFQMDO-min": "Queimado · vazão mínima diária · Res. 147/2015",
+    "147-SFQMDO-vu": "Queimado · volume útil mínimo em 1º/5 e 31/10 · Res. 147/2015",
+    "1382-PBPARA": "Paraibuna · vazão mínima a jusante · Res. Conj. 1.382/2015",
+    "1382-PBSTAB": "Santa Branca · vazão mínima a jusante · Res. Conj. 1.382/2015",
+    "1382-PBJAGU": "Jaguari · vazão mínima a jusante · Res. Conj. 1.382/2015",
+    "1382-PBFUNI": "Funil · vazão mínima a jusante · Res. Conj. 1.382/2015",
+    "1382-PBSTAC": "Santa Cecília · vazão mínima a jusante · Res. Conj. 1.382/2015",
+    "1382-RLPPAS": "Pereira Passos · vazão mínima a jusante · Res. Conj. 1.382/2015",
+    "1382-PBSTAC-guandu": "Santa Cecília · bombeamento mínimo ao Guandu · Res. Conj. 1.382/2015",
+    "1382-estagios": "Paraíba do Sul · estágios de deplecionamento · Res. Conj. 1.382/2015",
+    "1931-max": "Jaguari (captação) · vazão máxima de captação · Res. 1.931/2017",
+    "1931-inverso": "Atibainha (sentido inverso) · vazão máxima de captação · Res. 1.931/2017",
+    "1931-volume": "Jaguari (captação) · volume anual máximo · Res. 1.931/2017",
+    "1931-cota": "Jaguari (reservatório) · faixa de nível para captar · Res. 1.931/2017",
+    "925-santaines": "Santa Inês · captação máxima mensal · Res. Conj. 925/2017",
+    "925-valinhos-dia": "Valinhos · vazão mínima diária · Res. Conj. 925/2017",
+    "925-valinhos-movel": "Valinhos · vazão mínima (média móvel de 15 dias) · Res. Conj. 925/2017",
+    "925-atibaia-dia": "Atibaia · vazão mínima diária · Res. Conj. 925/2017",
+    "925-atibaia-movel": "Atibaia · vazão mínima (média móvel de 15 dias) · Res. Conj. 925/2017",
+    "925-buenopolis-dia": "Buenópolis · vazão mínima diária · Res. Conj. 925/2017",
+    "925-buenopolis-movel": "Buenópolis · vazão mínima (média móvel de 15 dias) · Res. Conj. 925/2017",
+    "925-seco": "Cantareira → PCJ · volume garantido no período seco (informativa) · Res. Conj. 925/2017",
+    "925-art2-29004": "Paiva Castro · descarga mínima · Res. Conj. 925/2017",
+    "925-art2-29001": "Jaguari-Jacareí · descarga mínima · Res. Conj. 925/2017",
+    "925-art2-atibaia": "Cachoeira + Atibainha · descarga mínima conjunta · Res. Conj. 925/2017",
+    "614-29001": "Jaguari-Jacareí · NA máximo normal · Res. Conj. 614/2010",
+    "614-29002": "Cachoeira · NA máximo normal · Res. Conj. 614/2010",
+    "614-29003": "Atibainha · NA máximo normal · Res. Conj. 614/2010",
+    "614-29004": "Paiva Castro · NA máximo normal · Res. Conj. 614/2010",
+    "614-op-29001": "Jaguari-Jacareí · nível máximo operacional · Res. Conj. 614/2010",
+    "614-op-29002": "Cachoeira · nível máximo operacional · Res. Conj. 614/2010",
+    "614-op-29003": "Atibainha · nível máximo operacional · Res. Conj. 614/2010",
+    "614-op-29004": "Paiva Castro · nível máximo operacional · Res. Conj. 614/2010",
+    "614-restr-29001": "Jaguari-Jacareí · vazão de restrição · Res. Conj. 614/2010",
+    "614-restr-29002": "Cachoeira · vazão de restrição · Res. Conj. 614/2010",
+    "614-restr-29003": "Atibainha · vazão de restrição · Res. Conj. 614/2010",
+    "614-restr-29004": "Paiva Castro · vazão de restrição · Res. Conj. 614/2010",
+}
+assert set(ROTULOS) == {_r["id"] for _r in R}, set(ROTULOS) ^ {_r["id"] for _r in R}
+assert len(set(ROTULOS.values())) == len(ROTULOS), "rótulo repetido"
+for _r in R:
+    _r["rotulo"] = ROTULOS[_r["id"]]
+    _r["vigencia_inicio"] = VIGENCIA.get(_r["resolucao"])
+    _r["vigencia_fim"] = (REVOGACAO.get(_r["resolucao"]) or (None,))[0]  # data da revogação: a regra vale até a véspera
+
 REGRAS = R

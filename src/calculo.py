@@ -905,7 +905,7 @@ def executar(inicio: dt.date, fim: dt.date, meses_horarios: int) -> dict:
             if s["st"] in (OK, TOL, NAO):
                 mensal[s["d"][:7]][s["st"]] += 1
                 mensal[s["d"][:7]]["n"] += 1
-        meta = {k: v for k, v in regra.items() if k in ("id", "resolucao", "artigos", "sistema", "ponto", "grupo", "descricao", "freq", "niveis", "tol", "tol_pp", "fonte", "tipo", "alerta", "complementar", "informativa")}
+        meta = {k: v for k, v in regra.items() if k in ("id", "resolucao", "artigos", "sistema", "ponto", "grupo", "descricao", "freq", "niveis", "tol", "tol_pp", "fonte", "tipo", "alerta", "complementar", "informativa", "rotulo", "vigencia_inicio", "vigencia_fim")}
         meta["unid"] = unidade(regra)
         meta["param"] = parametro(regra)
         meta["texto_norma"] = trechos(regra["resolucao"], regra.get("artigos", ""))
