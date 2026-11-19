@@ -79,6 +79,11 @@ def conformidade(cont: Counter):
     return (round(100 * (cont["Atende"] + cont["Tolerância"]) / n, 1) if n else None), n
 
 
+def nunca_vigente(r, D) -> bool:
+    """Regra de norma revogada antes do início do painel: nunca teve avaliação e não entra nas planilhas."""
+    return bool(r.get("vigencia_fim")) and r["vigencia_fim"] <= D["periodo"][0]
+
+
 def efetivo(r):
     """Último registro avaliado (dias 'Em curso' trazem a situação parcial em 'parc')."""
     return r.get("ultimo") or {}
@@ -92,12 +97,15 @@ def acompanhamento(D, destino: Path):
     leia_me(wb, "Acompanhamento das regras de operação - SOE/ANA", [
         f"Período apurado: {_d(D['periodo'][0]):%d/%m/%Y} a {hoje:%d/%m/%Y}. Gerado em {D['gerado_em'][:16].replace('T', ' ')} UTC a partir de painel.json.",
         "Regras: situação no último dia avaliado, conformidade no ano corrente, nos últimos 12 meses e em todo o histórico.",
+        "Regra: rótulo legível (ponto · o que a regra exige · ato); o código é a chave interna. Regras de norma revogada antes do início do painel não aparecem.",
         "Conformidade = (Atende + Tolerância) ÷ avaliações com resultado (Atende + Tolerância + Não atende), mesmo critério do painel. Dias Controle de Cheias, Em curso, Sem dado, Não se aplica e Parâmetro pendente não entram na conta.",
         "Mensal: contagem de avaliações por regra e mês. Ocorrências: cada avaliação em Não atende ou Tolerância, com valor, limite e folga.",
         "Antes da entrada em vigor de cada resolução a regra é 'Não se aplica'. As Res. 1.382/2015 e 2.081/2017 entram em vigor após comunicado da ANA: 01/12/2016 e 01/05/2019, respectivamente.",
     ])
     linhas, mensal, ocorr = [], [], []
     for r in D["regras"]:
+        if nunca_vigente(r, D):
+            continue
         serie = r.get("serie", [])
         tudo = Counter(x["st"] for x in serie)
         c_ano = Counter(x["st"] for x in serie if x["d"].startswith(ano))
@@ -107,29 +115,29 @@ def acompanhamento(D, destino: Path):
         p_12, n_12 = conformidade(c_12)
         p_t, n_t = conformidade(tudo)
         viol = [x for x in serie if x["st"] in ("Não atende", "Tolerância")]
-        linhas.append([r["id"], r["sistema"], r["ponto"], r["resolucao"], r.get("artigos"), r["descricao"], r.get("unid"),
+        linhas.append([r["id"], r.get("rotulo"), r["sistema"], r["ponto"], r["resolucao"], r.get("artigos"), r["descricao"], r.get("unid"),
                        _d(u.get("d")), u.get("st"), u.get("parc"), u.get("v"), u.get("lim"), u.get("folga"), u.get("faixa"), u.get("orig"),
                        p_ano, n_ano, c_ano["Não atende"], c_ano["Tolerância"], p_12, p_t, n_t, tudo["Não atende"], tudo["Tolerância"],
                        _d(viol[-1]["d"]) if viol else None])
         for m, k in sorted(r.get("mensal", {}).items()):
             n = k.get("n", 0)
-            mensal.append([r["id"], r["sistema"], r["ponto"], r["resolucao"], m, n, k.get("Atende", 0), k.get("Tolerância", 0),
+            mensal.append([r["id"], r.get("rotulo"), r["sistema"], r["ponto"], r["resolucao"], m, n, k.get("Atende", 0), k.get("Tolerância", 0),
                            k.get("Não atende", 0), round(100 * (k.get("Atende", 0) + k.get("Tolerância", 0)) / n, 1) if n else None,
                            max((s for s in AVAL if k.get(s)), key=GRAV.get, default=None)])
         for x in viol:
-            ocorr.append([_d(x["d"]), r["id"], r["sistema"], r["ponto"], r["resolucao"], x["st"], x.get("v"), x.get("lim"),
+            ocorr.append([_d(x["d"]), r["id"], r.get("rotulo"), r["sistema"], r["ponto"], r["resolucao"], x["st"], x.get("v"), x.get("lim"),
                           x.get("folga"), r.get("unid"), x.get("faixa"), x.get("orig"), x.get("obs")])
     ocorr.sort(key=lambda l: (l[0], l[1]), reverse=True)
-    aba(wb, "Regras", [("Código", 18), ("Sistema", 18), ("Ponto de controle", 24), ("Resolução", 22), ("Artigos", 16), ("Regra", 50),
+    aba(wb, "Regras", [("Código", 18), ("Regra", 44), ("Sistema", 18), ("Ponto de controle", 24), ("Resolução", 22), ("Artigos", 16), ("Descrição", 50),
                        ("Unidade", 8), ("Último dia avaliado", 12), ("Situação", 12), ("Parcial (janela em curso)", 12), ("Valor", 10),
                        ("Limite", 10), ("Folga", 10), ("Faixa", 18), ("Origem da faixa", 14),
                        (f"Conformidade {ano} (%)", 12), (f"Avaliações {ano}", 10), (f"Não atende {ano}", 10), (f"Tolerância {ano}", 10),
                        ("Conformidade 12 meses (%)", 12), ("Conformidade histórico (%)", 12), ("Avaliações histórico", 10),
                        ("Não atende histórico", 10), ("Tolerância histórico", 10), ("Última ocorrência", 12)], linhas, "Situação")
-    aba(wb, "Mensal", [("Código", 18), ("Sistema", 18), ("Ponto de controle", 24), ("Resolução", 22), ("Mês", 9), ("Avaliações", 10),
+    aba(wb, "Mensal", [("Código", 18), ("Regra", 44), ("Sistema", 18), ("Ponto de controle", 24), ("Resolução", 22), ("Mês", 9), ("Avaliações", 10),
                        ("Atende", 8), ("Tolerância", 10), ("Não atende", 10), ("Conformidade (%)", 12), ("Pior situação no mês", 14)],
         mensal, "Pior situação no mês")
-    aba(wb, "Ocorrências", [("Data", 11), ("Código", 18), ("Sistema", 18), ("Ponto de controle", 24), ("Resolução", 22), ("Situação", 12),
+    aba(wb, "Ocorrências", [("Data", 11), ("Código", 18), ("Regra", 44), ("Sistema", 18), ("Ponto de controle", 24), ("Resolução", 22), ("Situação", 12),
                             ("Valor", 10), ("Limite", 10), ("Folga", 10), ("Unidade", 8), ("Faixa", 18), ("Origem da faixa", 14),
                             ("Observação", 40)], ocorr, "Situação")
     wb.save(destino)
@@ -219,7 +227,10 @@ def asreg(D, destino: Path, previa: dict | None = None):
     A = json.loads((RAIZ / "config" / "asreg_indicadores.json").read_text(encoding="utf-8"))
     fora = {x["id"] for x in previa["suprimidas"]} if previa else set()
     sem_regra = (previa or {}).get("linhas_sem_regra", {})
-    R = {r["id"]: r for r in D["regras"] if r["id"] not in fora}
+    R = {r["id"]: r for r in D["regras"] if r["id"] not in fora and not nunca_vigente(r, D)}
+    revogadas = {r["id"]: r["resolucao"] for r in D["regras"] if nunca_vigente(r, D)}
+    sem_regra = {**{str(l["linha"]): f"Norma revogada ({revogadas[l['regras_painel'][0]]})" for l in A["linhas"]
+                    if l["regras_painel"] and all(i in revogadas for i in l["regras_painel"])}, **sem_regra}
     hoje = _d(D["periodo"][1])
     ano = str(hoje.year)
     if ASREG_ORIGINAL.exists():  # planilha original da ASREG + colunas apuradas pelo painel
