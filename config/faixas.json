@@ -1,6 +1,6 @@
 {
  "fonte": "Boletins diários ANA (gov.br) e painéis Power BI SOE/ANA",
- "atualizado_em": "2026-11-22T20:02:26",
+ "atualizado_em": "2026-11-23T14:08:09",
  "faixas": {
   "CANTAREIRA|2017-10": {
    "faixa": "Faixa 2 - Atenção",
@@ -5901,6 +5901,18 @@
     "2026-11-20"
    ]
   },
+  "PPCAPI|2026-11-21": {
+   "faixa": "Normal",
+   "idx": 0,
+   "texto_painel": "Normal",
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Nível atual = 331.85 m; limiar Atenção = 327.11 m; Alerta = 324.27 m; Restrição = 323.5 m",
+   "condicao": "Sem restrição",
+   "atualizacao_painel": "2026-11-23T12:58:20.41",
+   "extraido_em": "2026-11-23T14:04Z",
+   "url": "https://app.powerbi.com/view?r=eyJrIjoiZGMxN2ZjZmEtNDlmOS00MjE0LWJlOTgtYjNjOWJiZjFhZjZlIiwidCI6ImUwYmI0MDEyLTgxMGItNDY5YS04YjRkLTY2N2ZjZDFiYWY4OCJ9"
+  },
   "PPCHAV|2023-02-25": {
    "faixa": "Normal",
    "idx": 0,
@@ -9131,6 +9143,18 @@
     "2026-11-20"
    ]
   },
+  "PPCHAV|2026-11-21": {
+   "faixa": "Normal",
+   "idx": 0,
+   "texto_painel": "Normal",
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Nível atual = 472.23 m; limiar Atenção = 469.06 m; Alerta = 468.15 m; Restrição = 467.21 m",
+   "condicao": "Sem restrição",
+   "atualizacao_painel": "2026-11-23T12:58:20.41",
+   "extraido_em": "2026-11-23T14:04Z",
+   "url": "https://app.powerbi.com/view?r=eyJrIjoiZGMxN2ZjZmEtNDlmOS00MjE0LWJlOTgtYjNjOWJiZjFhZjZlIiwidCI6ImUwYmI0MDEyLTgxMGItNDY5YS04YjRkLTY2N2ZjZDFiYWY4OCJ9"
+  },
   "PPJURU|2023-02-25": {
    "faixa": "Normal",
    "idx": 0,
@@ -12360,6 +12384,18 @@
     "2026-11-14",
     "2026-11-20"
    ]
+  },
+  "PPJURU|2026-11-21": {
+   "faixa": "Normal",
+   "idx": 0,
+   "texto_painel": "Normal",
+   "periodo_hidrologico": null,
+   "vu_ref": null,
+   "limites": "Nível atual = 566.63 m; limiar Atenção = 563.35 m; Alerta = 562.48 m; Restrição = 562.04 m",
+   "condicao": "Sem restrição",
+   "atualizacao_painel": "2026-11-23T12:58:20.41",
+   "extraido_em": "2026-11-23T14:04Z",
+   "url": "https://app.powerbi.com/view?r=eyJrIjoiZGMxN2ZjZmEtNDlmOS00MjE0LWJlOTgtYjNjOWJiZjFhZjZlIiwidCI6ImUwYmI0MDEyLTgxMGItNDY5YS04YjRkLTY2N2ZjZDFiYWY4OCJ9"
   },
   "PREMBO|2024-12": {
    "faixa": "Atenção",
