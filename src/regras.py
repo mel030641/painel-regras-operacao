@@ -190,6 +190,17 @@ R.append(dict(id="49-RIUHFC", resolucao="Res. ANA 49/2018", artigos="art. 1º, c
               descricao="Se a afluência prevista pelo ONS para sex–dom ≤ 1.000 m³/s, defluente ≤ 1.000 m³/s de 12h de sexta a 12h de domingo",
               tipo="fds", freq="semanal", niveis=2, tol=None, fonte="ONSH:RIUHFC", limite=1000.0, previsao="RIUHFC",
               pendente="previsão de afluência sex–dom obtida pelo ONS às quintas-feiras (art. 1º, § 1º) não cadastrada em config/atos_complementares.json (previsao_semanal, RIUHFC)"))
+# Obrigações de informação do agente (§§ 2º a 5º), apuradas com os e-mails consolidados em config/informes_foz_chapeco.json
+# (ferramentas/informes_foz_chapeco.py). Sexta fora da base de e-mails = Sem dado.
+R.append(dict(id="49-RIUHFC-informe", resolucao="Res. ANA 49/2018", artigos="art. 1º, § 2º", sistema="Uruguai", ponto="Foz do Chapecó",
+              descricao="Informe semanal até 12h de quinta, com a programação de 0h de sexta a 12h de domingo e a caracterização do período",
+              tipo="informe_fds", freq="semanal", niveis=2, tol=None, fonte="INFORME:RIUHFC"))
+R.append(dict(id="49-RIUHFC-maxprev", resolucao="Res. ANA 49/2018", artigos="art. 1º, § 3º", sistema="Uruguai", ponto="Foz do Chapecó",
+              descricao="Período caracterizado como de baixas vazões: vazão máxima prevista informada e programação ≤ 1.000 m³/s de 12h de sexta a 12h de domingo",
+              tipo="maxprev_fds", freq="semanal", niveis=2, tol=None, fonte="INFORME:RIUHFC", limite=1000.0))
+R.append(dict(id="49-RIUHFC-aviso", resolucao="Res. ANA 49/2018", artigos="art. 1º, §§ 4º e 5º", sistema="Uruguai", ponto="Foz do Chapecó",
+              descricao="Defluência acima da máxima prevista em período de baixas vazões: aviso imediato do agente à ANA (retificação ou cancelamento)",
+              tipo="aviso_fds", freq="semanal", niveis=2, tol=None, fonte="ONSH:RIUHFC", horas_aviso=24))
 
 # --------------------------------------------------------------------------- 147/2015 Queimado
 R.append(dict(id="147-SFQMDO-min", resolucao="Res. ANA 147/2015", artigos="art. 1º, I e II", sistema="Rio Preto", ponto="Queimado",
