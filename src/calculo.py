@@ -403,6 +403,127 @@ def _sel(regra, chave, d, idx=None):
     return v
 
 
+# ============================================================================ informes do agente (Res. ANA 49/2018, §§ 2º a 5º)
+INFORMES_FC = _ler_json(CONFIG / "informes_foz_chapeco.json", {"semanas": {}, "base_inicio": None, "base_fim": None})
+CARACT = {"baixas": "baixas vazões", "altas": "altas vazões"}
+
+
+def _dh(iso: str) -> str:
+    return f"{iso[8:10]}/{iso[5:7]}/{iso[:4]} {iso[11:16]}"
+
+
+def _referencia(envios: list[dict], sexta: dt.date) -> dict | None:
+    """Informe de referência do fim de semana: o último recebido até 0h de sexta; sem ele, o primeiro recebido."""
+    validos = [e for e in envios if e["tipo"] != "cancelamento"]
+    antes = [e for e in validos if e["recebido"] <= f"{sexta.isoformat()}T00:00"]
+    return antes[-1] if antes else (validos[0] if validos else None)
+
+
+def avaliar_informe(regra, dados: Dados, d: dt.date, out: dict) -> dict:
+    """§ 2º (informe até 12h de quinta), § 3º (máxima prevista em baixas vazões) e §§ 4º/5º (aviso de ultrapassagem).
+    §§ 2º e 3º são apurados na quinta; §§ 4º e 5º, no domingo. A sexta de referência é a do fim de semana."""
+    t = regra["tipo"]
+    dia_apuracao = 6 if t == "aviso_fds" else 3
+    if d.weekday() != dia_apuracao:
+        out["st"] = NA
+        return out
+    sexta = d + dt.timedelta(days=1) if dia_apuracao == 3 else d - dt.timedelta(days=2)
+    ini, fim = INFORMES_FC.get("base_inicio"), INFORMES_FC.get("base_fim")
+    if not ini or sexta.isoformat() < ini or (fim and (sexta - dt.timedelta(days=1)).isoformat() > fim):
+        out["obs"] = (f"fora da base de e-mails do agente consolidada pela SOE ({ini[8:]}/{ini[5:7]}/{ini[:4]} a "
+                      f"{fim[8:]}/{fim[5:7]}/{fim[:4]})" if ini and fim else "base de e-mails do agente não carregada")
+        return out  # Sem dado
+    envios = INFORMES_FC["semanas"].get(sexta.isoformat(), [])
+    if not envios:
+        out["obs"] = "informe não localizado na base de e-mails da SOE"
+        return out  # Sem dado: a base é a caixa de e-mails da SOE, não o protocolo da ANA
+    validos = [e for e in envios if e["tipo"] != "cancelamento"]
+
+    if t == "informe_fds":
+        prazo = f"{(sexta - dt.timedelta(days=1)).isoformat()}T12:00"
+        no_prazo = [e for e in validos if e["recebido"] <= prazo]
+        if not validos:
+            out["st"], out["obs"] = NAO, f"só aviso de cancelamento ({_dh(envios[0]['recebido'])}), sem informe de programação"
+            return out
+        faltas = []
+        if no_prazo:
+            base, cab = no_prazo, f"informe recebido em {_dh(no_prazo[0]['recebido'])}"
+        elif validos[0]["encaminhado"]:
+            base = validos[:1]
+            cab = f"informe recebido por encaminhamento em {_dh(validos[0]['recebido'])} (horário do envio original não verificado)"
+        else:
+            base, cab = validos[:1], f"informe recebido em {_dh(validos[0]['recebido'])}, depois das 12h de quinta"
+            faltas.append("prazo")
+        progs = [e for e in base if e["tipo"] == "programacao"]
+        notas = [cab]
+        if not progs:
+            faltas.append("programação")
+            notas.append("sem a programação de defluências")
+        elif max(e["horas"] for e in progs) < 61:
+            faltas.append("programação")
+            notas.append(f"programação incompleta ({max(e['horas'] for e in progs)} de 61 h de 0h de sexta a 12h de domingo)")
+        car = [e["caract"] for e in base if e["caract"] in CARACT]
+        if car:
+            notas.append(f"período de {CARACT[car[-1]]}")
+        else:
+            faltas.append("caracterização")
+            notas.append("sem a caracterização do período")
+        out["st"], out["obs"] = (NAO if faltas else OK), "; ".join(notas)
+        return out
+
+    ref = _referencia(envios, sexta)
+    if ref is None or ref["caract"] not in CARACT:
+        out["st"], out["obs"] = NA, "período não caracterizado no informe"
+        return out
+    if ref["caract"] != "baixas":
+        out["st"], out["obs"] = NA, f"período de altas vazões (informe de {_dh(ref['recebido'])})"
+        return out
+    mx = ref.get("max_12h_12h")
+
+    if t == "maxprev_fds":
+        if ref["tipo"] != "programacao" or mx is None:
+            out["st"], out["obs"] = NAO, f"período de baixas vazões sem a vazão máxima prevista (informe de {_dh(ref['recebido'])})"
+            return out
+        out["v"], out["lim"] = mx, regra["limite"]
+        out["st"], out["folga"], out["pct"] = classificar(mx, regra["limite"], "max", None)
+        out["obs"] = f"máxima prevista de 12h de sexta a 12h de domingo no informe de {_dh(ref['recebido'])}"
+        if out["st"] == NAO:
+            out["obs"] += "; programação acima de 1.000 m³/s em período de baixas vazões"
+        return out
+
+    # aviso_fds (§§ 4º e 5º): defluência verificada acima da máxima prevista, de 12h de sexta a 12h de domingo.
+    # Hora H da planilha do agente = instante H+1 do ONS (fim do intervalo horário).
+    if ref["tipo"] != "programacao" or mx is None:
+        out["st"], out["obs"] = NA, "sem vazão máxima prevista no informe (ver § 3º)"
+        return out
+    horas = dados.onsh.get("RIUHFC", {})
+    a, b = f"{sexta.isoformat()} 13:00", f"{d.isoformat()} 13:00"
+    jan = sorted((h, v["defl"]) for h, v in horas.items() if a <= h <= b and v.get("defl") is not None)
+    if len(jan) < 36:
+        out["obs"] = f"dado horário do ONS insuficiente ({len(jan)} de 49 h)"
+        return out
+    vmax = max(v for _, v in jan)
+    out["v"], out["lim"] = vmax, mx
+    acima = [(h, v) for h, v in jan if v > mx + 1e-9]
+    if not acima:
+        out["st"], out["obs"] = NA, f"sem ultrapassagem da máxima prevista ({_fmt(mx, 0)} m³/s)"
+        return out
+    h1 = dt.datetime.strptime(acima[0][0], "%Y-%m-%d %H:%M") - dt.timedelta(hours=1)  # hora da planilha
+    limite_aviso = dt.datetime.combine(d, dt.time(12)) + dt.timedelta(hours=regra["horas_aviso"])
+    avisos = [e for e in envios if e["recebido"] > ref["recebido"] and e["recebido"] <= limite_aviso.isoformat(timespec="minutes")]
+    base = (f"{len(acima)} h acima da máxima prevista ({_fmt(mx, 0)} m³/s), a 1ª em {h1:%d/%m/%Y %H:%M}; "
+            f"máxima verificada {_fmt(vmax, 0)} m³/s")
+    if avisos:
+        av = avisos[0]
+        tipo = "cancelamento da programação" if av["tipo"] == "cancelamento" else "retificação da programação"
+        atraso = (dt.datetime.fromisoformat(av["recebido"]) - h1).total_seconds() / 3600
+        quando = f"{atraso:.0f} h depois da 1ª ultrapassagem" if atraso > 0 else "antes da 1ª ultrapassagem"
+        out["st"], out["obs"] = OK, f"{base}; aviso: {tipo} recebida em {_dh(av['recebido'])} ({quando})"
+    else:
+        out["st"], out["obs"] = NAO, f"{base}; sem aviso do agente na base de e-mails da SOE"
+    return out
+
+
 def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
     t = regra["tipo"]
     iso = d.isoformat()
@@ -647,6 +768,9 @@ def avaliar(regra, dados: Dados, faixas: Faixas, d: dt.date) -> dict:
         out["st"], out["folga"], out["pct"] = classificar(v, regra["limite"], "max", None)
         return out
 
+    if t in ("informe_fds", "maxprev_fds", "aviso_fds"):
+        return avaliar_informe(regra, dados, d, out)
+
     if t == "constante":
         a = dt.date(d.year, int(regra["inicio"][:2]), int(regra["inicio"][3:]))
         b = dt.date(d.year, int(regra["fim"][:2]), int(regra["fim"][3:]))
@@ -807,6 +931,12 @@ def parametro(regra) -> str:
         return "Vazão captada na EESI (Santa Inês), média do mês"
     if t == "fds":
         return "Vazão defluente horária, sex 12h a dom 12h"
+    if t == "informe_fds":
+        return "Informe semanal do agente (prazo, programação e caracterização)"
+    if t == "maxprev_fds":
+        return "Vazão defluente máxima programada no informe, sex 12h a dom 12h"
+    if t == "aviso_fds":
+        return "Vazão defluente horária máxima, sex 12h a dom 12h, ante a máxima prevista"
     if str(fonte).startswith("SAISP:"):
         base = "Vazão no posto fluviométrico"
     elif campo == "defl":
@@ -899,6 +1029,8 @@ def executar(inicio: dt.date, fim: dt.date, meses_horarios: int) -> dict:
             serie.append({k: _r(v) for k, v in a.items() if v is not None or k in ("d", "st")})
         # último registro avaliado (ignora dias sem dado no fim da série)
         validos = [s for s in serie if s["st"] not in (SD,)]
+        if regra["tipo"] in ("informe_fds", "maxprev_fds", "aviso_fds"):  # só o dia de apuração (quinta ou domingo) conta
+            validos = [s for s in validos if not (s["st"] == NA and s.get("obs") is None)] or validos
         ult = validos[-1] if validos else serie[-1]
         mensal = defaultdict(lambda: defaultdict(int))
         for s in serie:

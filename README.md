@@ -47,6 +47,7 @@ config/faixas.json         faixas publicadas (boletim ANA ou Power BI), por rese
 config/atos_complementares.json cadastro único dos atos complementares (outorgas, comunicados, ofícios, valores mensais, situações declaradas)
 src/atos.py                lê e confere o cadastro de atos (python src/atos.py lista os atos por regra)
 config/curvas_seguranca_sf.json curvas de segurança de Três Marias e Sobradinho por ciclo (2.081/2017)
+config/informes_foz_chapeco.json informes semanais do agente de Foz do Chapecó por sexta (dados derivados dos e-mails; 49/2018, §§ 2º a 5º)
 ferramentas/               scripts de uso único (carga inicial e validação); não rodam no fluxo diário
 data/historico/            arquivos de registro da carga inicial e da validação
 .github/workflows/painel.yml    atualização diária e publicação
@@ -60,6 +61,7 @@ Ficam fora de `src/` porque não fazem parte da atualização diária. Foram usa
 |---|---|
 | `ferramentas/validar.py` | Comparou o cálculo com a "Planilha de Auditoria Multitemporal de Eventos SOE" (out/2026). |
 | `data/historico/validacao_out2026.csv` | Resultado dessa comparação. |
+| `ferramentas/informes_foz_chapeco.py` | Gera `config/informes_foz_chapeco.json` a partir da consolidação dos e-mails do agente de Foz do Chapecó, feita na pasta da SOE. Rodar de novo a cada atualização da base de e-mails. |
 | `ferramentas/faixas_boletins.py` | Importou para `config/faixas.json` o histórico de faixas dos boletins diários desde out/2017. |
 | `data/historico/santa_ines_planilha_out2026.csv` | Planilha manual de Santa Inês usada na carga inicial, antes da coleta pela API Sabesp. |
 | `data/historico/santa_ines.csv` | Série manual de Santa Inês (out/2026) que o cálculo lia antes da coleta pela API Sabesp; nenhuma regra a usa mais. |

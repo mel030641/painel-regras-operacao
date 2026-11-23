@@ -517,7 +517,7 @@ function fechamento(r, u) {
   }
   return null;
 }
-const efetivo = (r, per) => { const u = ultimoValido(per) || {}; return fechamento(r, u) || u; };
+const efetivo = (r, per) => { const u = ultimoValido(per, r) || {}; return fechamento(r, u) || u; };
 // pendência: alguma avaliação em Não atende ou Tolerância no período, ou situação final (fechamento / janela aberta acima do limite) pendente
 const violacoes = (per) => per.filter((x) => x.st === "Não atende" || x.st === "Tolerância");
 const resumoViol = (v) => { const n = v.filter((x) => x.st === "Não atende").length, t = v.length - n; return n && t ? `Não atende (${n}) ou Tolerância (${t})` : n ? "Não atende" : "Tolerância"; };
@@ -550,7 +550,14 @@ function acompanhamento(sis) {
   }).join("");
 }
 function noPeriodo(r) { return r.serie.filter((s) => s.d >= ini && s.d <= fim); }
-function ultimoValido(serie) { for (let i = serie.length - 1; i >= 0; i--) if (serie[i].st !== "Sem dado") return serie[i]; return serie[serie.length - 1] || null; }
+// regras apuradas só num dia da semana (informes de Foz do Chapecó: quinta ou domingo): os demais dias ficam em "Não se aplica" sem observação e não contam como último resultado
+const SO_DIA_APURACAO = new Set(["informe_fds", "maxprev_fds", "aviso_fds"]);
+function ultimoValido(serie, r) {
+  const pula = (x) => x.st === "Sem dado" || (r && SO_DIA_APURACAO.has(r.tipo) && x.st === "Não se aplica" && !x.obs);
+  for (let i = serie.length - 1; i >= 0; i--) if (!pula(serie[i])) return serie[i];
+  for (let i = serie.length - 1; i >= 0; i--) if (serie[i].st !== "Sem dado") return serie[i];
+  return serie[serie.length - 1] || null;
+}
 function contar(serie) { const c = { "Atende": 0, "Tolerância": 0, "Não atende": 0, n: 0 }; for (const s of serie) if (AVAL.includes(s.st)) { c[s.st]++; c.n++; } return c; }
 function conf(c) { return c.n ? (c["Atende"] + c["Tolerância"]) / c.n * 100 : null; }
 function corConf(p) { if (p == null) return "var(--sunk)"; if (p >= 99.95) return cssv("--ok"); if (p >= 90) return cssv("--tol"); return cssv("--nao"); }
@@ -565,7 +572,7 @@ function filtradas() {
     if (state.pend && !pendente(r, per)) return false;
     if (state.compl && !asreg() && !r.complementar) return false;
     if (state.st === "viol") { const c = contar(per); if (!c["Não atende"] && !c["Tolerância"]) return false; }
-    else if (state.st) { const u = ultimoValido(per); if (!u || u.st !== state.st) return false; }
+    else if (state.st) { const u = ultimoValido(per, r); if (!u || u.st !== state.st) return false; }
     return true;
   });
 }
@@ -747,7 +754,7 @@ function colunasHeat() {
 
 const HEAT_VAZIO = { "Controle de Cheias": "cc", "Não se aplica": "na", "Parâmetro pendente": "pp", "Em curso": "ec", "Sem dado": "sd" };
 function linhaRegra(r, sub) {
-      const per = noPeriodo(r), u = ultimoValido(per) || {}, c = contar(per), q = conf(c), ab = aberto.has(r.id);
+      const per = noPeriodo(r), u = ultimoValido(per, r) || {}, c = contar(per), q = conf(c), ab = aberto.has(r.id);
       const folga = u.folga == null ? "—" : `${comU(u.folga, r)}${u.pct != null && r.unid !== "%" ? ` <span class="muted">(${nf(u.pct, 0)}%)</span>` : ""}`;
       let html = `<tr class="rule${sub ? " sub" : ""}" tabindex="0" data-id="${esc(r.id)}" aria-expanded="${ab}">
         <td><div class="ponto">${esc(r.ponto)}${r.complementar ? (asreg() ? `<span class="compl" title="Limite depende da outorga: ${esc(r.complementar)}">depende de outorga</span>` : `<a class="compl" href="#atos" data-atos="${esc(r.id)}" title="Depende de ato complementar: ${esc(r.complementar)}. Clique para ver os atos da regra.">ato complementar</a>`) : ""}</div><div class="desc">${esc(r.descricao)}</div>${r.alerta ? `<div class="alerta">⚠ ${esc(r.alerta)}</div>` : ""}</td>
@@ -1107,7 +1114,7 @@ function aplicarVersao() {
   const doc = document.querySelector('a.doc[href^="docs/indicadores_ASREG"]');
   if (doc) { doc.href = on ? "docs/indicadores_ASREG_previa.xlsx" : "docs/indicadores_ASREG.xlsx"; doc.querySelector("b").textContent = on ? "Indicadores ASREG (prévia)" : "Indicadores ASREG"; }
   const av = $("#aviso-asreg"); av.hidden = !on;
-  if (on) av.innerHTML = `<summary><b>Prévia da versão ASREG:</b> ${D.regras.length} de ${D.regrasTodas.length} regras. ${fora.size} regras que dependem de ato complementar não são apresentadas; as ${VA.selo_outorga.length} que dependem de outorga continuam. Clique para ver a lista.</summary><ul>${VA.suprimidas.map((x) => { const r = D.regrasTodas.find((y) => y.id === x.id); return `<li><b>${esc(r ? r.ponto : x.id)}</b> <span class="muted">(${esc(x.id)}${r ? ", " + esc(r.resolucao) : ""})</span>: ${esc(x.motivo)}</li>`; }).join("")}</ul>`;
+  if (on) av.innerHTML = `<summary><b>Prévia da versão ASREG:</b> ${D.regras.length} de ${D.regrasTodas.length} regras. ${fora.size} regras que dependem de ato complementar ou de base fora do repositório não são apresentadas; as ${VA.selo_outorga.length} que dependem de outorga continuam. Clique para ver a lista.</summary><ul>${VA.suprimidas.map((x) => { const r = D.regrasTodas.find((y) => y.id === x.id); return `<li><b>${esc(r ? r.ponto : x.id)}</b> <span class="muted">(${esc(x.id)}${r ? ", " + esc(r.resolucao) : ""})</span>: ${esc(x.motivo)}</li>`; }).join("")}</ul>`;
   preencherSistemas();
   for (const id of [...aberto]) if (fora.has(id)) aberto.delete(id);
   if (on && state.aba === "atos") mostrarAba("sint");
